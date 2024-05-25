@@ -56,7 +56,7 @@
                                 <div class="col-md-6 mx-auto">
                                     <ul class="list-unstyled menu">
                                         <li><a href="index.jsp">Home</a></li>
-                                        <li class="active"><a href="rooms.html">Rooms</a></li>
+                                        <li class="active"><a href="Room">Rooms</a></li>
                                         <li><a href="about.jsp">About</a></li>
                                         <li><a href="events.jsp">Events</a></li>
                                         <li><a href="contact.jsp">Contact</a></li>
