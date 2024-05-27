@@ -10,7 +10,7 @@ public class Account {
         private String fullName;
         private String email;
         private String role;
-        private String gender; // Optional
+        private boolean gender; // Optional
         private String phone;
         private Date dob; // Or LocalDate depending on Java version
         private String address; // Separate Address class if needed
@@ -18,7 +18,7 @@ public class Account {
 
         // Getters, setters, and other methods for user data access and manipulation
 
-    public Account(String id, String userName, String password, String fullName, String email, String role, String gender, String phone, Date dob, String address) {
+    public Account(String id, String userName, String password, String fullName, String email, String role, boolean gender, String phone, Date dob, String address) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -79,11 +79,11 @@ public class Account {
         this.role = role;
     }
 
-    public String getGender() {
+    public boolean getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 

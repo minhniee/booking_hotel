@@ -1,0 +1,12 @@
+
+¬
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(„Ë¦”J$b68a328e-c864-4728-8b20-e078e4151fea
+¬
+java:S13195"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(öï•J$8b12a981-305d-4c07-a8d8-26006a882036
+ˆ	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÎÀã×J$32cd5d61-2761-4e82-8ca1-908a448e3cf3
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òªJ$4cc54bfe-6fed-4e02-b2e5-0fefd139475a
+f	java:S106"+Replace this use of System.out by a logger.(Â–‘öJ$aad975c1-3b55-41cd-939c-ec894d8b3fc4
+f	java:S106@"+Replace this use of System.out by a logger.(Â–‘öJ$d6e3045c-6059-469d-b563-bbc677aa0ab9
+k	java:S106A"+Replace this use of System.err by a logger.(²˜î¼ûÿÿÿÿJ$f172a2be-eaaa-4c63-93a3-3a7c7997e151
+k	java:S106Y"+Replace this use of System.out by a logger.(Ä¿¼ùùÿÿÿÿJ$e69b42a4-d22f-440f-b51e-ba7b0d198d23
+w	java:S125["<This block of commented-out lines of code should be removed.(º¸´šJ$36538c80-f111-460a-ac01-822a4f389936

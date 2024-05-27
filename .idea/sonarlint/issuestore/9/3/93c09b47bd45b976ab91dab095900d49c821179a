@@ -1,0 +1,11 @@
+
+³
+java:S1319
+"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(×Š‡¸8ğ×¨Áû1J$b7b85d88-2f02-4125-bbc7-c844a93f73ec
+	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(º×¸‘8ÿ×¨Áû1J$96ceb302-f76a-496a-864c-2377186eef7a
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8ÿ×¨Áû1J$4e9c4cb3-fe19-483d-9877-1587d1d1ae3f
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ÏµÆÿÿÿÿÿ8¥ÙÍÍû1
+b
+java:S6905"Don't use the query "SELECT *".(¸•¤ï8Ø¨Áû1J$751351ad-5854-428b-a7dc-2009c57d875a
+k	java:S108")Either remove or fill this block of code.(”ı¾8Ø¨Áû1J$fbed9f27-c342-4722-bff7-dd37b7862b40

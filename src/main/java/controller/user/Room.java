@@ -61,12 +61,7 @@ public class Room extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        ArrayList<model.Room> listRoomType = new ArrayList<>();
-        roomDAO dao = new roomDAO();
-        listRoomType = dao.getRoomByType();
-        request.setAttribute("listRoom", listRoomType);
 
-        request.getRequestDispatcher("rooms.jsp").forward(request,response);
     }
 
 

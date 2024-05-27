@@ -1,0 +1,13 @@
+
+”	java:S101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ãØâÔÿÿÿÿÿ8àÒÍÅû1J$0d091e6b-e862-44f5-ba5a-8089aadda7cc
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8âÒÍÅû1J$ddc82e19-50e2-4124-86dd-b271ab5d351a
+—
+java:S20950"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ÏµÆÿÿÿÿÿ8ìÒÍÅû1J$8c9529cc-f756-4df1-9e81-1099a3ad717d
+—
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ÏµÆÿÿÿÿÿ8™øĞÅû1J$581a14f1-b147-4cba-a285-5a2ba574e065
+„	java:S107#"=Method has 10 parameters, which is greater than 7 authorized.(Á«õ²øÿÿÿÿ8îÒÍÅû1J$38956856-746c-4136-ac5a-613a7a515ec1
+b
+java:S6905"Don't use the query "SELECT *".(Æ¹í©8ğÒÍÅû1J$a84b950b-ef9a-453f-9c9b-3d01f544ce31
+k	java:S108")Either remove or fill this block of code.(”ı¾8òÒÍÅû1J$9e2cb993-8f8f-465d-9d39-51107cbdacab
+p	java:S108<")Either remove or fill this block of code.(¬Àáªøÿÿÿÿ8¢øĞÅû1J$5e1c180e-1c5b-41e7-8c12-eceb9cf80776
