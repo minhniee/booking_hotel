@@ -1,0 +1,115 @@
+/* General styling */
+.main--title {
+text-transform: uppercase;
+    color: blueviolet;
+    font-size: 25px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+/* Table container styling */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+
+}
+
+thead {
+    background-color: wheat;
+    color: black;
+}
+
+th {
+
+    font-size: 15px;
+    background-color: wheat;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Button styling */
+button {
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fas.fa-edit {
+    background-color: #ffc107; /* Yellow */
+}
+
+.fas.fa-trash-alt {
+    background-color: #dc3545; /* Red */
+}
+
+.fas.fa-info-circle {
+    background-color: #17a2b8; /* Teal */
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    thead {
+        display: none;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    td {
+        display: block;
+        text-align: right;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: wheat;
+    }
+}
