@@ -35,10 +35,7 @@
 
 <section class="section">
     <div class="container">
-
         <div class="row">
-
-
             <c:forEach var="i" items="${listRoom}">
                 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                     <a href="#" class="room">
@@ -53,8 +50,6 @@
                     </a>
                 </div>
             </c:forEach>
-
-
         </div>
     </div>
 </section>
