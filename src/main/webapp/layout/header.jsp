@@ -61,6 +61,8 @@
                                         <li><a href="events.jsp">Events</a></li>
                                         <li><a href="contact.jsp">Contact</a></li>
                                         <li><a href="reservation.jsp">Reservation</a></li>
+                                        <li><a href="login.jsp">Login</a></li>
+                                        <li><a href="logout">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

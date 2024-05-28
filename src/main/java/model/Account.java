@@ -4,21 +4,20 @@ import java.sql.Date;
 
 public class Account {
 
-        private String id;
-        private String userName;
-        private String password; // Hashed or encrypted password
-        private String fullName;
-        private String email;
-        private String role;
-        private String gender; // Optional
-        private String phone;
-        private Date dob; // Or LocalDate depending on Java version
-        private String address; // Separate Address class if needed
+    private String id;
+    private String userName;
+    private String password; // Hashed or encrypted password
+    private String fullName;
+    private String email;
+    private String role;
+    private Boolean gender; // Corrected declaration
+    private String phone;
+    private Date dob; // Or LocalDate depending on Java version
+    private String address; // Separate Address class if needed
 
+    // Getters, setters, and other methods for user data access and manipulation
 
-        // Getters, setters, and other methods for user data access and manipulation
-
-    public Account(String id, String userName, String password, String fullName, String email, String role, String gender, String phone, Date dob, String address) {
+    public Account(String id, String userName, String password, String fullName, String email, String role, Boolean gender, String phone, Date dob, String address) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -29,6 +28,10 @@ public class Account {
         this.phone = phone;
         this.dob = dob;
         this.address = address;
+    }
+
+    public Account() {
+
     }
 
     public String getId() {
@@ -79,11 +82,11 @@ public class Account {
         this.role = role;
     }
 
-    public String getGender() {
+    public Boolean getGender() { // Corrected getter
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Boolean gender) { // Corrected setter
         this.gender = gender;
     }
 
