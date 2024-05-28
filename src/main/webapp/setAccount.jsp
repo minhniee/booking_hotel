@@ -19,8 +19,8 @@
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="text" id="password" name="password" value="${account.password}" required />
+
+            <input type="hidden" id="password" name="password" value="${account.password}" required />
         </div>
 
         <div class="form-group">

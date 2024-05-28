@@ -25,7 +25,7 @@
             <tr>
                 <th>ID</th>
                 <th>User name</th>
-                <th>Password</th>
+
                 <th>Full name</th>
                 <th>Email</th>
                 <th>Role</th>
@@ -40,7 +40,7 @@
                 <tr>
                     <td>${listAccounts.id}</td>
                     <td>${listAccounts.userName}</td>
-                    <td>${listAccounts.password}</td>
+
                     <td>${listAccounts.fullName}</td>
                     <td>${listAccounts.email}</td>
                     <td>${listAccounts.role}</td>
