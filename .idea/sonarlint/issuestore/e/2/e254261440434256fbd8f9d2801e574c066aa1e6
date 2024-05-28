@@ -1,13 +1,0 @@
-
-“	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª›ùµ8¥ç½Âû1J$4e8a40b8-1934-435f-b1ff-a1193cb8f576
-	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(˜¿øµ8Èõ»Âû1J$a680ea49-fbe3-4aee-bc29-ce4d96c64424
-»
-java:S1130"yRemove the declaration of thrown exception 'jakarta.servlet.ServletException', as it cannot be thrown from method's body.(ıù±8Òõ»Âû1J$fa9cea85-9128-4b2b-a646-a241a5c4b57e
-u
-java:S1135"2Complete the task associated to this TODO comment.(¢§‰8Óõ»Âû1J$16af184b-4d21-4f5e-8da2-d5fbeebe0371
-œ
-java:S1989""YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(ª›ùµ8µç½Âû1J$0f50c9f2-441d-4220-a61d-c66c8f9f8dc4
-–
-java:S1989%"SHandle the following exception that could be thrown by "sendRedirect": IOException.(Ö­—®8Ø¿Âû1J$c15495df-1f62-4dec-9398-7d0c935420e6
-«
-java:S1989+"hHandle the following exceptions that could be thrown by "processRequest": ServletException, IOException.(‘ŸÑ8Øõ»Âû1J$4aec7ae7-8aa4-44f8-81d4-05329b75fa00
