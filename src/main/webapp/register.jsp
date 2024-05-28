@@ -83,6 +83,7 @@
                                 </div>
                                 <p class="text-danger" id="validationError"></p>
                                 <p class="text-danger">${msg_Username}</p>
+                                <p class="text-danger">${msg_register}</p>
                                 <input type="submit" class="btnRegister" value="Register"/>
                             </div>
                         </div>
