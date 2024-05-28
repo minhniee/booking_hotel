@@ -5,7 +5,10 @@
   Time: 1:31 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <section>
+
+
     <div class="container">
         <div class="row check-availabilty" id="next">
             <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
