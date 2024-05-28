@@ -72,7 +72,7 @@ public class BookingDetail extends HttpServlet {
         request.setAttribute("nights", nights);
         request.setAttribute("earlyBirdDays", earlyBirdDays);
         request.setAttribute("total", total);
-request.getRequestDispatcher("booking.jsp").forward(request, response);
+request.getRequestDispatcher("booking/booking.jsp").forward(request, response);
     }
 
     /**

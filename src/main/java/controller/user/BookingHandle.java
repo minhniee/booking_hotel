@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "BookingHandleServlet", urlPatterns = {"/BookingHandle"})
 public class BookingHandle extends HttpServlet {
 
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
@@ -76,6 +77,7 @@ public class BookingHandle extends HttpServlet {
         int children =0;
         int adults = 1;
         int person=0;
+        String url ="";
         String currentDate= dtf.format(now);
 
         try {
@@ -89,13 +91,17 @@ public class BookingHandle extends HttpServlet {
 
             long diff = date2.getTime() - date1.getTime();
             earlyBirdDays = TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
+            if (earlyBirdDays < 0){
+                earlyBirdDays =0;
+            }
             daysDiff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
         if ( adults + children >  3 || checkinDate.isEmpty() || checkoutDate.isEmpty() ){
-            request.setAttribute("noti", "maximum 2 per");
+            request.setAttribute("noti", "Date invalid");
+            // to another page noti err
         }else{
 //            request.setAttribute("noti", "checkin" + checkinDate +"checkout" + checkoutDate + "   Day: " + daysDiff);
             request.setAttribute("nights", daysDiff);
@@ -103,9 +109,9 @@ public class BookingHandle extends HttpServlet {
             request.setAttribute("checkinDate", checkinDate);
             request.setAttribute("checkoutDate", checkoutDate);
             request.setAttribute("earlyBirdDays", earlyBirdDays);
-
+            url = "/booking/listRoom.jsp";
         }
-       request.getRequestDispatcher("listRoom.jsp").forward(request, response);
+       request.getRequestDispatcher(url).forward(request, response);
     }
 
     /**

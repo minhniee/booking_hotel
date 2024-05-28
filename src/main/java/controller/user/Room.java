@@ -57,16 +57,19 @@ public class Room extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException      if an I/O error occurs
      */
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+//        String url = request.getScheme()+ "://" + request.getServerName()+ ":" + request.getServerPort() +  request.getContextPath();
+
         ArrayList<model.Room> listRoomType = new ArrayList<>();
         roomDAO dao = new roomDAO();
         listRoomType = dao.getRoomByType();
         request.setAttribute("listRoom", listRoomType);
 
-        request.getRequestDispatcher("rooms.jsp").forward(request,response);
+        request.getRequestDispatcher("/rooms.jsp").forward(request,response);
     }
 
 
