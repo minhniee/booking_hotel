@@ -37,6 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-
 /sonarlint
-
+/.idea/sonarlint/
