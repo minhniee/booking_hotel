@@ -38,7 +38,7 @@
         <div class="row">
             <c:forEach var="i" items="${listRoom}">
                 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                    <a href="#" class="room">
+                    <a href="roomDetails?room_class_id=${i.roomClassId}" class="room">
                         <figure class="img-wrap">
                             <img src="assest/room/${i.roomImg}" alt="Free website template" class="img-fluid mb-3"
                                  style="width: 350px; height:250px">
