@@ -72,8 +72,4 @@ public class Email {
             return false;
         }
     }
-
-    public static void main(String[] args) {
-        Email.sendEmail("dinhquocsang2003@gmail.com", "x", "dxdiag");
-    }
 }

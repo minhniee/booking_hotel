@@ -78,6 +78,32 @@ public class AccountDAO extends MyDAO{
         }
         return null;
     }
+    public void addCode(String code) {
+        String sql = "INSERT INTO keyId (keyID) VALUES (?)";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, code);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Code added successfully");
+            } else {
+                System.out.println("Code not added");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Database error");
+        }
+    }
+    public boolean searchCode(String code) {
+        String sql = "SELECT * FROM keyId WHERE keyID = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, code);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // Trả về true nếu có ít nhất một dòng kết quả, ngược lại trả về false
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
 
     public Account updateProfile(int id, String fullname, String phone) {
         try {

@@ -6,6 +6,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
+
+import model.Account;
 import model.Email;
 import DAO.AccountDAO;
 
@@ -32,25 +35,19 @@ public class Register extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String birthdate = request.getParameter("birthdate");
-
         // Validate if username exists
         if (aDAO.checkAccountExist(userName) != null) {
             request.setAttribute("msg_Username", "Username exists");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
-
-        // Check if passwords match
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("msg_register", "Passwords do not match");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-            return;
-        }
-
         // Attempt to send verification email
         try {
             Email emailObj = new Email();
-            String link = "<a href='http://localhost:8080/Booking_Hotell/success.jsp'> Hello " + fullName + ", click me to verify</a>";
+            String key= UUID.randomUUID().toString();
+            String key1 =key.substring(0,8);
+            aDAO.addCode(key1);
+            String link = "http://localhost:8080/Booking_Hotell/verify?key1=" + key1 + "&userName=" +userName;
             emailObj.sendEmail(email, "Email Verification", link);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +58,6 @@ public class Register extends HttpServlet {
 
         // Attempt to register user
         try {
-            aDAO.register(userName, password, fullName, address, gender, email, phone, birthdate, "customer");
             request.setAttribute("msg_register", "Please check your email for verification.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } catch (Exception e) {

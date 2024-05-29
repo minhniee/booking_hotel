@@ -85,20 +85,13 @@
             event.preventDefault(); // Chặn hành vi mặc định của thẻ <a> (chuyển hướng đến một trang khác)
 
             // Tạo dữ liệu gửi đến servlet register
-            var params = "action=backToLogin";
+            var params = "back";
 
             // Gửi yêu cầu đến servlet register
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "register", true); // Thay "register" bằng URL của servlet register
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Xử lý phản hồi từ servlet register nếu cần
-                    // Ví dụ: console.log(xhr.responseText);
-                }
-            };
             xhr.send(params); // Gửi yêu cầu với các tham số
-
             // Chuyển hướng người dùng đến trang login
             window.location.href = "login.jsp";
         });

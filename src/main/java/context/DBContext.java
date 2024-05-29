@@ -11,7 +11,6 @@ public class DBContext {
     public Connection getConnection() {
         Connection connection = null;
 
-
         //@Students: You are allowed to edit user, pass, url variables to fit
         //your system configuration
         //You can also add more methods for Database Interaction tasks.
