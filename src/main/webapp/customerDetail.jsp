@@ -1,33 +1,43 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Customer Detail</title>
     <style>
         .container {
-            max-width: 800px;
+            width: 80%;
             margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
         }
-
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
         .customer-container {
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
             margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
         }
-
+        .customer-container h2 {
+            margin-top: 0;
+        }
         .customer-container p {
-            margin: 10px 0;
+            margin-bottom: 10px;
+        }
+        .customer-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .customer-container table th, .customer-container table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .customer-container table th {
+            background-color: #f2f2f2;
+        }
+        .customer-container table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .customer-container table tr:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
