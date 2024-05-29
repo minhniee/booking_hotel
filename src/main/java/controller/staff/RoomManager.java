@@ -3,92 +3,74 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+
 package controller.staff;
 
-import DAO.CustomerDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.roomDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import model.Room;
 
-/**
- *
- * @author LENOVO
- */
-@WebServlet(name = "CustomerInfo", urlPatterns = {"/CustomerInfo"})
-public class CustomerInfo extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(name = "RoomManager", value = "/roomManager")
+public class RoomManager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CustomerInfo</title>");  
+            out.println("<title>Servlet NewServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CustomerInfo at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        CustomerDAO customerDAO = new CustomerDAO();
-        List<Customer> customers = customerDAO.getAllCustomers();
-        request.setAttribute("customers", customers);
-        request.getRequestDispatcher("customerInfo.jsp").forward(request, response);
     }
-
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer customer = customerDAO.getCustomerById(customerId);
-        request.setAttribute("customer", customer);
-        request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Room> listRoom = new ArrayList<>();
+        roomDAO dao = new roomDAO();
+        listRoom = dao.getRoom();
+        request.setAttribute("rooms", listRoom);
+        request.getRequestDispatcher("roomManager.jsp").forward(request, response);
     }
-
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
+        String action = request.getParameter("action");
+        if (action != null) {
+            switch (action) {
+                case "edit":
+                    
+                    String roomIdEdit = request.getParameter("roomId");
+                    response.sendRedirect("editRoom.jsp?roomId=" + roomIdEdit);
+                    break;
+                case "delete":
+                   
+                    String roomIdDelete = request.getParameter("roomId");
+                    roomDAO deleteDAO = new roomDAO();
+                    deleteDAO.deleteRoom(roomIdDelete);
+                    response.sendRedirect("deleteRoom.jsp?roomId=" + roomIdDelete);
+                    break;
+                default:
+                    response.sendRedirect("roomManager");
+                    break;
+            }
+        }
+    }
+    
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Room Manager Servlet";
+    }
 }
