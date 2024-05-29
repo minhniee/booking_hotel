@@ -47,7 +47,7 @@
                     <td>
                         <a href=""><button class="fas fa-edit"></button></a>
                         <a href=""><button class="fas fa-trash-alt"></button></a>
-                        <a href=""><button class="fas fa-info-circle"></button></a>
+                        <a href="detailRoomManager?id=${list.id}&rid=${list.roomClassId}"><button class="fas fa-info-circle"></button></a>
 
                     </td>
 
