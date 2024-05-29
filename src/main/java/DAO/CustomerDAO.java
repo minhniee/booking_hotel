@@ -23,7 +23,7 @@ public List<Customer> getAllCustomers() {
         
         connection = new DBContext().getConnection();
         if (connection != null) {
-            String sql = "SELECT c.id, a.full_name, a.email, a.phone, c.gender, c.dob, c.address " +
+            String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address " +
                          "FROM Customer c JOIN account a ON c.account_id = a.id";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
@@ -62,7 +62,7 @@ public List<Customer> getAllCustomers() {
 
         try {
             connection = new DBContext().getConnection();
-            String sql = "SELECT c.id, a.full_name, a.email, a.phone, c.gender, c.dob, c.address " +
+            String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address " +
                      "FROM Customer c JOIN account a ON c.account_id = a.id " +
                      "WHERE c.id = ?";
             statement = connection.prepareStatement(sql);
@@ -133,6 +133,17 @@ public List<Customer> getAllCustomers() {
             System.out.println(c.toString());
         }
     }
+    
+//    public static void main(String[] args) {
+//        CustomerDAO dao = new CustomerDAO();
+//        Customer customer = dao.getCustomerById(1); // Correct the method call to match the return type
+//        if (customer != null) {
+//            System.out.println(customer.toString());
+//        } else {
+//            System.out.println("Customer not found");
+//        }
+//    }
+
 }
 
     
