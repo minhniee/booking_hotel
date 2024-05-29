@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+
 package controller.staff;
 
 import DAO.CustomerDAO;
@@ -82,10 +83,6 @@ public class CustomerInfo extends HttpServlet {
         request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
