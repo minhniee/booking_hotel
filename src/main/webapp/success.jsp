@@ -39,7 +39,7 @@
     <div class="rt-container">
         <div class="col-rt-12">
             <div class="rt-heading">
-                <h1>Verified successfully</h1>
+                <h1> ${msg_Success}</h1>
             </div>
         </div>
     </div>

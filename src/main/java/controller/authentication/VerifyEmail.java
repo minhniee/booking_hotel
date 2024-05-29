@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet(name = "VerifyEmail", value = "/verify")
 public class VerifyEmail extends HttpServlet {
@@ -30,20 +31,33 @@ public class VerifyEmail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String key = request.getParameter("key1");
-        AccountDAO aDao= new AccountDAO();
-        if (aDao.searchCode(key)) {
-            HttpSession session = request.getSession();
-            String fullName = (String) session.getAttribute("fullName");
-            String address = (String) session.getAttribute("address");
-            String userName = (String) session.getAttribute("userName");
-            String password = (String) session.getAttribute("password");
-            String gender = (String) session.getAttribute("gender");
-            String email = (String) session.getAttribute("email");
-            String phone = (String) session.getAttribute("phone");
-            String birthdate = (String) session.getAttribute("birthdate");
-            aDao.register(userName, password, fullName, address, gender, email, phone, birthdate, "customer");
-            response.sendRedirect("success.jsp");
+        // Extract parameters from the URL
+        String key1 = request.getParameter("key1");
+        String userName = request.getParameter("userName");
+
+        // Check if the verification code matches the one stored in the database
+        AccountDAO accountDAO = new AccountDAO();
+        boolean isVerified = false;
+        try {
+            isVerified = accountDAO.verifyCode(userName, key1);
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception or log it
+            // Forward to the verification error page
+            request.setAttribute("msg_Success", "An error occurred while verifying your account.");
+            request.getRequestDispatcher("success.jsp").forward(request, response);
+            return;
+        }
+
+        if (isVerified==true) {
+            // Mark the account as verified
+            request.setAttribute("msg_Success", "Your account has been successfully verified!");
+            // Forward to the verification success page
+            request.getRequestDispatcher("success.jsp").forward(request, response);
+        } else {
+            // Display error message to the user
+            request.setAttribute("msg_Success", "Invalid or expired verification code.");
+            // Forward to the verification error page
+            request.getRequestDispatcher("success.jsp").forward(request, response);
         }
     }
 

@@ -47,13 +47,17 @@ public class Login extends HttpServlet {
             String msg = "Login failed!";
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
+        } else if (aDAO.checkConfirm(account.getUserName())) {
+
             session.setAttribute("account", account);
             if ("admin".equals(account.getRole())) {
                 response.sendRedirect("admin");
             } else {
                 response.sendRedirect("index.jsp");
             }
+        } else {
+            request.setAttribute("msg", "Your account has not been verified. Please check your email!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
     @Override

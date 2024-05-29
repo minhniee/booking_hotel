@@ -43,12 +43,12 @@ public class Register extends HttpServlet {
         }
         // Attempt to send verification email
         try {
-            Email emailObj = new Email();
-            String key= UUID.randomUUID().toString();
-            String key1 =key.substring(0,8);
-            aDAO.addCode(key1);
-            String link = "http://localhost:8080/Booking_Hotell/verify?key1=" + key1 + "&userName=" +userName;
-            emailObj.sendEmail(email, "Email Verification", link);
+            Email emailObj = new Email(); // Assuming you have a constructor for your Email class
+            String verificationCode = UUID.randomUUID().toString().substring(0, 8);
+            aDAO.register(userName,  password,  fullName,  address,  gender,  email,  phone,  birthdate,  "customer");
+            aDAO.addVerificationCode(userName, verificationCode);
+            String link = "http://localhost:8080/Booking_Hotell/verify?key1=" + verificationCode + "&userName=" + userName;
+            emailObj.sendEmail(email, "Email Verification", "Click the link to verify your email: " + link);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("msg_Error", "Error sending verification email");
@@ -56,7 +56,6 @@ public class Register extends HttpServlet {
             return;
         }
 
-        // Attempt to register user
         try {
             request.setAttribute("msg_register", "Please check your email for verification.");
             request.getRequestDispatcher("register.jsp").forward(request, response);

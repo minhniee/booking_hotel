@@ -37,9 +37,42 @@ public class AccountDAO extends MyDAO{
         }
         return a;
     }
+
     public static String generateShortString() {
         String id = UUID.randomUUID().toString();
         return id.substring(0, 8);
+    }
+    public void addVerificationCode(String userName, String verificationCode) throws SQLException {
+        String query = "UPDATE account SET key1 = ?, confirm = 0 WHERE user_name = ?";
+        try (
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, verificationCode);
+            ps.setString(2, userName);
+            ps.executeUpdate();
+        }
+    }
+
+    public boolean verifyCode(String userName, String verificationCode) throws SQLException {
+        String query = "SELECT * FROM account WHERE user_name = ? AND key1 = ? AND confirm = 0";
+        try (
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, userName);
+            ps.setString(2, verificationCode);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Update confirm to true
+                    String updateQuery = "UPDATE account SET confirm = 1 WHERE user_name = ? AND key1 = ?";
+                    try (PreparedStatement updatePs = con.prepareStatement(updateQuery)) {
+                        updatePs.setString(1, userName);
+                        updatePs.setString(2, verificationCode);
+                        updatePs.executeUpdate();
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     public void register(String username, String password, String fullname, String address, String gender, String email, String phone, String dob, String role) {
         String sql = "INSERT INTO account (id, user_name, password, full_name, email, role, gender, phone, dob, address) "
@@ -62,6 +95,7 @@ public class AccountDAO extends MyDAO{
             e.printStackTrace();
         }
     }
+
     public Account checkAccountExist(String username) {
         String sql = "SELECT * FROM Account WHERE user_name = ?";
         int check = 0;
@@ -78,33 +112,23 @@ public class AccountDAO extends MyDAO{
         }
         return null;
     }
-    public void addCode(String code) {
-        String sql = "INSERT INTO keyId (keyID) VALUES (?)";
+    public boolean checkConfirm(String username) {
+        String sql = "SELECT confirm FROM account WHERE user_name = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, code);
-            int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Code added successfully");
-            } else {
-                System.out.println("Code not added");
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int confirmValue = rs.getInt("confirm");
+                    // Nếu giá trị confirm là 1 (đã xác nhận), trả về true
+                    return confirmValue == 1;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Database error");
         }
+        // Nếu không tìm thấy tài khoản hoặc có lỗi xảy ra, trả về false
+        return false;
     }
-    public boolean searchCode(String code) {
-        String sql = "SELECT * FROM keyId WHERE keyID = ?";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, code);
-            ResultSet rs = ps.executeQuery();
-            return rs.next(); // Trả về true nếu có ít nhất một dòng kết quả, ngược lại trả về false
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false; // Trả về false nếu có lỗi xảy ra
-        }
-    }
-
     public Account updateProfile(int id, String fullname, String phone) {
         try {
             String sql = "UPDATE Account SET Fullname=?, Phone=? WHERE id=?";

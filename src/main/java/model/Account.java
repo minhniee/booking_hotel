@@ -14,7 +14,6 @@ public class Account {
     private String phone;
     private Date dob; // Or LocalDate depending on Java version
     private String address; // Separate Address class if needed
-
     // Getters, setters, and other methods for user data access and manipulation
 
     public Account(String id, String userName, String password, String fullName, String email, String role, Boolean gender, String phone, Date dob, String address) {
@@ -31,7 +30,6 @@ public class Account {
     }
 
     public Account() {
-
     }
 
     public String getId() {
