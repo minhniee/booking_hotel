@@ -35,7 +35,10 @@
 
         <div class="form-group">
             <label for="role">Role</label>
-            <input type="text" id="role" name="role" value="${account.role}" required readonly/>
+            <select id="role" name="role" required>
+                <option value="staff" ${account.role == 'staff' ? 'selected' : ''}>Staff</option>
+                <option value="customer" ${account.role == 'customer' ? 'selected' : ''}>Customer</option>
+            </select>
         </div>
 
         <div class="form-group">
