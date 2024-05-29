@@ -58,13 +58,10 @@
     <h1>FuTel</br><span style="font-size: 16px;">i hotel infomation</span></h1>
 </div>
 
-
-
-<p>${noti}</p>
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Select Room</li>
         </ol>
     </nav>

@@ -68,7 +68,7 @@
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
             <li class="breadcrumb-item"><a href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=2&children=1">Select Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="section-info">
-        <h2>Your reservation - from <span id="check-in-date">${checkinDate}</span> to <span id="check-out-date">${checkinDate}</span></h2>
+        <h2>Your reservation - from <span id="check-in-date">${checkinDate}</span> to <span id="check-out-date">${checkoutDate}</span></h2>
         <p><strong id="hotel-name">FUTel</strong></p>
         <p>Address: <span id="hotel-address">Thach That</span></p>
         <p>Reception is open: 24 hours</p>
@@ -97,7 +97,7 @@
         <p>Bedding options: <span id="room1-bedding">${roomType}</span></p>
         <p>Early Bird ${earlyBirdDays} Days</p>
         <p>Breakfast included: <span id="room1-breakfast">[Breakfast Details]</span></p>
-        <p>Price: <span id="room1-price">${roomType}</span></p>
+        <p>Price: <span id="room1-price">${total}</span></p>
     </div>
 
 
