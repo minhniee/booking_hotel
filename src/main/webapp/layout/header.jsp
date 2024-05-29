@@ -8,7 +8,6 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="url" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,6 +60,13 @@
                                         <li><a href="events.jsp">Events</a></li>
                                         <li><a href="contact.jsp">Contact</a></li>
                                         <li><a href="reservation.jsp">Reservation</a></li>
+                                        <li>
+                                            <% if (session.getAttribute("account") != null) { %>
+                                            <a href="logout">Logout</a>
+                                            <% } else { %>
+                                            <a href="login.jsp">Login</a>
+                                            <% } %>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
