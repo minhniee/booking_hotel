@@ -20,46 +20,44 @@
 
         <div class="form-group">
 
-            <input type="hidden" id="password" name="password" value="${account.password}" required />
+            <input type="hidden" id="password" name="password" value="${account.password}" required readonly />
         </div>
 
         <div class="form-group">
             <label for="fullname">Fullname</label>
-            <input type="text" id="fullname" name="fullname" value="${account.fullName}" required />
+            <input type="text" id="fullname" name="fullname" value="${account.fullName}" required readonly/>
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="${account.email}" required />
+            <input type="email" id="email" name="email" value="${account.email}" required readonly/>
         </div>
 
         <div class="form-group">
             <label for="role">Role</label>
-            <input type="text" id="role" name="role" value="${account.role}" required />
+            <input type="text" id="role" name="role" value="${account.role}" required readonly/>
         </div>
 
         <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
-                <option value="Male" <c:if test="${account.gender}">selected</c:if>>Male</option>
-                <option value="Female" <c:if test="${!account.gender}">selected</c:if>>Female</option>
-            </select>
+            <input type="text" id="gender" name="gender" value="${account.gender}" required readonly/>
+
         </div>
 
 
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" value="${account.phone}" required />
+            <input type="text" id="phone" name="phone" value="${account.phone}" required readonly/>
         </div>
 
         <div class="form-group">
             <label for="dob">DOB</label>
-            <input type="date" id="dob" name="dob" value="${account.dob}" required />
+            <input type="date" id="dob" name="dob" value="${account.dob}" required readonly/>
         </div>
 
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" id="address" name="address" value="${account.address}" required />
+            <input type="text" id="address" name="address" value="${account.address}" required readonly/>
         </div>
 
         <button type="submit" class="btn-submit">Save Changes</button>

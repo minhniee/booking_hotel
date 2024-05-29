@@ -10,7 +10,7 @@ public class listAccountDAO extends DBContext{
     public ArrayList<Account> listAccount(){
         ArrayList<Account> accounts = new ArrayList<>();
         try {
-         String sql = "select * from account where role = 'customer' or role = 'sale'";
+         String sql = "select * from account where role = 'customer' or role = 'staff'";
          PreparedStatement stm = getConnection().prepareStatement(sql);
          ResultSet rs = stm.executeQuery();
          while(rs.next()){
