@@ -1,45 +1,51 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Customer Information</title>
     <style>
         .container {
-            max-width: 800px;
+            width: 80%;
             margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
         }
-
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
         .customer-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
-
         .customer-table th, .customer-table td {
-            padding: 10px;
             border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
-
         .customer-table th {
             background-color: #f2f2f2;
-            color: #333;
-            font-weight: bold;
+        }
+        .customer-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .customer-table tr:hover {
+            background-color: #ddd;
+        }
+        .customer-table button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Customer Information</h1>
-        <table class="customer-table" border="1">
+        <table class="customer-table">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -56,11 +62,11 @@
                     <td>${customer.fullName}</td>
                     <td>${customer.email}</td>
                     <td>${customer.phone}</td>
-                    <td>${customer.gender ? "Male" : "Female"}</td>
+                    <td>${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</td>
                     <td>${customer.dob}</td>
                     <td>${customer.address}</td>
                     <td>
-                        <form action="CustomerInfo" method="post" style="display:inline;">
+                        <form action="customerInfo" method="post">
                             <input type="hidden" name="customerId" value="${customer.id}">
                             <button type="submit">View Bookings</button>
                         </form>
