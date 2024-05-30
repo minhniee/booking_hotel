@@ -8,14 +8,26 @@ import java.util.Date;
 
 public class Booking {
     private int id;
+    private int roomId;
     private Date checkinDate;
     private Date checkoutDate;
     private int numAdults;
     private int numChildren;
     private double bookingPrice;
-
+    
     public Booking(int id, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
         this.id = id;
+        this.checkinDate = checkinDate;
+        this.checkoutDate = checkoutDate;
+        this.numAdults = numAdults;
+        this.numChildren = numChildren;
+        this.bookingPrice = bookingPrice;
+    }
+
+
+    public Booking(int id, int roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
+        this.id = id;
+        this.roomId = roomId;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.numAdults = numAdults;
@@ -29,6 +41,14 @@ public class Booking {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public Date getCheckinDate() {
@@ -71,6 +91,7 @@ public class Booking {
         this.bookingPrice = bookingPrice;
     }
 
-
+    
+    
 }
 
