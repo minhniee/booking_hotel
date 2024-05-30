@@ -5,137 +5,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lightbox2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-
-        /* Header Styles */
         .site-hero {
-            position: relative;
+            height: 60vh;
             background-size: cover;
             background-position: center;
-            height: 100vh;
-        }
-
-        .site-hero-inner {
+            position: relative;
+            background-image: url('images/hero_4.jpg');
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            text-align: center;
+            color: white;
         }
 
-        .custom-caption {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .heading {
-            font-size: 2.5rem;
-            color: #fff;
-        }
-
-        /* Mouse Scroll Icon */
-        .mouse-icon {
+        .site-hero .mouse-icon {
             position: absolute;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: block;
-            width: 30px;
+            width: 25px;
             height: 50px;
             border: 2px solid #fff;
-        }
-
-        .mouse-wheel {
-            width: 3px;
-            height: 10px;
-            background-color: #fff;
-            margin-left: 13px;
-            animation: scroll 1s infinite;
-        }
-
-        @keyframes scroll {
-            0%, 100% {
-                margin-top: 10px;
-            }
-            50% {
-                margin-top: 15px;
-            }
-        }
-
-        /* Room Details */
-        .room-details h2 {
-            font-size: 2rem;
-            color: #444;
-        }
-
-        .img-wrap {
-            margin: 20px 0;
-        }
-
-        .room-info {
-            font-size: 1.2rem;
-            color: #666;
-        }
-
-        /* Room Images Gallery using Lightbox */
-        .room-images img {
-            width: 100%;
-            padding: 5px;
-            border-radius: 5px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .room-images img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Materials Section */
-        .materials ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .materials li {
-            display: inline-block;
-            margin: 10px;
-            vertical-align: top;
-        }
-
-        .materials img {
-            width: 100px;
-            height: 100px;
-            border-radius: 5px;
-        }
-
-        .materials span {
-            display: block;
+            border-radius: 25px;
             text-align: center;
         }
 
-        /* Responsive Design */
-        @media only screen and (max-width: 768px) {
-            .heading {
-                font-size: 1.5rem;
-            }
+        .site-hero .mouse-icon .mouse-wheel {
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            margin: 10px auto 0;
+            animation: moveWheel 1s infinite;
+        }
 
-            .custom-caption {
-                font-size: 1rem;
-            }
+        @keyframes moveWheel {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
 
-            .materials img {
-                width: 75px;
-                height: 75px;
-            }
+        .room-details {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: -60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-details h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .room-info p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .room-images img {
+            width: 150px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .materials-table img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .materials-table td {
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -143,12 +91,12 @@
 <%
     RoomClass roomClass = (RoomClass) request.getAttribute("roomClass");
 %>
-<section class="site-hero overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+<section class="site-hero overlay">
     <div class="container">
-        <div class="row site-hero-inner justify-content-center align-items-center">
-            <div class="col-md-10 text-center" data-aos="fade-up">
-                <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span> Hotel</span>
-                <h1 class="heading">A Best Place To Stay</h1>
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <span class="custom-caption text-uppercase text-white d-block mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span> Hotel</span>
+                <h1 class="heading text-white">A Best Place To Stay</h1>
             </div>
         </div>
     </div>
@@ -159,7 +107,7 @@
     </a>
 </section>
 
-<section class="section">
+<section id="next" class="section py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12" data-aos="fade-up">
@@ -172,8 +120,12 @@
                     </figure>
                     <div class="room-info">
                         <p>Price: ${roomClass.basePrice} / per night</p>
-                        <!-- Add other details as necessary -->
                     </div>
+
+                    <div>
+                        <h2>Tiện ích: Phòng có view toàn cảnh tuyệt đẹp, mang lại trải nghiệm đẳng cấp. Giải trí: Phòng khách sang trọng với TV thông minh tích hợp Netflix, YouTube, FPT Play. Khu bếp: Đầy đủ dụng cụ hiện đại, giúp bạn dễ dàng chế biến món ăn. Phòng tắm: Được trang bị các thiết bị tiện nghi và sang trọng bậc nhất. Tiện nghi khác: Bể bơi 4 mùa, nhà hàng Á - Âu, trung tâm thương mại, cửa hàng tiện lợi, và quán cafe xinh đẹp.</h2>
+                    </div>
+
                     <div class="room-images">
                         <h3>Room Images</h3>
                         <c:forEach var="imageUrl" items="${roomClass.imageUrls}">
@@ -188,44 +140,51 @@
     </div>
 </section>
 
-<section class="section">
+<section class="section py-5">
     <div class="container">
         <div class="row">
-            <!-- Hiển thị thông tin phòng -->
             <div class="col-md-12" data-aos="fade-up">
                 <h3>Materials</h3>
-                <ul>
+                <table class="table table-bordered materials-table">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach var="material" items="${materials}">
-                        <li>
-                            <a href="assest/material/${material.image}" data-lightbox="materials" data-title="${material.name}">
-                                <img src="assest/material/${material.image}" alt="${material.name}">
-                            </a>
-                            <span>${material.name}</span>
-                            <span>Quantity: ${material.quantity}</span>
-                        </li>
+                        <tr>
+                            <td>
+                                <a href="assest/material/${material.image}" data-lightbox="materials" data-title="${material.name}">
+                                    <img src="assest/material/${material.image}" alt="${material.name}">
+                                </a>
+                            </td>
+                            <td>${material.name}</td>
+                            <td>${material.quantity}</td>
+                        </tr>
                     </c:forEach>
-                </ul>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </section>
-<!-- Footer -->
+
 <%@include file="layout/footer.jsp"%>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.stellar.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
-
-
 <script src="js/aos.js"></script>
-
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/jquery.timepicker.min.js"></script>
-
 <script src="js/main.js"></script>
 <!-- Lightbox2 JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>

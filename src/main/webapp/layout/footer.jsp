@@ -25,17 +25,17 @@
         <div class="row mb-4">
             <div class="col-md-3 mb-5">
                 <ul class="list-unstyled link">
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="about.jsp">About Us</a></li>
                     <li><a href="#">Terms &amp; Conditions</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Rooms</a></li>
+                    <li><a href="Room">Rooms</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mb-5">
                 <ul class="list-unstyled link">
-                    <li><a href="#">The Rooms &amp; Suites</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="Room">The Rooms &amp; Suites</a></li>
+                    <li><a href="about.jsp">About Us</a></li>
+                    <li><a href="contact.jsp">Contact Us</a></li>
                     <li><a href="#">Restaurant</a></li>
                 </ul>
             </div>
