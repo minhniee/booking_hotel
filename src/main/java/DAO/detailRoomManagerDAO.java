@@ -18,7 +18,8 @@ public class detailRoomManagerDAO extends DBContext {
             while (rs.next()){
               return new DetailRoomManager(rs.getString(1)
                       , rs.getString(2)
-                      ,rs.getDouble(3) );
+                      ,rs.getDouble(3)
+                      ,rs.getString(4));
             }
         }catch (Exception e){
 
