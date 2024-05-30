@@ -1,10 +1,12 @@
 package controller.admin;
 
+import DAO.getRoomManagerDAO;
 import DAO.roomDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Room;
+import model.RoomManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,9 +34,9 @@ public class listRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Room> listRoom = new ArrayList<>();
-        roomDAO dao = new roomDAO();
-        listRoom = dao.getRoom();
+        ArrayList<RoomManager> listRoom = new ArrayList<>();
+       getRoomManagerDAO dao = new getRoomManagerDAO();
+        listRoom = dao.getRoomManager();
         request.setAttribute("list", listRoom);
         request.getRequestDispatcher("ManagerListRoom.jsp").forward(request, response);
     }
