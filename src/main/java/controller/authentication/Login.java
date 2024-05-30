@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
             if ("admin".equals(account.getRole())) {
                 response.sendRedirect("dashboard.jsp");
             } else if ("staff".equals(account.getRole())) {
-//                response.sendRedirect("dashboard.jsp"); // some thing else
+                response.sendRedirect("dashboardstaff.jsp");
             } else {
                 response.sendRedirect("index.jsp");
             }
