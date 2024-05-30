@@ -28,7 +28,7 @@
 
                 <th>Name</th>
                 <th>Adult</th>
-                <th>Image</th>
+
                 <th>Action</th>
 
             </tr>
@@ -36,21 +36,14 @@
             <c:forEach items="${requestScope.list}" var="list">
                 <tr>
                     <td>${list.id}</td>
-                    <td>${list.roomClassId}</td>
-                    <td>${list.roomName}</td>
-                    <td>${list.numAdults}</td>
-                    <td><img src="images/${list.roomImg}" alt=""></td>
-
-
-
-
+                    <td>${list.room_class}</td>
+                    <td>${list.room_name}</td>
+                    <td>${list.num_ad}</td>
                     <td>
                         <a href=""><button class="fas fa-edit"></button></a>
                         <a href=""><button class="fas fa-trash-alt"></button></a>
-                        <a href="detailRoomManager?id=${list.id}&rid=${list.roomClassId}"><button class="fas fa-info-circle"></button></a>
-
+                        <a href="detailRoomManager?id=${list.id}&rid=${list.room_class}"><button class="fas fa-info-circle"></button></a>
                     </td>
-
                 </tr>
             </c:forEach>
             </tbody>
