@@ -61,7 +61,7 @@
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="${url}/index.jsp">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Select Room</li>
         </ol>
     </nav>
@@ -83,18 +83,6 @@
             </div>
         </c:forEach>
 
-<%--        <div class=" col-md-4 mt-5 select-room">--%>
-<%--            <div class="">--%>
-<%--                <img src="..." class="card-img-top" alt="...">--%>
-<%--                <div class="card-body">--%>
-<%--                    <h5 class="card-title">Select Room</h5>--%>
-<%--                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the--%>
-<%--                        card's content.</p>--%>
-<%--                    <a href="#" class="btn btn-primary">Go somewhere</a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 
 </div>
 <div class="fixed-bottom-div">FUTel</div>

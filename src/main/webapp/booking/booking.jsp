@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,15 +115,17 @@
         <p><strong id="total-with-taxes">${total}</strong></p>
     </div>
 
+
     <div class="section">
+    <c:set var="user" value="${sessionScope.account}" />
         <p>Infomation</p>
 
-        <input type="text" value="info" readonly>
-        <input type="text" value="info" readonly>
-        <input type="text" value="info" readonly>
-        <input type="text" value="info" readonly>
-        <input type="text" value="info" readonly>
-        <input type="text" value="info" readonly>
+        <input type="text" value="${user.fullName}" readonly>
+        <input type="text" value="${user.email}" readonly>
+        <input type="text" value="${user.role}" readonly>
+        <input type="text" value="${user.gender?"Male":"Female"}" readonly>
+        <input type="text" value="${user.phone}" readonly>
+        <input type="text" value="${user.address}" readonly>
     </div>
 
     <div class="section">

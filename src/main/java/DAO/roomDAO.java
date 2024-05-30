@@ -92,9 +92,12 @@ public class roomDAO {
         ArrayList<Room> list = new ArrayList<>();
         try {
             con = new DBContext().getConnection();
-            String sql = "SELECT room_class.id,room_class.class_name, room_class.base_price, room_class.main_image\n" +
-                    "FROM room_class \n" +
-                    " where main_image like '%room.jpg%' order by room_class.base_price asc";
+            String sql = "SELECT  distinct      room_class.class_name, room.status_name, room_class.base_price, room_images.image_url\n" +
+                    "FROM            room INNER JOIN\n" +
+                    "                         room_class ON room.room_class_id = room_class.id INNER JOIN\n" +
+                    "                         room_images ON room_class.id = room_images.room_class_id\n" +
+                    "\t\t\t\t\t\t where room_images.image_url like '%room.jpg%' and status_name = 'Available'\n" +
+                    "\t\t\t\t\t\t order by base_price asc";
 
             pr = con.prepareStatement(sql);
 
@@ -124,7 +127,7 @@ public class roomDAO {
 
     public static void main(String[] args) {
         roomDAO dao = new roomDAO();
-        ArrayList<Room>  list = dao.getRoomByType();
+        ArrayList<Room>  list = dao.getRoomByTypeValid();
         for (Room r : list) {
             System.out.println(r.toString());
         }
