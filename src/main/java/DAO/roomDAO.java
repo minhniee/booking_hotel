@@ -92,12 +92,10 @@ public class roomDAO {
         ArrayList<Room> list = new ArrayList<>();
         try {
             con = new DBContext().getConnection();
-            String sql = "SELECT  distinct      room_class.class_name, room.status_name, room_class.base_price, room_images.image_url\n" +
+            String sql = "SELECT    distinct    room_class.class_name, room_class.base_price, room_class.main_image\n" +
                     "FROM            room INNER JOIN\n" +
-                    "                         room_class ON room.room_class_id = room_class.id INNER JOIN\n" +
-                    "                         room_images ON room_class.id = room_images.room_class_id\n" +
-                    "\t\t\t\t\t\t where room_images.image_url like '%room.jpg%' and status_name = 'Available'\n" +
-                    "\t\t\t\t\t\t order by base_price asc";
+                    " room_class ON room.room_class_id = room_class.id INNER JOIN\n" +
+                    "room_images ON room_class.id = room_images.room_class_id where status_name ='Available';";
 
             pr = con.prepareStatement(sql);
 
@@ -106,12 +104,11 @@ public class roomDAO {
             rs = pr.executeQuery();
 
             while (rs.next()) {
-                String roomClassId = rs.getString(1);
-                String roomClassName = rs.getString(2);
-                double basePrice =rs.getDouble(3); // Foreign key
-                String roomImg =rs.getString(4); // Foreign key
+                String roomClassName = rs.getString(1);
+                double basePrice =rs.getDouble(2); // Foreign key
+                String roomImg =rs.getString(3); // Foreign key
 
-                Room p = new Room(roomClassId,roomClassName,basePrice,roomImg);
+                Room p = new Room(roomClassName,basePrice,roomImg);
                 list.add(p);
             }
             con.close();

@@ -122,7 +122,7 @@
 
         <input type="text" value="${user.fullName}" readonly>
         <input type="text" value="${user.email}" readonly>
-        <input type="text" value="${user.role}" readonly>
+        <input type="text" value="${user.dob}" readonly>
         <input type="text" value="${user.gender?"Male":"Female"}" readonly>
         <input type="text" value="${user.phone}" readonly>
         <input type="text" value="${user.address}" readonly>

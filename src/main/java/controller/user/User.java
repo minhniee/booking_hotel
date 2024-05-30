@@ -1,4 +1,4 @@
-package controller.staff;
+package controller.user;
 
 import java.io.*;
 
@@ -6,8 +6,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 // notion can change name servlet(reason to keep form package)
 
-@WebServlet(name = "staffServlet", value = "/staff-servlet")
-public class staff extends HttpServlet {
+@WebServlet(name = "userServlet", value = "/user-servlet")
+public class User extends HttpServlet {
     private String message;
 
     public void init() {

@@ -41,6 +41,12 @@ public class Room {
         this.roomImg = roomImg;
     }
 
+    public Room(String roomClassName, double basePrice, String roomImg) {
+        this.roomClassName = roomClassName;
+        this.basePrice = basePrice;
+        this.roomImg = roomImg;
+    }
+
     public String getId() {
         return id;
     }
