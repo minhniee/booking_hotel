@@ -23,6 +23,7 @@
     <tr>
         <th>Room class</th>
         <th>Price</th>
+        <th>Image</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -30,6 +31,7 @@
     <tr>
         <td>${detail.name}</td>
         <td>${detail.price}</td>
+        <td><img src="assest/room/${detail.image}" width=150px"></td>
         <td>
             <a href=""><button class="fas fa-edit"></button></a>
             <a href=""><button class="fas fa-trash-alt"></button></a>
@@ -58,7 +60,8 @@
         <td>${materials.name}</td>
         <td>${materials.quantity}</td>
         <td>${materials.price}</td>
-        <td><img src="images/${materials.image}"></td>
+        <td><img src="assest/material/${materials.image}" width="70px"></td>
+
         <td>
             <a href=""><button class="fas fa-edit"></button></a>
             <a href=""><button class="fas fa-trash-alt"></button></a>
