@@ -24,32 +24,30 @@ public class roomDAO {
         ArrayList<Room> list = new ArrayList<>();
         try {
             con = new DBContext().getConnection();
-            String sql = "SELECT [id]\n" +
-                    "      ,[room_class_id]\n" +
-                    "      ,[status_id]\n" +
-                    "      ,[name]\n" +
-                    "      ,[num_adults]\n" +
-                    "      ,[status_name]\n" +
-                    "      ,[room_img]\n" +
-                    "  FROM [booking_hotel_v3].[dbo].[room]";
-            pr = con.prepareStatement(sql);
+            if (con != null) {
+                String sql = "SELECT room.id, room_class_id, room_class.class_name, room.status_name, room.name, room.num_adults, base_price\n"
+                        + "FROM room INNER JOIN room_class ON room.room_class_id = room_class.id";
+                pr = con.prepareStatement(sql);
 
-            System.out.println(sql);
-            rs = pr.executeQuery();
+                System.out.println(sql);
+                rs = pr.executeQuery();
 
-            while (rs.next()) {
-                String id = rs.getString(1);
-                String roomClassId =rs.getString(2); // Foreign key
-                int statusId =rs.getInt(3); // Foreign key
-                String roomName =rs.getString(4);
-                int numAdults =rs.getInt(5);
-                String statusName=rs.getString(6);
-                String roomImg=rs.getString(7);
+                while (rs.next()) {
+                    String roomClassName = rs.getString(3);
+                    String statusName = rs.getString(4); // Foreign key
+                    String roomName = rs.getString(5); // Foreign key
+                    int numAdults = rs.getInt(6);
+                    String id = rs.getString(1);
+                    String roomClassId = rs.getString(2);
+                    Double base_price = rs.getDouble(7);
 
-                Room p = new Room(id,roomClassId,statusId,roomName,numAdults,statusName,roomImg);
-                list.add(p);
+//                    Room p = new Room(id, roomClassName, statusId, roomName, numAdults, statusName, roomImg);
+//                    Room p = new Room(className, roomName, numAdults, );
+                    Room p = new Room(id, roomClassId, roomClassName, roomName, numAdults, statusName, base_price);
+                    list.add(p);
+                }
+                con.close();
             }
-            con.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,7 +116,71 @@ public class roomDAO {
         }
         return list;
     }
+public void updateRoom(Room room) {
+        try {
+            con = new DBContext().getConnection();
+            String sql = "UPDATE room "
+                    + "SET room_class_id = ?, "
+                    + "    status_id = ?, "
+                    + "    name = ?, "
+                    + "    num_adults = ?, "
+                    + "    status_name = ?, "
+                    + "WHERE id = ?";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, room.getRoomClassId());
+            pr.setInt(2, room.getStatusId());
+            pr.setString(3, room.getRoomName());
+            pr.setInt(4, room.getNumAdults());
+            pr.setString(5, room.getStatusName());
+            pr.setString(6, room.getId());
+            pr.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    public void deleteRoom(String roomId) {
+        try {
+            con = new DBContext().getConnection();
+            String sql = "DELETE FROM room WHERE id = ?";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, roomId);
+            pr.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Room getRoomById(String roomId) {
+        Room room = null;
+        try {
+            con = new DBContext().getConnection();
+            String sql = "SELECT room_class.class_name, room.status_name, room.name, room.num_adults, room.id, base_price "
+                    + "FROM room INNER JOIN room_class ON room.room_class_id = room_class.id "
+                    + "WHERE room.id = ?";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, roomId);
+            rs = pr.executeQuery();
+
+            if (rs.next()) {
+                String roomClassName = rs.getString(1);
+                String statusName = rs.getString(2);
+                String roomName = rs.getString(3);
+                int numAdults = rs.getInt(4);
+                String id = rs.getString(5);
+                Double base_price = rs.getDouble(6);
+
+                room = new Room(id, roomClassName, roomName, numAdults, statusName, base_price);
+            }
+
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(roomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return room;
+    }
 
 
 
