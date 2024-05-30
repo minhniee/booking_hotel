@@ -70,6 +70,7 @@ public class Room extends HttpServlet {
         request.setAttribute("listRoom", listRoomType);
 
         request.getRequestDispatcher("/rooms.jsp").forward(request,response);
+
     }
 
 

@@ -8,7 +8,15 @@ public class Material {
     private double price;
     private String image;
 
-    public Material( String room_id,String id, String name, int quantity, double price,String image) {
+    public Material(String id, String name, int quantity, double price, String image) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.image = image;
+    }
+
+    public Material(String room_id, String id, String name, int quantity, double price, String image) {
         this.id = id;
         this.image = image;
         this.name = name;

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Room {
     private String id;
     private String roomClassId; // Foreign key
@@ -13,6 +15,13 @@ public class Room {
 
     // Getters, setters, and other methods for room data access and manipulation
 
+    public Room(String id, String roomClassId, String roomClassName, double basePrice, String roomImg) {
+        this.id = id;
+        this.roomClassId = roomClassId;
+        this.roomClassName = roomClassName;
+        this.basePrice = basePrice;
+        this.roomImg = roomImg;
+    }
 
     public Room(String id, String roomClassId, int statusId, String roomName, int numAdults, String statusName, String roomImg) {
 
@@ -25,7 +34,8 @@ public class Room {
         this.roomImg = roomImg;
     }
 
-    public Room(String roomClassName, double basePrice, String roomImg) {
+    public Room(String roomClassId, String roomClassName, double basePrice, String roomImg) {
+        this.roomClassId = roomClassId;
         this.roomClassName = roomClassName;
         this.basePrice = basePrice;
         this.roomImg = roomImg;
