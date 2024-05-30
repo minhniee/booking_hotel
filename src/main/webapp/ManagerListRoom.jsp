@@ -28,7 +28,7 @@
 
                 <th>Name</th>
                 <th>Adult</th>
-
+                <th>Status</th>
                 <th>Action</th>
 
             </tr>
@@ -39,6 +39,7 @@
                     <td>${list.room_class}</td>
                     <td>${list.room_name}</td>
                     <td>${list.num_ad}</td>
+                    <td>${list.status_name}</td>
                     <td>
                         <a href=""><button class="fas fa-edit"></button></a>
                         <a href=""><button class="fas fa-trash-alt"></button></a>
