@@ -112,6 +112,22 @@ public class AccountDAO extends MyDAO{
         }
         return null;
     }
+    public Account checkEmailExist(String email) {
+        String sql = "SELECT * FROM Account WHERE email = ?";
+        int check = 0;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setEmail(rs.getString(5));
+                return a;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
     public boolean checkConfirm(String username) {
         String sql = "SELECT confirm FROM account WHERE user_name = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {

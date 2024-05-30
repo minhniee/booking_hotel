@@ -71,7 +71,8 @@
                                         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
                                         <p class="text-danger">${msg}</p>
                                         <p class="text-danger">${msg_ac}</p>
-                                        <a class="text-muted" href="#!">Forgot password?</a>
+                                        <p class="text-danger">${msg_register}</p>
+                                        <a class="text-muted" href="resetPass.jsp">Forgot password?</a>
                                     </div>
                                     </form>
                                     </form>

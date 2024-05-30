@@ -35,9 +35,24 @@ public class Register extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String birthdate = request.getParameter("birthdate");
+
+        request.setAttribute("fullName", fullName);
+        request.setAttribute("address", address);
+        request.setAttribute("userName", userName);
+        request.setAttribute("password", password);
+        request.setAttribute("confirmPassword", confirmPassword);
+        request.setAttribute("gender", gender);
+        request.setAttribute("email", email);
+        request.setAttribute("phone", phone);
+        request.setAttribute("birthdate", birthdate);
         // Validate if username exists
         if (aDAO.checkAccountExist(userName) != null) {
             request.setAttribute("msg_Username", "Username exists");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+        if (aDAO.checkEmailExist(email) != null) {
+            request.setAttribute("msg_Username", "Email exists");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
@@ -58,7 +73,7 @@ public class Register extends HttpServlet {
 
         try {
             request.setAttribute("msg_register", "Please check your email for verification.");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("msg_register", "Error registering user");

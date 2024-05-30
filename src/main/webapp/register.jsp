@@ -32,37 +32,30 @@
                     <h3 class="register-heading">Create account</h3>
                     <form name="registerForm" action="register" method="post" onsubmit="return validateForm(event)">
                         <div class="row register-form">
-
                             <div class="col-md-6">
-
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="fullName" placeholder="Full Name *"
-                                           value=""/>
+                                    <input type="text" class="form-control" name="fullName" placeholder="Full Name *" value="${fullName != null ? fullName : ''}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="address" placeholder="Your Address *"
-                                           value=""/>
+                                    <input type="text" class="form-control" name="address" placeholder="Your Address *" value="${address != null ? address : ''}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="userName" placeholder="User Name *"
-                                           value=""/>
+                                    <input type="text" class="form-control" name="userName" placeholder="User Name *" value="${userName != null ? userName : ''}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Password *"
-                                           value=""/>
+                                    <input type="password" class="form-control" name="password" placeholder="Password *" value="${password != null ? password : ''}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="confirmPassword"
-                                           placeholder="Confirm Password *" value=""/>
+                                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password *" value="${confirmPassword != null ? confirmPassword : ''}" />
                                 </div>
                                 <div class="form-group">
                                     <div class="maxl">
                                         <label class="radio inline">
-                                            <input type="radio" name="gender" value="male" checked>
+                                            <input type="radio" name="gender" value="male" ${gender != null && gender.equals("male") ? "checked" : ""}>
                                             <span> Male </span>
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="gender" value="female">
+                                            <input type="radio" name="gender" value="female" ${gender != null && gender.equals("female") ? "checked" : ""}>
                                             <span>Female </span>
                                         </label>
                                     </div>
@@ -70,20 +63,19 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email *"
-                                           value=""/>
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email *" value="${email != null ? email : ''}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" minlength="10" maxlength="10" name="phone" class="form-control"
-                                           placeholder="Your Phone *" value=""/>
+                                    <input type="text" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Your Phone *" value="${phone != null ? phone : ''}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="birthdate">Date of birth:</label>
-                                    <input type="date" class="form-control" name="birthdate" id="birthdate">
+                                    <input type="date" class="form-control" name="birthdate" id="birthdate" value="${birthdate != null ? birthdate : ''}">
                                 </div>
                                 <p class="text-danger" id="validationError"></p>
-                                <p class="text-danger">${msg_Username}</p>
-                                <p class="text-danger">${msg_register}</p>
+<%--                                <p class="text-danger">${msg_Username}</p>--%>
+                                <p class="text-danger">${msg_Username != null ? msg_Username : ''}</p>
+
                                 <input type="submit" class="btnRegister" value="Register"/>
                             </div>
                         </div>
