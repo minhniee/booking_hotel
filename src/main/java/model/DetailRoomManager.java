@@ -4,11 +4,13 @@ public class DetailRoomManager {
     private String id;
     private String name;
     private double price;
+    private String image;
 
-    public DetailRoomManager(String id, String name,double price) {
+    public DetailRoomManager(String id, String name, double price, String image) {
         this.id = id;
-        this.price = price;
         this.name = name;
+        this.price = price;
+        this.image = image;
     }
 
     public String getId() {
@@ -33,5 +35,13 @@ public class DetailRoomManager {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
