@@ -37,7 +37,7 @@
 <header class="site-header js-site-header">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
+            <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index">Sogo Hotel</a></div>
             <div class="col-6 col-lg-8">
 
 
@@ -54,7 +54,7 @@
                             <div class="row full-height align-items-center">
                                 <div class="col-md-6 mx-auto">
                                     <ul class="list-unstyled menu">
-                                        <li><a href="index.jsp">Home</a></li>
+                                        <li><a href="index">Home</a></li>
                                         <li class="active"><a href="Room">Rooms</a></li>
                                         <li><a href="about.jsp">About</a></li>
                                         <li><a href="events.jsp">Events</a></li>
