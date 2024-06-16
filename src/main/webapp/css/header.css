@@ -1,0 +1,120 @@
+:root {
+    --main-color: #003b95;
+}
+*{
+    font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    border: 0;
+}
+.navbar{
+    height: 50px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+}
+
+.navContainer{
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.navButton{
+    margin-left: 20px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--main-color);
+}
+
+/* ========================================= */
+
+.header{
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.headerContainer{
+    width: 100%;
+    max-width: 1024px;
+    margin: 20px 0px 100px 0px;
+}
+
+.headerList{
+    display: flex;
+    gap: 40px;
+}
+.headerListItem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom:50px ;
+}
+
+.headerListItem.active{
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.headerDesc{
+    margin: 20px 0px;
+}
+
+.headerBtn{
+    background-color: #0854c9;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 20px;
+}
+
+/* ================================================ */
+
+.headerSreach{
+    height: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    background-color: white;
+    border: 2px solid yellow ;
+    padding: 10px 0px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    max-width: 1024px;
+}
+
+.headerSreach .headerBtn{
+    /* margin-bottom: px; */
+    padding: 13px;
+    margin: -6px;
+}
+
+.headerSearchIteam{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.headerSearchInput{
+    border: none;
+    outline: none;
+}
+
+.headerSearchText{
+    color: lightgray;
+    cursor: pointer;
+}

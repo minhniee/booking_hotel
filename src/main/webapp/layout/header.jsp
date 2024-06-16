@@ -13,67 +13,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sogo Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/fancybox.min.css">
-
-    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-
     <!-- Theme Style -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+<%--    <link rel="stylesheet" href="css/style.css">--%>
 </head>
+
 <body>
-
-<header class="site-header js-site-header">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index">Sogo Hotel</a></div>
-            <div class="col-6 col-lg-8">
-
-
-                <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <!-- END menu-toggle -->
-
-                <div class="site-navbar js-site-navbar">
-                    <nav role="navigation">
-                        <div class="container">
-                            <div class="row full-height align-items-center">
-                                <div class="col-md-6 mx-auto">
-                                    <ul class="list-unstyled menu">
-                                        <li><a href="index">Home</a></li>
-                                        <li class="active"><a href="Room">Rooms</a></li>
-                                        <li><a href="about.jsp">About</a></li>
-                                        <li><a href="events.jsp">Events</a></li>
-                                        <li><a href="contact.jsp">Contact</a></li>
-                                        <li><a href="reservation.jsp">Reservation</a></li>
-                                        <li>
-                                            <% if (session.getAttribute("account") != null) { %>
-                                            <a href="logout">Logout</a>
-                                            <% } else { %>
-                                            <a href="login.jsp">Login</a>
-                                            <% } %>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+<div class="navbar">
+    <div class="navContainer">
+        <span class="logo">Futel</span>
+        <div class="navIteams">
+            <button class="navButton">Login</button>
+            <button class="navButton">Register</button>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="headerContainer">
+        <div class="headerList">
+            <div class="headerListItem active">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/bed.svg " width="30" height="20" />
+                <span>Stay</span>
+            </div>
+            <div class="headerListItem">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/plane.svg" width="30" height="20" />
+                <span>Flights</span>
+            </div>
+            <div class="headerListItem">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/Car.svg " width="30" height="20" />
+                <span>Car rentals</span>
+            </div>
+            <div class="headerListItem">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/A.svg " width="30" height="20" />
+                <span>Attraction</span>
+            </div>
+            <div class="headerListItem">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/Taxi.svg " width="30" height="20" />
+                <span>Taxi</span>
+            </div>
+        </div>
+        <h1 class="headerTitle">Minh K17, kế tiếp bạn sẽ du lịch đến đâu?</h1>
+        <p class="headerDesc">Lginnow</p>
+        <button class="headerBtn">Sign on/ Register</button>
+        <div class="headerSreach">
+            <div class="headerSearchIteam">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/bed.svg " width="30" height="20" />
+                <input type="text" placeholder="Where are you going?" class="headerSearchInput"></input>
+            </div>
+            <div class="headerSearchIteam">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/calendar-days.svg " width="30" height="20" />
+                <span class="headerSearchText">date to date?</span>
+            </div>
+            <div class="headerSearchIteam">
+                <img src="fontawesome-free-6.5.2-desktop/fontawesome-free-6.5.2-desktop/svgs/solid/person.svg " width="30" height="20" />
+                <span class="headerSearchText">2 adults 2 children 1 room</span>
+            </div>
+            <div class="headerSearchIteam">
+                <button class="headerBtn">Sign on/ Register</button>
             </div>
         </div>
     </div>
-</header>
+</div>
+</div>
+</body>
