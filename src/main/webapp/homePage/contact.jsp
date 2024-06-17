@@ -5,29 +5,30 @@
 <%@include file="../layout/header.jsp"%>
 <!-- END head -->
 
-<section class="site-hero inner-page overlay" style="background-image: url(../images/hero_4.jpg)" data-stellar-background-ratio="0.5">
-  <div class="container">
-    <div class="row site-hero-inner justify-content-center align-items-center">
-      <div class="col-md-10 text-center" data-aos="fade">
-        <h1 class="heading mb-3">Contact</h1>
-        <ul class="custom-breadcrumbs mb-4">
-          <li><a href="index.jsp">Home</a></li>
-          <li>&bullet;</li>
-          <li>Contact</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <a class="mouse smoothscroll" href="#next">
-    <div class="mouse-icon">
-      <span class="mouse-wheel"></span>
-    </div>
-  </a>
-</section>
-<!-- END section -->
+<%--<section class="site-hero inner-page overlay" style="background-image: url(../images/hero_4.jpg)" data-stellar-background-ratio="0.5">--%>
+<%--  <div class="container">--%>
+<%--    <div class="row site-hero-inner justify-content-center align-items-center">--%>
+<%--      <div class="col-md-10 text-center" data-aos="fade">--%>
+<%--        <h1 class="heading mb-3">Contact</h1>--%>
+<%--        <ul class="custom-breadcrumbs mb-4">--%>
+<%--          <li><a href="index.jsp">Home</a></li>--%>
+<%--          <li>&bullet;</li>--%>
+<%--          <li>Contact</li>--%>
+<%--        </ul>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--  <a class="mouse smoothscroll" href="#next">--%>
+<%--    <div class="mouse-icon">--%>
+<%--      <span class="mouse-wheel"></span>--%>
+<%--    </div>--%>
+<%--  </a>--%>
+<%--</section>--%>
+<%--<!-- END section -->--%>
 
-<section class="section contact-section" id="next">
+<section class="section contact-section pt-5" id="next">
   <div class="container">
+    <h1 class="text-center p-5"> Contact</h1>
     <div class="row">
       <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
 
@@ -80,36 +81,9 @@
   </div>
 </section>
 
-<section class="section testimonial-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-md-7">
-        <h2 class="heading" data-aos="fade-up">People Says</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
 
-        <!-- Testimonials Here -->
 
-      </div>
-      <!-- END slider -->
-    </div>
-  </div>
-</section>
+<%@include file="/layout/footer.jsp"%>
 
-<%@include file="../layout/footer.jsp"%>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="../js/main.js"></script>
 </body>
 </html>

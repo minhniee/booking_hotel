@@ -4,41 +4,15 @@
 <html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="layout/header.jsp" %>
-<!-- Header -->
 
-<section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)"
-         data-stellar-background-ratio="0.5">
+
+<section class="section pt-5">
     <div class="container">
-        <div class="row site-hero-inner justify-content-center align-items-center">
-            <div class="col-md-10 text-center" data-aos="fade">
-                <h1 class="heading mb-3">Rooms</h1>
-                <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="WebPage/index.jsp">Home</a></li>
-                    <li>&bullet;</li>
-                    <li>Rooms</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-            <span class="mouse-wheel"></span>
-        </div>
-    </a>
-</section>
-<!-- END section -->
-
-<%@include file="layout/DatePicker.jsp"%>
-
-
-
-<section class="section">
-    <div class="container">
+        <h1 class="pt-5">Type Room</h1>
         <div class="row">
             <c:forEach var="i" items="${listRoom}">
                 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                    <a href="roomDetails?room_class_id=${i.roomClassId}" class="room">
+                    <a href="roomDetails?room_class_id=${i.roomClassId}" class="room" style="text-decoration: none">
                         <figure class="img-wrap">
                             <img src="assest/room/${i.roomImg}" alt="Free website template" class="img-fluid mb-3"
                                  style="width: 350px; height:250px">

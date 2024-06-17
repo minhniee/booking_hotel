@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.Email;
 
 @WebServlet("/ContactServlet")
 public class ContactServlet extends HttpServlet {
@@ -59,7 +60,6 @@ public class ContactServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("message", "There was an error sending your message. Please try again later.");
         }
-
 
         request.getRequestDispatcher("contact.jsp").forward(request, response);
     }
