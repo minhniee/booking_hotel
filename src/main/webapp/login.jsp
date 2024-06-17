@@ -8,8 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <%@include file="layout/cdnpkg.jsp"%>
     <%@include file="layout/subheader.jsp" %>
+
     <title>login page</title>
     <style>
         .gradient-custom-2 {

@@ -80,6 +80,10 @@
     padding: 10px;
     border-radius: 20px;
 }
+.headerListItem a:hover, .headerListItem  a.active {
+    border-color: white; /* Border color on hover and active */
+    background-color: #00509E; /* Background color on hover */
+}
 
 .headerDesc{
     margin: 20px 0px;

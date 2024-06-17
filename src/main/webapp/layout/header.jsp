@@ -49,38 +49,30 @@
 <div class="header">
     <div class="headerContainer">
         <div class="headerList">
-            <div class="headerListItem active">
-                <a href="${url}/index">
-                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20" alt=""/>
-                    <span>Stay</span>
-                </a>
+            <div class="headerListItem active ">
+                <%--                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20" alt=""/>--%>
+                <a href="${url}/index" onclick="setActive(this)"><i class="fas fa-bed"></i> Stays</a>
             </div>
             <div class="headerListItem">
-                <a href="${url}/Room">
-                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/door-open.svg" width="30" height="20" alt=""/>
-                    <span>Room</span>
-                </a>
+                <a href="${url}/Room" onclick="setActive(this)"><i class="fa-solid fa-door-open"></i> Rooms</a>
+
             </div>
             <div class="headerListItem">
-                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/car.svg" style="color: white" width="30"
-                     height="20"/>
-                <span>Car rentals</span>
+                <a href="#car-rentals" onclick="setActive(this)"><i class="fas fa-car"></i> Car rentals</a>
             </div>
             <div class="headerListItem">
                 <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/city.svg" width="30" height="20"/>
                 <span>Attraction</span>
             </div>
             <div class="headerListItem">
-                <a href="${url}/homePage/contact.jsp">
-                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/taxi.svg" width="30" height="20"/>
-                    <span>Contact</span>
-                </a>
+                <a href="${url}/homePage/contact.jsp" onclick="setActive(this)"><i class="fa-regular fa-envelope"></i> Contact</a>
             </div>
         </div>
+
         <h1 class="headerTitle">${account.userName}, The next Where do you go to ?</h1>
         <c:if test="${ empty sessionScope.account }">
-        <p class="headerDesc">Login Now</p>
-        <button class="headerBtn">Sign on/ Register</button>
+            <p class="headerDesc">Login Now</p>
+            <button class="headerBtn">Sign on/ Register</button>
         </c:if>
         <div class="headerSreach">
             <div class="headerSearchIteam">
@@ -105,6 +97,17 @@
     </div>
 </div>
 
+<script>
+    function setActive(element) {
+        // Remove active class from all links
+        var links = document.querySelectorAll('.headerListItem a');
+        links.forEach(function (link) {
+            link.classList.add('active');
 
+        });
+
+        element.classList.add('active');
+    }
+</script>
 </body>
 
