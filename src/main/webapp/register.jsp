@@ -10,8 +10,8 @@
 <head>
     <title>Register</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%--    <%@include file="layout/cdnpkg.jsp"%>--%>
+    <%@include file="layout/subheader.jsp"%>
     <link href="css/register.css" rel="stylesheet">
 </head>
 <body>

@@ -13,7 +13,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="WebPage/index.jsp">Home</a></li>
                     <li>&bullet;</li>
                     <li>Rooms</li>
                 </ul>
