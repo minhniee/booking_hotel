@@ -51,13 +51,13 @@
         <div class="headerList">
             <div class="headerListItem active">
                 <a href="${url}/index">
-                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20"/>
+                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20" alt=""/>
                     <span>Stay</span>
                 </a>
             </div>
             <div class="headerListItem">
                 <a href="${url}/Room">
-                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/door-open.svg" width="30" height="20"/>
+                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/door-open.svg" width="30" height="20" alt=""/>
                     <span>Room</span>
                 </a>
             </div>
