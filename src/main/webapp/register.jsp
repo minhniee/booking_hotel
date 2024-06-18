@@ -12,7 +12,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <%--    <%@include file="layout/cdnpkg.jsp"%>--%>
     <%@include file="layout/subheader.jsp"%>
-    <link href="css/register.css" rel="stylesheet">
+    <link href="${url}/Assets/css/register.css" rel="stylesheet">
 </head>
 <body>
 

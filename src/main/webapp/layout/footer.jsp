@@ -77,9 +77,12 @@
         <div class="mail">
             <h1  class="mailTitle">Save time, save money!</h1>
             <span class="mailDesc">Sign up and we'll send the best deal for you</span>
+                        <form method="get" action="ContactServlet">
                     <div class="mailInputContainer">
-                        <input type="text" placeholder="Your Email">
-                        <button>Subscribe</button>
+
+                        <input type="text" name="email" placeholder="Your Email">
+                        <button type="submit" >Subscribe</button>
                     </div>
+                        </form>
         </div>
     </div>

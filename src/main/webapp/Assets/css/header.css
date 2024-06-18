@@ -136,3 +136,25 @@
     color: lightgray;
     cursor: pointer;
 }
+
+/*.campus {*/
+/*    position: relative;*/
+/*}*/
+
+/*.image-container {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.title-campus {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background: rgba(0, 0, 0, 0.5); !* Optional: To improve text readability *!*/
+/*    color: white; !* Optional: To improve text readability *!*/
+/*    padding: 10px; !* Optional: To add some spacing around the text *!*/
+/*    width: 100%; !* Optional: To make the title cover the entire width *!*/
+/*    text-align: center; !* Optional: To center the text *!*/
+/*}*/
+
