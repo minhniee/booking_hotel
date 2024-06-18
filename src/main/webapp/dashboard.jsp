@@ -12,7 +12,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/styleDashboard.css">
-    <title>Title</title>
+    <title>Dashboard</title>
 </head>
 <body>
 <div class="sidebar">
@@ -61,7 +61,7 @@
             </a>
         </li>
         <li class="logout">
-            <a href="#">
+            <a href="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Logout</span>
             </a>
@@ -152,42 +152,52 @@
 
 
 
-        <h3 class="main--title">List rooms booking</h3>
+<c:choose>
+    <c:when test="${requestScope.status == 'History Lists Room Booking'}">
+        <h3 class="main--title">${requestScope.status}</h3>
+
         <div class="table-container">
 
             <table>
                 <thead>
                 <tr>
-                    <th>Room class</th>
-                    <th>Name</th>
-                    <th>Num adults</th>
-                    <th>Amount</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>ID</th>
+                    <th>Room ID</th>
+                    <th>Customer ID</th>
+                    <th>Check Date</th>
+                    <th>Checkout Date</th>
+                    <th>Num Child</th>
+                    <th>Num Adults</th>
+                    <th>Booking price</th>
+                    <th>Details</th>
                 </tr>
                 <tbody>
-            <c:forEach items="${requestScope.list}" var="list">
-                <tr>
-                    <td>${list.roomClassId}</td>
-                    <td>${list.roomName}</td>
-                    <td>${list.numAdults}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="#"><button class="fas fa-edit"></button></a>
-                        <a href="#"><button class="fas fa-trash-alt"></button></a>
-                        <a href="#"><button class="fas fa-info-circle"></button></a>
-                    </td>
+                <c:forEach items="${requestScope.bookingLists}" var="list">
+                    <tr>
+                        <td>${list.id}</td>
+                        <td>${list.room_id}</td>
+                        <td>${list.customer_id}</td>
+                        <td>${list.checkin_date}</td>
+                        <td>${list.checkout_date}</td>
+                        <td>${list.num_child}</td>
+                        <td>${list.num_adults}</td>
+                        <td>${list.booking_price}</td>
+                        <td>
 
-                </tr>
-            </c:forEach>
+                            <a href="detailListBooking?id=${list.id}"><button class="fas fa-info-circle"></button></a>
+                        </td>
+
+                    </tr>
+                </c:forEach>
                 </tbody>
                 </thead>
             </table>
 
         </div>
+    </c:when>
+</c:choose>
+
+
 
     </div>
 </div>
