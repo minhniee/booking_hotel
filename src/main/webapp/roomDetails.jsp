@@ -1,16 +1,15 @@
 <%@ page import="model.RoomClass" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="layout/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lightbox2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <%@include file="layout/header.jsp" %>
 
     <style>
         .site-hero {
@@ -91,23 +90,23 @@
 <%
     RoomClass roomClass = (RoomClass) request.getAttribute("roomClass");
 %>
-<section class="site-hero overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <span class="custom-caption text-uppercase text-white d-block mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span> Hotel</span>
-                <h1 class="heading text-white">A Best Place To Stay</h1>
-            </div>
-        </div>
-    </div>
-    <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-            <span class="mouse-wheel"></span>
-        </div>
-    </a>
-</section>
+<%--<section class="site-hero overlay">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-10 mx-auto">--%>
+<%--                <span class="custom-caption text-uppercase text-white d-block mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span> Hotel</span>--%>
+<%--                <h1 class="heading text-white">A Best Place To Stay</h1>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <a class="mouse smoothscroll" href="#next">--%>
+<%--        <div class="mouse-icon">--%>
+<%--            <span class="mouse-wheel"></span>--%>
+<%--        </div>--%>
+<%--    </a>--%>
+<%--</section>--%>
 
-<section id="next" class="section py-5">
+<section id="next" class="section pt-5 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12" data-aos="fade-up">
@@ -173,20 +172,5 @@
 </section>
 
 <%@include file="layout/footer.jsp"%>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/main.js"></script>
-<!-- Lightbox2 JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </body>
 </html>

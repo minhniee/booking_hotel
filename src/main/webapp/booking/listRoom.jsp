@@ -8,7 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="url"
+<c:set var="url1"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
@@ -61,7 +61,7 @@
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="${url}/index.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="${url1}/index">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Select Room</li>
         </ol>
     </nav>

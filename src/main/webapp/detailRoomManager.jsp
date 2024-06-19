@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Room Manager</title>
-    <link rel="stylesheet" href="css/detailRoom.css">
+    <link rel="stylesheet" href="Assets/css/detailRoom.css">
 </head>
 <body>
 <c:set value="${requestScope.detailRoom}" var="detail"/>

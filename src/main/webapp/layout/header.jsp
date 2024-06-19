@@ -1,79 +1,130 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: minhl
-  Date: 5/25/2024
-  Time: 10:35 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="url"
+       value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="url" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sogo Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/fancybox.min.css">
-
-    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="css/style.css">
+    <%@ include file="../layout/cdnpkg.jsp" %>
+    <link rel="stylesheet" href="${url}/Assets/css/header.css">
+    <link rel="stylesheet" href="${url}/Assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
+
 <body>
+<div class="navbar">
 
-<header class="site-header js-site-header">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index">Sogo Hotel</a></div>
-            <div class="col-6 col-lg-8">
+    <div class="navContainer">
+        <span class="logo" onclick="window.location.href='${url}/index'" style="cursor: pointer">Futel</span>
+        <c:if test="${ empty sessionScope.account }">
+            <div class="navIteams">
+                <button class="navButton" onclick="window.location.href='${url}/login.jsp'">Login</button>
+                <button class="navButton" onclick="window.location.href='${url}/register.jsp'">Register</button>
+            </div>
+        </c:if>
+        <c:if test="${not empty sessionScope.account }">
+            <div class="navIteams">
+                <div class="dropdown text-end">
 
-
-                <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <!-- END menu-toggle -->
-
-                <div class="site-navbar js-site-navbar">
-                    <nav role="navigation">
-                        <div class="container">
-                            <div class="row full-height align-items-center">
-                                <div class="col-md-6 mx-auto">
-                                    <ul class="list-unstyled menu">
-                                        <li><a href="index">Home</a></li>
-                                        <li class="active"><a href="Room">Rooms</a></li>
-                                        <li><a href="about.jsp">About</a></li>
-                                        <li><a href="events.jsp">Events</a></li>
-                                        <li><a href="contact.jsp">Contact</a></li>
-                                        <li><a href="reservation.jsp">Reservation</a></li>
-                                        <li>
-                                            <% if (session.getAttribute("account") != null) { %>
-                                            <a href="logout">Logout</a>
-                                            <% } else { %>
-                                            <a href="login.jsp">Login</a>
-                                            <% } %>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none " data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <button class="btn btn-primary">Hello, ${account.userName}</button>
+                    </a>
+                    <ul class="dropdown-menu text-small" style="">
+                        <li><a class="dropdown-item" href="${url}/user/user_profile.jsp">Profile</a></li>
+<%--                        <li><a class="dropdown-item" href="#">Settings</a></li>--%>
+<%--                        <li><a class="dropdown-item" href="#">Profile</a></li>--%>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="logout">Sign out</a></li>
+                    </ul>
                 </div>
             </div>
+        </c:if>
+    </div>
+</div>
+<!-- Header content -->
+<div class="header">
+    <div class="headerContainer">
+        <div class="headerList">
+            <div class="headerListItem active ">
+                <%--                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20" alt=""/>--%>
+                <a href="${url}/index" onclick="setActive(this)"><i class="fas fa-bed"></i> Stays</a>
+            </div>
+            <div class="headerListItem">
+                <a href="${url}/Room" onclick="setActive(this)"><i class="fa-solid fa-door-open"></i> Rooms</a>
+
+            </div>
+            <div class="headerListItem">
+                <a href="#car-rentals" onclick="setActive(this)"><i class="fas fa-car"></i> Car rentals</a>
+            </div>
+            <div class="headerListItem">
+                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/city.svg" width="30" height="20"/>
+                <span>Attraction</span>
+            </div>
+            <div class="headerListItem">
+                <a href="${url}/homePage/contact.jsp" onclick="setActive(this)"><i class="fa-regular fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+
+        <h1 class="headerTitle">${account.userName}, The next Where do you go to ?</h1>
+        <c:if test="${ empty sessionScope.account }">
+            <p class="headerDesc">Login Now</p>
+            <button class="headerBtn">Sign on/ Register</button>
+        </c:if>
+        <div class="headerSreach">
+            <div class="headerSearchIteam">
+                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
+                <input type="text" placeholder="Where are you going?" class="headerSearchInput"/>
+            </div>
+            <div class="headerSearchIteam">
+                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/calendar-day.svg" width="30" height="20"/>
+<%--                <span id="datePicker">date to date?</span>--%>
+                <input type="text" id="datePicker" placeholder="Select Date Range">
+            </div>
+            <div class="headerSearchIteam">
+                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/user.svg" width="30" height="20"/>
+                <span class="headerSearchText">2 adults 2 children 1 room</span>
+            </div>
+            <c:if test="${ empty sessionScope.account }">
+                <div class="headerSearchIteam">
+                    <button class="headerBtn" onclick="window.location.href='https://google.com'">Sign on/ Register
+                    </button>
+                </div>
+            </c:if>
         </div>
     </div>
-</header>
+</div>
+
+<script>
+    function setActive(element) {
+        // Remove active class from all links
+        var links = document.querySelectorAll('.headerListItem a');
+        links.forEach(function (link) {
+            link.classList.add('active');
+
+        });
+
+        element.classList.add('active');
+    }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#datePicker", {
+            mode: "range",
+            dateFormat: "d-m-Y",
+            minDate: "today",
+            defaultDate: ["19-06-2024", "22-06-2024"],
+            showMonths: 2,
+            onChange: function (selectedDates, dateStr, instance) {
+                // Handle date change event here if needed
+                console.log("Selected dates: ", dateStr);
+            }
+        });
+    });
+</script>
+</body>
+
