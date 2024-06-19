@@ -186,7 +186,7 @@ public void updateRoom(Room room) {
 
     public static void main(String[] args) {
         roomDAO dao = new roomDAO();
-        ArrayList<Room>  list = dao.getRoomByTypeValid();
+        ArrayList<Room>  list = dao.getRoomByType();
         for (Room r : list) {
             System.out.println(r.toString());
         }

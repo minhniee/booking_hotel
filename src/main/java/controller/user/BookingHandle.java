@@ -4,22 +4,22 @@
  */
 package controller.user;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author minhl
@@ -66,51 +66,65 @@ public class BookingHandle extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String url = "";
         HttpSession session = request.getSession();
         Object object = session.getAttribute("account");
-        if (object == null){
-            url =  "login.jsp";
-        }else {
 
-            SimpleDateFormat myFormat = new SimpleDateFormat("dd MMM, yyyy");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM, yyyy");
+        // Ensure the date formats match the expected input
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-            String checkinDate = request.getParameter("checkinDate");
-            String checkoutDate = request.getParameter("checkoutDate");
-            LocalDateTime now = LocalDateTime.now();
+        String dateRangeString = request.getParameter("date");
+        LocalDate[] dates = parseDateRange(dateRangeString);
 
-            long daysDiff = 0;
-            long earlyBirdDays = 0;
-            int children = 0;
-            int adults = 1;
-            int person = 0;
-            String currentDate = dtf.format(now);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String checkinDate = null;
+        String checkoutDate = null;
+        LocalDateTime now = LocalDateTime.now();
 
-            try {
-                children = Integer.parseInt(request.getParameter("children"));
-                adults = Integer.parseInt(request.getParameter("adults"));
-                person = adults + children;
+        long daysDiff = 0;
+        long earlyBirdDays = 0;
+        int children = 0;
+        int adults = 1;
+        int person = 1;
+        String currentDate = dtf.format(now);
 
-                Date date1 = myFormat.parse(checkinDate);
-                Date date2 = myFormat.parse(checkoutDate);
-                Date currDate = myFormat.parse(currentDate);
-
-                long diff = date2.getTime() - date1.getTime();
-                earlyBirdDays = TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
-                if (earlyBirdDays < 0) {
-                    earlyBirdDays = 0;
-                }
-                daysDiff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
+        try {
+            if (dates != null) {
+                checkinDate = dates[0].format(formatter);
+                checkoutDate = dates[1].format(formatter);
             }
+
+            // Ensure the parameters are available and parsed correctly
+            String childrenParam = request.getParameter("children");
+            String adultsParam = request.getParameter("adults");
+            if (childrenParam != null) {
+                children = Integer.parseInt(childrenParam);
+            }
+            if (adultsParam != null) {
+                adults = Integer.parseInt(adultsParam);
+            }
+            person = adults + children;
+
+            // Parse the dates using the consistent format
+            Date date1 = myFormat.parse(checkinDate);
+            Date date2 = myFormat.parse(checkoutDate);
+            Date currDate = myFormat.parse(currentDate);
+
+            long diff = date2.getTime() - date1.getTime();
+            earlyBirdDays = TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
+            if (earlyBirdDays < 0) {
+                earlyBirdDays = 0;
+            }
+            daysDiff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+            // Validate the input and set attributes accordingly
             if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty()) {
                 request.setAttribute("noti", "Date invalid");
-                // to another page noti err
+                url = "/errorPage.jsp"; // Set an error page
             } else {
-//            request.setAttribute("noti", "checkin" + checkinDate +"checkout" + checkoutDate + "   Day: " + daysDiff);
+                request.setAttribute("noti", "checkin: " + checkinDate + " checkout: " + checkoutDate + " Day: " + daysDiff);
                 request.setAttribute("nights", daysDiff);
                 request.setAttribute("persons", person);
                 request.setAttribute("checkinDate", checkinDate);
@@ -118,9 +132,28 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("earlyBirdDays", earlyBirdDays);
                 url = "/booking/listRoom.jsp";
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("noti", "An error occurred: " + e.getMessage());
+            url = "/errorPage.jsp"; // Set an error page
         }
-       request.getRequestDispatcher(url).forward(request, response);
+
+        request.getRequestDispatcher(url).forward(request, response);
     }
+
+    private static LocalDate[] parseDateRange(String dateRangeString) {
+        String[] dateStrings = dateRangeString.split(" to ");
+        if (dateStrings.length == 2) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate startDate = LocalDate.parse(dateStrings[0].trim(), formatter);
+            LocalDate endDate = LocalDate.parse(dateStrings[1].trim(), formatter);
+            return new LocalDate[]{startDate, endDate};
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

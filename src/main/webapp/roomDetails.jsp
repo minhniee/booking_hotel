@@ -113,8 +113,8 @@
                 <div class="room-details">
                     <h2>${roomClass.className}</h2>
                     <figure class="img-wrap">
-                        <a href="assest/room/${roomClass.mainImage}" data-lightbox="room-images" data-title="Main Room Image">
-                            <img src="assest/room/${roomClass.mainImage}" alt="Room Image" class="img-fluid mb-3">
+                        <a href="${url}/Assets/image/room/${roomClass.mainImage}" data-lightbox="room-images" data-title="Main Room Image">
+                            <img src="${url}/Assets/image/room/${roomClass.mainImage}" alt="Room Image" class="img-fluid mb-3">
                         </a>
                     </figure>
                     <div class="room-info">
@@ -128,8 +128,8 @@
                     <div class="room-images">
                         <h3>Room Images</h3>
                         <c:forEach var="imageUrl" items="${roomClass.imageUrls}">
-                            <a href="assest/demoRoom/${imageUrl}" data-lightbox="room-images" data-title="Room Image">
-                                <img src="assest/demoRoom/${imageUrl}" alt="Room Image" class="img-fluid mb-3">
+                            <a href="${url}/Assets/demoRoom/${imageUrl}" data-lightbox="room-images" data-title="Room Image">
+                                <img src="${url}/Assets/image/demoRoom/${imageUrl}" alt="Room Image" class="img-fluid mb-3">
                             </a>
                         </c:forEach>
                     </div>
@@ -156,8 +156,8 @@
                     <c:forEach var="material" items="${materials}">
                         <tr>
                             <td>
-                                <a href="assest/material/${material.image}" data-lightbox="materials" data-title="${material.name}">
-                                    <img src="assest/material/${material.image}" alt="${material.name}">
+                                <a href="${url}/Assets/image/material/${material.image}" data-lightbox="materials" data-title="${material.name}">
+                                    <img src="${url}/Assets/image/material/${material.image}" alt="${material.name}">
                                 </a>
                             </td>
                             <td>${material.name}</td>
