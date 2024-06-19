@@ -1,66 +1,80 @@
+<%@ page import="model.Account" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
+
+<%
+    Account account = (Account) session.getAttribute("account");
+%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin cá nhân</title>
+    <title>Profile</title>
     <%@include file="/layout/subheader.jsp"%>
     <link rel="stylesheet" href="${url}/Assets/css/user_profile.css">
     <link rel="stylesheet" href="${url}/Assets/css/header.css">
-
+    <link href="${url}/https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <aside class="sidebar">
         <ul>
             <li><a href="#">Infomation</a></li>
-            <li><a href="#">Các tùy chọn</a></li>
-            <li><a href="#">An toàn và bảo mật</a></li>
-            <li><a href="#">Thông tin thanh toán</a></li>
-            <li><a href="#">Quyền riêng tư</a></li>
-            <li><a href="#">Thông báo email</a></li>
-            <li><a href="#">Người đi cùng</a></li>
+            <li><a href="#">Option</a></li>
+            <li><a href="#">Safe and secure</a></li>
+            <li><a href="#">Billing Information</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Email notifications</a></li>
+            <li><a href="#">Accompanying person</a></li>
         </ul>
     </aside>
     <main class="content">
         <header>
-            <h1>Thông tin cá nhân</h1>
-            <p>Cập nhật thông tin của bạn và tìm hiểu các thông tin này được sử dụng ra sao.</p>
+            <h1>Personal information</h1>
+            <p>Update your information and learn how it is used.</p>
         </header>
         <section class="profile-info">
             <table>
-                <tr >
+                <tr>
                     <td>User Name</td>
-                    <td >Minh</td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                    <td><%= account.getUserName() %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-                <tr id="">
-                    <td>Full name</td>
-                    <td id="name-value">Minh</td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                <tr>
+                    <td>Full Name</td>
+                    <td><%= account.getFullName() %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-                <tr id="email-row">
+                <tr>
                     <td>Email</td>
-                    <td id="email-value">metoo2k3@gmail.com </td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                    <td><%= account.getEmail() %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-                <tr id="gender-row">
-                    <td>gender</td>
-                    <td id="gender-value">metoo2k3@gmail.com </td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                <tr>
+                    <td>Gender</td>
+                    <td><%= account.getGender() ? "Male" : "Female" %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-                <tr id="phone-row">
+                <tr>
                     <td>Phone Number</td>
-                    <td id="phone-value">1234567890</td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                    <td><%= account.getPhone() %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-                <tr id="dob-row">
+                <tr>
                     <td>Birth Day</td>
-                    <td >metoo2k3@gmail.com </td>
-                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>
+                    <td><%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(account.getDob()) %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
                 </tr>
-
-                <!-- Add other rows as needed -->
+                <tr>
+                    <td>Address</td>
+                    <td><%= account.getAddress() %></td>
+                    <td><a href="#" class="edit-link">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td></td>
+                    <td><a href="changePass.jsp" >Edit</a></td>
+                </tr>
             </table>
         </section>
     </main>
