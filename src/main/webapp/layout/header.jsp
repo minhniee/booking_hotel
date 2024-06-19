@@ -10,6 +10,8 @@
     <%@ include file="../layout/cdnpkg.jsp" %>
     <link rel="stylesheet" href="${url}/Assets/css/header.css">
     <link rel="stylesheet" href="${url}/Assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
@@ -32,12 +34,13 @@
                         <button class="btn btn-primary">Hello, ${account.userName}</button>
                     </a>
                     <ul class="dropdown-menu text-small" style="">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Setting</a></li>
+                        <li><a class="dropdown-item" href="${url}/user/user_profile.jsp">Profile</a></li>
+<%--                        <li><a class="dropdown-item" href="#">Settings</a></li>--%>
+<%--                        <li><a class="dropdown-item" href="#">Profile</a></li>--%>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="${url}/logout">Sign out</a></li>
+                        <li><a class="dropdown-item" href="logout">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,7 +83,8 @@
             </div>
             <div class="headerSearchIteam">
                 <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/calendar-day.svg" width="30" height="20"/>
-                <span class="headerSearchText">date to date?</span>
+<%--                <span id="datePicker">date to date?</span>--%>
+                <input type="text" id="datePicker" placeholder="Select Date Range">
             </div>
             <div class="headerSearchIteam">
                 <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/user.svg" width="30" height="20"/>
@@ -92,14 +96,6 @@
                     </button>
                 </div>
             </c:if>
-
-            <c:if test="${not empty sessionScope.account }">
-                <div class="headerSearchIteam">
-                    <button class="headerBtn" onclick="window.location.href='${url}/booking/listRoom.jsp'">Booking Now
-                    </button>
-                </div>
-            </c:if>
-
         </div>
     </div>
 </div>
@@ -115,6 +111,20 @@
 
         element.classList.add('active');
     }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#datePicker", {
+            mode: "range",
+            dateFormat: "d-m-Y",
+            minDate: "today",
+            defaultDate: ["19-06-2024", "22-06-2024"],
+            showMonths: 2,
+            onChange: function (selectedDates, dateStr, instance) {
+                // Handle date change event here if needed
+                console.log("Selected dates: ", dateStr);
+            }
+        });
+    });
 </script>
 </body>
 

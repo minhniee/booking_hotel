@@ -14,7 +14,15 @@ import util.Email;
 @WebServlet("/ContactServlet")
 public class ContactServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        Email em = new Email();
+        em.sendEmail(email,"ok","ok");
 
+
+        request.getRequestDispatcher("index").forward(request, response);
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");

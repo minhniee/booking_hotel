@@ -12,7 +12,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Reservation Form</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="/WebPage/index.jsp">Home</a></li>
+              <li><a href="${url}WebPage/index.jsp">Home</a></li>
               <li>&bullet;</li>
               <li>Reservation</li>
             </ul>
