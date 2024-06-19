@@ -72,12 +72,13 @@
         <c:forEach var="i" items="${room.roomByTypeValid}">
             <div class="col-12 col-md-8 mt-5">
                 <div class="card">
-                    <img src="${url}/assest/room/${i.roomImg}" class="card-img-top" alt="...">
+                    <img src="${url}/Assets/image/room/${i.roomImg}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${i.roomClassName}</h5>
                         <p class="card-text"> ${persons} person</p>
                         <p class="card-text">${i.basePrice * nights} $ </p>
                         <a href="BookingDetailServlet?checkinDate=${checkinDate}&checkoutDate=${checkoutDate}&roomType=${i.roomClassName}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${i.basePrice * nights}" class="btn btn-primary">Select</a>
+<%--                        <a href="BookingDetailServlet?checkinDate=${checkinDate}&checkoutDate=${checkoutDate}&roomType=${i.roomClassName}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${i.basePrice * nights}" class="btn btn-primary">Select</a>--%>
                     </div>
                 </div>
             </div>

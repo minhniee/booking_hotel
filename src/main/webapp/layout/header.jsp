@@ -32,13 +32,12 @@
                         <button class="btn btn-primary">Hello, ${account.userName}</button>
                     </a>
                     <ul class="dropdown-menu text-small" style="">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Setting</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="logout">Sign out</a></li>
+                        <li><a class="dropdown-item" href="${url}/logout">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -93,6 +92,14 @@
                     </button>
                 </div>
             </c:if>
+
+            <c:if test="${not empty sessionScope.account }">
+                <div class="headerSearchIteam">
+                    <button class="headerBtn" onclick="window.location.href='${url}/booking/listRoom.jsp'">Booking Now
+                    </button>
+                </div>
+            </c:if>
+
         </div>
     </div>
 </div>
