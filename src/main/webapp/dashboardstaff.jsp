@@ -30,9 +30,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ViewMaterial">
                         <i class="fas fa-briefcase"></i>
-                        <span>Careers</span>
+                        <span>Material</span>
                     </a>
                 </li>
                 <li>

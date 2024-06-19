@@ -1,5 +1,6 @@
 package DAO;
 
+import context.DBContext;
 import model.Account;
 import java.sql.*;
 import java.util.UUID;
@@ -184,4 +185,60 @@ public class AccountDAO extends MyDAO{
         }
         return null;
     }
+    public void updateAccount(String userName, String fullName, String email, boolean gender, String phone, Date dob, String address) {
+        // Câu lệnh SQL UPDATE
+        String sql = "UPDATE account SET full_name = ?, email = ?,gender=?, phone = ?, dob = ?, address = ? WHERE user_name = ?";
+
+        try (
+                // Thiết lập kết nối đến cơ sở dữ liệu
+                Connection conn = new DBContext().getConnection(); // Chuẩn bị câu lệnh SQL
+                PreparedStatement st = conn.prepareStatement(sql)) {
+            // Thiết lập các tham số cho câu lệnh SQL
+            st.setString(1, fullName);
+            st.setString(2, email);
+            st.setBoolean(3, gender);
+            st.setString(4, phone);
+            st.setDate(5, dob);
+            st.setString(6, address);
+            st.setString(7, userName);
+
+            // Thực thi câu lệnh UPDATE
+            int rowsAffected = st.executeUpdate();
+
+            // Kiểm tra xem có bao nhiêu bản ghi đã được cập nhật
+            if (rowsAffected > 0) {
+                System.out.println("Account with name " + userName + " updated successfully.");
+            } else {
+                System.out.println("No account found with name " + userName);
+            }
+        } catch (SQLException e) {
+            // Xử lý ngoại lệ nếu có lỗi xảy ra khi thực hiện câu lệnh SQL
+            e.printStackTrace();
+        }
+    }
+    public Account getAccountByUserName(String userName) {
+        Account account = null;
+        String sql = "SELECT * FROM account WHERE user_name = ?";
+        try (
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement st = conn.prepareStatement(sql)
+        ) {
+            st.setString(1, userName);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                account = new Account();
+                account.setUserName(rs.getString("user_name"));
+                account.setFullName(rs.getString("full_name"));
+                account.setEmail(rs.getString("email"));
+                account.setGender(rs.getBoolean("gender"));
+                account.setPhone(rs.getString("phone"));
+                account.setDob(rs.getDate("dob"));
+                account.setAddress(rs.getString("address"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
 }
