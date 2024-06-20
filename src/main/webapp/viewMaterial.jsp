@@ -6,6 +6,7 @@
     <title>View Material</title>
     <style>
         .container {
+            text-align: center;
             max-width: 950px;
             margin: 0 auto;
             padding: 20px;
@@ -22,6 +23,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-bottom: 30px;
         }
 
         .room-table th, .room-table td {
@@ -58,11 +60,35 @@
         .room-actions button:hover {
             background-color: #45a049;
         }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .pagination strong {
+            margin: 0 5px;
+            padding: 8px 12px;
+            color: #333;
+            border: 1px solid #ddd;
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>View Material</h1>
+    <h1 style="
+    background-color: rgb(255,127,80);
+    padding: 10px;
+    border: 1px solid;
+    ">View Material</h1>
     <table class="room-table" border="1">
         <tr>
             <th>Room ID</th>
@@ -82,34 +108,34 @@
                 <td>${material.price}</td>
                 <td>${material.image}</td>
                 <td class="room-actions">
-                    <form action="editMaterial.jsp" method="post" style="display:inline;">
-                        <input type="hidden" name="roomId" value="${material.id}">
-                        <button type="submit">Edit</button>
-                    </form>
+<%--                    <form action="editMaterial" method="post" style="display:inline;">--%>
+<%--                        <input type="hidden" name="roomId" value="${material.id}">--%>
+<%--                        <button type="submit">Edit</button>--%>
+<%--                    </form>--%>
 
+                    <a href="editMaterial?id=${material.id}"><button type="submit">Edit</button></a>
                 </td>
             </tr>
         </c:forEach>
-    </table><!-- Pagination Links -->
+    </table>
     <div class="pagination">
-        <c:if test="${page > 1}">
-            <a href="viewMaterial?page=${page - 1}">&laquo; Previous</a>
+        <c:if test="${currentPage > 1}">
+            <a href="ViewMaterial?page=${currentPage - 1}">&laquo; Previous</a>
         </c:if>
         <c:forEach begin="1" end="${totalPages}" var="pageNumber">
             <c:choose>
-                <c:when test="${pageNumber == page}">
+                <c:when test="${pageNumber == currentPage}">
                     <strong>${pageNumber}</strong>
                 </c:when>
                 <c:otherwise>
-                    <a href="viewMaterial?page=${pageNumber}">${pageNumber}</a>
+                    <a href="ViewMaterial?page=${pageNumber}">${pageNumber}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
-        <c:if test="${page < totalPages}">
-            <a href="viewMaterial?page=${page + 1}">Next &raquo;</a>
+        <c:if test="${currentPage < totalPages}">
+            <a href="ViewMaterial?page=${currentPage + 1}">Next &raquo;</a>
         </c:if>
     </div>
 </div>
 </body>
 </html>
-
