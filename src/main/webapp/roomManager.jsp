@@ -1,13 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Room Manager</title>
     <style>
-        
         .container {
-            max-width: 800px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 20px;
             font-family: Arial, sans-serif;
@@ -67,35 +66,33 @@
         <table class="room-table" border="1">
             <tr>
                 <th>ID</th>
-                <th>Room Class</th>
+                <th>Room Class ID</th>
+                <th>Room Class Name</th>
                 <th>Status</th>
                 <th>Name</th>
                 <th>Num Adults</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
             <c:forEach var="room" items="${rooms}">
                 <tr>
                     <td>${room.id}</td>
+                    <td>${room.roomClassId}</td>
                     <td>${room.roomClassName}</td>
                     <td>${room.statusName}</td>
                     <td>${room.roomName}</td>
                     <td>${room.numAdults}</td>
+                    <td>${room.basePrice}</td>
                     <td class="room-actions">
-                        <form action="room-manager" method="post" style="display:inline;">
+                        <form action="roomManager" method="post" style="display:inline;">
+                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="roomId" value="${room.id}">
-                            <input type="hidden" name="action" value="enable">
-                            <button type="submit">Enable</button>
+                            <button type="submit">Edit</button>
                         </form>
-                        <form action="room-manager" method="post" style="display:inline;">
+                        <form action="roomManager" method="post" style="display:inline;">
+                            <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="roomId" value="${room.id}">
-                            <input type="hidden" name="action" value="disable">
-                            <button type="submit">Disable</button>
-                        </form>
-                        <form action="room-manager" method="post" style="display:inline;">
-                            <input type="hidden" name="roomId" value="${room.id}">
-                            <input type="hidden" name="action" value="setPrice">
-                            <input type="text" name="newPrice" placeholder="New Price">
-                            <button type="submit">Set Price</button>
+                            <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -104,3 +101,4 @@
     </div>
 </body>
 </html>
+

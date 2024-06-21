@@ -69,7 +69,7 @@
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="index">Home</a></li>
             <li class="breadcrumb-item"><a href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=2&children=1">Select Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
@@ -122,7 +122,7 @@
 
         <input type="text" value="${user.fullName}" readonly>
         <input type="text" value="${user.email}" readonly>
-        <input type="text" value="${user.role}" readonly>
+        <input type="text" value="${user.dob}" readonly>
         <input type="text" value="${user.gender?"Male":"Female"}" readonly>
         <input type="text" value="${user.phone}" readonly>
         <input type="text" value="${user.address}" readonly>

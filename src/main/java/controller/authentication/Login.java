@@ -51,9 +51,14 @@ public class Login extends HttpServlet {
 
             session.setAttribute("account", account);
             if ("admin".equals(account.getRole())) {
+
                 response.sendRedirect("managerBooking");
+
+                response.sendRedirect("dashboard.jsp");
+            } else if ("staff".equals(account.getRole())) {
+                response.sendRedirect("dashboardstaff.jsp");
             } else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("index");
             }
         } else {
             request.setAttribute("msg", "Your account has not been verified. Please check your email!");

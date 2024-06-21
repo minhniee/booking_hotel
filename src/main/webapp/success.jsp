@@ -18,9 +18,9 @@
 
     <meta name="author" content="Codeconvey" />
     <!-- Message Box CSS -->
-    <link rel="stylesheet" href="css/success_main.css">
+    <link rel="stylesheet" href="Assets/css/success_main.css">
     <!--Only for demo purpose - no need to add.-->
-    <link rel="stylesheet" href="css/success.css" />
+    <link rel="stylesheet" href="Assets/css/success.css" />
 
 </head>
 <body>

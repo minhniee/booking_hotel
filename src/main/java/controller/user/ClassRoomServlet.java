@@ -35,7 +35,7 @@ public class ClassRoomServlet extends HttpServlet {
         listRoomType = dao.getRoomByType();
         request.setAttribute("listRoom", listRoomType);
 
-        request.getRequestDispatcher("/index.jsp").forward(request,response);
+        request.getRequestDispatcher("homePage/index.jsp").forward(request,response);
     }
 
     @Override

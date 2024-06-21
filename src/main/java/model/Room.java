@@ -13,8 +13,6 @@ public class Room {
     private String roomImg;
     private double basePrice;
 
-    // Getters, setters, and other methods for room data access and manipulation
-
     public Room(String id, String roomClassId, String roomClassName, double basePrice, String roomImg) {
         this.id = id;
         this.roomClassId = roomClassId;
@@ -22,7 +20,41 @@ public class Room {
         this.basePrice = basePrice;
         this.roomImg = roomImg;
     }
+    public Room(String id, String roomClassId, String roomClassName, int statusId, String roomName, int numAdults, String statusName, String roomImg, double basePrice) {
+        this.id = id;
+        this.roomClassId = roomClassId;
+        this.roomClassName = roomClassName;
+        this.statusId = statusId;
+        this.roomName = roomName;
+        this.numAdults = numAdults;
+        this.statusName = statusName;
+        this.roomImg = roomImg;
+        this.basePrice = basePrice;
+    }
+    public Room(String id,String roomClassId,String roomClassName, String roomName, int numAdults, String statusName,double basePrice) {
+        this.id = id;
+        this.roomClassId = roomClassId;
+        this.roomClassName = roomClassName;
+        this.roomName = roomName;
+        this.numAdults = numAdults;
+        this.statusName = statusName;
+        this.basePrice = basePrice;
+    }
+    public Room(String id,String roomClassName, String roomName, int numAdults, String statusName,double basePrice) {
+        this.id = id;
+        this.roomClassName = roomClassName;
+        this.roomName = roomName;
+        this.numAdults = numAdults;
+        this.statusName = statusName;
+        this.basePrice = basePrice;
+    }
+    
 
+    public Room(String roomClassName, double basePrice, String roomImg) {
+        this.roomClassName = roomClassName;
+        this.basePrice = basePrice;
+        this.roomImg = roomImg;
+    }
     public Room(String id, String roomClassId, int statusId, String roomName, int numAdults, String statusName, String roomImg) {
 
         this.id = id;

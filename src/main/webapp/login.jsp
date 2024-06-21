@@ -8,8 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
+    <%@include file="layout/cdnpkg.jsp"%>
+    <%@include file="layout/subheader.jsp" %>
+
     <title>login page</title>
-    <%@include file="layout/header.jsp" %>
     <style>
         .gradient-custom-2 {
             /* fallback for old browsers */
@@ -56,7 +59,7 @@
                                 </div>
 
 <%--                                <form>--%>
-                                    <form action="login" method="post">
+                                    <form action="${url}/login" method="post">
                                     <div data-mdb-input-init class="form-outline mt-2">
                                         <label class="form-label" for="form2Example11">Username</label>
                                         <input type="text" id="form2Example11" name="username" class="form-control"
@@ -75,7 +78,6 @@
                                         <a class="text-muted" href="resetPass.jsp">Forgot password?</a>
                                     </div>
                                     </form>
-                                    </form>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
                                         <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger" onclick="window.location.href='register.jsp'">Create new</button>
@@ -86,7 +88,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                            <img src="assest/room/img.png" alt="alt"/>
+<%--                            <img src="${url}/assest/room/img.png" alt="alt"/>--%>
                             <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                             </div>
                         </div>
@@ -97,7 +99,7 @@
     </div>
 </section>
 
-<%@include file="layout/footer.jsp" %>
+<%--<%@include file="layout/footer.jsp" %>--%>
 
 </body>
 </html>

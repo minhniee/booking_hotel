@@ -9,11 +9,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.Email;
 
 @WebServlet("/ContactServlet")
 public class ContactServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        Email em = new Email();
+        em.sendEmail(email,"ok","ok");
 
+
+        request.getRequestDispatcher("index").forward(request, response);
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
@@ -59,7 +68,6 @@ public class ContactServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("message", "There was an error sending your message. Please try again later.");
         }
-
 
         request.getRequestDispatcher("contact.jsp").forward(request, response);
     }
