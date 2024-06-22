@@ -10,26 +10,26 @@
         </div>
         <div class="row g-3"> <!-- Added g-3 for spacing between columns and rows -->
             <div class="col-md-3">
-            <a href="${url}/homePage/test.html" >
+            <a href="${url}/homePage/attraction.html" >
                 <img src="${url}/Assets/image/address/hanoi.jpg" class="rounded" height="280px" width="300px" alt="">
                 <h3 class="title-campus">Ha Noi</h3>
             </a>
             </div>
             <div class="col-md-3">
-                <a href="${url}/homePage/test.html" >
+                <a href="${url}/homePage/attraction.html" >
 
                 <img src="${url}/Assets/image/address/dangnang1.jpg" class="rounded" height="280px" width="300px" alt="">
                 <h3 class="title-campus">Da Nang</h3>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="${url}/homePage/test.html" >
+                <a href="${url}/homePage/attraction.html" >
                 <img src="${url}/Assets/image/address/quynhon.jpeg" class="rounded" height="280px" width="300px" alt="">
                 <h3 class="title-campus">Quy Nhon</h3>
                 </a>
             </div>
             <div class="col-md-3 campus ">
-                <a href="${url}/homePage/test.html" >
+                <a href="${url}/homePage/attraction.html" >
                 <img src="${url}/Assets/image/address/hcm.jpg" class="rounded  " height="280px" width="300px" alt="">
                 <h3 >Ho Chi Minh</h3>
                 </a>

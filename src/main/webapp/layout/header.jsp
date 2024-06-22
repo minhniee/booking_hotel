@@ -35,8 +35,8 @@
                     </a>
                     <ul class="dropdown-menu text-small" style="">
                         <li><a class="dropdown-item" href="${url}/user/user_profile.jsp">Profile</a></li>
-<%--                        <li><a class="dropdown-item" href="#">Settings</a></li>--%>
-<%--                        <li><a class="dropdown-item" href="#">Profile</a></li>--%>
+                            <%--                        <li><a class="dropdown-item" href="#">Settings</a></li>--%>
+                            <%--                        <li><a class="dropdown-item" href="#">Profile</a></li>--%>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -67,7 +67,8 @@
                 <span>Attraction</span>
             </div>
             <div class="headerListItem">
-                <a href="${url}/homePage/contact.jsp" onclick="setActive(this)"><i class="fa-regular fa-envelope"></i> Contact</a>
+                <a href="${url}/homePage/contact.jsp" onclick="setActive(this)"><i class="fa-regular fa-envelope"></i>
+                    Contact</a>
             </div>
         </div>
 
@@ -76,37 +77,48 @@
             <p class="headerDesc">Login Now</p>
             <button class="headerBtn">Sign on/ Register</button>
         </c:if>
-            <form method="get" action="BookingHandle">
-        <div class="headerSreach">
+        <form method="get" action="BookingHandle">
+            <div class="headerSreach">
 
-            <div class="headerSearchIteam">
-                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
-                <input type="text" placeholder="Where are you going?" class="headerSearchInput"/>
-            </div>
-            <div class="headerSearchIteam">
-                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/calendar-day.svg" width="30" height="20"/>
-<%--                <span id="datePicker">date to date?</span>--%>
-                <input type="text" id="datePicker" class="headerSearchIteam" name="date" placeholder="Select Date Range">
-            </div>
-            <div class="headerSearchIteam">
-                <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/user.svg" width="30" height="20"/>
-                <span class="headerSearchText">2 adults 2 children 1 room</span>
-            </div>
-            <c:if test="${ not empty sessionScope.account }">
-                <div class="headerSearchIteam">
-                    <button class="headerBtn" type="submit">Search
-                    </button>
+                <div class="headerSearchIteam" style="position: relative">
+                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
+                    <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box" onclick="showDropdown()"/>
+                    <div id="dropdown">
+                        <select id="select" name="location" onchange="updateInput()" size="4">
+                            <option value="Ha Noi" >Ha Noi</option>
+                            <option value="Da Nang">Da Nang</option>
+                            <option value="Quy Nhon">Quy Nhon</option>
+                            <option value="Ho Chi Minh">Ho Chi Minh</option>
+                        </select>
+                    </div>
                 </div>
-            </c:if>
 
-            <c:if test="${  empty sessionScope.account }">
                 <div class="headerSearchIteam">
-                    <button class="headerBtn" type="button" onclick="window.location.href='login.jsp'">Login/Register
-                    </button>
+                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/calendar-day.svg" width="30" height="20"/>
+                    <%--                <span id="datePicker">date to date?</span>--%>
+                    <input type="text" id="datePicker" class="headerSearchIteam" name="date"
+                           placeholder="Select Date Range">
                 </div>
-            </c:if>
-        </div>
-            </form>
+                <div class="headerSearchIteam">
+                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/user.svg" width="30" height="20"/>
+                    <span class="headerSearchText">2 adults 2 children 1 room</span>
+                </div>
+                <c:if test="${ not empty sessionScope.account }">
+                    <div class="headerSearchIteam">
+                        <button class="headerBtn" type="submit">Search
+                        </button>
+                    </div>
+                </c:if>
+
+                <c:if test="${  empty sessionScope.account }">
+                    <div class="headerSearchIteam">
+                        <button class="headerBtn" type="button" onclick="window.location.href='login.jsp'">
+                            Login/Register
+                        </button>
+                    </div>
+                </c:if>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -122,7 +134,7 @@
         element.classList.add('active');
     }
 
-        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         flatpickr("#datePicker", {
             mode: "range",
             dateFormat: "d-m-Y",
@@ -134,6 +146,28 @@
                 console.log("Selected dates: ", dateStr);
             }
         });
+    });
+        function showDropdown() {
+        var dropdown = document.getElementById("dropdown");
+        var input = document.getElementById("box");
+        dropdown.style.width = input.offsetWidth + 'px'; // Match the width of the input field
+        dropdown.style.display = "block";
+    }
+
+        function updateInput() {
+        var select = document.getElementById("select");
+        var input = document.getElementById("box");
+        input.value = select.value;
+        document.getElementById("dropdown").style.display = "none"; // Hide dropdown after selection
+    }
+
+        // Hide the dropdown if clicked outside of it
+        document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById("dropdown");
+        var input = document.getElementById("box");
+        if (!dropdown.contains(event.target) && event.target !== input) {
+        dropdown.style.display = "none";
+    }
     });
 </script>
 </body>

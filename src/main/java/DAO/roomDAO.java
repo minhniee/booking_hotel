@@ -2,16 +2,13 @@ package DAO;
 
 import context.DBContext;
 import model.Room;
-import model.RoomClass;
 
-import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.Timestamp;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,10 +69,10 @@ public class roomDAO {
             while (rs.next()) {
                 String roomClassId = rs.getString(1);
                 String roomClassName = rs.getString(2);
-                double basePrice =rs.getDouble(3); // Foreign key
-                String roomImg =rs.getString(4); // Foreign key
+                double basePrice = rs.getDouble(3); // Foreign key
+                String roomImg = rs.getString(4); // Foreign key
 
-                Room p = new Room(roomClassId,roomClassName,basePrice,roomImg);
+                Room p = new Room(roomClassId, roomClassName, basePrice, roomImg);
                 list.add(p);
             }
             con.close();
@@ -90,8 +87,8 @@ public class roomDAO {
         ArrayList<Room> list = new ArrayList<>();
         try {
             con = new DBContext().getConnection();
-            String sql = "SELECT    distinct    room_class.class_name, room_class.base_price, room_class.main_image\n" +
-                    "FROM            room INNER JOIN\n" +
+            String sql = "SELECT distinct room_class.class_name, room_class.base_price, room_class.main_image\n" +
+                    "FROM room INNER JOIN\n" +
                     " room_class ON room.room_class_id = room_class.id INNER JOIN\n" +
                     "room_images ON room_class.id = room_images.room_class_id where status_name ='Available';";
 
@@ -103,10 +100,10 @@ public class roomDAO {
 
             while (rs.next()) {
                 String roomClassName = rs.getString(1);
-                double basePrice =rs.getDouble(2); // Foreign key
-                String roomImg =rs.getString(3); // Foreign key
+                double basePrice = rs.getDouble(2);
+                String roomImg = rs.getString(3);
 
-                Room p = new Room(roomClassName,basePrice,roomImg);
+                Room p = new Room(roomClassName, basePrice, roomImg);
                 list.add(p);
             }
             con.close();
@@ -116,7 +113,41 @@ public class roomDAO {
         }
         return list;
     }
-public void updateRoom(Room room) {
+
+    public ArrayList<Room> getRoomByRoomClass(String ClassName) {
+        ArrayList<Room> list = new ArrayList<>();
+        try {
+            con = new DBContext().getConnection();
+            String sql = "SELECT room.id, room_class.class_name\n" +
+                    "FROM room INNER JOIN\n" +
+                    " room_class ON room.room_class_id = room_class.id\n" +
+                    "where room_class.class_name = ? and room.status_id = 1;";
+
+
+            pr = con.prepareStatement(sql);
+            pr.setString(1, ClassName);
+
+            System.out.println(sql);
+            System.err.println("ok");
+            rs = pr.executeQuery();
+
+            while (rs.next()) {
+                String roomId = rs.getString(1);
+//                double basePrice =rs.getDouble(2);
+                String roomClassName = rs.getString(2);
+
+                Room p = new Room(roomId, roomClassName);
+                list.add(p);
+            }
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void updateRoom(Room room) {
         try {
             con = new DBContext().getConnection();
             String sql = "UPDATE room "
@@ -182,14 +213,114 @@ public void updateRoom(Room room) {
         return room;
     }
 
+    public void stateRoomWhenSelect(String roomId){
+        try {
+            con = new DBContext().getConnection();
+                    String sql = "UPDATE room SET status_name = 'Inprocess', status_id=2 WHERE room.id =? and status_name='Available';";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, roomId);
+
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            // Xử lý ngoại lệ
+            e.printStackTrace();
+        } finally {
+            // Đóng conection và statement
+            try {
+                if (pr != null) {
+                    pr.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void stateRoomWhenConfirm(String roomId){
+        try {
+            con = new DBContext().getConnection();
+            String sql = "UPDATE room SET status_name = 'Unavailable', status_id=3 WHERE room.id =? and status_name='Inprocess';";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, roomId);
+
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            // Xử lý ngoại lệ
+            e.printStackTrace();
+        } finally {
+            // Đóng conection và statement
+            try {
+                if (pr != null) {
+                    pr.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public  void updateRoomStatus(String roomId, String status) {
+
+        try {
+         con = new DBContext().getConnection();
+                    String sql = "UPDATE room SET status_name = ?, timestamp = ? WHERE id = ?";
+            pr = con.prepareStatement(sql);
+            pr.setString(1, status);
+            pr.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()));
+            pr.setString(3, roomId);
+
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            // Xử lý ngoại lệ
+            e.printStackTrace();
+        } finally {
+            // Đóng conection và statement
+            try {
+                if (pr != null) {
+                    pr.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+//    public void rollbackRooms() throws SQLException {
+//
+//        try {
+//            con = new DBContext().getConnection();
+//            String sql = "UPDATE room SET status_name = 'Available' WHERE status_name = 'Inprocess' AND timestamp < ?";
+//            pr = con.prepareStatement(sql);
+//            pr.setTimestamp(1, new Timestamp(System.currentTimeMillis() - 1 * 60 * 1000));
+//
+//            pr.executeUpdate();
+//        } finally {
+//            if (pr != null) {
+//                pr.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//    }
 
 
     public static void main(String[] args) {
         roomDAO dao = new roomDAO();
-        ArrayList<Room>  list = dao.getRoomByTypeValid();
+        ArrayList<Room> list = dao.getRoomByRoomClass("Deluxe");
         for (Room r : list) {
             System.out.println(r.toString());
         }
+//        System.out.println(list.get(0));
 
 //        SimpleDateFormat myFormat = new SimpleDateFormat("dd MMM, yyyy");
 //        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM, yyyy");

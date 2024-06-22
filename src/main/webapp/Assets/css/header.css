@@ -1,5 +1,5 @@
 :root {
-    --main-color: #274690;
+    --main-color: #003b95;
 }
 *{
     font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -158,3 +158,30 @@
 /*    text-align: center; !* Optional: To center the text *!*/
 /*}*/
 
+/*.headerSearchItem {*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.headerSearchInput {*/
+/*    padding: 5px;*/
+/*    margin-left: 10px;*/
+/*    width: 200px; !* Adjust as needed *!*/
+/*}*/
+
+#dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    width: 100%;
+}
+
+#dropdown select {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+}

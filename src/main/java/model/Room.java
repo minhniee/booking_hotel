@@ -73,6 +73,12 @@ public class Room {
         this.roomImg = roomImg;
     }
 
+    public Room(String roomId, String roomClassName) {
+        this.id = roomId;
+        this.roomClassName = roomClassName;
+    }
+
+
     public String getId() {
         return id;
     }
@@ -144,6 +150,7 @@ public class Room {
     public void setRoomClassName(String roomClassName) {
         this.roomClassName = roomClassName;
     }
+
 
     @Override
     public String toString() {

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.user;
+package controller.booking;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -74,21 +73,23 @@ public class BookingHandle extends HttpServlet {
         // Ensure the date formats match the expected input
         SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        String dateRangeString = request.getParameter("date");
-        LocalDate[] dates = parseDateRange(dateRangeString);
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String checkinDate = null;
         String checkoutDate = null;
         LocalDateTime now = LocalDateTime.now();
-
-        long daysDiff = 0;
-        long earlyBirdDays = 0;
-        int children = 0;
+        int daysDiff = 0;
+        int earlyBirdDays = 0;
+        int children = 1;
         int adults = 1;
         int person = 1;
+
+
+
         String currentDate = dtf.format(now);
+        // to convert string date "dd-MM-YYYY to dd-MM-YYYY" by 2 date
+        String dateRangeString = request.getParameter("date");
+        String location = request.getParameter("location");
+        LocalDate[] dates = parseDateRange(dateRangeString);
 
         try {
             if (dates != null) {
@@ -112,12 +113,13 @@ public class BookingHandle extends HttpServlet {
             Date date2 = myFormat.parse(checkoutDate);
             Date currDate = myFormat.parse(currentDate);
 
-            long diff = date2.getTime() - date1.getTime();
-            earlyBirdDays = TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
+            int diff = (int) (date2.getTime() - date1.getTime());
+
+            earlyBirdDays = (int) TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
             if (earlyBirdDays < 0) {
                 earlyBirdDays = 0;
             }
-            daysDiff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            daysDiff = (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
             // Validate the input and set attributes accordingly
             if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty()) {
@@ -127,9 +129,12 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("noti", "checkin: " + checkinDate + " checkout: " + checkoutDate + " Day: " + daysDiff);
                 request.setAttribute("nights", daysDiff);
                 request.setAttribute("persons", person);
+                request.setAttribute("adults", adults);
+                request.setAttribute("children", children);
                 request.setAttribute("checkinDate", checkinDate);
                 request.setAttribute("checkoutDate", checkoutDate);
                 request.setAttribute("earlyBirdDays", earlyBirdDays);
+                request.setAttribute("location", location);
                 url = "/booking/listRoom.jsp";
             }
 

@@ -124,8 +124,8 @@ public class CustomerDAO {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int roomId = resultSet.getInt("room_id");
+                String id = resultSet.getString("id");
+                String roomId = resultSet.getString("room_id");
                 Date checkinDate = resultSet.getDate("checkin_date");
                 Date checkoutDate = resultSet.getDate("checkout_date");
                 int numAdults = resultSet.getInt("num_adults");

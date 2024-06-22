@@ -25,38 +25,47 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .container {
             width: 80%;
             margin: auto;
         }
+
         .header, .footer {
             text-align: center;
         }
+
         .section {
             border-bottom: 1px solid #ccc;
             padding: 10px 0;
         }
+
         .total {
             font-weight: bold;
         }
+
         h1 {
             color: azure;
             height: 150px;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
         }
-        .header h1{
+
+        .header h1 {
             color: black;
         }
-        .section-info{
+
+        .section-info {
             background-color: #C4C4C4;
         }
-        .section-info h2{
+
+        .section-info h2 {
             background-color: black;
             color: white;
             padding: 15px;
         }
-        .section-info p{
+
+        .section-info p {
             margin: 10px;
         }
     </style>
@@ -70,7 +79,9 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index">Home</a></li>
-            <li class="breadcrumb-item"><a href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=2&children=1">Select Room</a></li>
+            <li class="breadcrumb-item"><a
+                    href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=2&children=1">Select
+                Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
     </nav>
@@ -81,18 +92,21 @@
     </div>
 
     <div class="section-info">
-        <h2>Your reservation - from <span id="check-in-date">${checkinDate}</span> to <span id="check-out-date">${checkoutDate}</span></h2>
+        <h2>Your reservation - from <span id="check-in-date">${checkinDate}</span> to <span
+                id="check-out-date">${checkoutDate}</span></h2>
         <p><strong id="hotel-name">FUTel</strong></p>
         <p>Address: <span id="hotel-address">Thach That</span></p>
         <p>Reception is open: 24 hours</p>
         <p>Check-in from: 14:00</p>
         <p>Check-out before: 12:00</p>
         <p>Spoken languages: <span id="languages">English, Vietnamese</span></p>
-        <p>Contact: <span id="contact-number" >012-345-678</span> </p>
+        <p>Contact: <span id="contact-number">012-345-678</span></p>
     </div>
-<hr>
+    <hr>
     <div class="section">
+
         <h3>Room 1</h3>
+        <h4>Location: ${location}</h4>
         <p><strong id="room1-type">${roomType}</strong></p>
         <p><span id="room1-adults">${persons}</span> adults</p>
         <p>Bedding options: <span id="room1-bedding">${roomType}</span></p>
@@ -100,7 +114,6 @@
         <p>Breakfast included: <span id="room1-breakfast">[Breakfast Details]</span></p>
         <p>Price: <span id="room1-price">${total}</span></p>
     </div>
-
 
 
     <div class="section total">
@@ -117,7 +130,7 @@
 
 
     <div class="section">
-    <c:set var="user" value="${sessionScope.account}" />
+        <c:set var="user" value="${sessionScope.account}"/>
         <p>Infomation</p>
 
         <input type="text" value="${user.fullName}" readonly>
@@ -128,38 +141,110 @@
         <input type="text" value="${user.address}" readonly>
     </div>
 
+    <form action="BookingDetail" method="post">
     <div class="section">
         <p><strong>Payment method</strong></p>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <input class="form-check-input" type="radio" name="paymentMethod" value="banking" id="flexRadioDefault1" checked>
             <label class="form-check-label" for="flexRadioDefault1">
-                Cash
+                Banking
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+            <input class="form-check-input" type="radio" name="paymentMethod" value="banktransfer" id="flexRadioDefault2">
             <label class="form-check-label" for="flexRadioDefault2">
-                Banking
+                Bank Transfer
             </label>
         </div>
     </div>
 
     <div class="section">
         <p><strong>Cancellable, modifiable</strong></p>
-        <p>This offer can be cancelled or modified free of charge before <span id="cancellation-deadline">[Cancellation Deadline]</span>.</p>
+        <p>This offer can be cancelled or modified free of charge before <span id="cancellation-deadline">[Cancellation Deadline]</span>.
+        </p>
     </div>
 
-    <div lass="section">
-        <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of no-show, a penalty of 100% will apply.
+    <div class="section">
+        <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
+            cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of no-show, a
+            penalty of 100% will apply.
             By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
-        <button style="display: flex; align-items: center; justify-content: center;">Booking now </button>
-    </div>
+        <input type="hidden" value="${user.id}" name="location">
+        <input type="hidden" value="${user.id}" name="accountid">
+        <input type="hidden" value="${checkinDate}" name="checkinDate">
+        <input type="hidden" value="${checkoutDate}" name="checkoutDate">
+        <input type="hidden" value="${children}" name="children">
+        <input type="hidden" value="${adults}" name="adults">
+        <input type="hidden" value="${total}" name="price">
 
+        <input type="hidden" name="roomId" value="${currenRoom}">
+        <button  type="submit"   >Submit</button>
+    </div>
+    </form>
+<%--        <button id="submitButton" type="button"   >Submit</button>--%>
+        <div id="qrPayment" style="display: none">
+            <div class="countdown-container">
+                <h3>QR have valid in: </h3>
+                <div id="countdown">
+                    <span id="minutes"></span> minutes
+                    <span id="seconds"></span> seconds
+                </div>
+            </div>
+            <img src="https://qr.sepay.vn/img?acc=0000291930123&bank=MBBank&amount=${total}&des=test" alt=""/>
+
+        </div>
+    </div>
     <div class="footer">
         <p>Thank you for booking with us!</p>
     </div>
 </div>
+
+<script>
+    const bankingRadio = document.getElementById('flexRadioDefault1');
+    const bankingTransferRadio = document.getElementById('flexRadioDefault2');
+    const qrPayment = document.getElementById('qrPayment');
+    const submitButton = document.getElementById('submitButton');
+
+    submitButton.addEventListener('click', function () {
+        if (bankingRadio.checked) {
+            qrPayment.style.display = 'block';
+            countDownValidQr();
+        } else if (bankingTransferRadio.checked) {
+            window.location.href = 'https://google.com'
+        }
+    })
+
+    function countDownValidQr() {
+        const countdownDate = new Date(new Date().getTime() + 5 * 60 * 1000).getTime();
+
+        // Update the count down every 1 second
+        const countdownFunction = setInterval(function () {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            const distance = countdownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            // const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="countdown"
+
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the countdown is over, write some text
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "SALE ENDED";
+            }
+        }, 1000);
+    }
+</script>
 </body>
 </html>
 
