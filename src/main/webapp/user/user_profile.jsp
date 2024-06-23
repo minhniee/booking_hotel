@@ -1,114 +1,27 @@
-<%--<!DOCTYPE html>--%>
-<%--<html lang="vi">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <title>Thông tin cá nhân</title>--%>
-<%--    <%@include file="/layout/subheader.jsp"%>--%>
-<%--    <link rel="stylesheet" href="${url}/Assets/css/user_profile.css">--%>
-<%--    <link rel="stylesheet" href="${url}/Assets/css/header.css">--%>
 
-<%--</head>--%>
-<%--<body>--%>
-<%--<div class="container">--%>
-<%--    <aside class="sidebar">--%>
-<%--        <ul>--%>
-<%--            <li><a href="#">Infomation</a></li>--%>
-<%--            <li><a href="#">Các tùy chọn</a></li>--%>
-<%--            <li><a href="#">An toàn và bảo mật</a></li>--%>
-<%--            <li><a href="#">Thông tin thanh toán</a></li>--%>
-<%--            <li><a href="#">Quyền riêng tư</a></li>--%>
-<%--            <li><a href="#">Thông báo email</a></li>--%>
-<%--            <li><a href="#">Người đi cùng</a></li>--%>
-<%--        </ul>--%>
-<%--    </aside>--%>
-<%--    <main class="content">--%>
-<%--        <header>--%>
-<%--            <h1>Thông tin cá nhân</h1>--%>
-<%--            <p>Cập nhật thông tin của bạn và tìm hiểu các thông tin này được sử dụng ra sao.</p>--%>
-<%--        </header>--%>
-<%--        <section class="profile-info">--%>
-<%--            <table>--%>
-<%--                <tr >--%>
-<%--                    <td>User Name</td>--%>
-<%--                    <td >Minh</td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-<%--                <tr id="">--%>
-<%--                    <td>Full name</td>--%>
-<%--                    <td id="name-value">Minh</td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-<%--                <tr id="email-row">--%>
-<%--                    <td>Email</td>--%>
-<%--                    <td id="email-value">metoo2k3@gmail.com </td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-<%--                <tr id="gender-row">--%>
-<%--                    <td>gender</td>--%>
-<%--                    <td id="gender-value">metoo2k3@gmail.com </td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-<%--                <tr id="phone-row">--%>
-<%--                    <td>Phone Number</td>--%>
-<%--                    <td id="phone-value">1234567890</td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-<%--                <tr id="dob-row">--%>
-<%--                    <td>Birth Day</td>--%>
-<%--                    <td >metoo2k3@gmail.com </td>--%>
-<%--                    <td><a href="#" class="edit-link">Chỉnh sửa</a></td>--%>
-<%--                </tr>--%>
-
-<%--                <!-- Add other rows as needed -->--%>
-<%--            </table>--%>
-<%--        </section>--%>
-<%--    </main>--%>
-<%--</div>--%>
-<%--<script src="script.js"></script>--%>
-<%--</body>--%>
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", function() {--%>
-<%--        const editLinks = document.querySelectorAll(".edit-link");--%>
-
-<%--        editLinks.forEach(link => {--%>
-<%--            link.addEventListener("click", function(event) {--%>
-<%--                event.preventDefault();--%>
-
-<%--                const row = this.closest("tr");--%>
-<%--                const valueCell = row.querySelector("td:nth-child(2)");--%>
-<%--                const currentValue = valueCell.textContent.trim();--%>
-<%--                const input = document.createElement("input");--%>
-<%--                input.type = "text";--%>
-<%--                input.value = currentValue;--%>
-<%--                input.classList.add("edit-input");--%>
-
-<%--                valueCell.innerHTML = "";--%>
-<%--                valueCell.appendChild(input);--%>
-
-<%--                input.focus();--%>
-
-<%--                // Save the new value when the input loses focus--%>
-<%--                input.addEventListener("blur", function() {--%>
-<%--                    const newValue = this.value.trim();--%>
-<%--                    valueCell.textContent = newValue;--%>
-
-<%--                    // Optionally, send the new value to a server or save it locally--%>
-<%--                    // e.g., saveNewValue(row.id, newValue);--%>
-<%--                });--%>
-<%--            });--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--</script>--%>
-<%--</html>--%>
 <%@include file="../layout/subheader.jsp"%>
 <%@include file="../layout/cdnpkg.jsp"%>
 <link rel="stylesheet" href="user">
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+        <div class="col-md-3 border-right" style="margin-right: 30px;">
+<%--            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">--%>
+<%--                <span class="font-weight-bold">Edogaru</span>--%>
+<%--                <span class="text-black-50">edogaru@mail.com.my</span>--%>
+<%--                <span> </span></div>--%>
+
+            <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+                <div class="card p-3">
+                    <div class="e-navlist e-navlist--active-bg">
+                        <ul class="nav" style="text-wrap: nowrap">
+                            <li class="nav-item"><a class="nav-link px-3 active" href="/Booking_Hotell/index"><i class="fa fa-fw fas fa-home mr-1"></i><span> Home</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-3" href="user_profile.jsp"><i class="fa fa-fw fa-user-cog mr-1"></i><span> Profile</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-3" href="#"><i class="fa fa-fw fa-user-edit " ></i><span> Change Password</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-3" href="#"><i class="fa fa-fw fa-history " ></i><span> Booking history</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-5 border-right">
             <form action="${url}/UpdateProfile" method="post" onsubmit="return validateForm()">
@@ -156,7 +69,9 @@
                             <small class="error-message text-danger" id="addressError"></small>
                         </div>
                     </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    </div>
 
                 </div>
             </form>
