@@ -15,7 +15,7 @@
                     <div class="e-navlist e-navlist--active-bg">
                         <ul class="nav" style="text-wrap: nowrap">
                             <li class="nav-item"><a class="nav-link px-3 active" href="/Booking_Hotell/index"><i class="fa fa-fw fas fa-home mr-1"></i><span> Home</span></a></li>
-                            <li class="nav-item"><a class="nav-link px-3" href="user_profile.jsp"><i class="fa fa-fw fa-user-cog mr-1"></i><span> Profile</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-3" href="/Booking_Hotell/user/user_profile.jsp"><i class="fa fa-fw fa-user-cog mr-1"></i><span> Profile</span></a></li>
                             <li class="nav-item"><a class="nav-link px-3" href="#"><i class="fa fa-fw fa-user-edit " ></i><span> Change Password</span></a></li>
                             <li class="nav-item"><a class="nav-link px-3" href="#"><i class="fa fa-fw fa-history " ></i><span> Booking history</span></a></li>
                         </ul>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 border-right">
+        <div class="col-md-5 border-right" style=" background-color: rgba(220,220,220,0.27);">
             <form action="${url}/UpdateProfile" method="post" onsubmit="return validateForm()">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -94,7 +94,7 @@
         const dob = document.querySelector('[name="dob"]').value.trim();
         const address = document.querySelector('[name="address"]').value.trim();
 
-        const nameRegex = /^[A-Z][a-zA-Z\s]*$/;
+        const nameRegex = /^[A-Z][a-z]*(?: [A-Z][a-z]*){0,2}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const phoneRegex = /^\d{10}$/;
 
@@ -112,6 +112,9 @@
             isValid = false;
         } else if (!nameRegex.test(fullName)) {
             document.getElementById('fullNameError').textContent = 'Full name must start with a capital letter and only contain letters and spaces.';
+            isValid = false;
+        } else if (fullName.length > 20) {
+            document.getElementById('fullNameError').textContent = 'Full name cannot be longer than 20 characters.';
             isValid = false;
         }
 
@@ -138,6 +141,9 @@
 
         if (!address) {
             document.getElementById('addressError').textContent = 'Address is required.';
+            isValid = false;
+        } else if (address.length > 50) {
+            document.getElementById('addressError').textContent = 'Address cannot be longer than 50 characters.';
             isValid = false;
         }
 
