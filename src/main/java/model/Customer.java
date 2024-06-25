@@ -19,7 +19,7 @@ public class Customer {
     private String address;
     private Date dob;
     private boolean gender;
-    private List<Booking> bookings;
+    public List<Booking> bookings;
 
 //    public Customer(int id, String fullName, String email, String phone, List<Booking> bookings) {
 //        this.id = id;
@@ -39,6 +39,31 @@ public class Customer {
         this.gender = gender;
         this.bookings = bookings;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
 
     public int getId() {
         return id;

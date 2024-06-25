@@ -8,8 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
+import model.Room;
 
 /**
  *
@@ -27,6 +30,7 @@ public class CustomerInfo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,12 +57,29 @@ public class CustomerInfo extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final int ITEMS_PER_PAGE = 10;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CustomerDAO customerDAO = new CustomerDAO();
-        List<Customer> customers = customerDAO.getAllCustomers();
-        request.setAttribute("customers", customers);
+        ArrayList<Customer> customers = (ArrayList<Customer>) customerDAO.getAllCustomers();
+
+        int totalCustomers = customers.size();
+        int totalPages = (int) Math.ceil((double) totalCustomers / ITEMS_PER_PAGE);
+
+        int currentPage = 1;
+        if (request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        int startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalCustomers);
+        ArrayList<Customer> paginatedCutomers = new ArrayList<>(customers.subList(startIndex, endIndex));
+
+        request.setAttribute("customers", paginatedCutomers);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("totalPages", totalPages);
+
         request.getRequestDispatcher("customerInfo.jsp").forward(request, response);
     }
 
@@ -81,7 +102,7 @@ public class CustomerInfo extends HttpServlet {
         request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
     }
 
-//    @Override
+    //    @Override
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //    throws ServletException, IOException {
 //        int customerId = Integer.parseInt(request.getParameter("customerId"));
