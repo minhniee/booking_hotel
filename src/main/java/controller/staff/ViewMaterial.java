@@ -30,7 +30,7 @@ public class ViewMaterial extends HttpServlet {
             out.println("</html>");
         }
     }
-    private static final int ITEMS_PER_PAGE = 10;
+    private static final int ITEMS_PER_PAGE = 5;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -17,6 +17,9 @@
             font-size: 24px;
             color: #333;
             margin-bottom: 20px;
+            background-color: rgb(255,127,80);
+            padding: 10px;
+            border: 1px solid;
         }
 
         .room-table {
@@ -70,25 +73,23 @@
         }
 
         .pagination a:hover {
-            background-color: #f2f2f2;
+            background-color: rgba(73, 174, 80, 0.88);
         }
 
         .pagination strong {
-            margin: 0 5px;
-            padding: 8px 12px;
-            color: #333;
-            border: 1px solid #ddd;
-            background-color: #f2f2f2;
+            margin: 0 2px;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: rgba(73, 174, 80, 0.88);
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 style="
-    background-color: rgb(255,127,80);
-    padding: 10px;
-    border: 1px solid;
-    ">View Material</h1>
+    <h1>View Material</h1>
     <table class="room-table" border="1">
         <tr>
             <th>Room ID</th>
@@ -106,7 +107,7 @@
                 <td>${material.name}</td>
                 <td>${material.quantity}</td>
                 <td>${material.price}</td>
-                <td>${material.image}</td>
+                <td><img src="Assets/image/material/${material.image}" alt="${material.name}" width="100"></td>
                 <td class="room-actions">
 <%--                    <form action="editMaterial" method="post" style="display:inline;">--%>
 <%--                        <input type="hidden" name="roomId" value="${material.id}">--%>
