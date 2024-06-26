@@ -31,6 +31,22 @@ public class bookingDAO {
         }
     }
 
+    public void stateBooking(String bookingId, boolean state) {
+        Connection con = new DBContext().getConnection();
+        String sql = "INSERT INTO booking_status (booking_id, status) " +
+                "VALUES (?,?)";
+        try (PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, bookingId);
+            pr.setBoolean(2, state);
+
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle or log the exception as needed
+        }
+    }
+
+
+
     public static void main(String[] args) {
         Booking b = new Booking("B123", "L1001",  Date.valueOf("2024-06-22"),  Date.valueOf("2024-06-22"), 2,1 , 500.00, 1, "1233");
         new bookingDAO().insertBooking(b);

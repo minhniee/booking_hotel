@@ -170,7 +170,7 @@
             cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of no-show, a
             penalty of 100% will apply.
             By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
-        <input type="hidden" value="${user.id}" name="location">
+        <input type="hidden" value="${location}" name="location">
         <input type="hidden" value="${user.id}" name="accountid">
         <input type="hidden" value="${checkinDate}" name="checkinDate">
         <input type="hidden" value="${checkoutDate}" name="checkoutDate">

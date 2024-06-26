@@ -170,18 +170,19 @@
 /*    width: 200px; !* Adjust as needed *!*/
 /*}*/
 
-#dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1;
-    width: 100%;
-}
+/*#dropdown {*/
+/*    width: 300px;*/
+/*    margin-top: 10px;*/
+/*    margin-left: -29px;*/
+/*    display: none;*/
+/*    border-radius: 4px;*/
+/*    border: none;*/
+/*}*/
+
+
 
 #dropdown select {
     width: 100%;
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
 }
+

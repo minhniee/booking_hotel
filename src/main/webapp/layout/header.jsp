@@ -82,7 +82,7 @@
 
                 <div class="headerSearchIteam" style="position: relative">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
-                    <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box" onclick="showDropdown()"/>
+                    <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box" value="${location}" onclick="showDropdown()"/>
                     <div id="dropdown">
                         <select id="select" name="location" onchange="updateInput()" size="4">
                             <option value="Ha Noi" >Ha Noi</option>
@@ -138,8 +138,8 @@
         flatpickr("#datePicker", {
             mode: "range",
             dateFormat: "d-m-Y",
-            minDate: "today",
-            defaultDate: ["19-06-2024", "22-06-2024"],
+            minDate: "today", // Automatically sets minimum date to today
+            defaultDate: [new Date(), new Date().fp_incr(2)], // Default range: 3 days from today to 6 days from today
             showMonths: 2,
             onChange: function (selectedDates, dateStr, instance) {
                 // Handle date change event here if needed
@@ -147,21 +147,30 @@
             }
         });
     });
-        function showDropdown() {
+    function showDropdown() {
         var dropdown = document.getElementById("dropdown");
         var input = document.getElementById("box");
-        dropdown.style.width = input.offsetWidth + 'px'; // Match the width of the input field
+
+        dropdown.style.width = '300px'; // Match the width of the input field
         dropdown.style.display = "block";
+        dropdown.style.marginTop = '10px'; // Corrected to camelCase
+        dropdown.style.marginLeft = '-29px'; // Corrected to camelCase
+        dropdown.style.borderRadius = '4px'; // Corrected to camelCase
+        dropdown.style.border = 'none';
     }
 
-        function updateInput() {
+
+    function updateInput() {
         var select = document.getElementById("select");
         var input = document.getElementById("box");
+
         input.value = select.value;
-        document.getElementById("dropdown").style.display = "none"; // Hide dropdown after selection
+        select.style.overflow = 'hidden';
+        document.getElementById("dropdown").style.display = "none";
     }
 
-        // Hide the dropdown if clicked outside of it
+
+    // Hide the dropdown if clicked outside of it
         document.addEventListener('click', function(event) {
         var dropdown = document.getElementById("dropdown");
         var input = document.getElementById("box");

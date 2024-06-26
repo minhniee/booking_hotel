@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.UUID;
 
 import DAO.bookingDAO;
 import DAO.roomDAO;
@@ -89,9 +90,9 @@ public class BookingDetail extends HttpServlet {
             roomDAO roomDAO = new roomDAO();
             room = roomDAO.getRoomByRoomClass(roomType);
             String currenRoom = room.get(0).getId();
-            roomDAO.stateRoomWhenSelect(currenRoom);
-//            RoomStatusScheduler.startScheduler();
 
+            // set status room 'Available' to 'Inprocess'
+            roomDAO.stateRoomWhenSelect(currenRoom);
 
             request.setAttribute("checkinDate", checkinDate);
             request.setAttribute("checkoutDate", checkoutDate);
@@ -119,7 +120,6 @@ public class BookingDetail extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
-            String bookingId = request.getParameter("location");
             String payment = request.getParameter("paymentMethod");
             String account_id = request.getParameter("accountid");
             String checkinDateParam = request.getParameter("checkinDate");
@@ -128,13 +128,13 @@ public class BookingDetail extends HttpServlet {
             String adultsParam = request.getParameter("adults");
             String roomId = request.getParameter("roomId");
             String price = request.getParameter("price");
+            String bookingId = generateUniqueKey().toUpperCase();
 
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             try {
-                // Validate required parameters
-                if (bookingId == null || payment == null || account_id == null ||
+                if ( payment == null || account_id == null ||
                         checkinDateParam == null || checkoutDateParam == null ||
                         childrenParam == null || adultsParam == null ||
                         roomId == null || price == null) {
@@ -147,12 +147,10 @@ public class BookingDetail extends HttpServlet {
                 String checkinDate = dateCheckIn.format(outputFormatter);
                 String checkoutDate = dateCheckOut.format(outputFormatter);
 
-                // Parse numerical values
                 int adults = Integer.parseInt(adultsParam);
                 int children = Integer.parseInt(childrenParam);
                 double priceValue = Double.parseDouble(price);
 
-                // Create Booking object
                 Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
                         Date.valueOf(checkoutDate), adults, children,
                         priceValue, 1, account_id);
@@ -160,7 +158,9 @@ public class BookingDetail extends HttpServlet {
                 // Insert booking into database
                 bookingDAO bookingDao = new bookingDAO();
                 bookingDao.insertBooking(booking);
-
+                bookingDao.stateBooking(bookingId,false);
+                PrintWriter out = response.getWriter();
+                out.println("thank for booking ");
                 // Set response status
                 response.setStatus(HttpServletResponse.SC_OK);
             } catch (DateTimeParseException e) {
@@ -174,6 +174,16 @@ public class BookingDetail extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
             }
         }
+
+    public static String generateUniqueKey() {
+        String key;
+
+        // Generate a UUID and take the first 12 characters (to ensure length 12)
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        key = uuid.substring(0, 12);
+
+        return key;
+    }
 
 
         /**

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,6 +70,12 @@ public class BookingHandle extends HttpServlet {
         String url = "";
         HttpSession session = request.getSession();
         Object object = session.getAttribute("account");
+        Account user = (Account) object;
+        if(!user.getRole().equalsIgnoreCase("customer")) {
+//            request.setAttribute("message", "You are not the customer of this account");
+            request.getRequestDispatcher("errorPage/errors-500.jsp").forward(request, response);
+            return;
+        }
 
         // Ensure the date formats match the expected input
         SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -137,6 +144,7 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("location", location);
                 url = "/booking/listRoom.jsp";
             }
+            
 
         } catch (Exception e) {
             e.printStackTrace();

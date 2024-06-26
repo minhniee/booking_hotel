@@ -79,7 +79,7 @@
                     <td>${room.id}</td>
                     <td>${room.roomClassId}</td>
                     <td>${room.roomClassName}</td>
-                    <td>${room.statusName}</td>
+                        <td>${room.statusName}</td>
                     <td>${room.roomName}</td>
                     <td>${room.numAdults}</td>
                     <td>${room.basePrice}</td>
