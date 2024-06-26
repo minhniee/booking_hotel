@@ -265,14 +265,14 @@ public class roomDAO {
         }
     }
 
-    public  void updateRoomStatus(String roomId, String status) {
+    public  void updateRoomStatus(String roomId, String status_id, String status) {
 
         try {
          con = new DBContext().getConnection();
-                    String sql = "UPDATE room SET status_name = ?, timestamp = ? WHERE id = ?";
+                    String sql = "UPDATE room SET status_name = ?, status_id=? WHERE id = ?";
             pr = con.prepareStatement(sql);
             pr.setString(1, status);
-            pr.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()));
+            pr.setString(2, status_id);
             pr.setString(3, roomId);
 
             pr.executeUpdate();

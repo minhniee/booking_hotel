@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.Timer;
 import java.util.UUID;
 
 import DAO.bookingDAO;
@@ -31,6 +32,7 @@ import model.Room;
  */
 @WebServlet(name = "BookingDetail", urlPatterns = {"/BookingDetail"})
 public class BookingDetail extends HttpServlet {
+    private static TimerTask timerTask = new TimerTask();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -93,6 +95,7 @@ public class BookingDetail extends HttpServlet {
 
             // set status room 'Available' to 'Inprocess'
             roomDAO.stateRoomWhenSelect(currenRoom);
+            TimerTask.doCaculateCheckout(currenRoom,"1","Available");
 
             request.setAttribute("checkinDate", checkinDate);
             request.setAttribute("checkoutDate", checkoutDate);
@@ -120,6 +123,9 @@ public class BookingDetail extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
+            Timer timer = TimerTask.timer;
+            timer.cancel();
+
             String payment = request.getParameter("paymentMethod");
             String account_id = request.getParameter("accountid");
             String checkinDateParam = request.getParameter("checkinDate");

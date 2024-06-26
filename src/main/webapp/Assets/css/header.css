@@ -170,19 +170,12 @@
 /*    width: 200px; !* Adjust as needed *!*/
 /*}*/
 
-/*#dropdown {*/
-/*    width: 300px;*/
-/*    margin-top: 10px;*/
-/*    margin-left: -29px;*/
-/*    display: none;*/
-/*    border-radius: 4px;*/
-/*    border: none;*/
-/*}*/
-
-
-
 #dropdown select {
-    width: 100%;
-    box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+    width: 300px;
+    overflow: hidden;
+}
+
+.headerSearchIteam {
+    position: relative;
 }
 

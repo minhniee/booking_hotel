@@ -12,6 +12,69 @@
     <link rel="stylesheet" href="${url}/Assets/css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        #dropdown{
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            top: 45px;
+            right: -49px;
+            border-radius: 5px;
+        }
+
+        #dropdown select {
+            width: 300px;
+            overflow: hidden;
+        }
+
+        .guest-dropdown {
+            display: none;
+            position: absolute;
+            border: 1px solid #ddd;
+            /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 350px;
+            top: 45px;
+        }
+
+        .guest-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .guest-control label {
+            flex: 1;
+        }
+
+        .guest-control button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .guest-control input[type="number"] {
+            width: 50px;
+            text-align: center;
+            border-radius: 3px;
+            padding: 5px;
+            border: none;
+        }
+
+        input:focus, input:active {
+            outline: none; /* Loại bỏ border hoặc outline mặc định */
+            border: none; /* Loại bỏ border */
+        }
+    </style>
 </head>
 
 <body>
@@ -64,6 +127,7 @@
             </div>
             <div class="headerListItem">
                 <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/city.svg" width="30" height="20"/>
+
                 <span>Attraction</span>
             </div>
             <div class="headerListItem">
@@ -82,8 +146,9 @@
 
                 <div class="headerSearchIteam" style="position: relative">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
-                    <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box" value="${location}" onclick="showDropdown()"/>
-                    <div id="dropdown">
+                    <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box"
+                           value="${location}" onclick="showDropdown()"/>
+                    <div id="dropdown" >
                         <select id="select" name="location" onchange="updateInput()" size="4">
                             <option value="Ha Noi" >Ha Noi</option>
                             <option value="Da Nang">Da Nang</option>
@@ -101,8 +166,24 @@
                 </div>
                 <div class="headerSearchIteam">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/user.svg" width="30" height="20"/>
-                    <span class="headerSearchText">2 adults 2 children 1 room</span>
+                    <span class="headerSearchText" id="guestText" onclick="toggleGuestDropdown()">2 adults 2 children 1 room</span>
+                    <div class="guest-dropdown" id="guestDropdown">
+                        <div class="guest-control">
+                            <label>Adult</label>
+                            <button type="button" onclick="decrement('adults')">-</button>
+                            <input type="number" id="adults" value="1" readonly oninput="updateGuestText()">
+                            <button type="button" onclick="increment('adults')">+</button>
+                        </div>
+                        <div class="guest-control">
+                            <label>Child</label>
+                            <button type="button" onclick="decrement('children')">-</button>
+                            <input type="number" id="children" value="0" readonly oninput="updateGuestText()">
+                            <button type="button" onclick="increment('children')">+</button>
+                        </div>
+                    </div>
                 </div>
+
+
                 <c:if test="${ not empty sessionScope.account }">
                     <div class="headerSearchIteam">
                         <button class="headerBtn" type="submit">Search
@@ -123,6 +204,47 @@
 </div>
 
 <script>
+    function toggleGuestDropdown() {
+        const dropdown = document.getElementById('guestDropdown');
+        // dropdown.style.display = dropdown.style.display === 'block' || dropdown.style.display === 'none' ? 'block' : 'none';
+        dropdown.style.display = dropdown.style.display === "block"  ? "none" : "block";
+    }
+
+    function updateGuestText() {
+        const adults = parseInt(document.getElementById('adults').value);
+        const children = parseInt(document.getElementById('children').value);
+
+        const guestText = document.getElementById('guestText');
+        guestText.textContent = adults.toString() + ' adults'+ children.toString() +'children 1 room' ;
+    }
+
+
+    // function increment(field) {
+    //     const input = document.getElementById(field);
+    //     input.value = parseInt(input.value) + 1;
+    // }
+    //
+    // function decrement(field) {
+    //     const input = document.getElementById(field);
+    //     if (parseInt(input.value) > 0) {
+    //         input.value = parseInt(input.value) - 1;
+    //     }
+    // }
+
+    function increment(inputId) {
+        var input = document.getElementById(inputId);
+        var value = parseInt(input.value, 10);
+        input.value = value + 1;
+    }
+
+    function decrement(inputId) {
+        var input = document.getElementById(inputId);
+        var value = parseInt(input.value, 10);
+        if (value > 0) {
+            input.value = value - 1;
+        }
+    }
+
     function setActive(element) {
         // Remove active class from all links
         var links = document.querySelectorAll('.headerListItem a');
@@ -147,37 +269,60 @@
             }
         });
     });
+    // function showDropdown() {
+    //     var dropdown = document.getElementById("dropdown");
+    //     var input = document.getElementById("box");
+    //
+    //     dropdown.style.width = input.value+'px'; // Match the width of the input field
+    //     dropdown.style.display = "block";
+    //     // dropdown.style.marginTop = '10px'; // Corrected to camelCase
+    //     // dropdown.style.marginLeft = '-29px'; // Corrected to camelCase
+    //     // dropdown.style.borderRadius = '4px'; // Corrected to camelCase
+    //     // dropdown.style.border = 'none';
+    // }
+    //
+    //
+    // function updateInput() {
+    //     var select = document.getElementById("select");
+    //     var input = document.getElementById("box");
+    //
+    //     input.value = select.value;
+    //     select.style.overflow = 'hidden';
+    //     document.getElementById("dropdown").style.display = "none";
+    // }
+    //
+    //
+    // // Hide the dropdown if clicked outside of it
+    //     document.addEventListener('click', function(event) {
+    //     var dropdown = document.getElementById("dropdown");
+    //     var input = document.getElementById("box");
+    //     if (!dropdown.contains(event.target) && event.target !== input) {
+    //     dropdown.style.display = "none";
+    // }
+    // });
+
     function showDropdown() {
         var dropdown = document.getElementById("dropdown");
-        var input = document.getElementById("box");
-
-        dropdown.style.width = '300px'; // Match the width of the input field
-        dropdown.style.display = "block";
-        dropdown.style.marginTop = '10px'; // Corrected to camelCase
-        dropdown.style.marginLeft = '-29px'; // Corrected to camelCase
-        dropdown.style.borderRadius = '4px'; // Corrected to camelCase
-        dropdown.style.border = 'none';
+        // dropdown.style.display = "block";
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     }
-
 
     function updateInput() {
         var select = document.getElementById("select");
         var input = document.getElementById("box");
-
         input.value = select.value;
-        select.style.overflow = 'hidden';
         document.getElementById("dropdown").style.display = "none";
     }
 
-
     // Hide the dropdown if clicked outside of it
-        document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         var dropdown = document.getElementById("dropdown");
         var input = document.getElementById("box");
         if (!dropdown.contains(event.target) && event.target !== input) {
-        dropdown.style.display = "none";
-    }
+            dropdown.style.display = "none";
+        }
     });
+
 </script>
 </body>
 
