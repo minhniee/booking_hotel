@@ -123,6 +123,10 @@
 
             </div>
             <div class="headerListItem">
+                <a href="${url}/services" onclick="setActive(this)"><i class="fa-solid fa-door-open"></i> Services</a>
+
+            </div>
+            <div class="headerListItem">
                 <a href="#car-rentals" onclick="setActive(this)"><i class="fas fa-car"></i> Car rentals</a>
             </div>
             <div class="headerListItem">

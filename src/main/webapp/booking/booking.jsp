@@ -179,7 +179,9 @@
         <input type="hidden" value="${total}" name="price">
 
         <input type="hidden" name="roomId" value="${currenRoom}">
-        <button  type="submit"   >Submit</button>
+        <form action="paymentvnpay" method="POST">
+            <button class="btn btn-primary" id="book-button" type="submit">booking</button>
+        </form>
     </div>
     </form>
 <%--        <button id="submitButton" type="button"   >Submit</button>--%>
