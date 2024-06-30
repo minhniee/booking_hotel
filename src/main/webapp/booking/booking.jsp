@@ -141,7 +141,7 @@
         <input type="text" value="${user.address}" readonly>
     </div>
 
-    <form action="BookingDetail" method="post">
+    <%--<form action="BookingDetail" method="post">
     <div class="section">
         <p><strong>Payment method</strong></p>
 
@@ -157,7 +157,7 @@
                 Bank Transfer
             </label>
         </div>
-    </div>
+    </div> --%>
 
     <div class="section">
         <p><strong>Cancellable, modifiable</strong></p>
