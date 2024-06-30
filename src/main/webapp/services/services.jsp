@@ -1,3 +1,4 @@
+<%@ page import="model.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -7,6 +8,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<%
+    Account account = (Account) session.getAttribute("account");
+    if (account == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <div class="container mt-5">
     <div class="">
         <a href="services" >
@@ -44,7 +52,8 @@
                                 <p class="card-text">${service.description}</p>
                                 <p class="card-text">$${service.price}</p>
                                 <p class="card-text">Quantity: ${service.quantity}</p>
-                                <a href="addToCart?id=${service.id}" class="btn btn-primary">Add to Cart</a>
+                                <a href="cart?action=add&serviceId=${service.id}&quantity=1" class="btn btn-primary">Add to Cart</a>
+
                             </div>
                         </div>
                     </div>
@@ -53,7 +62,7 @@
         </div>
     </div>
 
-    <a href="viewCart" class="btn btn-outline-dark btn-floating position-fixed" style="top: 20px; right: 20px;">
+    <a href="cart" class="btn btn-outline-dark btn-floating position-fixed" style="top: 20px; right: 20px;">
         <h1>Cart</h1>
     </a>
 </div>
