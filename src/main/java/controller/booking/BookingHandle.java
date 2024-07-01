@@ -71,15 +71,12 @@ public class BookingHandle extends HttpServlet {
         HttpSession session = request.getSession();
         Object object = session.getAttribute("account");
         Account user = (Account) object;
-        if(!user.getRole().equalsIgnoreCase("customer")) {
-//            request.setAttribute("message", "You are not the customer of this account");
+        if (user == null || !user.getRole().equalsIgnoreCase("customer")) {
             request.getRequestDispatcher("errorPage/errors-500.jsp").forward(request, response);
             return;
         }
 
-        // Ensure the date formats match the expected input
         SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String checkinDate = null;
         String checkoutDate = null;
@@ -90,21 +87,17 @@ public class BookingHandle extends HttpServlet {
         int adults = 1;
         int person = 1;
 
-
-
-        String currentDate = dtf.format(now);
-        // to convert string date "dd-MM-YYYY to dd-MM-YYYY" by 2 date
+        String currentDate = formatter.format(now);
         String dateRangeString = request.getParameter("date");
         String location = request.getParameter("location");
-        LocalDate[] dates = parseDateRange(dateRangeString);
 
+        LocalDate[] dates = parseDateRange(dateRangeString);
         try {
             if (dates != null) {
                 checkinDate = dates[0].format(formatter);
                 checkoutDate = dates[1].format(formatter);
             }
 
-            // Ensure the parameters are available and parsed correctly
             String childrenParam = request.getParameter("children");
             String adultsParam = request.getParameter("adults");
             if (childrenParam != null) {
@@ -115,7 +108,6 @@ public class BookingHandle extends HttpServlet {
             }
             person = adults + children;
 
-            // Parse the dates using the consistent format
             Date date1 = myFormat.parse(checkinDate);
             Date date2 = myFormat.parse(checkoutDate);
             Date currDate = myFormat.parse(currentDate);
@@ -126,12 +118,11 @@ public class BookingHandle extends HttpServlet {
             if (earlyBirdDays < 0) {
                 earlyBirdDays = 0;
             }
-            daysDiff = (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            daysDiff = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
-            // Validate the input and set attributes accordingly
             if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty()) {
                 request.setAttribute("noti", "Date invalid");
-                url = "/errorPage.jsp"; // Set an error page
+                url = "/errorPage.jsp";
             } else {
                 request.setAttribute("noti", "checkin: " + checkinDate + " checkout: " + checkoutDate + " Day: " + daysDiff);
                 request.setAttribute("nights", daysDiff);
@@ -142,14 +133,14 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("checkoutDate", checkoutDate);
                 request.setAttribute("earlyBirdDays", earlyBirdDays);
                 request.setAttribute("location", location);
+                request.setAttribute("date",dateRangeString);
                 url = "/booking/listRoom.jsp";
             }
-            
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("noti", "An error occurred: " + e.getMessage());
-            url = "/errorPage.jsp"; // Set an error page
+            url = "/errorPage.jsp";
         }
 
         request.getRequestDispatcher(url).forward(request, response);

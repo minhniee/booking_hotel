@@ -27,6 +27,7 @@
     <div class="row">
 
 
+
         <jsp:useBean id="room" class="DAO.roomDAO"/>
         <c:forEach var="i" items="${room.roomByTypeValid}">
             <div class="col-12 col-md-8 mt-5">
@@ -42,8 +43,6 @@
                 </div>
             </div>
         </c:forEach>
-
-
 </div>
 <%--<div class="fixed-bottom-div">FUTel</div>--%>
 </div>

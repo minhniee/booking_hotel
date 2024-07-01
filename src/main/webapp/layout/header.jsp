@@ -35,6 +35,7 @@
             position: absolute;
             border: 1px solid #ddd;
             /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+            z-index: 1;
             padding: 10px;
             margin-top: 10px;
             border-radius: 5px;
@@ -115,7 +116,6 @@
     <div class="headerContainer">
         <div class="headerList">
             <div class="headerListItem active ">
-                <%--                    <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/bed.svg" width="30" height="20" alt=""/>--%>
                 <a href="${url}/index" onclick="setActive(this)"><i class="fas fa-bed"></i> Stays</a>
             </div>
             <div class="headerListItem">
@@ -141,19 +141,20 @@
             <p class="headerDesc">Login Now</p>
             <button class="headerBtn">Sign on/ Register</button>
         </c:if>
+            <input type="hidden" name="location" value="${location}">
         <form method="get" action="BookingHandle">
-            <div class="headerSreach">
 
+            <div class="headerSreach">
                 <div class="headerSearchIteam" style="position: relative">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
                     <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box"
                            value="${location}" onclick="showDropdown()"/>
                     <div id="dropdown" >
                         <select id="select" name="location" onchange="updateInput()" size="4">
-                            <option value="Ha Noi" >Ha Noi</option>
-                            <option value="Da Nang">Da Nang</option>
-                            <option value="Quy Nhon">Quy Nhon</option>
-                            <option value="Ho Chi Minh">Ho Chi Minh</option>
+                            <option value="HN" >Ha Noi</option>
+                            <option value="DN">Da Nang</option>
+                            <option value="QN">Quy Nhon</option>
+                            <option value="HCM">Ho Chi Minh</option>
                         </select>
                     </div>
                 </div>
@@ -161,7 +162,7 @@
                 <div class="headerSearchIteam">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/calendar-day.svg" width="30" height="20"/>
                     <%--                <span id="datePicker">date to date?</span>--%>
-                    <input type="text" id="datePicker" class="headerSearchIteam" name="date"
+                    <input type="text" id="datePicker" class="headerSearchIteam" name="date" value="${date}"
                            placeholder="Select Date Range">
                 </div>
                 <div class="headerSearchIteam">
@@ -171,13 +172,13 @@
                         <div class="guest-control">
                             <label>Adult</label>
                             <button type="button" onclick="decrement('adults')">-</button>
-                            <input type="number" id="adults" value="1" readonly oninput="updateGuestText()">
+                            <input type="number" name="adults" id="adults" value="1" readonly oninput="updateGuestText()">
                             <button type="button" onclick="increment('adults')">+</button>
                         </div>
                         <div class="guest-control">
                             <label>Child</label>
                             <button type="button" onclick="decrement('children')">-</button>
-                            <input type="number" id="children" value="0" readonly oninput="updateGuestText()">
+                            <input type="number" name="children" id="children" value="0" readonly oninput="updateGuestText()">
                             <button type="button" onclick="increment('children')">+</button>
                         </div>
                     </div>
@@ -203,6 +204,8 @@
     </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     function toggleGuestDropdown() {
         const dropdown = document.getElementById('guestDropdown');
@@ -260,15 +263,15 @@
         flatpickr("#datePicker", {
             mode: "range",
             dateFormat: "d-m-Y",
-            minDate: "today", // Automatically sets minimum date to today
-            defaultDate: [new Date(), new Date().fp_incr(2)], // Default range: 3 days from today to 6 days from today
+            minDate: "today",
+            defaultDate: "${date != null ? date : ''}".split(' to '),
             showMonths: 2,
-            onChange: function (selectedDates, dateStr, instance) {
-                // Handle date change event here if needed
+            onChange: function (selectedDates, dateStr,instance) {
                 console.log("Selected dates: ", dateStr);
             }
         });
     });
+
     // function showDropdown() {
     //     var dropdown = document.getElementById("dropdown");
     //     var input = document.getElementById("box");

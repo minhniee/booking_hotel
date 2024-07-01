@@ -80,7 +80,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index">Home</a></li>
             <li class="breadcrumb-item"><a
-                    href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=2&children=1">Select
+                    href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=${adults}&children=${children}">Select
                 Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
