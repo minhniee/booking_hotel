@@ -97,17 +97,17 @@ public class BookingDetail extends HttpServlet {
             roomDAO.stateRoomWhenSelect(currenRoom);
             TimerTask.doCaculateCheckout(currenRoom,"1","Available");
 
-            request.setAttribute("checkinDate", checkinDate);
-            request.setAttribute("checkoutDate", checkoutDate);
-            request.setAttribute("roomType", roomType);
-            request.setAttribute("persons", persons);
-            request.setAttribute("nights", nights);
-            request.setAttribute("earlyBirdDays", earlyBirdDays);
-            request.setAttribute("total", total);
-            request.setAttribute("adults", adults);
-            request.setAttribute("children", children);
-            request.setAttribute("location", location);
-            request.setAttribute("currenRoom", currenRoom);
+            session.setAttribute("checkinDate", checkinDate);
+            session.setAttribute("checkoutDate", checkoutDate);
+            session.setAttribute("roomType", roomType);
+            session.setAttribute("persons", persons);
+            session.setAttribute("nights", nights);
+            session.setAttribute("earlyBirdDays", earlyBirdDays);
+            session.setAttribute("total",(long) Double.parseDouble(total));
+            session.setAttribute("adults", adults);
+            session.setAttribute("children", children);
+            session.setAttribute("location", location);
+            session.setAttribute("currenRoom", currenRoom);
             request.getRequestDispatcher("booking/booking.jsp").forward(request, response);
         }
     }
