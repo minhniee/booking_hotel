@@ -14,9 +14,8 @@ public class TimerTask {
                 timer.cancel();
                 timer =new Timer();
                 roomDAO.updateRoomStatus(roomId, status_id, statusName);
-                System.out.println("cancel booking");
             }
-        },5000);
+        },1000*10);
     }
 
 }

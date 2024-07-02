@@ -8,12 +8,12 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>404 Not Found</title>
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="${url}/Assets/cssf/app.min.css">
+  <link rel="stylesheet" href="${url}/Assets/assets/css/app.min.css">
   <!-- Template CSS -->
-  <link rel="stylesheet" href="${url}/Assets/cssf/style.css">
-  <link rel="stylesheet" href="${url}/Assets/cssf/components.css">
+  <link rel="stylesheet" href="${url}/Assets/assets/css/style.css">
+  <link rel="stylesheet" href="${url}/Assets/assets/css/components.css">
   <!-- Custom style CSS -->
-  <link rel="stylesheet" href="${url}/Assets/cssf/custom.css">
+  <link rel="stylesheet" href="${url}/Assets/assets/css/custom.css">
 </head>
 
 <body>
@@ -34,17 +34,16 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
   </div>
   <!-- General JS Scripts -->
-  <script src="${url}/Assets/jsf/app.min.js"></script>
+  <script src="${url}/Assets/assets/js/app.min.js"></script>
   <!-- JS Libraies -->
   <!-- Page Specific JS File -->
   <!-- Template JS File -->
-  <script src="${url}/Assets/jsf/scripts.js"></script>
+  <script src="${url}/Assets/assets/js/scripts.js"></script>
   <!-- Custom JS File -->
-  <script src="${url}/Assets/jsf/custom.js"></script>
+  <script src="${url}/Assets/assets/js/custom.js"></script>
 </body>
 
 </html>

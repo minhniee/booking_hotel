@@ -16,6 +16,8 @@ public class Booking {
     private double bookingPrice;
     private int paymentId ;
     private String accountId;
+    private String bookingDate;
+    private String bookingState;
     
     public Booking(String id, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
         this.id = id;
@@ -36,6 +38,20 @@ public class Booking {
         this.bookingPrice = bookingPrice;
         this.paymentId = paymentId;
         this.accountId = accountId;
+    }
+
+    public Booking(String id, String roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, String bookingDate, String bookingState) {
+        this.id = id;
+        this.roomId = roomId;
+        this.checkinDate = checkinDate;
+        this.checkoutDate = checkoutDate;
+        this.numAdults = numAdults;
+        this.numChildren = numChildren;
+        this.bookingPrice = bookingPrice;
+        this.paymentId = paymentId;
+        this.accountId = accountId;
+        this.bookingDate = bookingDate;
+        this.bookingState = bookingState;
     }
 
     public Booking(String id, String roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
@@ -120,7 +136,45 @@ public class Booking {
         this.bookingPrice = bookingPrice;
     }
 
-    
-    
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public String getBookingState() {
+        return bookingState;
+    }
+
+    public void setBookingState(String bookingState) {
+        this.bookingState = bookingState;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id='" + id + '\'' +
+                ", roomId='" + roomId + '\'' +
+                ", checkinDate=" + checkinDate +
+                ", checkoutDate=" + checkoutDate +
+                ", numAdults=" + numAdults +
+                ", numChildren=" + numChildren +
+                ", bookingPrice=" + bookingPrice +
+                ", paymentId=" + paymentId +
+                ", accountId='" + accountId + '\'' +
+                ", bookingDate='" + bookingDate + '\'' +
+                ", bookingState='" + bookingState + '\'' +
+                '}';
+    }
 }
 

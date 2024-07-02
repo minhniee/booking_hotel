@@ -2,13 +2,17 @@ package DAO;
 
 import context.DBContext;
 import model.Booking;
+import model.Room;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class bookingDAO {
+    protected Connection con = null;
+    protected PreparedStatement pr = null;
+    protected ResultSet rs = null;
 
     public void insertBooking(Booking booking) {
         Connection con = new DBContext().getConnection();
@@ -45,11 +49,109 @@ public class bookingDAO {
         }
     }
 
+    public ArrayList<Booking> GetAllBookings() throws SQLException {
+        con = new DBContext().getConnection();
+        String sql = "SELECT b.[id]\n" +
+                "      ,[room_id]\n" +
+                "      ,[payment_id]\n" +
+                "      ,[account_id]\n" +
+                "      ,[checkin_date]\n" +
+                "      ,[checkout_date]\n" +
+                "      ,[num_child]\n" +
+                "      ,[num_adults]\n" +
+                "      ,[booking_price]\n" +
+                "      ,[booking_date],\n" +
+                "\t  bs.state\n" +
+                "  FROM [booking_hotel_v9].[dbo].[booking] as b\n" +
+                "  join booking_status as bs on bs.booking_id = b.id ";
+        ArrayList<Booking> bookings = new ArrayList<>();
+        pr = con.prepareStatement(sql);
+        ResultSet rs = pr.executeQuery();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String roomId = rs.getString("room_id");
+            Date checkinDate = rs.getDate("checkin_date");
+            Date checkoutDate = rs.getDate("checkout_date");
+            int numAdults = rs.getInt("num_adults");
+            int numChildren = rs.getInt("num_child");
+            double bookingPrice = rs.getDouble("booking_price");
+            int paymentId = rs.getInt("payment_id");
+            String accountId = rs.getString("account_id");
+            String bookingDate = rs.getString("booking_date");
+            String bookingStatus = rs.getString("state");
+            Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            bookings.add(b);
+        }
+        return bookings;
+
+    }
+
+    public ArrayList<Booking> GetBookingsPending() throws SQLException {
+        con = new DBContext().getConnection();
+        String sql = "SELECT b.[id]\n" +
+                "      ,[room_id]\n" +
+                "      ,[payment_id]\n" +
+                "      ,[account_id]\n" +
+                "      ,[checkin_date]\n" +
+                "      ,[checkout_date]\n" +
+                "      ,[num_child]\n" +
+                "      ,[num_adults]\n" +
+                "      ,[booking_price]\n" +
+                "      ,[booking_date],\n" +
+                "\t  bs.state\n" +
+                "  FROM [booking_hotel_v9].[dbo].[booking] as b\n" +
+                "  join booking_status as bs on bs.booking_id = b.id "+
+                "where bs.state = 'pending'";
+        ArrayList<Booking> bookings = new ArrayList<>();
+        pr = con.prepareStatement(sql);
+        ResultSet rs = pr.executeQuery();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String roomId = rs.getString("room_id");
+            Date checkinDate = rs.getDate("checkin_date");
+            Date checkoutDate = rs.getDate("checkout_date");
+            int numAdults = rs.getInt("num_adults");
+            int numChildren = rs.getInt("num_child");
+            double bookingPrice = rs.getDouble("booking_price");
+            int paymentId = rs.getInt("payment_id");
+            String accountId = rs.getString("account_id");
+            String bookingDate = rs.getString("booking_date");
+            String bookingStatus = rs.getString("state");
+            Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            bookings.add(b);
+        }
+        return bookings;
+
+    }
+
+    public void confirmBooking(String bookingId, String action) {
+        try {
+            con = new DBContext().getConnection();
+            String sql = "UPDATE booking_status set state=? where booking_id =? ";
+
+            pr = con.prepareStatement(sql);
+            if (action.equals("reject")){
+            pr.setString(1, "cancelled");
+            }else if(action.equals("confirm")) {
+            pr.setString(1, "confirmed");
+            }
+            pr.setString(2, bookingId);
+            pr.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
-    public static void main(String[] args) {
-        Booking b = new Booking("B123", "L1001",  Date.valueOf("2024-06-22"),  Date.valueOf("2024-06-22"), 2,1 , 500.00, 1, "1233");
-        new bookingDAO().insertBooking(b);
+    public static void main(String[] args) throws SQLException {
+        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
+        int count = 0;
+        for (Booking a : bookings) {
+            System.out.println(a.toString());
+        }
+//        new bookingDAO().confirmBooking("F877D5065A54","confirm");
+
 
     }
 }

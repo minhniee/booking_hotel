@@ -179,23 +179,23 @@
         <input type="hidden" value="${total}" name="price">
 
         <input type="hidden" name="roomId" value="${currenRoom}">
+
         <form action="paymentvnpay" method="POST">
             <button class="btn btn-primary" id="book-button" type="submit">booking</button>
         </form>
     </div>
-    </form>
 <%--        <button id="submitButton" type="button"   >Submit</button>--%>
-        <div id="qrPayment" style="display: none">
-            <div class="countdown-container">
-                <h3>QR have valid in: </h3>
-                <div id="countdown">
-                    <span id="minutes"></span> minutes
-                    <span id="seconds"></span> seconds
-                </div>
-            </div>
-            <img src="https://qr.sepay.vn/img?acc=0000291930123&bank=MBBank&amount=${total}&des=test" alt=""/>
+<%--        <div id="qrPayment" style="display: none">--%>
+<%--            <div class="countdown-container">--%>
+<%--                <h3>QR have valid in: </h3>--%>
+<%--                <div id="countdown">--%>
+<%--                    <span id="minutes"></span> minutes--%>
+<%--                    <span id="seconds"></span> seconds--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <img src="https://qr.sepay.vn/img?acc=0000291930123&bank=MBBank&amount=${total}&des=test" alt=""/>--%>
 
-        </div>
+<%--        </div>--%>
     </div>
     <div class="footer">
         <p>Thank you for booking with us!</p>
@@ -203,49 +203,49 @@
 </div>
 
 <script>
-    const bankingRadio = document.getElementById('flexRadioDefault1');
-    const bankingTransferRadio = document.getElementById('flexRadioDefault2');
-    const qrPayment = document.getElementById('qrPayment');
-    const submitButton = document.getElementById('submitButton');
-
-    submitButton.addEventListener('click', function () {
-        if (bankingRadio.checked) {
-            qrPayment.style.display = 'block';
-            countDownValidQr();
-        } else if (bankingTransferRadio.checked) {
-            window.location.href = 'https://google.com'
-        }
-    })
-
-    function countDownValidQr() {
-        const countdownDate = new Date(new Date().getTime() + 5 * 60 * 1000).getTime();
-
-        // Update the count down every 1 second
-        const countdownFunction = setInterval(function () {
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the countdown date
-            const distance = countdownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            // const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="countdown"
-
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-
-            // If the countdown is over, write some text
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "SALE ENDED";
-            }
-        }, 1000);
-    }
+    // const bankingRadio = document.getElementById('flexRadioDefault1');
+    // const bankingTransferRadio = document.getElementById('flexRadioDefault2');
+    // const qrPayment = document.getElementById('qrPayment');
+    // const submitButton = document.getElementById('submitButton');
+    //
+    // submitButton.addEventListener('click', function () {
+    //     if (bankingRadio.checked) {
+    //         qrPayment.style.display = 'block';
+    //         countDownValidQr();
+    //     } else if (bankingTransferRadio.checked) {
+    //         window.location.href = 'https://google.com'
+    //     }
+    // })
+    //
+    // function countDownValidQr() {
+    //     const countdownDate = new Date(new Date().getTime() + 5 * 60 * 1000).getTime();
+    //
+    //     // Update the count down every 1 second
+    //     const countdownFunction = setInterval(function () {
+    //         // Get today's date and time
+    //         const now = new Date().getTime();
+    //
+    //         // Find the distance between now and the countdown date
+    //         const distance = countdownDate - now;
+    //
+    //         // Time calculations for days, hours, minutes and seconds
+    //         // const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    //         // const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    //         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    //
+    //         // Output the result in an element with id="countdown"
+    //
+    //         document.getElementById("minutes").innerHTML = minutes;
+    //         document.getElementById("seconds").innerHTML = seconds;
+    //
+    //         // If the countdown is over, write some text
+    //         if (distance < 0) {
+    //             clearInterval(countdownFunction);
+    //             document.getElementById("countdown").innerHTML = "SALE ENDED";
+    //         }
+    //     }, 1000);
+    // }
 </script>
 </body>
 </html>
