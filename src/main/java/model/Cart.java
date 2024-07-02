@@ -1,38 +1,52 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<CartItem> items;
+    private int id;
+    private String accountId;
+    private double totalAmount;
+    private List<CartItem> cartItems;
 
     public Cart() {
-        this.items = new ArrayList<>();
     }
 
-    public List<CartItem> getItems() {
-        return items;
+    public Cart(int id, String accountId, double totalAmount, List<CartItem> cartItems) {
+        this.id = id;
+        this.accountId = accountId;
+        this.totalAmount = totalAmount;
+        this.cartItems = cartItems;
     }
 
-    public void setItems(List<CartItem> items) {
-        this.items = items;
+    public int getId() {
+        return id;
     }
 
-    public void addItem(CartItem item) {
-        for (CartItem cartItem : items) {
-            if (cartItem.getService().getId().equals(item.getService().getId())) {
-                cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
-                return;
-            }
-        }
-        items.add(item);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void removeItem(String serviceId) {
-        items.removeIf(item -> item.getService().getId().equals(serviceId));
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public double getTotalAmount() {
-        return items.stream().mapToDouble(item -> item.getService().getPrice() * item.getQuantity()).sum();
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }

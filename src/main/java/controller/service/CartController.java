@@ -2,6 +2,7 @@ package controller.service;
 
 import java.io.*;
 
+import DAO.CartDAO;
 import DAO.ServiceDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -13,68 +14,94 @@ import model.Service;
 
 @WebServlet(name = "CartControllerServlet", value = "/cart")
 public class CartController extends HttpServlet {
+    private CartDAO cartDAO = new CartDAO();
     private ServiceDAO serviceDAO = new ServiceDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-
+        Account account = (Account) request.getSession().getAttribute("account");
         if (account == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        Cart cart = (Cart) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new Cart();
-            session.setAttribute("cart", cart);
-        }
-
-        String action = request.getParameter("action");
-        if (action != null) {
-            switch (action) {
-                case "add":
-                    addToCart(request, cart);
-                    break;
-                case "remove":
-                    removeFromCart(request, cart);
-                    break;
-                case "update":
-                    updateCart(request, cart);
-                    break;
-            }
-        }
-
+        Cart cart = cartDAO.getCartByAccountId(account.getId());
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("services/cart.jsp").forward(request, response);
     }
 
-    private void addToCart(HttpServletRequest request, Cart cart) {
-        String serviceId = request.getParameter("serviceId");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-        Service service = serviceDAO.getServiceById(serviceId);
-        if (service != null) {
-            CartItem cartItem = new CartItem(service, quantity);
-            cart.addItem(cartItem);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        Account account = (Account) request.getSession().getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("login.jsp");
+            return;
         }
-    }
 
-    private void removeFromCart(HttpServletRequest request, Cart cart) {
-        String serviceId = request.getParameter("serviceId");
-        cart.removeItem(serviceId);
-    }
+        Cart cart = cartDAO.getCartByAccountId(account.getId());
 
-    private void updateCart(HttpServletRequest request, Cart cart) {
-        String serviceId = request.getParameter("serviceId");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-        for (CartItem item : cart.getItems()) {
-            if (item.getService().getId().equals(serviceId)) {
-                item.setQuantity(quantity);
-                break;
+        if (action != null) {
+            switch (action) {
+                case "add":
+                    addServiceToCart(request, cart);
+                    break;
+                case "update":
+                    updateCartItemQuantity(request, cart);
+                    break;
+                case "delete":
+                    deleteCartItem(request, cart);
+                    break;
             }
         }
+        response.sendRedirect("cart");
+    }
+
+    private void addServiceToCart(HttpServletRequest request, Cart cart) {
+        String serviceId = request.getParameter("serviceId");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Service service = serviceDAO.getServiceById(serviceId);
+
+        if (cart == null) {
+            cart = new Cart();
+            cart.setAccountId(((Account) request.getSession().getAttribute("account")).getId());
+            cart.setTotalAmount(0.0);
+            cartDAO.addCartItem(new CartItem(0, cart.getId(), serviceId, quantity, service));
+        } else {
+            CartItem cartItem = new CartItem(0, cart.getId(), serviceId, quantity, service);
+            cartDAO.addCartItem(cartItem);
+        }
+
+        updateCartTotalAmount(cart);
+    }
+
+    private void updateCartItemQuantity(HttpServletRequest request, Cart cart) {
+        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        CartItem cartItem = cartDAO.getCartItemsByCartId(cart.getId()).stream()
+                .filter(item -> item.getId() == cartItemId)
+                .findFirst()
+                .orElse(null);
+
+        if (cartItem != null) {
+            cartItem.setQuantity(quantity);
+            cartDAO.updateCartItem(cartItem);
+            updateCartTotalAmount(cart);
+        }
+    }
+
+    private void deleteCartItem(HttpServletRequest request, Cart cart) {
+        int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
+        cartDAO.deleteCartItem(cartItemId);
+        updateCartTotalAmount(cart);
+    }
+
+    private void updateCartTotalAmount(Cart cart) {
+        double totalAmount = cart.getCartItems().stream()
+                .mapToDouble(item -> item.getQuantity() * item.getService().getPrice())
+                .sum();
+        cart.setTotalAmount(totalAmount);
+        cartDAO.updateCartTotalAmount(cart.getId(), totalAmount);
     }
 }
