@@ -83,8 +83,8 @@ public class BookingHandle extends HttpServlet {
         LocalDateTime now = LocalDateTime.now();
         int daysDiff = 0;
         int earlyBirdDays = 0;
-        int children = 1;
-        int adults = 1;
+        int children = 0;
+        int adults = 0;
         int person = 1;
 
         String currentDate = formatter.format(now);
@@ -112,7 +112,7 @@ public class BookingHandle extends HttpServlet {
             Date date2 = myFormat.parse(checkoutDate);
             Date currDate = myFormat.parse(currentDate);
 
-            int diff = (int) (date2.getTime() - date1.getTime());
+            long diff = (long) (date2.getTime() - date1.getTime());
 
             earlyBirdDays = (int) TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
             if (earlyBirdDays < 0) {
@@ -120,7 +120,7 @@ public class BookingHandle extends HttpServlet {
             }
             daysDiff = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
-            if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty()) {
+            if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty() || location.isEmpty()) {
                 request.setAttribute("noti", "Date invalid");
                 url = "/errorPage.jsp";
             } else {
@@ -142,7 +142,7 @@ public class BookingHandle extends HttpServlet {
             request.setAttribute("noti", "An error occurred: " + e.getMessage());
             url = "/errorPage.jsp";
         }
-
+        System.out.println(daysDiff);
         request.getRequestDispatcher(url).forward(request, response);
     }
 

@@ -16,8 +16,8 @@ public class bookingDAO {
 
     public void insertBooking(Booking booking) {
         Connection con = new DBContext().getConnection();
-        String sql = "INSERT INTO booking (id,room_id, payment_id, account_id, checkin_date, checkout_date, num_child, num_adults, booking_price) " +
-                "VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO booking (id,room_id, payment_id, account_id, checkin_date, checkout_date, num_child, num_adults, booking_price, booking_date) " +
+                "VALUES (?,?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, booking.getId());
             pr.setString(2, booking.getRoomId());
@@ -28,6 +28,7 @@ public class bookingDAO {
             pr.setInt(7, booking.getNumChildren());
             pr.setInt(8, booking.getNumAdults());
             pr.setDouble(9, booking.getBookingPrice());
+            pr.setDate(10, booking.getBookingDate());
 
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -35,13 +36,13 @@ public class bookingDAO {
         }
     }
 
-    public void stateBooking(String bookingId, boolean state) {
+    public void stateBooking(String bookingId) {
         Connection con = new DBContext().getConnection();
-        String sql = "INSERT INTO booking_status (booking_id, status) " +
+        String sql = "INSERT INTO booking_status (booking_id, state) " +
                 "VALUES (?,?)";
         try (PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, bookingId);
-            pr.setBoolean(2, state);
+            pr.setString(2, "pending");
 
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -77,7 +78,7 @@ public class bookingDAO {
             double bookingPrice = rs.getDouble("booking_price");
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
-            String bookingDate = rs.getString("booking_date");
+            Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);
@@ -115,7 +116,7 @@ public class bookingDAO {
             double bookingPrice = rs.getDouble("booking_price");
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
-            String bookingDate = rs.getString("booking_date");
+            Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);

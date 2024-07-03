@@ -40,6 +40,7 @@ public class PaymentVNpayServlet extends HttpServlet {
         if (session.getAttribute("total") == null) {
             response.sendRedirect("index");
         } else {
+            String bookingID = request.getParameter("bookingID");
             long cost = (long) session.getAttribute("total");
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";

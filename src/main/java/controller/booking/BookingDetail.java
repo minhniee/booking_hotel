@@ -4,18 +4,6 @@
  */
 package controller.booking;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.sql.Date;
-import java.util.Timer;
-import java.util.UUID;
-
 import DAO.bookingDAO;
 import DAO.roomDAO;
 import jakarta.servlet.ServletException;
@@ -27,13 +15,22 @@ import jakarta.servlet.http.HttpSession;
 import model.Booking;
 import model.Room;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.UUID;
+
 /**
  * @author minhl
  */
 @WebServlet(name = "BookingDetail", urlPatterns = {"/BookingDetail"})
 public class BookingDetail extends HttpServlet {
-    private static TimerTask timerTask = new TimerTask();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
@@ -90,12 +87,17 @@ public class BookingDetail extends HttpServlet {
             String location = request.getParameter("location");
 
             roomDAO roomDAO = new roomDAO();
-            room = roomDAO.getRoomByRoomClass(roomType);
+            room = roomDAO.getRoomByRoomClass(roomType, "available");
             String currenRoom = room.get(0).getId();
 
             // set status room 'Available' to 'Inprocess'
-            roomDAO.stateRoomWhenSelect(currenRoom);
-            TimerTask.doCaculateCheckout(currenRoom,"1","Available");
+            roomDAO.updateRoomStatus(currenRoom, "In process");
+            try {
+                TimerTask.doCaculateCheckout(currenRoom, "Available");
+            } catch (IllegalStateException e) {
+                TimerTask.timer = new Timer();
+                TimerTask.doCaculateCheckout(currenRoom, "Available");
+            }
 
             session.setAttribute("checkinDate", checkinDate);
             session.setAttribute("checkoutDate", checkoutDate);
@@ -103,7 +105,7 @@ public class BookingDetail extends HttpServlet {
             session.setAttribute("persons", persons);
             session.setAttribute("nights", nights);
             session.setAttribute("earlyBirdDays", earlyBirdDays);
-            session.setAttribute("total",(long) Double.parseDouble(total));
+            session.setAttribute("total", (long) Double.parseDouble(total));
             session.setAttribute("adults", adults);
             session.setAttribute("children", children);
             session.setAttribute("location", location);
@@ -120,66 +122,70 @@ public class BookingDetail extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException      if an I/O error occurs
      */
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-            Timer timer = TimerTask.timer;
-            timer.cancel();
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-            String payment = request.getParameter("paymentMethod");
-            String account_id = request.getParameter("accountid");
-            String checkinDateParam = request.getParameter("checkinDate");
-            String checkoutDateParam = request.getParameter("checkoutDate");
-            String childrenParam = request.getParameter("children");
-            String adultsParam = request.getParameter("adults");
-            String roomId = request.getParameter("roomId");
-            String price = request.getParameter("price");
-            String bookingId = generateUniqueKey().toUpperCase();
+        String prefixId = "";
+        String location = request.getParameter("location");
+        String payment = request.getParameter("paymentMethod");
+        String account_id = request.getParameter("accountid");
+        String checkinDateParam = request.getParameter("checkinDate");
+        String checkoutDateParam = request.getParameter("checkoutDate");
+        String childrenParam = request.getParameter("children");
+        String adultsParam = request.getParameter("adults");
+        String roomId = request.getParameter("roomId");
+        String price = request.getParameter("price");
+        String bookingId = generateUniqueKey().toUpperCase();
 
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-            try {
-                if ( payment == null || account_id == null ||
-                        checkinDateParam == null || checkoutDateParam == null ||
-                        childrenParam == null || adultsParam == null ||
-                        roomId == null || price == null) {
-                    throw new ServletException("Missing parameters");
-                }
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-                // Parse and format dates
-                LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
-                LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
-                String checkinDate = dateCheckIn.format(outputFormatter);
-                String checkoutDate = dateCheckOut.format(outputFormatter);
+        try {
+            LocalDateTime currentDate = LocalDateTime.now();
 
-                int adults = Integer.parseInt(adultsParam);
-                int children = Integer.parseInt(childrenParam);
-                double priceValue = Double.parseDouble(price);
+            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
+            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
+            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
+            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
+            // Parse and format dates
 
-                Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
-                        Date.valueOf(checkoutDate), adults, children,
-                        priceValue, 1, account_id);
+            LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
+            LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
 
-                // Insert booking into database
-                bookingDAO bookingDao = new bookingDAO();
-                bookingDao.insertBooking(booking);
-                bookingDao.stateBooking(bookingId,false);
-                PrintWriter out = response.getWriter();
-                out.println("thank for booking ");
-                // Set response status
-                response.setStatus(HttpServletResponse.SC_OK);
-            } catch (DateTimeParseException e) {
-                // Handle date parsing errors
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
-            } catch (NumberFormatException e) {
-                // Handle number parsing errors
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
-            } catch (Exception e) {
-                // Handle other errors
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
-            }
+            String checkinDate = dateCheckIn.format(outputFormatter);
+            String checkoutDate = dateCheckOut.format(outputFormatter);
+
+            int adults = Integer.parseInt(adultsParam);
+            int children = Integer.parseInt(childrenParam);
+            double priceValue = Double.parseDouble(price);
+
+            bookingId = prefixId + bookingId;
+            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
+                    Date.valueOf(checkoutDate), adults, children,
+                    priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
+
+            // Insert booking into database
+            bookingDAO bookingDao = new bookingDAO();
+            bookingDao.insertBooking(booking);
+            bookingDao.stateBooking(bookingId);
+//                PrintWriter out = response.getWriter();
+//                out.println("thank for booking ");
+            TimerTask.timer.cancel();
+            // Set response status
+            response.setStatus(HttpServletResponse.SC_OK);
+        } catch (DateTimeParseException e) {
+            // Handle date parsing errors
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            // Handle number parsing errors
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
+        } catch (Exception e) {
+            // Handle other errors
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
         }
+    }
 
     public static String generateUniqueKey() {
         String key;
@@ -192,14 +198,14 @@ public class BookingDetail extends HttpServlet {
     }
 
 
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo() {
-            return "Short description";
-        }// </editor-fold>
-    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
 

@@ -26,7 +26,7 @@ public class listBooking extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        request.getRequestDispatcher("listbooking.jsp").forward(request, response);
+        request.getRequestDispatcher("Admin/listbooking.jsp").forward(request, response);
 
     }
 

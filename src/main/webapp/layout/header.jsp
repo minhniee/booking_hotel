@@ -75,6 +75,21 @@
             outline: none; /* Loại bỏ border hoặc outline mặc định */
             border: none; /* Loại bỏ border */
         }
+
+        #locationError {
+            position: absolute;
+            color: red;
+            display: none;
+            margin-top: 45px;
+            margin-left: 45px;
+        }
+        #dateError {
+            position: absolute;
+            color: red;
+            display: none;
+            margin-top: 45px;
+            margin-left: 361px
+        }
     </style>
 </head>
 
@@ -146,19 +161,21 @@
             <button class="headerBtn">Sign on/ Register</button>
         </c:if>
             <input type="hidden" name="location" value="${location}">
-        <form method="get" action="BookingHandle">
+        <form method="get" action="BookingHandle" onsubmit="return validateForm()">
 
+                    <div id="locationError" class="error-message">Please select location</div>
+                    <div id="dateError" class="error-message">Please select date</div>
             <div class="headerSreach">
                 <div class="headerSearchIteam" style="position: relative">
                     <img src="${url}/fontawesome-free-6.5.2-web/svgs/solid/location-dot.svg" width="30" height="20"/>
                     <input type="text" placeholder="Where are you going?" readonly class="headerSearchInput" id="box"
-                           value="${location}" onclick="showDropdown()"/>
+                           value="${location}" onclick="showDropdown()" required/>
                     <div id="dropdown" >
                         <select id="select" name="location" onchange="updateInput()" size="4">
-                            <option value="HN" >Ha Noi</option>
-                            <option value="DN">Da Nang</option>
-                            <option value="QN">Quy Nhon</option>
-                            <option value="HCM">Ho Chi Minh</option>
+                            <option value="Ha Noi" >Ha Noi</option>
+                            <option value="Da Nang">Da Nang</option>
+                            <option value="Quy Nhon">Quy Nhon</option>
+                            <option value="Ho Chi Minh">Ho Chi Minh</option>
                         </select>
                     </div>
                 </div>
@@ -187,7 +204,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <c:if test="${ not empty sessionScope.account }">
                     <div class="headerSearchIteam">
@@ -238,6 +254,29 @@
     //     }
     // }
 
+    function validateForm() {
+        const location = document.getElementById('select').value;
+        const date = document.getElementById('datePicker').value;
+
+        let valid = true;
+
+        if (!location) {
+            document.getElementById('locationError').style.display = 'block';
+            valid = false;
+        } else {
+            document.getElementById('locationError').style.display = 'none';
+        }
+
+        if (!date) {
+            document.getElementById('dateError').style.display = 'block';
+            valid = false;
+        } else {
+            document.getElementById('dateError').style.display = 'none';
+        }
+
+        return valid;
+    }
+
     function increment(inputId) {
         var input = document.getElementById(inputId);
         var value = parseInt(input.value, 10);
@@ -263,6 +302,19 @@
         element.classList.add('active');
     }
 
+    <%--document.addEventListener('DOMContentLoaded', function () {--%>
+    <%--    flatpickr("#datePicker", {--%>
+    <%--        mode: "range",--%>
+    <%--        dateFormat: "d-m-Y",--%>
+    <%--        minDate: "today",--%>
+    <%--        defaultDate: "${date != null ? date : ''}".split(' to '),--%>
+    <%--        showMonths: 2,--%>
+    <%--        onChange: function (selectedDates, dateStr,instance) {--%>
+    <%--            console.log("Selected dates: ", dateStr);--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--});--%>
+
     document.addEventListener('DOMContentLoaded', function () {
         flatpickr("#datePicker", {
             mode: "range",
@@ -270,11 +322,12 @@
             minDate: "today",
             defaultDate: "${date != null ? date : ''}".split(' to '),
             showMonths: 2,
-            onChange: function (selectedDates, dateStr,instance) {
+            onChange: function (selectedDates, dateStr, instance) {
                 console.log("Selected dates: ", dateStr);
             }
         });
     });
+
 
     // function showDropdown() {
     //     var dropdown = document.getElementById("dropdown");

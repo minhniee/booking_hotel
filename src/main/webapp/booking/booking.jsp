@@ -165,6 +165,7 @@
         </p>
     </div>
 
+        <form action="BookingDetail" method="POST">
     <div class="section">
         <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
             cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of no-show, a
@@ -180,10 +181,13 @@
 
         <input type="hidden" name="roomId" value="${currenRoom}">
 
-        <form action="paymentvnpay" method="POST">
+<%--        <form action="paymentvnpay" method="POST">--%>
+<%--            <button class="btn btn-primary" id="book-button" type="submit">booking</button>--%>
+<%--        </form>--%>
+
             <button class="btn btn-primary" id="book-button" type="submit">booking</button>
-        </form>
     </div>
+        </form>
 <%--        <button id="submitButton" type="button"   >Submit</button>--%>
 <%--        <div id="qrPayment" style="display: none">--%>
 <%--            <div class="countdown-container">--%>
