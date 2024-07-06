@@ -31,6 +31,7 @@ import java.util.UUID;
  */
 @WebServlet(name = "BookingDetail", urlPatterns = {"/BookingDetail"})
 public class BookingDetail extends HttpServlet {
+    private static   String currenRoom="";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
@@ -87,8 +88,8 @@ public class BookingDetail extends HttpServlet {
             String location = request.getParameter("location");
 
             roomDAO roomDAO = new roomDAO();
-            room = roomDAO.getRoomByRoomClass(roomType, "available");
-            String currenRoom = room.get(0).getId();
+            room = roomDAO.getRoomByRoomClass(roomType, "Available");
+             currenRoom = room.get(0).getId();
 
             // set status room 'Available' to 'Inprocess'
             roomDAO.updateRoomStatus(currenRoom, "In process");
@@ -126,65 +127,65 @@ public class BookingDetail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String prefixId = "";
-        String location = request.getParameter("location");
-        String payment = request.getParameter("paymentMethod");
-        String account_id = request.getParameter("accountid");
-        String checkinDateParam = request.getParameter("checkinDate");
-        String checkoutDateParam = request.getParameter("checkoutDate");
-        String childrenParam = request.getParameter("children");
-        String adultsParam = request.getParameter("adults");
-        String roomId = request.getParameter("roomId");
-        String price = request.getParameter("price");
-        String bookingId = generateUniqueKey().toUpperCase();
-
-
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        try {
-            LocalDateTime currentDate = LocalDateTime.now();
-
-            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
-            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
-            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
-            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
-            // Parse and format dates
-
-            LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
-            LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
-
-            String checkinDate = dateCheckIn.format(outputFormatter);
-            String checkoutDate = dateCheckOut.format(outputFormatter);
-
-            int adults = Integer.parseInt(adultsParam);
-            int children = Integer.parseInt(childrenParam);
-            double priceValue = Double.parseDouble(price);
-
-            bookingId = prefixId + bookingId;
-            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
-                    Date.valueOf(checkoutDate), adults, children,
-                    priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
-
-            // Insert booking into database
-            bookingDAO bookingDao = new bookingDAO();
-            bookingDao.insertBooking(booking);
-            bookingDao.stateBooking(bookingId);
-//                PrintWriter out = response.getWriter();
-//                out.println("thank for booking ");
-            TimerTask.timer.cancel();
-            // Set response status
-            response.setStatus(HttpServletResponse.SC_OK);
-        } catch (DateTimeParseException e) {
-            // Handle date parsing errors
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            // Handle number parsing errors
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
-        } catch (Exception e) {
-            // Handle other errors
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
-        }
+//        String prefixId = "";
+//        String location = request.getParameter("location");
+//        String payment = request.getParameter("paymentMethod");
+//        String account_id = request.getParameter("accountid");
+//        String checkinDateParam = request.getParameter("checkinDate");
+//        String checkoutDateParam = request.getParameter("checkoutDate");
+//        String childrenParam = request.getParameter("children");
+//        String adultsParam = request.getParameter("adults");
+//        String roomId = request.getParameter("roomId");
+//        String price = request.getParameter("price");
+//        String bookingId = generateUniqueKey().toUpperCase();
+//
+//
+//        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//
+//        try {
+//            LocalDateTime currentDate = LocalDateTime.now();
+//
+//            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
+//            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
+//            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
+//            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
+//            // Parse and format dates
+//
+//            LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
+//            LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
+//
+//            String checkinDate = dateCheckIn.format(outputFormatter);
+//            String checkoutDate = dateCheckOut.format(outputFormatter);
+//
+//            int adults = Integer.parseInt(adultsParam);
+//            int children = Integer.parseInt(childrenParam);
+//            double priceValue = Double.parseDouble(price);
+//
+//            bookingId = prefixId + bookingId;
+//            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
+//                    Date.valueOf(checkoutDate), adults, children,
+//                    priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
+//
+//            // Insert booking into database
+//            bookingDAO bookingDao = new bookingDAO();
+//            bookingDao.insertBooking(booking);
+//            bookingDao.stateBooking(bookingId);
+////                PrintWriter out = response.getWriter();
+////                out.println("thank for booking ");
+//            TimerTask.timer.cancel();
+//            // Set response status
+//            response.setStatus(HttpServletResponse.SC_OK);
+//        } catch (DateTimeParseException e) {
+//            // Handle date parsing errors
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
+//        } catch (NumberFormatException e) {
+//            // Handle number parsing errors
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
+//        } catch (Exception e) {
+//            // Handle other errors
+//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
+//        }
     }
 
     public static String generateUniqueKey() {

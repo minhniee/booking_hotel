@@ -121,7 +121,7 @@
         <p>Not included: Service Charge <span id="service-charge">[Service Charge Amount]</span></p>
         <p>Not included: VAT / Consumption tax <span id="vat">[VAT Amount]</span></p>
     </div>
-    <hr>
+    <hr>n
 
     <div class="section total">
         <p>The taxes which are not included are to be paid to the hotel. The total amount is:</p>
@@ -165,45 +165,47 @@
         </p>
     </div>
 
-        <form action="BookingDetail" method="POST">
+    <%--        <form action="BookingDetail" method="POST">--%>
     <div class="section">
-        <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
-            cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of no-show, a
-            penalty of 100% will apply.
-            By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
-        <input type="hidden" value="${location}" name="location">
-        <input type="hidden" value="${user.id}" name="accountid">
-        <input type="hidden" value="${checkinDate}" name="checkinDate">
-        <input type="hidden" value="${checkoutDate}" name="checkoutDate">
-        <input type="hidden" value="${children}" name="children">
-        <input type="hidden" value="${adults}" name="adults">
-        <input type="hidden" value="${total}" name="price">
-
-        <input type="hidden" name="roomId" value="${currenRoom}">
-
-<%--        <form action="paymentvnpay" method="POST">--%>
-<%--            <button class="btn btn-primary" id="book-button" type="submit">booking</button>--%>
-<%--        </form>--%>
+        <form action="paymentvnpay" method="POST">
+            <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
+                cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of
+                no-show, a
+                penalty of 100% will apply.
+                By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
+            <input type="hidden" value="${location}" name="location">
+            <input type="hidden" value="${user.id}" name="accountid">
+            <input type="hidden" value="${checkinDate}" name="checkinDate">
+            <input type="hidden" value="${checkoutDate}" name="checkoutDate">
+            <input type="hidden" value="${children}" name="children">
+            <input type="hidden" value="${adults}" name="adults">
+            <input type="hidden" value="${total}" name="price">
+            <input type="hidden" name="roomId" value="${currenRoom}">
 
             <button class="btn btn-primary" id="book-button" type="submit">booking</button>
-    </div>
+            String price = request.getParameter("price");
+            <p>${currenRoom}</p>
         </form>
-<%--        <button id="submitButton" type="button"   >Submit</button>--%>
-<%--        <div id="qrPayment" style="display: none">--%>
-<%--            <div class="countdown-container">--%>
-<%--                <h3>QR have valid in: </h3>--%>
-<%--                <div id="countdown">--%>
-<%--                    <span id="minutes"></span> minutes--%>
-<%--                    <span id="seconds"></span> seconds--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <img src="https://qr.sepay.vn/img?acc=0000291930123&bank=MBBank&amount=${total}&des=test" alt=""/>--%>
 
-<%--        </div>--%>
+        <%--            <button class="btn btn-primary" id="book-button" type="submit">booking</button>--%>
     </div>
-    <div class="footer">
-        <p>Thank you for booking with us!</p>
-    </div>
+    <%--        </form>--%>
+    <%--        <button id="submitButton" type="button"   >Submit</button>--%>
+    <%--        <div id="qrPayment" style="display: none">--%>
+    <%--            <div class="countdown-container">--%>
+    <%--                <h3>QR have valid in: </h3>--%>
+    <%--                <div id="countdown">--%>
+    <%--                    <span id="minutes"></span> minutes--%>
+    <%--                    <span id="seconds"></span> seconds--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
+    <%--            <img src="https://qr.sepay.vn/img?acc=0000291930123&bank=MBBank&amount=${total}&des=test" alt=""/>--%>
+
+    <%--        </div>--%>
+</div>
+<div class="footer">
+    <p>Thank you for booking with us!</p>
+</div>
 </div>
 
 <script>

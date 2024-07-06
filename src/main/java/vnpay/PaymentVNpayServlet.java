@@ -4,6 +4,7 @@
  */
 package vnpay;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,10 +16,11 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- *
  * @author admin
  */
 @WebServlet(name = "PaymentVNpayServlet", urlPatterns = {"/paymentvnpay"})
@@ -28,10 +30,10 @@ public class PaymentVNpayServlet extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,8 +42,30 @@ public class PaymentVNpayServlet extends HttpServlet {
         if (session.getAttribute("total") == null) {
             response.sendRedirect("index");
         } else {
-            String bookingID = request.getParameter("bookingID");
+
+            String location = request.getParameter("location");
+            String prefixId = "";
+//            String payment = request.getParameter("paymentMethod");
+            String account_id = request.getParameter("accountid");
+            String checkinDateParam = request.getParameter("checkinDate");
+            String checkoutDateParam = request.getParameter("checkoutDate");
+            String childrenParam = request.getParameter("children");
+            String adultsParam = request.getParameter("adults");
+            String roomId = request.getParameter("roomId");
+//            String price = request.getParameter("price");
+
+
+            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
+            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
+            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
+            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
+            String bookingID = prefixId + generateUniqueKey();
+
             long cost = (long) session.getAttribute("total");
+
+
+
+
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";
             String orderType = "billpayment";
@@ -64,7 +88,7 @@ public class PaymentVNpayServlet extends HttpServlet {
                 vnp_Params.put("vnp_BankCode", bankCode);
             }
             vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-            vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
+            vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + bookingID.toUpperCase());
             vnp_Params.put("vnp_OrderType", orderType);
 
             String locate = request.getParameter("language");
@@ -81,26 +105,28 @@ public class PaymentVNpayServlet extends HttpServlet {
             String vnp_CreateDate = formatter.format(cld.getTime());
             vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
 
-            cld.add(Calendar.SECOND, 30);
+            cld.add(Calendar.SECOND, 120);
             String vnp_ExpireDate = formatter.format(cld.getTime());
             vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
+
             List fieldNames = new ArrayList(vnp_Params.keySet());
             Collections.sort(fieldNames);
             StringBuilder hashData = new StringBuilder();
             StringBuilder query = new StringBuilder();
             Iterator itr = fieldNames.iterator();
+
             while (itr.hasNext()) {
                 String fieldName = (String) itr.next();
-                String fieldValue = (String) vnp_Params.get(fieldName);
+                String fieldValue = vnp_Params.get(fieldName);
                 if ((fieldValue != null) && (fieldValue.length() > 0)) {
                     //Build hash data
                     hashData.append(fieldName);
                     hashData.append('=');
-                    hashData.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                    hashData.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII));
                     //Build query
-                    query.append(URLEncoder.encode(fieldName, StandardCharsets.US_ASCII.toString()));
+                    query.append(URLEncoder.encode(fieldName, StandardCharsets.US_ASCII));
                     query.append('=');
-                    query.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                    query.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII));
                     if (itr.hasNext()) {
                         query.append('&');
                         hashData.append('&');
@@ -111,21 +137,53 @@ public class PaymentVNpayServlet extends HttpServlet {
             String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
             queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
             String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
+//            +"&accountid="+account_id+"&bookingID="+bookingID+"&checkinDateParam="+checkinDateParam+"&checkoutDateParam="+checkoutDateParam+"&childrenParam="+childrenParam+"&adultsParam="+adultsParam+"&roomId="+roomId;
             request.setAttribute("code", "00");
             request.setAttribute("message", "success");
             request.setAttribute("data", paymentUrl);
+
+//            request.setAttribute("paymentMethod", payment);
+//            request.setAttribute("bookingID", bookingID);
+//            request.setAttribute("accountid", account_id);
+//            request.setAttribute("checkinDate", checkinDateParam);
+//            request.setAttribute("checkoutDate", checkoutDateParam);
+//            request.setAttribute("children", childrenParam);
+//            request.setAttribute("adults", adultsParam);
+//            request.setAttribute("roomId", roomId);
+//            request.setAttribute("price", price);
+
+            session.setAttribute("bookingID", bookingID);
+            session.setAttribute("accountid", account_id);
+            session.setAttribute("checkinDate", checkinDateParam);
+            session.setAttribute("checkoutDate", checkoutDateParam);
+            session.setAttribute("children", childrenParam);
+            session.setAttribute("adults", adultsParam);
+            session.setAttribute("roomId", roomId);
+
             response.sendRedirect(paymentUrl);
+
         }
     }
 
+    public static String generateUniqueKey() {
+        String key;
+
+        // Generate a UUID and take the first 12 characters (to ensure length 12)
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        key = uuid.substring(0, 12);
+
+        return key;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -136,10 +194,10 @@ public class PaymentVNpayServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -16,7 +16,7 @@ import java.util.*;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/vnpay_return.jsp";
+    public static String vnp_ReturnUrl = "http://localhost:8080/Booking_Hotell/BillBookingRoom";
     public static String vnp_TmnCode = "6H42K3CQ";
     public static String secretKey = "KXB3DSQYT0AZFDKRX9PH9IQ7UU1BQQVC";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

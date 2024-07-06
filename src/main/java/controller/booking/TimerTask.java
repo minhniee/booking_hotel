@@ -15,7 +15,7 @@ public class TimerTask {
                 timer =new Timer();
                 roomDAO.updateRoomStatus(roomId, state);
             }
-        },1000*10);
+        },5*1000);
     }
 
 }
