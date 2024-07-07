@@ -6,6 +6,7 @@ import model.Room;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,6 +82,42 @@ public class bookingDAO {
             Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            bookings.add(b);
+        }
+        return bookings;
+
+    }
+
+    public List<Booking> getAllBookingsAvailableByAccount(String accId) throws SQLException {
+        con = new DBContext().getConnection();
+        String sql = "SELECT b.[id]\n" +
+                "      ,[room_id]\n" +
+                "      ,[payment_id]\n" +
+                "      ,[account_id]\n" +
+                "      ,[checkin_date]\n" +
+                "      ,[checkout_date]\n" +
+                "      ,[num_child]\n" +
+                "      ,[num_adults]\n" +
+                "      ,[booking_price]\n" +
+                "      ,[booking_date]" +
+                "  FROM [booking_hotel_v9].[dbo].[booking] as b\n" +
+                "  where account_id = ? and checkout_date >= GETDATE()";
+        ArrayList<Booking> bookings = new ArrayList<>();
+        pr = con.prepareStatement(sql);
+        pr.setString(1, accId);
+        ResultSet rs = pr.executeQuery();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String roomId = rs.getString("room_id");
+            Date checkinDate = rs.getDate("checkin_date");
+            Date checkoutDate = rs.getDate("checkout_date");
+            int numAdults = rs.getInt("num_adults");
+            int numChildren = rs.getInt("num_child");
+            double bookingPrice = rs.getDouble("booking_price");
+            int paymentId = rs.getInt("payment_id");
+            String accountId = rs.getString("account_id");
+            Date bookingDate = rs.getDate("booking_date");
+            Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
             bookings.add(b);
         }
         return bookings;

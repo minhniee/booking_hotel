@@ -52,8 +52,17 @@
                                 <p class="card-text">${service.description}</p>
                                 <p class="card-text">$${service.price}</p>
                                 <p class="card-text">Quantity: ${service.quantity}</p>
-                                <a href="cart?action=add&serviceId=${service.id}&quantity=1" class="btn btn-primary">Add to Cart</a>
-
+                                <c:if test="${service.quantity > 0}">
+                                <form action="cart" method="post">
+                                    <input type="hidden" name="action" value="add">
+                                    <input type="hidden" name="serviceId" value="${service.id}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                </form>
+                                </c:if>
+                                <c:if test="${service.quantity <= 0}">
+                                    <button class="btn btn-danger">Out Stock</button>
+                                </c:if>
                             </div>
                         </div>
                     </div>
