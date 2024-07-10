@@ -189,6 +189,9 @@ public class BillBookingRoom extends HttpServlet {
                 request.setAttribute("children", childrenParam);
                 request.setAttribute("adults", adultsParam);
                 request.setAttribute("roomId", roomId);
+                request.setAttribute("amount", vnp_Amount);
+                request.setAttribute("roomId", roomId);
+                request.setAttribute("roomId", roomId);
             }else{
                 request.setAttribute("noti", "not successful");
             }

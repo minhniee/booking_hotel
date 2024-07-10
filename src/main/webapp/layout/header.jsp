@@ -172,10 +172,10 @@
                            value="${location}" onclick="showDropdown()" required/>
                     <div id="dropdown" >
                         <select id="select" name="location" onchange="updateInput()" size="4">
-                            <option value="Ha Noi" >Ha Noi</option>
-                            <option value="Da Nang">Da Nang</option>
-                            <option value="Quy Nhon">Quy Nhon</option>
-                            <option value="Ho Chi Minh">Ho Chi Minh</option>
+                            <option value="Ha Noi" ${location == "Ha Noi" ? 'selected="selected"' : ''}>Ha Noi</option>
+                            <option value="Da Nang" ${location == "Da Nang" ? 'selected="selected"' : ''}>Da Nang</option>
+                            <option value="Quy Nhon" ${location == "Quy Nhon" ? 'selected="selected"' : ''}>Quy Nhon</option>
+                            <option value="Ho Chi Minh" ${location == "Ho Chi Minh" ? 'selected="selected"' : ''}>Ho Chi Minh</option>
                         </select>
                     </div>
                 </div>

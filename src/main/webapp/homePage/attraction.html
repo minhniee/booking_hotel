@@ -65,6 +65,7 @@
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            width: 1024px;
         }
 
         .card-title {
@@ -82,6 +83,7 @@
 
 <div class="container">
     <h1 class="mb-4">Filter Locations</h1>
+    <div class="row">
     <div class="filter">
         <label for="typeFilter">Filter by type: </label>
         <select id="typeFilter" class="form-select d-inline-block w-auto">
@@ -104,7 +106,8 @@
             <option value="2.5km">2.5km</option>
         </select>
     </div>
-    <div id="locationsContainer"></div>
+    <div id="locationsContainer" ></div>
+    </div>
 </div>
 
 <script>
@@ -249,12 +252,12 @@
             const locationDiv = document.createElement("div");
             locationDiv.className = "location";
             locationDiv.innerHTML = `
-                    <div class="card mb-3" style="max-width: 540px;">
+                    <div class="card mb-3" style="max-width: 1024px;">
                         <div class="row g-0">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <img src="${location.img}" class="img-fluid rounded-start" alt="${location.title}">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="card-body">
                                     <h5 class="card-title">${location.title}</h5>
                                     <p class="card-text"><small class="text-muted">${location.distinct}</small></p>

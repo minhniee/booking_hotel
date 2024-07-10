@@ -132,8 +132,8 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("checkinDate", checkinDate);
                 request.setAttribute("checkoutDate", checkoutDate);
                 request.setAttribute("earlyBirdDays", earlyBirdDays);
-                request.setAttribute("location", location);
                 request.setAttribute("date",dateRangeString);
+                session.setAttribute("location", location);
                 url = "/booking/listRoom.jsp";
             }
 
