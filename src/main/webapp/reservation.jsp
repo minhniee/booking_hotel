@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML>
 <html>
-<%@include file="layout/header.jsp"%>
+<%@include file="layout/header-old.jsp"%>
 <!-- END head -->
 
     <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">

@@ -64,12 +64,12 @@ public class Room extends HttpServlet {
             throws ServletException, IOException {
 //        String url = request.getScheme()+ "://" + request.getServerName()+ ":" + request.getServerPort() +  request.getContextPath();
 
-        ArrayList<model.Room> listRoomType = new ArrayList<>();
-        roomDAO dao = new roomDAO();
-        listRoomType = dao.getRoomByType();
-        request.setAttribute("listRoom", listRoomType);
+//        ArrayList<model.Room> listRoomType = new ArrayList<>();
+//        roomDAO dao = new roomDAO();
+//        listRoomType = dao.getRoomByType();
+//        request.setAttribute("listRoom", listRoomType);
 
-        request.getRequestDispatcher("/rooms.jsp").forward(request,response);
+        request.getRequestDispatcher("homePage/rooms2.jsp").forward(request,response);
 
     }
 

@@ -58,12 +58,11 @@ public class roomDAO {
             con = new DBContext().getConnection();
             String sql = "SELECT  room_class.id, room_class.class_name, room_class.base_price, room_class.main_image\n" +
                     "                    FROM     room_class \n" +
-                    "where room_class.main_image like '%room.jpg%' order by base_price asc;";
+                    "order by room_class.base_price asc;";
 
             pr = con.prepareStatement(sql);
 
-            System.out.println(sql);
-            System.err.println("ok");
+            System.err.println("getRoomByType");
             rs = pr.executeQuery();
 
             while (rs.next()) {

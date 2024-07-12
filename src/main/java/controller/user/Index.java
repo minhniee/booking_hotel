@@ -1,16 +1,13 @@
 package controller.user;
 
 import java.io.*;
-import java.util.ArrayList;
 
-import DAO.roomDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Room;
 
-@WebServlet(name = "ClassRoomServletServlet", value = "/index")
-public class ClassRoomServlet extends HttpServlet {
+@WebServlet(name = "Index", value = "/home")
+public class Index extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,11 +27,6 @@ public class ClassRoomServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        ArrayList<Room> listRoomType = new ArrayList<>();
-        roomDAO dao = new roomDAO();
-        listRoomType = dao.getRoomByType();
-        request.setAttribute("listRoom", listRoomType);
-
         request.getRequestDispatcher("homePage/index.jsp").forward(request,response);
     }
 
