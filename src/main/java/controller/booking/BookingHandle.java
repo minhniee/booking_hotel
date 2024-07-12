@@ -4,6 +4,7 @@
  */
 package controller.booking;
 
+import DAO.roomDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
+import model.Room;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -67,83 +71,72 @@ public class BookingHandle extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String url = "";
         HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
-        Account user = (Account) object;
-        if (user == null || !user.getRole().equalsIgnoreCase("customer")) {
-            request.getRequestDispatcher("errorPage/errors-500.jsp").forward(request, response);
-            return;
-        }
 
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String checkinDate = null;
-        String checkoutDate = null;
+// Current date and time
         LocalDateTime now = LocalDateTime.now();
-        int daysDiff = 0;
         int earlyBirdDays = 0;
         int children = 0;
         int adults = 0;
         int person = 1;
 
-        String currentDate = formatter.format(now);
-        String dateRangeString = request.getParameter("date");
-        String location = request.getParameter("location");
+        // Date formatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String today = formatter.format(now);
 
-        LocalDate[] dates = parseDateRange(dateRangeString);
-        try {
-            if (dates != null) {
-                checkinDate = dates[0].format(formatter);
-                checkoutDate = dates[1].format(formatter);
-            }
+        // Get parameters from request
+        String checkInDate = request.getParameter("checkInDate");
+        String checkOutDate = request.getParameter("checkOutDate");
+        String childrenParam = request.getParameter("children");
+        String adultsParam = request.getParameter("adults");
 
-            String childrenParam = request.getParameter("children");
-            String adultsParam = request.getParameter("adults");
-            if (childrenParam != null) {
-                children = Integer.parseInt(childrenParam);
-            }
-            if (adultsParam != null) {
-                adults = Integer.parseInt(adultsParam);
-            }
-            person = adults + children;
-
-            Date date1 = myFormat.parse(checkinDate);
-            Date date2 = myFormat.parse(checkoutDate);
-            Date currDate = myFormat.parse(currentDate);
-
-            long diff = (long) (date2.getTime() - date1.getTime());
-
-            earlyBirdDays = (int) TimeUnit.DAYS.convert(date1.getTime() - currDate.getTime(), TimeUnit.MILLISECONDS);
-            if (earlyBirdDays < 0) {
-                earlyBirdDays = 0;
-            }
-            daysDiff = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-
-            if (adults + children > 3 || checkinDate.isEmpty() || checkoutDate.isEmpty() || location.isEmpty()) {
-                request.setAttribute("noti", "Date invalid");
-                url = "/errorPage.jsp";
-            } else {
-                request.setAttribute("noti", "checkin: " + checkinDate + " checkout: " + checkoutDate + " Day: " + daysDiff);
-                request.setAttribute("nights", daysDiff);
-                request.setAttribute("persons", person);
-                request.setAttribute("adults", adults);
-                request.setAttribute("children", children);
-                request.setAttribute("checkinDate", checkinDate);
-                request.setAttribute("checkoutDate", checkoutDate);
-                request.setAttribute("earlyBirdDays", earlyBirdDays);
-                request.setAttribute("date",dateRangeString);
-                session.setAttribute("location", location);
-                url = "/booking/listRoom.jsp";
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("noti", "An error occurred: " + e.getMessage());
-            url = "/errorPage.jsp";
+        // Parse children and adults parameters
+        if (childrenParam != null && !childrenParam.isEmpty()) {
+            children = Integer.parseInt(childrenParam);
         }
-        System.out.println(daysDiff);
+        if (adultsParam != null && !adultsParam.isEmpty()) {
+            adults = Integer.parseInt(adultsParam);
+        }
+        person = adults + children;
+
+        // Parse dates
+        LocalDate date1 = LocalDate.parse(checkInDate, formatter);
+        LocalDate date2 = LocalDate.parse(checkOutDate, formatter);
+        LocalDate currentDate = LocalDate.parse(today, formatter);
+
+        // Calculate days between check-in and check-out
+        long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+
+        // Calculate early bird days
+        earlyBirdDays = (int) ChronoUnit.DAYS.between(currentDate, date1);
+
+        // Determine URL based on validation
+        String url;
+        if (person > 3 || checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween <= 0) {
+            request.setAttribute("noti", "Date invalid or too many persons");
+            url = "/errorPage.jsp";
+        } else {
+            roomDAO roomDAO = new roomDAO();
+            List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1));
+
+            request.setAttribute("rooms", rooms);
+            request.setAttribute("noti", "checkin: " + checkInDate + " checkout: " + checkOutDate + " Day: " + daysBetween);
+            session.setAttribute("nights", daysBetween);
+            session.setAttribute("persons", person);
+            session.setAttribute("adults", adults);
+            session.setAttribute("children", children);
+            session.setAttribute("checkInDate", checkInDate);
+            session.setAttribute("checkOutDate", checkOutDate);
+            session.setAttribute("earlyBirdDays", earlyBirdDays);
+            url = "/homePage/rooms2.jsp";
+        }
+
+        // Print daysBetween for debugging
+        System.out.println(daysBetween);
+
+        // Forward request to the determined URL
         request.getRequestDispatcher(url).forward(request, response);
+
     }
 
     private static LocalDate[] parseDateRange(String dateRangeString) {

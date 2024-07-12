@@ -170,10 +170,10 @@ public class BillBookingRoom extends HttpServlet {
                 Payment p = new Payment(bookingID,priceValue, Date.valueOf(currentDate.format(outputFormatter)), 1);
 
                 // cancel back state room.
-                Timer timer = TimerTask.timer;
-                timer.cancel();
+//                Timer timer = TimerTask.timer;
+//                timer.cancel();
                 // update state room by "unavalidable"
-                roomDAO.updateRoomStatus(roomId, "Unavailable");
+//                roomDAO.updateRoomStatus(roomId, "Unavailable");
                 // table booking
                 bookingDao.insertBooking(booking);
                 // table booking status

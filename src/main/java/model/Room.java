@@ -13,13 +13,16 @@ public class Room {
     private String roomImg;
     private double basePrice;
 
-    public Room(String id, String roomClassId, String roomClassName, double basePrice, String roomImg) {
-        this.id = id;
-        this.roomClassId = roomClassId;
-        this.roomClassName = roomClassName;
+    public Room() {
+    }
+
+    public Room(double basePrice, String roomImg, String id, String roomClassName) {
         this.basePrice = basePrice;
         this.roomImg = roomImg;
+        this.id = id;
+        this.roomClassName = roomClassName;
     }
+
     public Room(String id, String roomClassId, String roomClassName, int statusId, String roomName, int numAdults, String statusName, String roomImg, double basePrice) {
         this.id = id;
         this.roomClassId = roomClassId;
@@ -150,6 +153,8 @@ public class Room {
     public void setRoomClassName(String roomClassName) {
         this.roomClassName = roomClassName;
     }
+
+
 
 
     @Override

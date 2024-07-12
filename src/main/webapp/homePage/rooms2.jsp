@@ -54,85 +54,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
-                    <div class="rooms2 mb-90 animate-box" data-animate-effect="fadeInUp">
-                        <figure><img src="${url1}/Assets1/img/slider/4.jpg" alt="" class="img-fluid"></figure>
-                        <div class="caption">
-                            <h3>150$ <span>/ Night</span></h3>
-                            <h4><a href="room-details.jsp">Junior Suite</a></h4>
-                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>
-                            <div class="row room-facilities">
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-group"></i> 1-2 Persons</li>
-                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-bed"></i> Twin Bed</li>
-                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-clock-1"></i> 200 sqft room</li>
-                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr class="border-2">
-                            <div class="info-wrapper">
-                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
-                            </div>
-                        </div>
-                    </div>
+                    <c:forEach items="${rooms}" var="r">
 
                     <div class="rooms2 mb-90 left animate-box" data-animate-effect="fadeInUp">
-                        <figure><img src="${url1}/Assets1/img/slider/3.jpg" alt="" class="img-fluid"></figure>
+                        <figure><img src="${url1}/Assets1/img/slider/${r.roomImg}" alt="vc" class="img-fluid"></figure>
                         <div class="caption">
-                            <h3>200$ <span>/ Night</span></h3>
-                            <h4><a href="room-details.jsp">Family Room</a></h4>
+                            <h3>${r.basePrice}$ <span>/ Night</span></h3>
+                            <h4><a href="${pageContext.request.contextPath}/RoomDetail?roomClassID=${r.roomClassId}">${r.roomClassName}</a></h4>
                             <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>
                             <div class="row room-facilities">
                                 <div class="col-md-4">
                                     <ul>
                                         <li><i class="flaticon-group"></i> 1-2 Persons</li>
-                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-bed"></i> Twin Bed</li>
-                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-clock-1"></i> 200 sqft Room</li>
-                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr class="border-2">
-                            <div class="info-wrapper">
-                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="rooms2 mb-90 animate-box" data-animate-effect="fadeInUp">
-                        <figure><img src="${url1}/Assets1/img/slider/3.jpg" alt="" class="img-fluid"></figure>
-                        <div class="caption">
-                            <h3>250$ <span>/ Night</span></h3>
-                            <h4><a href="room-details.jsp">Double Room</a></h4>
-                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>
-                            <div class="row room-facilities">
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-group"></i> 2-3 Persons</li>
                                         <li><i class="flaticon-wifi"></i> Free Wifi</li>
                                     </ul>
                                 </div>
@@ -151,45 +84,114 @@
                             </div>
                             <hr class="border-2">
                             <div class="info-wrapper">
-                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
+                                <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?roomClassId=${r.roomClassId}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
                                 <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
                             </div>
                         </div>
                     </div>
+                    </c:forEach>
 
-                    <div class="rooms2 left animate-box" data-animate-effect="fadeInUp">
-                        <figure><img src="${url1}/Assets1/img/slider/2.jpg" alt="" class="img-fluid"></figure>
-                        <div class="caption">
-                            <h3>300$ <span>/ Night</span></h3>
-                            <h4><a href="room-details.jsp">Deluxe Room</a></h4>
-                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>
-                            <div class="row room-facilities">
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-group"></i> 2-4 Persons</li>
-                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-bed"></i> Twin Bed</li>
-                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul>
-                                        <li><i class="flaticon-clock-1"></i> 200 sqft Room</li>
-                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr class="border-2">
-                            <div class="info-wrapper">
-                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
-                            </div>
-                        </div>
-                    </div>
+                <%--                    <div class="rooms2 mb-90 left animate-box" data-animate-effect="fadeInUp">--%>
+<%--                        <figure><img src="${url1}/Assets1/img/slider/3.jpg" alt="" class="img-fluid"></figure>--%>
+<%--                        <div class="caption">--%>
+<%--                            <h3>200$ <span>/ Night</span></h3>--%>
+<%--                            <h4><a href="room-details.jsp">Family Room</a></h4>--%>
+<%--                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>--%>
+<%--                            <div class="row room-facilities">--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-group"></i> 1-2 Persons</li>--%>
+<%--                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-bed"></i> Twin Bed</li>--%>
+<%--                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-clock-1"></i> 200 sqft Room</li>--%>
+<%--                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <hr class="border-2">--%>
+<%--                            <div class="info-wrapper">--%>
+<%--                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>--%>
+<%--                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="rooms2 mb-90 animate-box" data-animate-effect="fadeInUp">--%>
+<%--                        <figure><img src="${url1}/Assets1/img/slider/3.jpg" alt="" class="img-fluid"></figure>--%>
+<%--                        <div class="caption">--%>
+<%--                            <h3>250$ <span>/ Night</span></h3>--%>
+<%--                            <h4><a href="room-details.jsp">Double Room</a></h4>--%>
+<%--                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>--%>
+<%--                            <div class="row room-facilities">--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-group"></i> 2-3 Persons</li>--%>
+<%--                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-bed"></i> Twin Bed</li>--%>
+<%--                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-clock-1"></i> 200 sqft room</li>--%>
+<%--                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <hr class="border-2">--%>
+<%--                            <div class="info-wrapper">--%>
+<%--                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>--%>
+<%--                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="rooms2 left animate-box" data-animate-effect="fadeInUp">--%>
+<%--                        <figure><img src="${url1}/Assets1/img/slider/2.jpg" alt="" class="img-fluid"></figure>--%>
+<%--                        <div class="caption">--%>
+<%--                            <h3>300$ <span>/ Night</span></h3>--%>
+<%--                            <h4><a href="room-details.jsp">Deluxe Room</a></h4>--%>
+<%--                            <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>--%>
+<%--                            <div class="row room-facilities">--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-group"></i> 2-4 Persons</li>--%>
+<%--                                        <li><i class="flaticon-wifi"></i> Free Wifi</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-bed"></i> Twin Bed</li>--%>
+<%--                                        <li><i class="flaticon-breakfast"></i> Breakfast</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-md-4">--%>
+<%--                                    <ul>--%>
+<%--                                        <li><i class="flaticon-clock-1"></i> 200 sqft Room</li>--%>
+<%--                                        <li><i class="flaticon-swimming"></i> Swimming Pool</li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <hr class="border-2">--%>
+<%--                            <div class="info-wrapper">--%>
+<%--                                <div class="more"><a href="room-details.jsp" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>--%>
+<%--                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
                 </div>
             </div>
@@ -206,7 +208,7 @@
                             <div class="input1_wrapper">
                                 <label>Check in</label>
                                 <div class="input1_inner">
-                                    <input type="text" class="form-control input datepicker"  name="checkInDate" placeholder="Check in">
+                                    <input type="text" value="${checkInDate}" class="form-control input datepicker"  name="checkInDate" placeholder="Check in">
                                 </div>
                             </div>
                         </div>
@@ -214,7 +216,7 @@
                             <div class="input1_wrapper">
                                 <label>Check out</label>
                                 <div class="input1_inner">
-                                    <input type="text" class="form-control input datepicker"  name="checkOutDate" placeholder="Check out">
+                                    <input type="text" value="${checkOutDate}" class="form-control input datepicker"  name="checkOutDate" placeholder="Check out">
                                 </div>
                             </div>
                         </div>

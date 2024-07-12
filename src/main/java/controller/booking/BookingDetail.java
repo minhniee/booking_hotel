@@ -92,13 +92,13 @@ public class BookingDetail extends HttpServlet {
              currenRoom = room.get(0).getId();
 
             // set status room 'Available' to 'Inprocess'
-            roomDAO.updateRoomStatus(currenRoom, "In process");
-            try {
-                TimerTask.doCaculateCheckout(currenRoom, "Available");
-            } catch (IllegalStateException e) {
-                TimerTask.timer = new Timer();
-                TimerTask.doCaculateCheckout(currenRoom, "Available");
-            }
+//            roomDAO.updateRoomStatus(currenRoom, "In process");
+//            try {
+//                TimerTask.doCaculateCheckout(currenRoom, "Available");
+//            } catch (IllegalStateException e) {
+//                TimerTask.timer = new Timer();
+//                TimerTask.doCaculateCheckout(currenRoom, "Available");
+//            }
 
             session.setAttribute("checkinDate", checkinDate);
             session.setAttribute("checkoutDate", checkoutDate);

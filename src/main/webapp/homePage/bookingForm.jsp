@@ -4,13 +4,13 @@
             <h4>Hotel Booking Form</h4>
         </div>
         <div class="booking-inner clearfix">
-            <form action="" class="form1 clearfix">
+            <form action="${url}/BookingHandle" method="get" class="form1 clearfix">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input1_wrapper">
                             <label>Check in</label>
                             <div class="input1_inner">
-                                <input type="text" class="form-control input datepicker" name="checkInDate" placeholder="Check in" required>
+                                <input type="text" class="form-control input datepicker" value="${checkInDate}" name="checkInDate" placeholder="Check in" required>
                             </div>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                         <div class="input1_wrapper">
                             <label>Check out</label>
                             <div class="input1_inner">
-                                <input type="text" class="form-control input datepicker" name="checkOutDate" placeholder="Check out" required>
+                                <input type="text" class="form-control input datepicker" value="${checkOutDate}" name="checkOutDate" placeholder="Check out" required>
                             </div>
                         </div>
                     </div>

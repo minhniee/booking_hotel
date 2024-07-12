@@ -28,7 +28,7 @@
                                         <div class="input1_wrapper">
                                             <label>Check in</label>
                                             <div class="input1_inner">
-                                                <input type="text" class="form-control input datepicker" name="checkInDate" placeholder="Check in">
+                                                <input type="text" class="form-control input datepicker" value="${checkInDate}" name="checkInDate" placeholder="Check in">
                                             </div>
                                         </div>
                                     </div>
@@ -36,7 +36,7 @@
                                         <div class="input1_wrapper">
                                             <label>Check out</label>
                                             <div class="input1_inner">
-                                                <input type="text" class="form-control input datepicker" name="checkOutDate" placeholder="Check out">
+                                                <input type="text" class="form-control input datepicker" value="${checkOutnDate}" name="checkOutDate" placeholder="Check out">
                                             </div>
                                         </div>
                                     </div>
