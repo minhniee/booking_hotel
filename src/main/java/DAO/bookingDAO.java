@@ -71,8 +71,8 @@ public class bookingDAO {
         while (rs.next()) {
             String id = rs.getString("id");
             String roomId = rs.getString("room_id");
-            Date checkinDate = rs.getDate("checkin_date");
-            Date checkoutDate = rs.getDate("checkout_date");
+            Date checkInDate = rs.getDate("checkin_date");
+            Date checkOutDate = rs.getDate("checkout_date");
             int numAdults = rs.getInt("num_adults");
             int numChildren = rs.getInt("num_child");
             double bookingPrice = rs.getDouble("booking_price");
@@ -80,7 +80,7 @@ public class bookingDAO {
             String accountId = rs.getString("account_id");
             Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
-            Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);
         }
         return bookings;
@@ -109,8 +109,8 @@ public class bookingDAO {
         while (rs.next()) {
             String id = rs.getString("id");
             String roomId = rs.getString("room_id");
-            Date checkinDate = rs.getDate("checkin_date");
-            Date checkoutDate = rs.getDate("checkout_date");
+            Date checkInDate = rs.getDate("checkin_date");
+            Date checkOutDate = rs.getDate("checkout_date");
             int numAdults = rs.getInt("num_adults");
             int numChildren = rs.getInt("num_child");
             double bookingPrice = rs.getDouble("booking_price");
@@ -118,7 +118,7 @@ public class bookingDAO {
             String accountId = rs.getString("account_id");
             Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
-            Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);
         }
         return bookings;

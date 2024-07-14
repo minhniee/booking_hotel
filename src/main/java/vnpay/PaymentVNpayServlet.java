@@ -4,6 +4,7 @@
  */
 package vnpay;
 
+import DAO.roomDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Room;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -42,7 +44,7 @@ public class PaymentVNpayServlet extends HttpServlet {
         if (session.getAttribute("total") == null) {
             response.sendRedirect("index");
         } else {
-
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 //            String location = request.getParameter("location");
             String prefixId = "";
 //            String payment = request.getParameter("paymentMethod");
@@ -51,8 +53,15 @@ public class PaymentVNpayServlet extends HttpServlet {
             String checkoutDateParam = request.getParameter("checkOutDate");
             String childrenParam = request.getParameter("children");
             String adultsParam = request.getParameter("adults");
-            String roomId = request.getParameter("roomId");
+            String roomClassId = request.getParameter("roomClassId");
+//            String roomId = request.getParameter("roomId");
 //            String price = request.getParameter("price");
+
+            LocalDate checkInDate = LocalDate.parse(checkinDateParam, dtf);
+            LocalDate checkOutDate = LocalDate.parse(checkoutDateParam, dtf);
+
+            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDate,checkOutDate,"EXS");
+            String roomId = availableRooms.stream().findFirst().get();
 
 
 
@@ -142,8 +151,8 @@ public class PaymentVNpayServlet extends HttpServlet {
 //            request.setAttribute("paymentMethod", payment);
 //            request.setAttribute("bookingID", bookingID);
 //            request.setAttribute("accountid", account_id);
-//            request.setAttribute("checkinDate", checkinDateParam);
-//            request.setAttribute("checkoutDate", checkoutDateParam);
+//            request.setAttribute("checkInDate", checkinDateParam);
+//            request.setAttribute("checkOutDate", checkoutDateParam);
 //            request.setAttribute("children", childrenParam);
 //            request.setAttribute("adults", adultsParam);
 //            request.setAttribute("roomId", roomId);
@@ -151,8 +160,8 @@ public class PaymentVNpayServlet extends HttpServlet {
 
             session.setAttribute("bookingID", bookingID);
 //            session.setAttribute("accountid", account_id);
-            session.setAttribute("checkinDate", checkinDateParam);
-            session.setAttribute("checkoutDate", checkoutDateParam);
+            session.setAttribute("checkInDate", checkinDateParam);
+            session.setAttribute("checkOutDate", checkoutDateParam);
             session.setAttribute("children", childrenParam);
             session.setAttribute("adults", adultsParam);
             session.setAttribute("roomId", roomId);

@@ -78,8 +78,8 @@ public class BookingDetail extends HttpServlet {
 //        } else {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         ArrayList<Room> room = new ArrayList();
-            String checkinDate = request.getParameter("checkInDate");
-            String checkoutDate = request.getParameter("checkOutDate");
+            String checkInDate = request.getParameter("checkInDate");
+            String checkOutDate = request.getParameter("checkOutDate");
             String roomType = request.getParameter("roomClassName");
             String persons = request.getParameter("persons");
             String nights = request.getParameter("nights");
@@ -90,7 +90,7 @@ public class BookingDetail extends HttpServlet {
 //            String location = request.getParameter("location");
 
 //            roomDAO roomDAO = new roomDAO();
-//        List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(LocalDate.parse(checkinDate,formatter),LocalDate.parse(checkoutDate,formatter)));
+//        List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(LocalDate.parse(checkInDate,formatter),LocalDate.parse(checkOutDate,formatter)));
 
 //             currenRoom = room.get(0).getId();
 
@@ -103,8 +103,8 @@ public class BookingDetail extends HttpServlet {
 //                TimerTask.doCaculateCheckout(currenRoom, "Available");
 //            }
 
-            session.setAttribute("checkinDate", checkinDate);
-            session.setAttribute("checkoutDate", checkoutDate);
+            session.setAttribute("checkInDate", checkInDate);
+            session.setAttribute("checkOutDate", checkOutDate);
             session.setAttribute("roomType", roomType);
             session.setAttribute("persons", persons);
             session.setAttribute("nights", nights);
@@ -134,8 +134,8 @@ public class BookingDetail extends HttpServlet {
 //        String location = request.getParameter("location");
 //        String payment = request.getParameter("paymentMethod");
 //        String account_id = request.getParameter("accountid");
-//        String checkinDateParam = request.getParameter("checkinDate");
-//        String checkoutDateParam = request.getParameter("checkoutDate");
+//        String checkinDateParam = request.getParameter("checkInDate");
+//        String checkoutDateParam = request.getParameter("checkOutDate");
 //        String childrenParam = request.getParameter("children");
 //        String adultsParam = request.getParameter("adults");
 //        String roomId = request.getParameter("roomId");
@@ -158,16 +158,16 @@ public class BookingDetail extends HttpServlet {
 //            LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
 //            LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
 //
-//            String checkinDate = dateCheckIn.format(outputFormatter);
-//            String checkoutDate = dateCheckOut.format(outputFormatter);
+//            String checkInDate = dateCheckIn.format(outputFormatter);
+//            String checkOutDate = dateCheckOut.format(outputFormatter);
 //
 //            int adults = Integer.parseInt(adultsParam);
 //            int children = Integer.parseInt(childrenParam);
 //            double priceValue = Double.parseDouble(price);
 //
 //            bookingId = prefixId + bookingId;
-//            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkinDate),
-//                    Date.valueOf(checkoutDate), adults, children,
+//            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkInDate),
+//                    Date.valueOf(checkOutDate), adults, children,
 //                    priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
 //
 //            // Insert booking into database

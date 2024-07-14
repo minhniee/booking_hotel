@@ -126,13 +126,13 @@ public class CustomerDAO {
             while (resultSet.next()) {
                 String id = resultSet.getString("id");
                 String roomId = resultSet.getString("room_id");
-                Date checkinDate = resultSet.getDate("checkin_date");
-                Date checkoutDate = resultSet.getDate("checkout_date");
+                Date checkInDate = resultSet.getDate("checkin_date");
+                Date checkOutDate = resultSet.getDate("checkout_date");
                 int numAdults = resultSet.getInt("num_adults");
                 int numChildren = resultSet.getInt("num_child");
                 double bookingPrice = resultSet.getDouble("booking_price");
 
-                bookings.add(new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice));
+                bookings.add(new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice));
             }
         } catch (SQLException e) {
             e.printStackTrace();

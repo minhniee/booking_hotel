@@ -139,17 +139,17 @@ public class BookingHandle extends HttpServlet {
 
     }
 
-    private static LocalDate[] parseDateRange(String dateRangeString) {
-        String[] dateStrings = dateRangeString.split(" to ");
-        if (dateStrings.length == 2) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate startDate = LocalDate.parse(dateStrings[0].trim(), formatter);
-            LocalDate endDate = LocalDate.parse(dateStrings[1].trim(), formatter);
-            return new LocalDate[]{startDate, endDate};
-        } else {
-            return null;
-        }
-    }
+//    private static LocalDate[] parseDateRange(String dateRangeString) {
+//        String[] dateStrings = dateRangeString.split(" to ");
+//        if (dateStrings.length == 2) {
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//            LocalDate startDate = LocalDate.parse(dateStrings[0].trim(), formatter);
+//            LocalDate endDate = LocalDate.parse(dateStrings[1].trim(), formatter);
+//            return new LocalDate[]{startDate, endDate};
+//        } else {
+//            return null;
+//        }
+//    }
 
 
     /**

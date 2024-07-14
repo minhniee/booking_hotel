@@ -241,6 +241,39 @@ public class roomDAO {
         return availableRooms;
     }
 
+    public  List<String> checkAllRoomsStatusByClassId(LocalDate checkInDate ,LocalDate checkOutDate, String roomClassId ) {
+        List<String> availableRooms = new ArrayList<>();
+        String query = "SELECT id, name, room_class_id FROM room where room_class_id = ?";
+        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        try{
+            con = new DBContext().getConnection();
+            pr = con.prepareStatement(query);
+            pr.setString(1, roomClassId);
+            rs= pr.executeQuery();
+
+            while (rs.next()) {
+                String roomId = rs.getString("id");
+                String roomName = rs.getString("name");
+                String room_class_id = rs.getString("room_class_id");
+
+                try (PreparedStatement pstmt = con.prepareStatement(bookingQuery)) {
+                    pstmt.setString(1, roomId);
+                    pstmt.setDate(2, Date.valueOf(checkInDate));
+                    pstmt.setDate(3, Date.valueOf(checkOutDate));
+                    ResultSet rsBookings = pstmt.executeQuery();
+
+                    if (!rsBookings.next()) {
+                        availableRooms.add(roomId);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return availableRooms;
+    }
+
     public ArrayList<Room> getRoomClasses(List<String> roomIds) {
         ArrayList<Room> roomClasses = new ArrayList<>();
         try {
@@ -296,10 +329,13 @@ public class roomDAO {
         roomDAO r = new roomDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-        LocalDate currentDate =LocalDate.parse("07/10/2024", formatter);
+        LocalDate currentDate =LocalDate.parse("07/04/2024", formatter);
         LocalDate currentDate2 = LocalDate.parse("07/13/2024", formatter);
                 ;
-        List<String> availableRooms = r.checkAllRoomsStatus(currentDate,currentDate2);
+        List<String> availableRooms = r.checkAllRoomsStatusByClassId(currentDate,currentDate2,"EXS");
+
+        System.out.println( availableRooms.stream().findFirst().get());
+        System.out.println(availableRooms.get(0));
         System.out.println("Available rooms on " + currentDate + ": " + availableRooms);
         List<Room> availableRooms2 = r.getRoomClasses(availableRooms);
         for (Room room : availableRooms2) {

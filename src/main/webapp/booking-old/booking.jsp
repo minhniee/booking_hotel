@@ -80,7 +80,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index">Home</a></li>
             <li class="breadcrumb-item"><a
-                    href="BookingHandle?checkinDate=${checkInDate}&checkoutDate=${checkOutDate}&adults=${adults}&children=${children}">Select
+                    href="BookingHandle?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}&children=${children}">Select
                 Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
@@ -175,8 +175,8 @@
                 By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
 <%--            <input type="hidden" value="${location}" name="location">--%>
 <%--            <input type="hidden" value="${user.id}" name="accountid">--%>
-            <input type="hidden" value="${checkinDate}" name="checkinDate">
-            <input type="hidden" value="${checkoutDate}" name="checkoutDate">
+            <input type="hidden" value="${checkInDate}" name="checkInDate">
+            <input type="hidden" value="${checkOutDate}" name="checkOutDate">
             <input type="hidden" value="${children}" name="children">
             <input type="hidden" value="${adults}" name="adults">
             <input type="hidden" value="${total}" name="price">

@@ -16,8 +16,8 @@
 <%--<h1>${noti}</h1>--%>
 <%--<p>bk ${bookingID}</p>--%>
 <%--<p>ac ${accountid}</p>--%>
-<%--<p>ck d${checkinDate}</p>--%>
-<%--<p> co d${checkoutDate}</p>--%>
+<%--<p>ck d${checkInDate}</p>--%>
+<%--<p> co d${checkOutDate}</p>--%>
 <%--<p>cd${children}</p>--%>
 <%--<p> ad${adults}</p>--%>
 <%--<p> r${roomId}</p>--%>
@@ -109,8 +109,8 @@
         <p><span class="label">Name:</span> ${account.userName}</p>
         <p><span class="label">Email:</span> ${account.email}</p>
         <p><span class="label">Phone:</span> ${account.phone}</p>
-        <p><span class="label">Check-in Date:</span> ${checkinDate}</p>
-        <p><span class="label">Check-out Date:</span> ${checkoutDate}</p>
+        <p><span class="label">Check-in Date:</span> ${checkInDate}</p>
+        <p><span class="label">Check-out Date:</span> ${checkOutDate}</p>
         <p><span class="label">Room Type:</span> ${roomType}</p>
         <p><span class="label">Number of Guests:</span> 2 Adults</p>
     </div>

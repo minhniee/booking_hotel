@@ -16,8 +16,8 @@
 <h1>${noti}</h1>
 <p>bk ${bookingID}</p>
 <p>ac ${accountid}</p>
-<p>ck d${checkinDate}</p>
-<p> co d${checkoutDate}</p>
+<p>ck d${checkInDate}</p>
+<p> co d${checkOutDate}</p>
 <p>cd${children}</p>
 <p> ad${adults}</p>
 <p> r${roomId}</p>

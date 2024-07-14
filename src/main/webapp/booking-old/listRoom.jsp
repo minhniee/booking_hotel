@@ -38,7 +38,7 @@
                         <p class="card-text"> ${persons} person</p>
                         <p class="card-text">${i.basePrice * nights} $ </p>
 
-                        <a href="BookingDetail?checkinDate=${checkinDate}&location=${location}&checkoutDate=${checkoutDate}&roomType=${i.roomClassName}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${i.basePrice * nights}" class="btn btn-primary">Select</a>
+                        <a href="BookingDetail?checkInDate=${checkInDate}&location=${location}&checkOutDate=${checkOutDate}&roomType=${i.roomClassName}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${i.basePrice * nights}" class="btn btn-primary">Select</a>
                     </div>
                 </div>
             </div>

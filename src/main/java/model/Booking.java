@@ -9,8 +9,8 @@ import java.sql.Date;
 public class Booking {
     private String id;
     private String roomId;
-    private Date checkinDate;
-    private Date checkoutDate;
+    private Date checkInDate;
+    private Date checkOutDate;
     private int numAdults;
     private int numChildren;
     private double bookingPrice;
@@ -19,20 +19,20 @@ public class Booking {
     private Date bookingDate;
     private String bookingState;
     
-    public Booking(String id, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
+    public Booking(String id, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice) {
         this.id = id;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.numAdults = numAdults;
         this.numChildren = numChildren;
         this.bookingPrice = bookingPrice;
     }
 
-    public Booking(String id, String roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId,Date bookingDate) {
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId,Date bookingDate) {
         this.id = id;
         this.roomId = roomId;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.numAdults = numAdults;
         this.numChildren = numChildren;
         this.bookingPrice = bookingPrice;
@@ -41,11 +41,11 @@ public class Booking {
         this.bookingDate = bookingDate;
     }
 
-    public Booking(String id, String roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Date bookingDate, String bookingState) {
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Date bookingDate, String bookingState) {
         this.id = id;
         this.roomId = roomId;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.numAdults = numAdults;
         this.numChildren = numChildren;
         this.bookingPrice = bookingPrice;
@@ -55,11 +55,11 @@ public class Booking {
         this.bookingState = bookingState;
     }
 
-    public Booking(String id, String roomId, Date checkinDate, Date checkoutDate, int numAdults, int numChildren, double bookingPrice) {
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice) {
         this.id = id;
         this.roomId = roomId;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.numAdults = numAdults;
         this.numChildren = numChildren;
         this.bookingPrice = bookingPrice;
@@ -99,19 +99,19 @@ public class Booking {
     }
 
     public java.sql.Date getCheckinDate() {
-        return (java.sql.Date) checkinDate;
+        return (java.sql.Date) checkInDate;
     }
 
-    public void setCheckinDate(Date checkinDate) {
-        this.checkinDate = checkinDate;
+    public void setCheckinDate(Date checkInDate) {
+        this.checkInDate = checkInDate;
     }
 
     public java.sql.Date getCheckoutDate() {
-        return (java.sql.Date) checkoutDate;
+        return (java.sql.Date) checkOutDate;
     }
 
-    public void setCheckoutDate(Date checkoutDate) {
-        this.checkoutDate = checkoutDate;
+    public void setCheckoutDate(Date checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
     public int getNumAdults() {
@@ -167,8 +167,8 @@ public class Booking {
         return "Booking{" +
                 "id='" + id + '\'' +
                 ", roomId='" + roomId + '\'' +
-                ", checkinDate=" + checkinDate +
-                ", checkoutDate=" + checkoutDate +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
                 ", numAdults=" + numAdults +
                 ", numChildren=" + numChildren +
                 ", bookingPrice=" + bookingPrice +

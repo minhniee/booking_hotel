@@ -68,8 +68,8 @@
                         <tr>
                             <td>${booking.id}</td>
                             <td>${booking.roomId}</td>
-                            <td>${booking.checkinDate}</td>
-                            <td>${booking.checkoutDate}</td>
+                            <td>${booking.checkInDate}</td>
+                            <td>${booking.checkOutDate}</td>
                             <td>${booking.numAdults}</td>
                             <td>${booking.numChildren}</td>
                             <td>${booking.bookingPrice}</td>

@@ -45,8 +45,8 @@ public class BillBookingRoom extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
         String account_id = request.getParameter("accountid");
-        String checkinDateParam = request.getParameter("checkinDate");
-        String checkoutDateParam = request.getParameter("checkoutDate");
+        String checkinDateParam = request.getParameter("checkInDate");
+        String checkoutDateParam = request.getParameter("checkOutDate");
         String childrenParam = request.getParameter("children");
         String adultsParam = request.getParameter("adults");
         String roomId = request.getParameter("roomId");
@@ -69,8 +69,8 @@ public class BillBookingRoom extends HttpServlet {
 //                LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
 //                LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
 //
-//                String checkinDate = dateCheckIn.format(outputFormatter);
-//                String checkoutDate = dateCheckOut.format(outputFormatter);
+//                String checkInDate = dateCheckIn.format(outputFormatter);
+//                String checkOutDate = dateCheckOut.format(outputFormatter);
             LocalDateTime currentDate = LocalDateTime.now();
 
             int adults = Integer.parseInt(adultsParam);
@@ -91,8 +91,8 @@ public class BillBookingRoom extends HttpServlet {
             //            request.setAttribute("paymentMethod", payment);
             request.setAttribute("bookingID", bookingId);
             request.setAttribute("accountid", account_id);
-            request.setAttribute("checkinDate", checkinDateParam);
-            request.setAttribute("checkoutDate", checkoutDateParam);
+            request.setAttribute("checkInDate", checkinDateParam);
+            request.setAttribute("checkOutDate", checkoutDateParam);
             request.setAttribute("children", childrenParam);
             request.setAttribute("adults", adultsParam);
             request.setAttribute("roomId", roomId);
@@ -125,8 +125,8 @@ public class BillBookingRoom extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
 //        String account_id = request.getParameter("accountid");
-//        String checkinDateParam = request.getParameter("checkinDate");
-//        String checkoutDateParam = request.getParameter("checkoutDate");
+//        String checkinDateParam = request.getParameter("checkInDate");
+//        String checkoutDateParam = request.getParameter("checkOutDate");
 //        String childrenParam = request.getParameter("children");
 //        String adultsParam = request.getParameter("adults");
 //        String roomId = request.getParameter("roomId");
@@ -136,8 +136,8 @@ public class BillBookingRoom extends HttpServlet {
         HttpSession session = request.getSession();
         String bookingID = (String) session.getAttribute("bookingID");
         String account_id = (String) session.getAttribute("accountid");
-        String checkinDateParam = (String) session.getAttribute("checkinDate");
-        String checkoutDateParam = (String) session.getAttribute("checkoutDate");
+        String checkinDateParam = (String) session.getAttribute("checkInDate");
+        String checkoutDateParam = (String) session.getAttribute("checkOutDate");
         String childrenParam = (String) session.getAttribute("children");
         String adultsParam = (String) session.getAttribute("adults");
         String roomId = (String) session.getAttribute("roomId");
@@ -154,8 +154,8 @@ public class BillBookingRoom extends HttpServlet {
             LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
             LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
 
-            String checkinDate = dateCheckIn.format(outputFormatter);
-            String checkoutDate = dateCheckOut.format(outputFormatter);
+            String checkInDate = dateCheckIn.format(outputFormatter);
+            String checkOutDate = dateCheckOut.format(outputFormatter);
             LocalDateTime currentDate = LocalDateTime.now();
 
             int adults = Integer.parseInt(adultsParam);
@@ -163,8 +163,8 @@ public class BillBookingRoom extends HttpServlet {
             double priceValue = Double.parseDouble(vnp_Amount);
 
             if (vnp_ResponseCode.equals("00")) {
-                Booking booking = new Booking(bookingID, roomId, Date.valueOf(checkinDate),
-                        Date.valueOf(checkoutDate), adults, children,
+                Booking booking = new Booking(bookingID, roomId, Date.valueOf(checkInDate),
+                        Date.valueOf(checkOutDate), adults, children,
                         priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
 
                 Payment p = new Payment(bookingID,priceValue, Date.valueOf(currentDate.format(outputFormatter)), 1);
@@ -184,8 +184,8 @@ public class BillBookingRoom extends HttpServlet {
                 request.setAttribute("noti", "Add successful");
                 request.setAttribute("bookingID", bookingID);
                 request.setAttribute("accountid", account_id);
-                request.setAttribute("checkinDate", checkinDateParam);
-                request.setAttribute("checkoutDate", checkoutDateParam);
+                request.setAttribute("checkInDate", checkinDateParam);
+                request.setAttribute("checkOutDate", checkoutDateParam);
                 request.setAttribute("children", childrenParam);
                 request.setAttribute("adults", adultsParam);
                 request.setAttribute("roomId", roomId);
@@ -201,8 +201,8 @@ public class BillBookingRoom extends HttpServlet {
             //            request.setAttribute("paymentMethod", payment);
             request.setAttribute("bookingID", bookingID);
             request.setAttribute("accountid", account_id);
-            request.setAttribute("checkinDate", checkinDateParam);
-            request.setAttribute("checkoutDate", checkoutDateParam);
+            request.setAttribute("checkInDate", checkinDateParam);
+            request.setAttribute("checkOutDate", checkoutDateParam);
             request.setAttribute("children", childrenParam);
             request.setAttribute("adults", adultsParam);
             request.setAttribute("roomId", roomId);
