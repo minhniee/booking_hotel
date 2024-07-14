@@ -21,7 +21,7 @@ public class ContactServlet extends HttpServlet {
         em.sendEmail(email,"ok","ok");
 
 
-        request.getRequestDispatcher("index").forward(request, response);
+        request.getRequestDispatcher("home").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");

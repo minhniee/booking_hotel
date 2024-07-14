@@ -72,12 +72,12 @@ public class BookingDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-//        Object object = session.getAttribute("account");
-//        if (object == null) {
-//            response.sendRedirect("login.jsp");
-//        } else {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        ArrayList<Room> room = new ArrayList();
+        Object object = session.getAttribute("account");
+        if (object == null) {
+            response.sendRedirect("login.jsp");
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            ArrayList<Room> room = new ArrayList();
             String checkInDate = request.getParameter("checkInDate");
             String checkOutDate = request.getParameter("checkOutDate");
             String roomClassName = request.getParameter("roomClassName");
@@ -88,35 +88,20 @@ public class BookingDetail extends HttpServlet {
             String children = request.getParameter("children");
             String earlyBirdDays = request.getParameter("earlyBirdDays");
             String total = request.getParameter("total");
-//            String basePrice = request.getParameter("basePrice");
-//            String location = request.getParameter("location");
 
-//            roomDAO roomDAO = new roomDAO();
-//        List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(LocalDate.parse(checkInDate,formatter),LocalDate.parse(checkOutDate,formatter)));
+            /*
+             * for test data
+             *
+             *
+             *
+             */
 
-//             currenRoom = room.get(0).getId();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate checkInDatep = LocalDate.parse(checkInDate, dtf);
+            LocalDate checkOutDatep = LocalDate.parse(checkOutDate, dtf);
 
-            // set status room 'Available' to 'Inprocess'
-//            roomDAO.updateRoomStatus(currenRoom, "In process");
-//            try {
-//                TimerTask.doCaculateCheckout(currenRoom, "Available");
-//            } catch (IllegalStateException e) {
-//                TimerTask.timer = new Timer();
-//                TimerTask.doCaculateCheckout(currenRoom, "Available");
-//            }
-        /*
-        * for test data
-        *
-        *
-        *
-         */
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate checkInDatep = LocalDate.parse(checkInDate, dtf);
-        LocalDate checkOutDatep = LocalDate.parse(checkOutDate, dtf);
-
-        List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDatep,checkOutDatep,roomClassId);
-        String roomId = availableRooms.stream().findFirst().get();
+            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDatep, checkOutDatep, roomClassId);
+            String roomId = availableRooms.stream().findFirst().get();
 
 //            session.setAttribute("checkInDate", checkInDate);
 //            session.setAttribute("checkOutDate", checkOutDate);
@@ -133,7 +118,7 @@ public class BookingDetail extends HttpServlet {
 //            session.setAttribute("currenRoom", currenRoom);
             request.getRequestDispatcher("booking-old/booking.jsp").forward(request, response);
         }
-
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.

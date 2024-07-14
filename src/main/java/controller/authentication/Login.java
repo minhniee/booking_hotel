@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
             } else if ("staff".equals(account.getRole())) {
                 response.sendRedirect("dashboardstaff.jsp");
             } else {
-                response.sendRedirect("index");
+                response.sendRedirect("home");
             }
         } else {
             request.setAttribute("msg", "Your account has not been verified. Please check your email!");
