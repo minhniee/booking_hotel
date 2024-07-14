@@ -58,7 +58,7 @@
                         <i class="star-rating"></i>
                     </span>
                     <div class="section-subtitle">Luxury Hotel</div>
-                    <div class="section-title">Junior Suite</div>
+                    <div class="section-title">${roomClassName}</div>
                 </div>
                 <div class="col-md-8">
                     <p class="mb-30">Hotel non lorem ac erat suscipit bibendum nulla facilisi. Sedeuter nunc volutpat miss sapien vel conseyen turpeutionyer masin libero sevenion vusetion viventa augue sit amet hendrerit vestibulum. Duisteyerion venenatis lacus gravida eros ut turpis interdum ornare.</p>
@@ -111,7 +111,7 @@
                             <p>Children are welcome Kids stay free! Children stay free when using existing bedding; children may not be eligible for complimentary breakfast Rollaway/extra beds are available for $ 10 per day.</p>
                         </div>
                         <div class="col-md-12">
-                            <div class="butn-dark mt-15 mb-30"> <a href="rooms2.jsp"><span>Check Now</span></a> </div>
+                            <div class="butn-dark mt-15 mb-30"> <a href="Room"><span>Check Now</span></a> </div>
                         </div>
                     </div>
                 </div>

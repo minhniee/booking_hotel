@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.UUID;
 
@@ -71,25 +72,27 @@ public class BookingDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
-        if (object == null) {
-            response.sendRedirect("login.jsp");
-        } else {
-            ArrayList<Room> room = new ArrayList();
-            String checkinDate = request.getParameter("checkinDate");
-            String checkoutDate = request.getParameter("checkoutDate");
-            String roomType = request.getParameter("roomType");
+//        Object object = session.getAttribute("account");
+//        if (object == null) {
+//            response.sendRedirect("login.jsp");
+//        } else {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        ArrayList<Room> room = new ArrayList();
+            String checkinDate = request.getParameter("checkInDate");
+            String checkoutDate = request.getParameter("checkOutDate");
+            String roomType = request.getParameter("roomClassName");
             String persons = request.getParameter("persons");
             String nights = request.getParameter("nights");
             String adults = request.getParameter("adults");
             String children = request.getParameter("children");
             String earlyBirdDays = request.getParameter("earlyBirdDays");
             String total = request.getParameter("total");
-            String location = request.getParameter("location");
+//            String location = request.getParameter("location");
 
-            roomDAO roomDAO = new roomDAO();
-            room = roomDAO.getRoomByRoomClass(roomType, "Available");
-             currenRoom = room.get(0).getId();
+//            roomDAO roomDAO = new roomDAO();
+//        List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(LocalDate.parse(checkinDate,formatter),LocalDate.parse(checkoutDate,formatter)));
+
+//             currenRoom = room.get(0).getId();
 
             // set status room 'Available' to 'Inprocess'
 //            roomDAO.updateRoomStatus(currenRoom, "In process");
@@ -109,11 +112,11 @@ public class BookingDetail extends HttpServlet {
             session.setAttribute("total", (long) Double.parseDouble(total));
             session.setAttribute("adults", adults);
             session.setAttribute("children", children);
-            session.setAttribute("location", location);
-            session.setAttribute("currenRoom", currenRoom);
-            request.getRequestDispatcher("booking/booking.jsp").forward(request, response);
+//            session.setAttribute("location", location);
+//            session.setAttribute("currenRoom", currenRoom);
+            request.getRequestDispatcher("booking-old/booking.jsp").forward(request, response);
         }
-    }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -187,6 +190,7 @@ public class BookingDetail extends HttpServlet {
 //            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
 //        }
     }
+
 
     public static String generateUniqueKey() {
         String key;

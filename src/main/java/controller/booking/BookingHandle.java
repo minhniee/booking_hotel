@@ -117,7 +117,7 @@ public class BookingHandle extends HttpServlet {
             url = "/errorPage.jsp";
         } else {
             roomDAO roomDAO = new roomDAO();
-            List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1));
+            List<Room> rooms =roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1,date2));
 
             request.setAttribute("rooms", rooms);
             request.setAttribute("noti", "checkin: " + checkInDate + " checkout: " + checkOutDate + " Day: " + daysBetween);

@@ -5,6 +5,7 @@ import model.Room;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -111,19 +112,18 @@ public class roomDAO {
         return list;
     }
 
-    public ArrayList<Room> getRoomByRoomClass(String className, String state) {
+    public ArrayList<Room> getRoomByRoomClass(String className, LocalDate checkInDate) {
         ArrayList<Room> list = new ArrayList<>();
         try {
             con = new DBContext().getConnection();
             String sql = "SELECT room.id, room_class.class_name\n" +
                     "FROM room INNER JOIN\n" +
                     " room_class ON room.room_class_id = room_class.id\n" +
-                    "where room_class.class_name = ? and room.state = ?" ;
+                    "where room_class.class_name = ? " ;
 
 
             pr = con.prepareStatement(sql);
             pr.setString(1, className);
-            pr.setString(2, state);
 
             System.out.println(sql);
             System.err.println("ok");
@@ -209,10 +209,10 @@ public class roomDAO {
         return room;
     }
 
-    public  List<String> checkAllRoomsStatus(LocalDate date) {
+    public  List<String> checkAllRoomsStatus(LocalDate checkInDate ,LocalDate checkOutDate ) {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room";
-        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND ? BETWEEN checkin_date AND checkout_date";
+        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
         try{
             con = new DBContext().getConnection();
             pr = con.prepareStatement(query);
@@ -225,7 +225,8 @@ public class roomDAO {
 
                 try (PreparedStatement pstmt = con.prepareStatement(bookingQuery)) {
                     pstmt.setString(1, roomId);
-                    pstmt.setDate(2, Date.valueOf(date));
+                    pstmt.setDate(2, Date.valueOf(checkInDate));
+                    pstmt.setDate(3, Date.valueOf(checkOutDate));
                     ResultSet rsBookings = pstmt.executeQuery();
 
                     if (!rsBookings.next()) {
@@ -293,8 +294,12 @@ public class roomDAO {
 
     public static void main(String[] args) {
         roomDAO r = new roomDAO();
-        LocalDate currentDate = LocalDate.now();
-        List<String> availableRooms = r.checkAllRoomsStatus(currentDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+        LocalDate currentDate =LocalDate.parse("07/10/2024", formatter);
+        LocalDate currentDate2 = LocalDate.parse("07/13/2024", formatter);
+                ;
+        List<String> availableRooms = r.checkAllRoomsStatus(currentDate,currentDate2);
         System.out.println("Available rooms on " + currentDate + ": " + availableRooms);
         List<Room> availableRooms2 = r.getRoomClasses(availableRooms);
         for (Room room : availableRooms2) {

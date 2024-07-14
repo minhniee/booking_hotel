@@ -80,7 +80,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index">Home</a></li>
             <li class="breadcrumb-item"><a
-                    href="BookingHandle?checkinDate=${checkinDate}&checkoutDate=${checkinDate}&adults=${adults}&children=${children}">Select
+                    href="BookingHandle?checkinDate=${checkInDate}&checkoutDate=${checkOutDate}&adults=${adults}&children=${children}">Select
                 Room</a></li>
             <li class="breadcrumb-item active" aria-current="page">Booking</li>
         </ol>
@@ -92,8 +92,8 @@
     </div>
 
     <div class="section-info">
-        <h2>Your reservation - from <span id="check-in-date">${checkinDate}</span> to <span
-                id="check-out-date">${checkoutDate}</span></h2>
+        <h2>Your reservation - from <span id="check-in-date">${checkInDate}</span> to <span
+                id="check-out-date">${checkOutDate}</span></h2>
         <p><strong id="hotel-name">FUTel</strong></p>
         <p>Address: <span id="hotel-address">Thach That</span></p>
         <p>Reception is open: 24 hours</p>
@@ -106,7 +106,7 @@
     <div class="section">
 
         <h3>Room 1</h3>
-        <h4>Location: ${location}</h4>
+<%--        <h4>Location: ${location}</h4>--%>
         <p><strong id="room1-type">${roomType}</strong></p>
         <p><span id="room1-adults">${persons}</span> adults</p>
         <p>Bedding options: <span id="room1-bedding">${roomType}</span></p>
@@ -121,7 +121,7 @@
         <p>Not included: Service Charge <span id="service-charge">[Service Charge Amount]</span></p>
         <p>Not included: VAT / Consumption tax <span id="vat">[VAT Amount]</span></p>
     </div>
-    <hr>n
+    <hr>
 
     <div class="section total">
         <p>The taxes which are not included are to be paid to the hotel. The total amount is:</p>
@@ -130,7 +130,7 @@
 
 
     <div class="section">
-        <c:set var="user" value="${sessionScope.account}"/>
+<%--        <c:set var="user" value="${sessionScope.account}"/>--%>
         <p>Infomation</p>
 
         <input type="text" value="${user.fullName}" readonly>
@@ -173,18 +173,16 @@
                 no-show, a
                 penalty of 100% will apply.
                 By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
-            <input type="hidden" value="${location}" name="location">
-            <input type="hidden" value="${user.id}" name="accountid">
+<%--            <input type="hidden" value="${location}" name="location">--%>
+<%--            <input type="hidden" value="${user.id}" name="accountid">--%>
             <input type="hidden" value="${checkinDate}" name="checkinDate">
             <input type="hidden" value="${checkoutDate}" name="checkoutDate">
             <input type="hidden" value="${children}" name="children">
             <input type="hidden" value="${adults}" name="adults">
             <input type="hidden" value="${total}" name="price">
-            <input type="hidden" name="roomId" value="${currenRoom}">
+            <input type="hidden" name="roomId" value="L2001">
 
             <button class="btn btn-primary" id="book-button" type="submit">booking</button>
-            String price = request.getParameter("price");
-            <p>${currenRoom}</p>
         </form>
 
         <%--            <button class="btn btn-primary" id="book-button" type="submit">booking</button>--%>

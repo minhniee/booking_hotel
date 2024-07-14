@@ -59,8 +59,9 @@
                     <div class="rooms2 mb-90 left animate-box" data-animate-effect="fadeInUp">
                         <figure><img src="${url1}/Assets1/img/slider/${r.roomImg}" alt="vc" class="img-fluid"></figure>
                         <div class="caption">
-                            <h3>${r.basePrice}$ <span>/ Night</span></h3>
-                            <h4><a href="${pageContext.request.contextPath}/RoomDetail?roomClassID=${r.roomClassId}">${r.roomClassName}</a></h4>
+                            <h3>${r.basePrice * nights} $ <span>${r.basePrice}$ <span>/ night</span></span> </h3>
+<%--                            <h6>${r.basePrice}$ <span>/ Night</span></h6>--%>
+                            <h4><a href="${pageContext.request.contextPath}/RoomDetail?roomClassID=${r.roomClassId}&roomClassName=${r.roomClassName}">${r.roomClassName}</a></h4>
                             <p>Spacious, bright guestrooms with tasteful furnishing, wooden floor and panoramic windows from the ceiling to the floor.</p>
                             <div class="row room-facilities">
                                 <div class="col-md-4">
@@ -84,8 +85,8 @@
                             </div>
                             <hr class="border-2">
                             <div class="info-wrapper">
-                                <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?roomClassId=${r.roomClassId}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
+                                <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?rooms=${r.roomClassId}&roomClassName=${r.roomClassName}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
+                                <div class="butn-dark"> <a href="BookingDetail?checkinDate=${checkInDate}&checkoutDate=${checkOutDate}&roomClassName=${r.roomClassName}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}" ><span>Book Now</span></a> </div>
                             </div>
                         </div>
                     </div>

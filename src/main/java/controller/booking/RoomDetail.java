@@ -58,7 +58,11 @@ public class RoomDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-//        String roomClassID = request.getParameter("roomClassID");
+//        request.setAttribute("roomClassID",request.getParameter("roomClassID"));
+        String roomClassName = request.getParameter("roomClassName");
+        request.setAttribute("roomClassName",roomClassName);
+
+
         request.getRequestDispatcher("homePage/room-details.jsp").forward(request, response);
     }
 

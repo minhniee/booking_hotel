@@ -43,22 +43,19 @@ public class PaymentVNpayServlet extends HttpServlet {
             response.sendRedirect("index");
         } else {
 
-            String location = request.getParameter("location");
+//            String location = request.getParameter("location");
             String prefixId = "";
 //            String payment = request.getParameter("paymentMethod");
-            String account_id = request.getParameter("accountid");
-            String checkinDateParam = request.getParameter("checkinDate");
-            String checkoutDateParam = request.getParameter("checkoutDate");
+//            String account_id = request.getParameter("accountid");
+            String checkinDateParam = request.getParameter("checkInDate");
+            String checkoutDateParam = request.getParameter("checkOutDate");
             String childrenParam = request.getParameter("children");
             String adultsParam = request.getParameter("adults");
             String roomId = request.getParameter("roomId");
 //            String price = request.getParameter("price");
 
 
-            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
-            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
-            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
-            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
+
             String bookingID = prefixId + generateUniqueKey();
 
             long cost = (long) session.getAttribute("total");
@@ -153,7 +150,7 @@ public class PaymentVNpayServlet extends HttpServlet {
 //            request.setAttribute("price", price);
 
             session.setAttribute("bookingID", bookingID);
-            session.setAttribute("accountid", account_id);
+//            session.setAttribute("accountid", account_id);
             session.setAttribute("checkinDate", checkinDateParam);
             session.setAttribute("checkoutDate", checkoutDateParam);
             session.setAttribute("children", childrenParam);
