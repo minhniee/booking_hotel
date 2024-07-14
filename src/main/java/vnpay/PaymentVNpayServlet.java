@@ -44,23 +44,24 @@ public class PaymentVNpayServlet extends HttpServlet {
         if (session.getAttribute("total") == null) {
             response.sendRedirect("index");
         } else {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 //            String location = request.getParameter("location");
             String prefixId = "";
 //            String payment = request.getParameter("paymentMethod");
 //            String account_id = request.getParameter("accountid");
-            String checkinDateParam = request.getParameter("checkInDate");
-            String checkoutDateParam = request.getParameter("checkOutDate");
+            String checkinDateParam = session.getAttribute("checkInDate").toString();
+            String checkoutDateParam = session.getAttribute("checkOutDate").toString();
             String childrenParam = request.getParameter("children");
             String adultsParam = request.getParameter("adults");
             String roomClassId = request.getParameter("roomClassId");
+
 //            String roomId = request.getParameter("roomId");
 //            String price = request.getParameter("price");
 
             LocalDate checkInDate = LocalDate.parse(checkinDateParam, dtf);
             LocalDate checkOutDate = LocalDate.parse(checkoutDateParam, dtf);
 
-            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDate,checkOutDate,"EXS");
+            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDate,checkOutDate,roomClassId);
             String roomId = availableRooms.stream().findFirst().get();
 
 

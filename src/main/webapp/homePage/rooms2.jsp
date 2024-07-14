@@ -86,7 +86,7 @@
                             <hr class="border-2">
                             <div class="info-wrapper">
                                 <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?rooms=${r.roomClassId}&roomClassName=${r.roomClassName}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="BookingDetail?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}" ><span>Book Now</span></a> </div>
+                                <div class="butn-dark"> <a href="BookingDetail?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}&basePrice=${r.basePrice}" ><span>Book Now</span></a> </div>
                             </div>
                         </div>
                     </div>

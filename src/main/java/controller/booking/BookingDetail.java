@@ -80,13 +80,15 @@ public class BookingDetail extends HttpServlet {
         ArrayList<Room> room = new ArrayList();
             String checkInDate = request.getParameter("checkInDate");
             String checkOutDate = request.getParameter("checkOutDate");
-            String roomType = request.getParameter("roomClassName");
+            String roomClassName = request.getParameter("roomClassName");
+            String roomClassId = request.getParameter("roomClassId");
             String persons = request.getParameter("persons");
             String nights = request.getParameter("nights");
             String adults = request.getParameter("adults");
             String children = request.getParameter("children");
             String earlyBirdDays = request.getParameter("earlyBirdDays");
             String total = request.getParameter("total");
+//            String basePrice = request.getParameter("basePrice");
 //            String location = request.getParameter("location");
 
 //            roomDAO roomDAO = new roomDAO();
@@ -102,16 +104,31 @@ public class BookingDetail extends HttpServlet {
 //                TimerTask.timer = new Timer();
 //                TimerTask.doCaculateCheckout(currenRoom, "Available");
 //            }
+        /*
+        * for test data
+        *
+        *
+        *
+         */
 
-            session.setAttribute("checkInDate", checkInDate);
-            session.setAttribute("checkOutDate", checkOutDate);
-            session.setAttribute("roomType", roomType);
-            session.setAttribute("persons", persons);
-            session.setAttribute("nights", nights);
-            session.setAttribute("earlyBirdDays", earlyBirdDays);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate checkInDatep = LocalDate.parse(checkInDate, dtf);
+        LocalDate checkOutDatep = LocalDate.parse(checkOutDate, dtf);
+
+        List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDatep,checkOutDatep,roomClassId);
+        String roomId = availableRooms.stream().findFirst().get();
+
+//            session.setAttribute("checkInDate", checkInDate);
+//            session.setAttribute("checkOutDate", checkOutDate);
+            session.setAttribute("roomClassName", roomClassName);
+//            session.setAttribute("persons", persons);
+//            session.setAttribute("nights", nights);
+//            session.setAttribute("earlyBirdDays", earlyBirdDays);
             session.setAttribute("total", (long) Double.parseDouble(total));
-            session.setAttribute("adults", adults);
-            session.setAttribute("children", children);
+//            session.setAttribute("adults", adults);
+//            session.setAttribute("children", children);
+            session.setAttribute("roomId", roomId);
+//            session.setAttribute("basePrice", basePrice);
 //            session.setAttribute("location", location);
 //            session.setAttribute("currenRoom", currenRoom);
             request.getRequestDispatcher("booking-old/booking.jsp").forward(request, response);

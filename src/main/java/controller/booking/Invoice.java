@@ -22,15 +22,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Timer;
 
 //import static controller.booking.BookingDetail;
 
 /**
  * @author minhl
  */
-@WebServlet(name = "BillBookingRoomServlet", urlPatterns = {"/BillBookingRoom"})
-public class BillBookingRoom extends HttpServlet {
+@WebServlet(name = "BillBookingRoomServlet", urlPatterns = {"/Invoice"})
+public class Invoice extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -44,11 +43,12 @@ public class BillBookingRoom extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         /* TODO output your page here. You may use following sample code. */
+        HttpSession session = request.getSession();
         String account_id = request.getParameter("accountid");
-        String checkinDateParam = request.getParameter("checkInDate");
-        String checkoutDateParam = request.getParameter("checkOutDate");
-        String childrenParam = request.getParameter("children");
-        String adultsParam = request.getParameter("adults");
+        String checkinDateParam = session.getAttribute("checkInDate").toString();
+        String checkoutDateParam = session.getAttribute("checkOutDate").toString();
+        String childrenParam = session.getAttribute("children").toString();
+        String adultsParam =session.getAttribute("adults").toString();
         String roomId = request.getParameter("roomId");
         String bookingId = request.getParameter("bookingid");
         String vnp_Amount = request.getParameter("vnp_Amount");
@@ -71,6 +71,7 @@ public class BillBookingRoom extends HttpServlet {
 //
 //                String checkInDate = dateCheckIn.format(outputFormatter);
 //                String checkOutDate = dateCheckOut.format(outputFormatter);
+
             LocalDateTime currentDate = LocalDateTime.now();
 
             int adults = Integer.parseInt(adultsParam);
@@ -190,7 +191,6 @@ public class BillBookingRoom extends HttpServlet {
                 request.setAttribute("adults", adultsParam);
                 request.setAttribute("roomId", roomId);
                 request.setAttribute("amount", vnp_Amount);
-                request.setAttribute("roomId", roomId);
                 request.setAttribute("roomId", roomId);
             }else{
                 request.setAttribute("noti", "not successful");

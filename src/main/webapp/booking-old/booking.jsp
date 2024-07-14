@@ -167,7 +167,7 @@
 
     <%--        <form action="BookingDetail" method="POST">--%>
     <div class="section">
-        <form action="paymentvnpay" method="POST">
+        <form action="Invoice" method="POST">
             <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
                 cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of
                 no-show, a
