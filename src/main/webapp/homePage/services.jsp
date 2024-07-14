@@ -73,20 +73,20 @@
                             </div>
                             <h4>Spa Center</h4>
                             <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.jsp"><span>Learn More</span></a> </div>
+                            <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
                     <div class="img">
-                        <a href="spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/3.jpg" alt=""></a>
+                        <a href="${url}/homePage/spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/3.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
                     <div class="img left">
-                        <a href="spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/2.jpg" alt=""></a>
+                        <a href="${url}/homePage/spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/2.jpg" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
@@ -97,7 +97,7 @@
                             </div>
                             <h4>Fitness Center</h4>
                             <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.jsp"><span>Learn More</span></a> </div>
+                            <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
                         </div>
                     </div>
                 </div>
@@ -111,13 +111,13 @@
                             </div>
                             <h4>The Health Club & Pool</h4>
                             <p>The health club & pool at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                            <div class="butn-dark"> <a href="spa-wellness.jsp"><span>Learn More</span></a> </div>
+                            <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
                     <div class="img">
-                        <a href="spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/1.jpg" alt=""></a>
+                        <a href="${url}/homePage/spa-wellness.jsp"><img src="${url1}/Assets1/img/spa/1.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                                     <li><a href="index.jsp">Home</a></li>
                                     <li><a href="rooms2.jsp">Rooms & Suites</a></li>
                                     <li><a href="restaurant.jsp">Restaurant</a></li>
-                                    <li><a href="spa-wellness.jsp">Spa & Wellness</a></li>
+                                    <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>
                                     <li><a href="about.jsp">About Hotel</a></li>
                                     <li><a href="contact.jsp">Contact</a></li>
                                 </ul>

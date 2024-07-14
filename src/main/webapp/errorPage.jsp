@@ -15,7 +15,7 @@
 <body>
 <h1>${noti}</h1>
 <p>bk ${bookingID}</p>
-<p>ac ${accountid}</p>
+<p>ac ${account.id}</p>
 <p>ck d${checkInDate}</p>
 <p> co d${checkOutDate}</p>
 <p>cd${children}</p>
