@@ -4,29 +4,27 @@
  */
 package vnpay;
 
-import DAO.roomDAO;
-import jakarta.servlet.RequestDispatcher;
+import DAO.CartDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Room;
+import model.Account;
+import model.Cart;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
  * @author admin
  */
-@WebServlet(name = "PaymentVNpayServlet", urlPatterns = {"/paymentvnpay"})
-public class PaymentVNpayServlet extends HttpServlet {
+@WebServlet(name = "PaymentServiceVNpayServlet", urlPatterns = {"/paymentservicevnpay"})
+public class PaymentServiceVNpayServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,42 +39,48 @@ public class PaymentVNpayServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        if (session.getAttribute("total") == null) {
-            response.sendRedirect("index");
-        } else {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//            String location = request.getParameter("location");
-            String prefixId = "";
-//            String payment = request.getParameter("paymentMethod");
-     //    String account_id = request.getParameter("accountid");
-            String checkinDateParam = session.getAttribute("checkInDate").toString();
-            String checkoutDateParam = session.getAttribute("checkOutDate").toString();
-            String childrenParam = request.getParameter("children");
-            String adultsParam = request.getParameter("adults");
-            String roomClassId = request.getParameter("roomClassId");
+        //get cart
+        CartDAO cartDAO = new CartDAO();
+        Account account = (Account) request.getSession().getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+        Cart cart = cartDAO.getCartByAccountId(account.getId());
+        if(cart.getTotalAmount() == 0.0){
+            response.sendRedirect("services");
+            return;
+        }
+        String bookingId = request.getParameter("booking");
 
+
+//            String location = request.getParameter("location");
+//            String prefixId = "";
+////            String payment = request.getParameter("paymentMethod");
+//            String account_id = request.getParameter("accountid");
+//            String checkinDateParam = request.getParameter("checkinDate");
+//            String checkoutDateParam = request.getParameter("checkoutDate");
+//            String childrenParam = request.getParameter("children");
+//            String adultsParam = request.getParameter("adults");
 //            String roomId = request.getParameter("roomId");
 //            String price = request.getParameter("price");
 
-            LocalDate checkInDate = LocalDate.parse(checkinDateParam, dtf);
-            LocalDate checkOutDate = LocalDate.parse(checkoutDateParam, dtf);
+//
+//            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
+//            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
+//            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
+//            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
+            String bookingID = cart.getId() + generateUniqueKey();
 
-//            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDate,checkOutDate,roomClassId);
-//            String roomId = availableRooms.stream().findFirst().get();
+//            long cost = (long) session.getAttribute("total");
 
-
-
-            String bookingID = prefixId + generateUniqueKey();
-
-            long cost = (long) session.getAttribute("total");
-
-
+        long cost = (long) cart.getTotalAmount();
 
 
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";
             String orderType = "billpayment";
-            long amount = cost * 1000 ;
+            long amount = cost * 10000;
             String bankCode = "";
 
             String vnp_TxnRef = Config.getRandomNumber(8);
@@ -104,7 +108,7 @@ public class PaymentVNpayServlet extends HttpServlet {
             } else {
                 vnp_Params.put("vnp_Locale", "vn");
             }
-            vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
+            vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl2);
             vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
             Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -152,24 +156,24 @@ public class PaymentVNpayServlet extends HttpServlet {
 //            request.setAttribute("paymentMethod", payment);
 //            request.setAttribute("bookingID", bookingID);
 //            request.setAttribute("accountid", account_id);
-//            request.setAttribute("checkInDate", checkinDateParam);
-//            request.setAttribute("checkOutDate", checkoutDateParam);
+//            request.setAttribute("checkinDate", checkinDateParam);
+//            request.setAttribute("checkoutDate", checkoutDateParam);
 //            request.setAttribute("children", childrenParam);
 //            request.setAttribute("adults", adultsParam);
 //            request.setAttribute("roomId", roomId);
 //            request.setAttribute("price", price);
 
-            session.setAttribute("bookingID", bookingID);
+//            session.setAttribute("bookingID", bookingID);
 //            session.setAttribute("accountid", account_id);
-            session.setAttribute("checkInDate", checkinDateParam);
-            session.setAttribute("checkOutDate", checkoutDateParam);
-            session.setAttribute("children", childrenParam);
-            session.setAttribute("adults", adultsParam);
-//            session.setAttribute("roomId", roomId);
+//            session.setAttribute("checkinDate", checkinDateParam);
+//            session.setAttribute("checkoutDate", checkoutDateParam);
+//            session.setAttribute("children", childrenParam);
+//            session.setAttribute("adults", adultsParam);
+            session.setAttribute("bookingId", bookingId);
 
             response.sendRedirect(paymentUrl);
 
-        }
+
     }
 
     public static String generateUniqueKey() {

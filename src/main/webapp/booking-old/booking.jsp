@@ -167,14 +167,14 @@
 
     <%--        <form action="BookingDetail" method="POST">--%>
     <div class="section">
-        <form action="Invoice" method="POST">
+        <form action="paymentvnpay" method="POST">
             <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
                 cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of
                 no-show, a
                 penalty of 100% will apply.
                 By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
 <%--            <input type="hidden" value="${location}" name="location">--%>
-<%--            <input type="hidden" value="${user.id}" name="accountid">--%>
+          <input type="hidden" value="${user.id}" name="accountid">
             <input type="hidden" value="${checkInDate}" name="checkInDate">
             <input type="hidden" value="${checkOutDate}" name="checkOutDate">
             <input type="hidden" value="${children}" name="children">
