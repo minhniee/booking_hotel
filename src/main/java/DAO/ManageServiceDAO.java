@@ -28,4 +28,26 @@ public class ManageServiceDAO extends DBContext {
         }
         return getManageServices;
     }
+    public ArrayList<ManageService> getManageServicesById(int id) {
+        ArrayList<ManageService> getManageServices = new ArrayList<>();
+        String sql = "  select * from service where category_id = ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                getManageServices.add(new ManageService(rs.getString(1)
+                        ,rs.getInt(2)
+                        ,rs.getString(3)
+                        ,rs.getString(4)
+                        ,rs.getDouble(5)
+                        ,rs.getInt(6)
+                        ,rs.getString(7)));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return getManageServices;
+    }
+
 }

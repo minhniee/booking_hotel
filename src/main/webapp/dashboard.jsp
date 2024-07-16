@@ -74,7 +74,7 @@
             </a>
         </li>
         <li>
-            <a href="listRoomManager">
+            <a href="ManageService">
                 <i class="fas fa-cog"></i>
                 <span>Manage service</span>
             </a>

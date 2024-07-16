@@ -17,9 +17,25 @@
 
 
 
-    <h3 class="main--title">Setting room</h3>
+    <h3 class="main--title">Manage Service</h3>
     <div class="table-container">
+        <form id="subjectForm" action="ManageService" method="post">
+            List of category
+            <select name="type" id="subjectSelect">
+                <option value="-1">All category</option>
+                <c:set value="${requestScope.subjectid}" var="subjectid"/>
+                <c:forEach items="${requestScope.manageServiceCategory}" var="manageServiceCategory">
 
+                    <option value="${manageServiceCategory.id}" ${subjectId == manageServiceCategory.id ?"selected=\"selected\"":""}>${manageServiceCategory.name}</option>
+                </c:forEach>
+
+            </select>
+        </form>
+        <script>
+            document.getElementById('subjectSelect').addEventListener('change', function() {
+                document.getElementById('subjectForm').submit();
+            });
+        </script>
         <table>
             <thead>
             <tr>
@@ -37,15 +53,22 @@
             <c:forEach items="${requestScope.manageServices}" var="manageServices">
                 <tr>
                     <td>${manageServices.id}</td>
-                    <td>${manageServices.category_id}</td>
+
+                        <td>
+                            <c:forEach items="${requestScope.manageServiceCategory}" var="manageServiceCategory">
+                            <c:if test="${manageServices.category_id == manageServiceCategory.id}">
+                                ${manageServiceCategory.name}
+                            </c:if>
+                            </c:forEach>
+                        </td>
+
                     <td>${manageServices.service_name}</td>
                     <td>${manageServices.description}</td>
                     <td>${manageServices.price}</td>
                     <td>${manageServices.quantity}</td>
-                    <td><img src="Assets/image/services/${manageServices.image}" width="70px"></td>
+                    <td><img src="Assets/services/${manageServices.image}" width="120px"></td>
                     <td>
                         <a href=""><button class="fas fa-edit"></button></a>
-                        <a href="detailRoomManager?id=${list.id}&rid=${list.room_class}"><button class="fas fa-info-circle"></button></a>
                     </td>
                 </tr>
             </c:forEach>

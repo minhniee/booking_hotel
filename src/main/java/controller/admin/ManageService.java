@@ -1,9 +1,11 @@
 package controller.admin;
 
+import DAO.ManageServiceCategoryDAO;
 import DAO.ManageServiceDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.ManageServiceCategory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,14 +36,34 @@ public class ManageService extends HttpServlet {
        ArrayList<model.ManageService> manageServices = new ArrayList<>();
        ManageServiceDAO manageServiceDAO = new ManageServiceDAO();
        manageServices = manageServiceDAO.getManageServices();
+       ArrayList<ManageServiceCategory> manageServiceCategory = new ArrayList<>();
+       ManageServiceCategoryDAO manageServiceCategoryDAO = new ManageServiceCategoryDAO();
+       manageServiceCategory = manageServiceCategoryDAO.selectAll();
+        request.setAttribute("manageServiceCategory", manageServiceCategory);
        request.setAttribute("manageServices", manageServices);
-       request.getRequestDispatcher("manage_service.jsp").forward(request, response);
+       request.getRequestDispatcher("Admin/ManageService.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       int id = Integer.parseInt(request.getParameter("type"));
+        ManageServiceDAO manageServiceDAO = new ManageServiceDAO();
+        ArrayList<model.ManageService> manageServices = new ArrayList<>();
+        if(id == -1){
+
+            manageServices = manageServiceDAO.getManageServices();
+            request.setAttribute("manageServices", manageServices);
+        }else{
+            ArrayList<ManageServiceCategory> manageServiceCategory = new ArrayList<>();
+            ManageServiceCategoryDAO manageServiceCategoryDAO = new ManageServiceCategoryDAO();
+            manageServiceCategory = manageServiceCategoryDAO.selectAll();
+            request.setAttribute("manageServiceCategory", manageServiceCategory);
+            manageServices = manageServiceDAO.getManageServicesById(id);
+            request.setAttribute("manageServices", manageServices);
+        }
+        request.setAttribute("subjectId", id);
+        request.getRequestDispatcher("Admin/ManageService.jsp").forward(request, response);
     }
 
     @Override
