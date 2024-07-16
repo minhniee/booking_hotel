@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <!-- Message div -->

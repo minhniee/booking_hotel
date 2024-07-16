@@ -112,7 +112,7 @@ public class UpdateProfile extends HttpServlet {
             return;
         }
 
-        // If validation passes, update the account
+       // // If validation passes, update the account
         AccountDAO dao = new AccountDAO();
         dao.updateAccount(userName, fullName, email, gender, phone, Date.valueOf(dob), address);
 
