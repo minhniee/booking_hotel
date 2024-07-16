@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from duruthemes.com/demo/html/cappa/demo1-light/spa-wellness.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 06:13:19 GMT -->
+<!-- Mirrored from duruthemes.com/demo/html/cappa/demo1-light/${url}/homePage/spa-wellness.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 06:13:19 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -270,7 +270,7 @@
                                     <li><a href="index.jsp">Home</a></li>
                                     <li><a href="rooms2.jsp">Rooms & Suites</a></li>
                                     <li><a href="restaurant.jsp">Restaurant</a></li>
-                                    <li><a href="spa-wellness.jsp">Spa & Wellness</a></li>
+                                    <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>
                                     <li><a href="about.jsp">About Hotel</a></li>
                                     <li><a href="contact.jsp">Contact</a></li>
                                 </ul>

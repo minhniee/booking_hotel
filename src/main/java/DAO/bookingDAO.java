@@ -63,7 +63,7 @@ public class bookingDAO {
                 "      ,[booking_price]\n" +
                 "      ,[booking_date],\n" +
                 "\t  bs.state\n" +
-                "  FROM [booking_hotel_v9].[dbo].[booking] as b\n" +
+                "  FROM [booking] as b\n" +
                 "  join booking_status as bs on bs.booking_id = b.id ";
         ArrayList<Booking> bookings = new ArrayList<>();
         pr = con.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class bookingDAO {
                 "      ,[booking_price]\n" +
                 "      ,[booking_date],\n" +
                 "\t  bs.state\n" +
-                "  FROM [booking_hotel_v9].[dbo].[booking] as b\n" +
+                "  FROM booking as b\n" +
                 "  join booking_status as bs on bs.booking_id = b.id "+
                 "where bs.state = 'pending'";
         ArrayList<Booking> bookings = new ArrayList<>();

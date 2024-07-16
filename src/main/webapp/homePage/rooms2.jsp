@@ -86,7 +86,7 @@
                             <hr class="border-2">
                             <div class="info-wrapper">
                                 <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?rooms=${r.roomClassId}&roomClassName=${r.roomClassName}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                <div class="butn-dark"> <a href="BookingDetail?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}&basePrice=${r.basePrice}" ><span>Book Now</span></a> </div>
+                                <div class="butn-dark"> <a href="BookingDetail?&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}&basePrice=${r.basePrice}" ><span>Book Now</span></a> </div>
                             </div>
                         </div>
                     </div>
@@ -477,7 +477,7 @@
                                     <li><a href="index.jsp">Home</a></li>
                                     <li><a href="rooms2.jsp">Rooms & Suites</a></li>
                                     <li><a href="restaurant.jsp">Restaurant</a></li>
-                                    <li><a href="spa-wellness.jsp">Spa & Wellness</a></li>
+                                    <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>
                                     <li><a href="about.jsp">About Hotel</a></li>
                                     <li><a href="contact.jsp">Contact</a></li>
                                 </ul>

@@ -124,7 +124,6 @@ public class BookingHandle extends HttpServlet {
                 List<Room> rooms = roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1, date2));
 
                 request.setAttribute("rooms", rooms);
-                request.setAttribute("noti", "checkin: " + checkInDate + " checkout: " + checkOutDate + " Day: " + daysBetween);
                 session.setAttribute("nights", daysBetween);
                 session.setAttribute("persons", person);
                 session.setAttribute("adults", adults);
