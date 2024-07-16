@@ -19,10 +19,10 @@ public class getRoomManagerDAO extends DBContext {
               roomManagers.add(new RoomManager(rs.getString(1)
                       ,rs.getString(2)
 
-                      ,rs.getInt(3)
-                      ,rs.getString(4)
-                      ,rs.getInt(5)
-                      ,rs.getString(6)));
+
+                      ,rs.getString(3)
+                      ,rs.getInt(4)
+                      ,rs.getString(5)));
           }
       }catch (Exception e) {}
       return roomManagers;

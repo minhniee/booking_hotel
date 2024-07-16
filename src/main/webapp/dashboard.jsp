@@ -44,9 +44,9 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="listRoomManager">
                 <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
+                <span>Manage room</span>
             </a>
         </li>
         <li>
@@ -61,7 +61,31 @@
                 <span>Settings</span>
             </a>
         </li>
-        <li class="logout">
+        <li>
+            <a href="HistoryBooking">
+                <i class="fas fa-cog"></i>
+                <span>History booking</span>
+            </a>
+        </li>
+        <li>
+            <a href="listRoomManager">
+                <i class="fas fa-cog"></i>
+                <span>Manage room class</span>
+            </a>
+        </li>
+        <li>
+            <a href="listRoomManager">
+                <i class="fas fa-cog"></i>
+                <span>Manage service</span>
+            </a>
+        </li>
+        <li>
+            <a href="listRoomManager">
+                <i class="fas fa-cog"></i>
+                <span>Manage material </span>
+            </a>
+        </li>
+        <li >
             <a href="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Logout</span>
@@ -153,50 +177,6 @@
 
 
 
-<c:choose>
-    <c:when test="${requestScope.status == 'History Lists Room Booking'}">
-        <h3 class="main--title">${requestScope.status}</h3>
-
-        <div class="table-container">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Room ID</th>
-                    <th>Customer ID</th>
-                    <th>Check Date</th>
-                    <th>Checkout Date</th>
-                    <th>Num Child</th>
-                    <th>Num Adults</th>
-                    <th>Booking price</th>
-                    <th>Details</th>
-                </tr>
-                <tbody>
-                <c:forEach items="${requestScope.bookingLists}" var="list">
-                    <tr>
-                        <td>${list.id}</td>
-                        <td>${list.room_id}</td>
-                        <td>${list.customer_id}</td>
-                        <td>${list.checkin_date}</td>
-                        <td>${list.checkout_date}</td>
-                        <td>${list.num_child}</td>
-                        <td>${list.num_adults}</td>
-                        <td>${list.booking_price}</td>
-                        <td>
-
-                            <a href="detailListBooking?id=${list.id}"><button class="fas fa-info-circle"></button></a>
-                        </td>
-
-                    </tr>
-                </c:forEach>
-                </tbody>
-                </thead>
-            </table>
-
-        </div>
-    </c:when>
-</c:choose>
 
 
 

@@ -24,22 +24,25 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Room class</th>
+                <th>Category name</th>
 
-                <th>Name</th>
-                <th>Adult</th>
-                <th>Status</th>
-                <th>Action</th>
-
+                <th>Service name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th></th>
             </tr>
             <tbody>
-            <c:forEach items="${requestScope.list}" var="list">
+            <c:forEach items="${requestScope.manageServices}" var="manageServices">
                 <tr>
-                    <td>${list.id}</td>
-                    <td>${list.room_class}</td>
-                    <td>${list.room_name}</td>
-                    <td>${list.num_ad}</td>
-                    <td>${list.status_name}</td>
+                    <td>${manageServices.id}</td>
+                    <td>${manageServices.category_id}</td>
+                    <td>${manageServices.service_name}</td>
+                    <td>${manageServices.description}</td>
+                    <td>${manageServices.price}</td>
+                    <td>${manageServices.quantity}</td>
+                    <td><img src="Assets/image/services/${manageServices.image}" width="70px"></td>
                     <td>
                         <a href=""><button class="fas fa-edit"></button></a>
                         <a href="detailRoomManager?id=${list.id}&rid=${list.room_class}"><button class="fas fa-info-circle"></button></a>

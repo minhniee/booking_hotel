@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class managerBookingDAO extends DBContext {
     public ArrayList<ManagerBooking> managerBookingList() {
         ArrayList<ManagerBooking> ManagerBooking = new ArrayList<ManagerBooking>();
-        String sql = "select id, room_id, customer_id, checkin_date, checkout_date, num_child, num_adults, booking_price from booking";
+        String sql = "  select id, room_id, account_id, checkin_date, checkout_date, num_child, num_adults, booking_price from booking\n";
         try {
             PreparedStatement stm = getConnection().prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                ManagerBooking.add(new ManagerBooking(rs.getString(1)
+                ManagerBooking.add(new ManagerBooking(rs.getInt(1)
                         ,rs.getString(2)
                         ,rs.getInt(3)
                         ,rs.getDate(4)
