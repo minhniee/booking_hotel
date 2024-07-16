@@ -1,21 +1,25 @@
 package model;
 
-public class CartItem {
+public class BillDetailService {
     private int id;
-    private int cartId;
+    private int billServiceId;
     private String serviceId;
     private int quantity;
-    private Service service;
 
-    public CartItem() {
+    public BillDetailService() {
     }
 
-    public CartItem(int id, int cartId, String serviceId, int quantity, Service service) {
-        this.id = id;
-        this.cartId = cartId;
+    public BillDetailService(int billServiceId, String serviceId, int quantity) {
+        this.billServiceId = billServiceId;
         this.serviceId = serviceId;
         this.quantity = quantity;
-        this.service = service;
+    }
+
+    public BillDetailService(int id, int billServiceId, String serviceId, int quantity) {
+        this.id = id;
+        this.billServiceId = billServiceId;
+        this.serviceId = serviceId;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -26,12 +30,12 @@ public class CartItem {
         this.id = id;
     }
 
-    public int getCartId() {
-        return cartId;
+    public int getBillServiceId() {
+        return billServiceId;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public void setBillServiceId(int billServiceId) {
+        this.billServiceId = billServiceId;
     }
 
     public String getServiceId() {
@@ -48,13 +52,5 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
     }
 }
