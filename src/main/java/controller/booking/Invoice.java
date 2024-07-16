@@ -5,6 +5,7 @@
 package controller.booking;
 
 import DAO.bookingDAO;
+import DAO.paymentDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
 import model.Booking;
+import model.Payment;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -97,6 +99,8 @@ public class Invoice extends HttpServlet {
             bookingDAO bookingDao = new bookingDAO();
             bookingDao.insertBooking(booking);
             bookingDao.stateBooking(bookingId);
+            Payment payment = new Payment(bookingId,priceValue,Date.valueOf(String.valueOf(localDate)),1);
+             new paymentDAO().insertPayment(payment);
             request.setAttribute("noti", "Add successful");
             request.setAttribute("vnp_TxnRef", vnp_TxnRef);
             request.setAttribute("invoiceDate", invoiceDate);
