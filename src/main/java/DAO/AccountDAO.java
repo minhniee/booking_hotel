@@ -46,7 +46,7 @@ public class AccountDAO extends MyDAO{
     public void addVerificationCode(String userName, String verificationCode) throws SQLException {
         String query = "UPDATE account SET key1 = ?, confirm = 0 WHERE user_name = ?";
         try (
-             PreparedStatement ps = con.prepareStatement(query)) {
+                PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, verificationCode);
             ps.setString(2, userName);
             ps.executeUpdate();
@@ -56,7 +56,7 @@ public class AccountDAO extends MyDAO{
     public boolean verifyCode(String userName, String verificationCode) throws SQLException {
         String query = "SELECT * FROM account WHERE user_name = ? AND key1 = ? AND confirm = 0";
         try (
-             PreparedStatement ps = con.prepareStatement(query)) {
+                PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, userName);
             ps.setString(2, verificationCode);
 
@@ -75,7 +75,58 @@ public class AccountDAO extends MyDAO{
         }
         return false;
     }
+    public void updatePassword(String id, String newPassword) {
+        String sql = "UPDATE account SET password = ? WHERE id = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, newPassword);
+            ps.setString(2, id);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("No account found with the provided ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating password: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void register(String username, String password, String fullname, String address, String gender, String email, String phone, String dob, String role) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be null or empty");
+        }
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
+        if (fullname == null || fullname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Full name cannot be null or empty");
+        }
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (role == null || role.trim().isEmpty()) {
+            throw new IllegalArgumentException("Role cannot be null or empty");
+        }
+        if (gender == null || gender.trim().isEmpty()) {
+            throw new IllegalArgumentException("Gender cannot be null or empty");
+        }
+        if (phone == null || phone.trim().isEmpty()) {
+            throw new IllegalArgumentException("Phone cannot be null or empty");
+        }
+        if (dob == null || dob.trim().isEmpty()) {
+            throw new IllegalArgumentException("Date of birth cannot be null or empty");
+        }
+        if (address == null || address.trim().isEmpty()) {
+            throw new IllegalArgumentException("Address cannot be null or empty");
+        }
+
         String sql = "INSERT INTO account (id, user_name, password, full_name, email, role, gender, phone, dob, address) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
@@ -97,38 +148,73 @@ public class AccountDAO extends MyDAO{
         }
     }
 
-    public Account checkAccountExist(String username) {
+
+    public Account checkAccountExist(String userName) {
         String sql = "SELECT * FROM Account WHERE user_name = ?";
-        int check = 0;
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, username);
+            ps.setString(1, userName);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Account a = new Account();
-                a.setUserName(rs.getString(2));
+                a.setId(rs.getString("id"));
+                a.setUserName(rs.getString("user_name"));
+                a.setPassword(rs.getString("password"));
+                a.setFullName(rs.getString("full_name"));
+                a.setEmail(rs.getString("email"));
+                a.setRole(rs.getString("role"));
+                a.setGender(rs.getBoolean("gender"));
+                a.setPhone(rs.getString("phone"));
+                a.setAddress(rs.getString("address"));
+                a.setDob(rs.getDate("dob"));
                 return a;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
+
     public Account checkEmailExist(String email) {
         String sql = "SELECT * FROM Account WHERE email = ?";
-        int check = 0;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Account a = new Account();
-                a.setEmail(rs.getString(5));
+                a.setId(rs.getString("id"));
+                a.setUserName(rs.getString("user_name"));
+                a.setPassword(rs.getString("password"));
+                a.setFullName(rs.getString("full_name"));
+                a.setEmail(rs.getString("email"));
+                a.setRole(rs.getString("role"));
+                a.setGender(rs.getBoolean("gender"));
+                a.setPhone(rs.getString("phone"));
+                a.setAddress(rs.getString("address"));
+                a.setDob(rs.getDate("dob"));
                 return a;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
+
     public boolean checkConfirm(String username) {
         String sql = "SELECT confirm FROM account WHERE user_name = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {

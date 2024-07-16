@@ -58,6 +58,7 @@ public class Register extends HttpServlet {
         try {
             Email emailObj = new Email(); // Assuming you have a constructor for your Email class
             String verificationCode = UUID.randomUUID().toString().substring(0, 8);
+            System.out.println("user name: "+userName);
             aDAO.register(userName,  password,  fullName,  address,  gender,  email,  phone,  birthdate,  "customer");
             aDAO.addVerificationCode(userName, verificationCode);
             String link = "http://localhost:8080/Booking_Hotell/verify?key1=" + verificationCode + "&userName=" + userName;

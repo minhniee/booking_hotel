@@ -157,6 +157,10 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                    <div class="mt-5 text-center">
+                        <a href="${url}/user/changePass.jsp" class="btn btn-primary profile-button">Change Password</a>
+                    </div>
+
 
                 </div>
             </form>

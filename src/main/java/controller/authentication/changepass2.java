@@ -1,15 +1,19 @@
 package controller.authentication;
 
 import DAO.AccountDAO;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ResetPass", value = "/resetpass")
-public class ResetPass extends HttpServlet {
+@WebServlet(name = "changepass2", value = "/changepass2")
+public class changepass2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,20 +34,20 @@ public class ResetPass extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.getRequestDispatcher("resetpass.jsp").forward(request, response);
+        request.getRequestDispatcher("resetpass2.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        AccountDAO aDAO = new AccountDAO();
-        if (aDAO.checkEmailExist(email) != null) {
-            request.setAttribute("msg_Username", "Email exists");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-            return;
-        }
-
+        String pass= request.getParameter("password");
+        HttpSession ss= request.getSession();
+        String email= (String) ss.getAttribute("email");
+        AccountDAO adao= new AccountDAO();
+        Account acc= adao.checkEmailExist(email);
+        adao.updatePassword(acc.getId(), pass);
+        request.setAttribute("msg","Reset password successfully!");
+        request.getRequestDispatcher("resetpass2.jsp").forward(request,response);
     }
 
     @Override

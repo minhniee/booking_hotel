@@ -73,29 +73,13 @@
                         <p id='message'>
                             Congratulations, you have successfully registered an account.
                         </p>
-                        <a href="#" id="contBtn">Back to login</a>
+                        <a href="login.jsp" id="contBtn">Back to login</a>
                     </div>
                 </div>
                 <!-- partial -->
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById("contBtn").addEventListener("click", function(event) {
-            event.preventDefault(); // Chặn hành vi mặc định của thẻ <a> (chuyển hướng đến một trang khác)
-
-            // Tạo dữ liệu gửi đến servlet register
-            var params = "back";
-
-            // Gửi yêu cầu đến servlet register
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "register", true); // Thay "register" bằng URL của servlet register
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(params); // Gửi yêu cầu với các tham số
-            // Chuyển hướng người dùng đến trang login
-            window.location.href = "login.jsp";
-        });
-    </script>
 </section>
 <!-- Analytics -->
 </body>
