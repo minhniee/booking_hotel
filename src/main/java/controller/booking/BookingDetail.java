@@ -6,6 +6,7 @@ package controller.booking;
 
 import DAO.bookingDAO;
 import DAO.roomDAO;
+import jakarta.mail.Session;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -76,46 +77,26 @@ public class BookingDetail extends HttpServlet {
         if (object == null) {
             response.sendRedirect("login.jsp");
         } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-            ArrayList<Room> room = new ArrayList();
-            String checkInDate = request.getParameter("checkInDate");
-            String checkOutDate = request.getParameter("checkOutDate");
+            String checkInDate = session.getAttribute("checkInDate").toString();
+            String checkOutDate = session.getAttribute("checkOutDate").toString();
             String roomClassName = request.getParameter("roomClassName");
             String roomClassId = request.getParameter("roomClassId");
-            String persons = request.getParameter("persons");
-            String nights = request.getParameter("nights");
-            String adults = request.getParameter("adults");
-            String children = request.getParameter("children");
-            String earlyBirdDays = request.getParameter("earlyBirdDays");
+            String basePrice = request.getParameter("basePrice");
             String total = request.getParameter("total");
 
-            /*
-             * for test data
-             *
-             *
-             *
-             */
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate checkInDatep = LocalDate.parse(checkInDate, dtf);
             LocalDate checkOutDatep = LocalDate.parse(checkOutDate, dtf);
 
+            // get room available
             List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDatep, checkOutDatep, roomClassId);
             String roomId = availableRooms.stream().findFirst().get();
 
-//            session.setAttribute("checkInDate", checkInDate);
-//            session.setAttribute("checkOutDate", checkOutDate);
             session.setAttribute("roomClassName", roomClassName);
-//            session.setAttribute("persons", persons);
-//            session.setAttribute("nights", nights);
-//            session.setAttribute("earlyBirdDays", earlyBirdDays);
+            session.setAttribute("basePrice",basePrice);
             session.setAttribute("total", (long) Double.parseDouble(total));
-//            session.setAttribute("adults", adults);
-//            session.setAttribute("children", children);
             session.setAttribute("roomId", roomId);
-//            session.setAttribute("basePrice", basePrice);
-//            session.setAttribute("location", location);
-//            session.setAttribute("currenRoom", currenRoom);
             request.getRequestDispatcher("booking-old/booking.jsp").forward(request, response);
         }
     }

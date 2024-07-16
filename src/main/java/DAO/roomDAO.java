@@ -329,10 +329,10 @@ public class roomDAO {
         roomDAO r = new roomDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-        LocalDate currentDate =LocalDate.parse("07/04/2024", formatter);
-        LocalDate currentDate2 = LocalDate.parse("07/13/2024", formatter);
+        LocalDate currentDate =LocalDate.parse("07/21/2024", formatter);
+        LocalDate currentDate2 = LocalDate.parse("07/29/2024", formatter);
                 ;
-        List<String> availableRooms = r.checkAllRoomsStatusByClassId(currentDate,currentDate2,"EXS");
+        List<String> availableRooms = r.checkAllRoomsStatusByClassId(currentDate,currentDate2,"DE");
 
         System.out.println( availableRooms.stream().findFirst().get());
         System.out.println(availableRooms.get(0));

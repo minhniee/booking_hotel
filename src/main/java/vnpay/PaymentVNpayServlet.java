@@ -45,25 +45,19 @@ public class PaymentVNpayServlet extends HttpServlet {
             response.sendRedirect("index");
         } else {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//            String location = request.getParameter("location");
             String prefixId = "";
-//            String payment = request.getParameter("paymentMethod");
-//            String account_id = request.getParameter("accountid");
+            String account_id = request.getParameter("accountid");
             String checkinDateParam = session.getAttribute("checkInDate").toString();
             String checkoutDateParam = session.getAttribute("checkOutDate").toString();
             String childrenParam = request.getParameter("children");
             String adultsParam = request.getParameter("adults");
-            String roomClassId = request.getParameter("roomClassId");
-
-//            String roomId = request.getParameter("roomId");
-//            String price = request.getParameter("price");
+            String roomId = session.getAttribute("roomId").toString();
 
             LocalDate checkInDate = LocalDate.parse(checkinDateParam, dtf);
             LocalDate checkOutDate = LocalDate.parse(checkoutDateParam, dtf);
-
-            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDate,checkOutDate,roomClassId);
-            String roomId = availableRooms.stream().findFirst().get();
-
+            System.out.println(checkInDate);
+            System.out.println(checkOutDate);
+            System.out.println(roomId);
 
 
             String bookingID = prefixId + generateUniqueKey();
@@ -76,7 +70,7 @@ public class PaymentVNpayServlet extends HttpServlet {
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";
             String orderType = "billpayment";
-            long amount = cost * 1000 ;
+            long amount = cost * 23000 * 100 ;
             String bankCode = "";
 
             String vnp_TxnRef = Config.getRandomNumber(8);
@@ -159,8 +153,8 @@ public class PaymentVNpayServlet extends HttpServlet {
 //            request.setAttribute("roomId", roomId);
 //            request.setAttribute("price", price);
 
+            session.setAttribute("cost", cost);
             session.setAttribute("bookingID", bookingID);
-//            session.setAttribute("accountid", account_id);
             session.setAttribute("checkInDate", checkinDateParam);
             session.setAttribute("checkOutDate", checkoutDateParam);
             session.setAttribute("children", childrenParam);

@@ -38,7 +38,7 @@
             <div class="col-sm-7 text-center text-sm-start"> <img id="logo" src="images/logo.png" title="Koice" alt="Koice" /> </div>
             <div class="col-sm-5 text-center text-sm-end">
                 <h4 class="mb-0">Invoice</h4>
-                <p class="mb-0">Invoice Number - 16835</p>
+                <p class="mb-0">Invoice Number - ${vnp_TxnRef}</p>
             </div>
         </div>
         <hr>
@@ -47,8 +47,8 @@
     <!-- Main Content -->
     <main>
         <div class="row">
-            <div class="col-sm-6 mb-3"> <strong>Guest Name:</strong> <span>Smith Rhodes</span> </div>
-            <div class="col-sm-6 mb-3 text-sm-end"> <strong>Booking Date:</strong> <span>07/11/2020</span> </div>
+            <div class="col-sm-6 mb-3"> <strong>Full Name:</strong> <span>${account.fullName}</span> </div>
+            <div class="col-sm-6 mb-3 text-sm-end"> <strong>Booking Date:</strong> <span>${invoiceDate}</span> </div>
         </div>
         <hr class="mt-0">
         <div class="row">
@@ -112,15 +112,15 @@
             <table class="table border border-top-0 mb-0">
                 <tr class="bg-light">
                     <td colspan="2" class="text-end"><strong>Sub Total:</strong></td>
-                    <td class="col-sm-2 text-end">$400.00</td>
+                    <td class="col-sm-2 text-end">$${basePrice* nights}.00</td>
                 </tr>
                 <tr class="bg-light">
-                    <td colspan="2" class="text-end"><strong>Tax:</strong></td>
-                    <td class="col-sm-2 text-end">$40.00</td>
+                    <td colspan="2" class="text-end"><strong>Tax(10%):</strong></td>
+                    <td class="col-sm-2 text-end">$${basePrice* nights*0.1}.00</td>
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end border-bottom-0"><strong>Total:</strong></td>
-                    <td class="col-sm-2 text-end border-bottom-0">$440.00</td>
+                    <td class="col-sm-2 text-end border-bottom-0">$${basePrice* nights*0.1+basePrice* nights}.00</td>
                 </tr>
             </table>
         </div>
@@ -139,6 +139,6 @@
     </footer>
 </div>
 <!-- Back to My Account Link -->
-<p class="text-center d-print-none"><a href="#">&laquo; Back to My Account</a></p>
+<p class="text-center d-print-none"><a href="${url}user/user_profile.jsp">&laquo; Back to My Account</a></p>
 </body>
 </html>

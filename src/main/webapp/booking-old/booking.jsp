@@ -106,7 +106,6 @@
     <div class="section">
 
         <h3>Room 1</h3>
-<%--        <h4>Location: ${location}</h4>--%>
         <p><strong id="room1-type">${roomType}</strong></p>
         <p><span id="room1-adults">${persons}</span> adults</p>
         <p>Bedding options: <span id="room1-bedding">${roomType}</span></p>
@@ -130,7 +129,7 @@
 
 
     <div class="section">
-<%--        <c:set var="user" value="${sessionScope.account}"/>--%>
+        <c:set var="user" value="${sessionScope.account}"/>
         <p>Infomation</p>
 
         <input type="text" value="${user.fullName}" readonly>
@@ -141,51 +140,29 @@
         <input type="text" value="${user.address}" readonly>
     </div>
 
-    <%--<form action="BookingDetail" method="post">
-    <div class="section">
-        <p><strong>Payment method</strong></p>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="paymentMethod" value="banking" id="flexRadioDefault1" checked>
-            <label class="form-check-label" for="flexRadioDefault1">
-                Banking
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="paymentMethod" value="banktransfer" id="flexRadioDefault2">
-            <label class="form-check-label" for="flexRadioDefault2">
-                Bank Transfer
-            </label>
-        </div>
-    </div> --%>
-
     <div class="section">
         <p><strong>Cancellable, modifiable</strong></p>
         <p>This offer can be cancelled or modified free of charge before <span id="cancellation-deadline">[Cancellation Deadline]</span>.
         </p>
     </div>
 
-    <%--        <form action="BookingDetail" method="POST">--%>
     <div class="section">
-        <form action="Invoice" method="POST">
+        <form action="paymentvnpay" method="POST">
             <p>This offer can be cancelled or modified free of charge before 11 June 2024, 00:00 (UTC+07:00).In case of
                 cancellation after this date, a penalty of 100% of first night will apply (₫1,914,063).In case of
                 no-show, a
                 penalty of 100% will apply.
                 By choosing to book, I acknowledge having read and agreed to the terms and conditions.</p>
-<%--            <input type="hidden" value="${location}" name="location">--%>
-<%--            <input type="hidden" value="${user.id}" name="accountid">--%>
             <input type="hidden" value="${checkInDate}" name="checkInDate">
             <input type="hidden" value="${checkOutDate}" name="checkOutDate">
             <input type="hidden" value="${children}" name="children">
             <input type="hidden" value="${adults}" name="adults">
             <input type="hidden" value="${total}" name="price">
-            <input type="hidden" name="roomId" value="L2001">
+            <input type="hidden" value="${user.id}" name="accountid">
 
             <button class="btn btn-primary" id="book-button" type="submit">booking</button>
         </form>
 
-        <%--            <button class="btn btn-primary" id="book-button" type="submit">booking</button>--%>
     </div>
     <%--        </form>--%>
     <%--        <button id="submitButton" type="button"   >Submit</button>--%>
