@@ -1,41 +1,42 @@
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
-        <%@ page contentType="text/html; ISO-8859-1" language="java" %>
+<%@ page contentType="text/html; ISO-8859-1" language="java" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>The Cappa Luxury Hotel</title>
-    <link rel="shortcut icon" href="${url}/Assets1/img/favicon.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
-    <link rel="stylesheet" href="${url}/Assets1/css/plugins.css" />
-    <link rel="stylesheet" href="${url}/Assets1/css/style.css" />
+    <link rel="shortcut icon" href="${url}/Assets1/img/favicon.png"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
+    <link rel="stylesheet" href="${url}/Assets1/css/plugins.css"/>
+    <link rel="stylesheet" href="${url}/Assets1/css/style.css"/>
 </head>
 
 <body>
 
 <!-- Preloader -->
-<div class="preloader-bg"></div>
-<div id="preloader">
-    <div id="preloader-status">
-        <div class="preloader-position loader"> <span></span> </div>
-    </div>
-</div>
+<%--<div class="preloader-bg"></div>--%>
+<%--<div id="preloader">--%>
+<%--    <div id="preloader-status">--%>
+<%--        <div class="preloader-position loader"> <span></span> </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <!-- Progress scroll totop -->
 <div class="progress-wrap cursor-pointer">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
     </svg>
 </div>
 <!-- Navbar -->
-<%@include file="../homePage/navbar.jsp"%>
-<div class="banner-header full-height section-padding valign bg-img bg-fixed" data-overlay-dark="4" data-background="${url}/Assets1/img/slider/3.jpg">
+<%@include file="../homePage/navbar.jsp" %>
+<div class="banner-header full-height section-padding valign bg-img bg-fixed" data-overlay-dark="4"
+     data-background="${url}/Assets1/img/slider/3.jpg">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -49,7 +50,8 @@
                         </span>
                     <h4>Unique Place to Relax & Enjoy</h4>
                     <h3>The Perfect Base For You</h3>
-                    <div class="butn-light mt-30 mb-30"> <a href="#" data-scroll-nav="2"><span>Rooms & Suites</span></a> </div>
+                    <div class="butn-light mt-30 mb-30"><a href="#" data-scroll-nav="2"><span>Rooms & Suites</span></a>
+                    </div>
                 </div>
             </div>
             <!-- Booking form -->
@@ -85,36 +87,34 @@
                 background-color: #f5f5f5;
             }
         </style>
-
-        <table class="tab-content">
+        <table>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Room</th>
-                <th>Checkin date</th>
-                <th>Checkout date</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
                 <th>State</th>
                 <th>Detail</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="booking" items="${data}" >
-
-                    <tr>
-<%--                        <td>${loop.index + 1}</td>--%>
-                        <td>${booking.roomId}</td>
-                        <td>${booking.checkInDate}</td>
-                        <td>${booking.checkOutDate}</td>
-                        <td>${booking.bookingState}</td>
-                        <!-- Trường ẩn chứa bookingID -->
-                        <td>
-                            <form action="${pageContext.request.contextPath}/bookingDetail" method="post">
-                                <input type="hidden" name="bookingID" value="${booking.id}">
-                                <button type="submit" class="btn btn-primary">Detail</button>
-                            </form>
-                        </td>
-                    </tr>
+            <c:forEach var="b" items="${requestScope.data}">
+                <tr>
+                    <td>${b.id}</td>
+                    <td>${b.roomId}</td>
+                    <td><fmt:formatDate value="${b.checkInDate}" pattern="yyyy-MM-dd" />${b.checkInDate}</td>
+                    <td><fmt:formatDate value="${b.checkOutDate}" pattern="yyyy-MM-dd" />${b.checkOutDate}</td>
+                    <td>${b.bookingState}</td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/bookingDetail" method="post">
+                            <input type="hidden" name="bookingID" value="${b.id}">
+                            <button type="submit" class="btn btn-primary">Detail</button>
+                        </form>
+                    </td>
+                </tr>
             </c:forEach>
+<<<<<<< HEAD
             <tr>
                 <td>1</td>
                 <td>2</td>
@@ -122,13 +122,15 @@
                 <td>4</td>
                 <td>5</td>
             </tr>
+=======
+>>>>>>> 9042792de0aa8e9bc7c52c0db40bb9efb5b5dafd
             </tbody>
         </table>
+
 
     </div>
 </div>
 <!-- Process Start -->
-
 
 
 <%--<%@include file="Component/Footer.jsp" %>--%>
