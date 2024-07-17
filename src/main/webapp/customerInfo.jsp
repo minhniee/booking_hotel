@@ -48,7 +48,7 @@
         <table class="customer-table">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Full Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Gender</th>

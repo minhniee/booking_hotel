@@ -24,8 +24,21 @@ public class CustomerDAO {
 
             connection = new DBContext().getConnection();
             if (connection != null) {
-                String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address "
-                        + "FROM Customer c JOIN account a ON c.account_id = a.id";
+//                String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address "
+//                        + "FROM Customer c JOIN account a ON c.account_id = a.id";
+
+                String sql ="SELECT \n" +
+                        "    c.id \n" +
+                        "    a.full_name,\n" +
+                        "    a.email,\n" +
+                        "    a.phone,\n" +
+                        "    a.gender,\n" +
+                        "    a.dob,\n" +
+                        "    a.address\n" +
+                        "FROM \n" +
+                        "    Customer c\n" +
+                        "JOIN \n" +
+                        "    account a ON c.account_id = a.id;\n";
                 statement = connection.prepareStatement(sql);
                 resultSet = statement.executeQuery();
 
