@@ -88,7 +88,11 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,4 +104,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

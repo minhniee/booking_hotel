@@ -2,20 +2,21 @@ package DAO;
 
 import context.DBContext;
 import model.Account;
+import model.ManageAccount;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class setAccountDAO extends DBContext {
-    public Account getAccountById(String id){
-       String sql = "select * from account where id = ? ";
+    public ManageAccount getAccountById(String id){
+       String sql = "select id, user_name, password, full_name, email, role, gender, phone, dob, address, confirm from account where id = ? ";
        try {
            PreparedStatement stm = getConnection().prepareStatement(sql);
            stm.setString(1, id);
            ResultSet rs = stm.executeQuery();
            while (rs.next()){
-               return new Account(rs.getString(1)
+               return new ManageAccount(rs.getString(1)
                        ,rs.getString(2)
                        , rs.getString(3)
                        ,rs.getString(4)
@@ -24,7 +25,8 @@ public class setAccountDAO extends DBContext {
                        ,rs.getBoolean(7)
                        ,rs.getString(8)
                        ,rs.getDate(9)
-                       ,rs.getString(10));
+                       ,rs.getString(10)
+                       ,rs.getBoolean(11));
            }
        }catch (Exception e) {
 
@@ -32,7 +34,7 @@ public class setAccountDAO extends DBContext {
 
      return null;
     }
-    public void updateAccount(String username, String password, String fullname, String email, String role, boolean gender, String phone, Date date,String address, String id){
+    public void updateAccount(String username, String password, String fullname, String email, String role, boolean gender, String phone, Date date,String address, boolean confirm, String id){
       String sql = "UPDATE [dbo].[account]\n" +
               "   SET [user_name] = ?\n" +
               "      ,[password] = ?\n" +
@@ -43,6 +45,7 @@ public class setAccountDAO extends DBContext {
               "      ,[phone] = ?\n" +
               "      ,[dob] = ?\n" +
               "      ,[address] = ?\n" +
+              "      ,[confirm] = ?\n" +
               " WHERE id = ?";
            try {
                PreparedStatement stm = getConnection().prepareStatement(sql);
@@ -55,7 +58,8 @@ public class setAccountDAO extends DBContext {
                stm.setString(7, phone);
                stm.setDate(8, date);
                stm.setString(9, address);
-               stm.setString(10, id);
+               stm.setBoolean(10, confirm);
+               stm.setString(11, id);
                stm.executeUpdate();
            }catch (Exception e) {}
 

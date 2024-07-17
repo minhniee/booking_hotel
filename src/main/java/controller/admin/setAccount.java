@@ -5,6 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Account;
+import model.ManageAccount;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +35,7 @@ public class setAccount extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         setAccountDAO dao = new setAccountDAO();
-        Account account = dao.getAccountById(id);
+        ManageAccount account = dao.getAccountById(id);
         request.setAttribute("account", account);
         request.getRequestDispatcher("setAccount.jsp").forward(request, response);
 
@@ -53,9 +54,12 @@ public class setAccount extends HttpServlet {
        boolean gender = request.getParameter("gender").equals("Male");
        String fullname = request.getParameter("fullname");
        String role = request.getParameter("role");
+       boolean confirmed = request.getParameter("confirm").equals("True");
        try {
             setAccountDAO dao = new setAccountDAO();
-            dao.updateAccount(username,password,fullname,email,role,gender,phone,java.sql.Date.valueOf(dob),address,id );
+            dao.updateAccount(username,password,fullname,email,role,gender,phone,java.sql.Date.valueOf(dob),address,confirmed,id );
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Successfully updated");
             response.sendRedirect("listAccount");
        }catch (Exception e) {}
     }
