@@ -80,7 +80,7 @@ public class bookingDAO {
             String accountId = rs.getString("account_id");
             Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
-            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate, bookingStatus);
             bookings.add(b);
         }
         return bookings;
@@ -101,7 +101,7 @@ public class bookingDAO {
                 "      ,[booking_date],\n" +
                 "\t  bs.state\n" +
                 "  FROM booking as b\n" +
-                "  join booking_status as bs on bs.booking_id = b.id "+
+                "  join booking_status as bs on bs.booking_id = b.id " +
                 "where bs.state = 'pending'";
         ArrayList<Booking> bookings = new ArrayList<>();
         pr = con.prepareStatement(sql);
@@ -118,7 +118,7 @@ public class bookingDAO {
             String accountId = rs.getString("account_id");
             Date bookingDate = rs.getDate("booking_date");
             String bookingStatus = rs.getString("state");
-            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
+            Booking b = new Booking(id, roomId, checkInDate, checkOutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate, bookingStatus);
             bookings.add(b);
         }
         return bookings;
@@ -131,10 +131,10 @@ public class bookingDAO {
             String sql = "UPDATE booking_status set state=? where booking_id =? ";
 
             pr = con.prepareStatement(sql);
-            if (action.equals("reject")){
-            pr.setString(1, "cancelled");
-            }else if(action.equals("confirm")) {
-            pr.setString(1, "confirmed");
+            if (action.equals("reject")) {
+                pr.setString(1, "cancelled");
+            } else if (action.equals("confirm")) {
+                pr.setString(1, "confirmed");
             }
             pr.setString(2, bookingId);
             pr.executeUpdate();
@@ -147,12 +147,20 @@ public class bookingDAO {
 
     public static void main(String[] args) throws SQLException {
         ArrayList<Booking> bookings = new bookingDAO().GetAllBookings();
+        ArrayList<Booking> bookings2 = new ArrayList<>();
+
         int count = 0;
         for (Booking a : bookings) {
-            System.out.println(a.toString());
+            if (a.getAccountId().equals("123")) {
+                bookings2.add(a);
+                System.out.println(a.toString());
+//            }
+                System.out.println("========================");
+//        System.out.println(bookings2.get(0).getAccountId().equals("123"));
+
+            }
         }
-//        new bookingDAO().confirmBooking("F877D5065A54","confirm");
-
-
     }
 }
+
+

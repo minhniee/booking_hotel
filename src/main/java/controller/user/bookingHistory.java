@@ -30,32 +30,46 @@ public class bookingHistory extends HttpServlet {
             out.println("</html>");
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Get the session and account information
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
 
-        bookingDAO bookingdao = new bookingDAO();
-        ArrayList<Booking> bookinglist = new ArrayList<>();
+        // Check if the account is null
+        if (account == null) {
+            // If account is null, redirect to the login page or handle the error appropriately
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        // Initialize DAO and booking list
+        bookingDAO bookingDAO = new bookingDAO();
         ArrayList<Booking> data = new ArrayList<>();
 
         try {
-            bookinglist = bookingdao.GetAllBookings();
-            for (Booking booking : bookinglist) {
-                if (booking.getAccountId()==account.getId()) {
+            // Retrieve all bookings from the DAO
+            ArrayList<Booking> bookingList = bookingDAO.GetAllBookings();
+
+            // Filter bookings based on the account ID
+            for (Booking booking : bookingList) {
+                if (booking.getAccountId().equals(account.getId())) {
                     data.add(booking);
                 }
             }
-            // In dữ liệu bookinglist ra console
+
+            // Set the filtered booking data as a request attribute
+            request.setAttribute("data", data);
         } catch (SQLException e) {
+            // Handle SQL exceptions
             throw new RuntimeException(e);
         }
 
-        request.setAttribute("data", data);
+        // Forward the request to the booking history JSP page
         request.getRequestDispatcher("/user/booking_history.jsp").forward(request, response);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
