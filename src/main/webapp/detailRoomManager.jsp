@@ -42,10 +42,10 @@
     <tr>
         <td>${detail.name}</td>
         <td>${detail.price}</td>
-        <td><img src="Assets/image/room/${detail.image}" width=60%"></td>
+        <td><img src="Assets1/img/rooms/${detail.image}" height="200px" width="300px" "></td>
         <td>
             <c:forEach items="${requestScope.roomImages}" var="roomImages">
-                <img src="Assets/image/demoRoom/${roomImages.image}" width=30%">
+                <img src="Assets/image/demoRoom/${roomImages.image}" height="200px" width="300px">
                 <a href="UpdateImageRoom?id=${roomImages.id}&room_id=${room_id}&room_class_id=${detail.id}"><button class="fas fa-edit"></button></a>
 
             </c:forEach>

@@ -1,6 +1,7 @@
 package DAO;
 
 import context.DBContext;
+import controller.admin.ManageRoomClass;
 import model.RoomClass;
 
 import java.sql.PreparedStatement;
@@ -98,4 +99,11 @@ public class ManageRoomClassDAO extends DBContext {
         }
         return list;
     }
+
+//    public static void main(String[] args) {
+//        ArrayList<RoomClass> r = new ManageRoomClassDAO().getRoomClassList();
+//        for (RoomClass roomClass : r) {
+//            System.out.println(roomClass.getMainImage());
+//        }
+//    }
 }

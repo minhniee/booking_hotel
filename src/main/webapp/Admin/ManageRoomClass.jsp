@@ -10,8 +10,8 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Assets/css/listAccount.css">
-    <link rel="stylesheet" href="Assets/css/notification.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/listAccount.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/notification.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -58,7 +58,7 @@
 
                     <td>${roomClasses.basePrice}</td>
 
-                    <td><img src="Assets/image/room/${roomClasses.mainImage}" width="120px"></td>
+                    <td><img src="${pageContext.request.contextPath}/Assets1/img/rooms/${roomClasses.mainImage}" width="120px"></td>
                     <td>
                         <a href="UpdateRoomClass?id=${roomClasses.id}"><button class="fas fa-edit"></button></a>
                         <a href="UpdateImageRoomClass?id=${roomClasses.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>

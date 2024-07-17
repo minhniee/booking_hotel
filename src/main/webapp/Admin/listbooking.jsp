@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="url"
+       value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <%--
   Created by IntelliJ IDEA.
   User: minhl
@@ -14,18 +16,23 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
         <title>List Booking</title>
         <!-- General CSS Files -->
-        <link rel="stylesheet" href="Assets/assets/css/app.min.css">
+        <link rel="stylesheet" href="${url}/Assets/assets/css/app.min.css">
         <!-- Template CSS -->
-        <link rel="stylesheet" href="Assets/assets/css/style.css">
-        <link rel="stylesheet" href="Assets/assets/css/components.css">
+        <link rel="stylesheet" href="${url}/Assets/assets/css/style.css">
+        <link rel="stylesheet" href="${url}/Assets/assets/css/components.css">
         <!-- Custom style CSS -->
-        <link rel="stylesheet" href="Assets/assets/css/custom.css">
-        <link rel='shortcut icon' type='image/x-icon' href='Assets/assets/img/favicon.ico'/>
+        <link rel="stylesheet" href="${url}/Assets/assets/css/custom.css">
+        <link rel='shortcut icon' type='image/x-icon' href='${url}/Assets/assets/img/favicon.ico'/>
     </head>
 </head>
 <body>
 
+
 <div class="row">
+    <div class="col-2">
+        d
+<%--        <jsp:include page="dashBoardAdmin.jsp"/>--%>
+    </div>
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -77,52 +84,52 @@
                                     <c:set var="i" value="0"/>
                                     <c:forEach var="l" items="${listBooking}">
 
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">
-                                            ${i+1}
-                                        </td>
-                                        <td>${l.id}</td>
-                                        <td>${l.roomId}</td>
-                                        <td>${l.bookingDate}</td>
-                                        <td>${l.bookingPrice}</td>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                    ${i+1}
+                                            </td>
+                                            <td>${l.id}</td>
+                                            <td>${l.roomId}</td>
+                                            <td>${l.bookingDate}</td>
+                                            <td>${l.bookingPrice}</td>
 
-                                        <c:choose>
-                                            <c:when test="${l.bookingState eq 'pending' }">
-                                                <td>
-                                                    <div class="badge badge-warning badge-shadow">Pending</div>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${l.bookingState eq 'confirmed' }">
-                                                <td>
-                                                    <div class="badge badge-success badge-shadow">Confirmed</div>
-                                                </td>
-                                            </c:when>
-                                            <c:when test="${l.bookingState eq 'cancelled' }">
-                                                <td>
-                                                    <div class="badge badge-danger badge-shadow">Cancelled</div>
-                                                </td>
-                                            </c:when>
-                                        </c:choose>
+                                            <c:choose>
+                                                <c:when test="${l.bookingState eq 'pending' }">
+                                                    <td>
+                                                        <div class="badge badge-warning badge-shadow">Pending</div>
+                                                    </td>
+                                                </c:when>
+                                                <c:when test="${l.bookingState eq 'confirmed' }">
+                                                    <td>
+                                                        <div class="badge badge-success badge-shadow">Confirmed</div>
+                                                    </td>
+                                                </c:when>
+                                                <c:when test="${l.bookingState eq 'cancelled' }">
+                                                    <td>
+                                                        <div class="badge badge-danger badge-shadow">Cancelled</div>
+                                                    </td>
+                                                </c:when>
+                                            </c:choose>
 
-<%--                                        <c:choose>--%>
-<%--                                            <c:when test="${l.bookingState == 'pending'}">--%>
-<%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
-<%--                                            </c:when>--%>
-<%--                                            <c:when test="${l.bookingState == 'confirmed'}">--%>
-<%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
-<%--                                            </c:when>--%>
-<%--                                            <c:when test="${l.bookingState == 'cancelled'}">--%>
-<%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
-<%--                                            </c:when>--%>
-<%--                                        </c:choose>--%>
-<%--                                        <td>--%>
-<%--                                            <div class="${stateClass}">${l.bookingState}</div>--%>
-<%--                                        </td>--%>
+                                                <%--                                        <c:choose>--%>
+                                                <%--                                            <c:when test="${l.bookingState == 'pending'}">--%>
+                                                <%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
+                                                <%--                                            </c:when>--%>
+                                                <%--                                            <c:when test="${l.bookingState == 'confirmed'}">--%>
+                                                <%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
+                                                <%--                                            </c:when>--%>
+                                                <%--                                            <c:when test="${l.bookingState == 'cancelled'}">--%>
+                                                <%--                                                <c:set var="stateClass" value="badge badge-warning badge-shadow" />--%>
+                                                <%--                                            </c:when>--%>
+                                                <%--                                        </c:choose>--%>
+                                                <%--                                        <td>--%>
+                                                <%--                                            <div class="${stateClass}">${l.bookingState}</div>--%>
+                                                <%--                                        </td>--%>
 
-                                        <td><a href="#" class="btn btn-primary">Detail</a></td>
-                                        <c:set var="i" value="${i+1}"/>
+                                            <td><a href="#" class="btn btn-primary">Detail</a></td>
+                                            <c:set var="i" value="${i+1}"/>
 
-                                    </tr>
+                                        </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -134,17 +141,18 @@
         </div>
     </div>
 </div>
+</body>
 <!-- General JS Scripts -->
-<script src="Assets/assets/js/app.min.js"></script>
+<script src="${url}/Assets/assets/js/app.min.js"></script>
 <!-- JS Libraies -->
-<script src="Assets/assets/bundles/datatables/datatables.min.js"></script>
-<script src="Assets/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="Assets/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+<script src="${url}/Assets/assets/bundles/datatables/datatables.min.js"></script>
+<script src="${url}/Assets/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="${url}/Assets/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
 <!-- Page Specific JS File -->
-<script src="Assets/assets/js/page/datatables.js"></script>
+<script src="${url}/Assets/assets/js/page/datatables.js"></script>
 <!-- Template JS File -->
-<script src="Assets/assets/js/scripts.js"></script>
+<script src="${url}/Assets/assets/js/scripts.js"></script>
 <!-- Custom JS File -->
-<script src="Assets/assets/js/custom.js"></script>
+<script src="${url}/Assets/assets/js/custom.js"></script>
 </body>
 </html>
