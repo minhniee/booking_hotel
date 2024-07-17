@@ -70,6 +70,10 @@
                                     <span><img src="${url}/Assets1/img/icon/user.ico" style="width:15px;height:15px;"
                                                alt="">Profile</span>
                                 </a>
+                                <a href="bookingHistory" class="dropdown-item">
+                                    <span><img src="${url}/Assets1/img/icon/user.ico" style="width:15px;height:15px;"
+                                               alt="">Booking history</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="logout" class="dropdown-item">

@@ -65,6 +65,10 @@ public class Booking {
         this.bookingPrice = bookingPrice;
     }
 
+    public Booking() {
+
+    }
+
 
     public int getPaymentId() {
         return paymentId;

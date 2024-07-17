@@ -6,5 +6,13 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>bookingHistory</servlet-name>
+        <servlet-class>controller.user.bookingHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bookingHistory</servlet-name>
+        <url-pattern>/bookingHistory</url-pattern>
+    </servlet-mapping>
 
 </web-app>

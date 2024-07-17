@@ -146,7 +146,7 @@ public class bookingDAO {
 
 
     public static void main(String[] args) throws SQLException {
-        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
+        ArrayList<Booking> bookings = new bookingDAO().GetAllBookings();
         int count = 0;
         for (Booking a : bookings) {
             System.out.println(a.toString());
