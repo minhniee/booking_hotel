@@ -1,0 +1,38 @@
+[show-alert] {
+    position: fixed;
+    top: 70px;
+    right: -950px;
+    z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.75s;
+    animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+    from {
+        right: -1500px;
+    }
+    to {
+        right: -100%;
+        display: none;
+    }
+}
+
+[show-alert] [close-alert] {
+    background: white;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: 450px;
+}
+
+
+
+

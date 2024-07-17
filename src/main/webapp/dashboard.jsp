@@ -68,7 +68,7 @@
             </a>
         </li>
         <li>
-            <a href="listRoomManager">
+            <a href="ManageRoomClass">
                 <i class="fas fa-cog"></i>
                 <span>Manage room class</span>
             </a>
@@ -80,7 +80,7 @@
             </a>
         </li>
         <li>
-            <a href="listRoomManager">
+            <a href="ManageMaterial">
                 <i class="fas fa-cog"></i>
                 <span>Manage material </span>
             </a>
@@ -176,12 +176,59 @@
     <div class="tabular--wrapper">
 
 
-
+        <canvas id="myChart" width="400" height="400"></canvas>
 
 
 
     </div>
-</div>
 
+</div>
+<script>
+    // Function to fetch data from servlet
+    function fetchData() {
+        fetch('chartData')
+            .then(response => response.json())
+            .then(data => {
+                // Prepare data for Chart.js
+                const labels = data.map(point => point.month);
+                const values = data.map(point => point.totalAmount);
+
+                // Create chart
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Amount Billed',
+                            data: values,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: 'rgb(255, 99, 132)'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Call fetchData() to fetch data and render the chart
+    fetchData();
+</script>
 </body>
 </html>

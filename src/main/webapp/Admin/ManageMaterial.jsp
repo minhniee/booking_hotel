@@ -25,29 +25,18 @@
         ${sessionScope.remove("success")}
     </c:if>
 
-    <h3 class="main--title">Manage Service</h3>
+    <h3 class="main--title">Manage material</h3>
     <div class="table-container">
         <div style="display: flex; justify-content: space-between">
 
-            <form id="subjectForm" action="ManageService" method="post">
-                List of category
-                <select name="type" id="subjectSelect">
-                    <option value="-1">All category</option>
-                    <c:set value="${requestScope.subjectid}" var="subjectid"/>
-                    <c:forEach items="${requestScope.manageServiceCategory}" var="manageServiceCategory">
 
-                        <option value="${manageServiceCategory.id}" ${subjectId == manageServiceCategory.id ?"selected=\"selected\"":""}>${manageServiceCategory.name}</option>
-                    </c:forEach>
-
-                </select>
-            </form>
-            <form action="SearchServiceByName">
-                <input type="text" name="text" placeholder="Service name"/>
+            <form action="SearchMaterial">
+                <input type="text" name="text" placeholder="Material name"/>
                 <button style="background: #00c6ff">Search</button>
             </form>
 
 
-            <a href="ManageInsertService"><button class="fas fa-plus" style="background: #00c6ff">Insert</button></a>
+            <a href="InsertMaterial"><button class="fas fa-plus" style="background: #00c6ff">Insert</button></a>
 
         </div>
         <script>
@@ -59,35 +48,26 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Category name</th>
+                <th>Material name</th>
 
-                <th>Service name</th>
-                <th>Description</th>
-                <th>Price</th>
                 <th>Quantity</th>
+                <th>Price</th>
+
                 <th>Image</th>
                 <th></th>
             </tr>
             <tbody>
-            <c:forEach items="${requestScope.manageServices}" var="manageServices">
+            <c:forEach items="${requestScope.materials}" var="materials">
                 <tr>
-                    <td>${manageServices.id}</td>
+                    <td>${materials.id}</td>
+                    <td>${materials.name}</td>
+                    <td>${materials.quantity}</td>
+                    <td>${materials.price}</td>
 
-                        <td>
-                            <c:forEach items="${requestScope.manageServiceCategory}" var="manageServiceCategory">
-                            <c:if test="${manageServices.category_id == manageServiceCategory.id}">
-                                ${manageServiceCategory.name}
-                            </c:if>
-                            </c:forEach>
-                        </td>
-
-                    <td>${manageServices.service_name}</td>
-                    <td>${manageServices.description}</td>
-                    <td>${manageServices.price}</td>
-                    <td>${manageServices.quantity}</td>
-                    <td><img src="Assets/services/${manageServices.image}" width="120px"></td>
+                    <td><img src="Assets/image/material/${materials.image}" width="120px"></td>
                     <td>
-                        <a href="UpdateService?id=${manageServices.id}"><button class="fas fa-edit"></button></a>
+                        <a href="UpdateMaterial?id=${materials.id}"><button class="fas fa-edit"></button></a>
+                        <a href="UpdateImageMaterial?id=${materials.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>
                     </td>
                 </tr>
             </c:forEach>
