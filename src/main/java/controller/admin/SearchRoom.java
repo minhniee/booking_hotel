@@ -1,18 +1,17 @@
 package controller.admin;
 
-import DAO.listAccountDAO;
+import DAO.getRoomManagerDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Account;
-import model.ManageAccount;
+import model.RoomManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-@WebServlet(name = "listAccount", value = "/listAccount")
-public class listAccount extends HttpServlet {
+@WebServlet(name = "SearchRoom", value = "/SearchRoom")
+public class SearchRoom extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,24 +32,19 @@ public class listAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
-        listAccountDAO dao = new listAccountDAO();
-        listAccounts = dao.listAccount();
-        request.setAttribute("listAccounts", listAccounts);
-        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
+       String text = request.getParameter("text");
+       ArrayList<RoomManager> rooms = new ArrayList<>();
+       getRoomManagerDAO dao = new getRoomManagerDAO();
+       rooms = dao.SearchRoomManagerByName(text);
+       request.setAttribute("list", rooms);
+        request.getRequestDispatcher("ManagerListRoom.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String text = request.getParameter("text");
-        listAccountDAO dao = new listAccountDAO();
-        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
-        listAccounts = dao.listAccountByNameOrPhone(text);
-        request.setAttribute("listAccounts", listAccounts);
-        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
+        processRequest(request, response);
     }
-
 
     @Override
     public String getServletInfo() {

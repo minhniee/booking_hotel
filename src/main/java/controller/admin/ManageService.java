@@ -51,7 +51,10 @@ public class ManageService extends HttpServlet {
         ManageServiceDAO manageServiceDAO = new ManageServiceDAO();
         ArrayList<model.ManageService> manageServices = new ArrayList<>();
         if(id == -1){
-
+            ArrayList<ManageServiceCategory> manageServiceCategory = new ArrayList<>();
+            ManageServiceCategoryDAO manageServiceCategoryDAO = new ManageServiceCategoryDAO();
+            manageServiceCategory = manageServiceCategoryDAO.selectAll();
+            request.setAttribute("manageServiceCategory", manageServiceCategory);
             manageServices = manageServiceDAO.getManageServices();
             request.setAttribute("manageServices", manageServices);
         }else{

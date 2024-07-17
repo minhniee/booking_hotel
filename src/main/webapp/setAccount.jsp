@@ -62,6 +62,13 @@
             <label for="address">Address</label>
             <input type="text" id="address" name="address" value="${account.address}" required readonly/>
         </div>
+        <div class="form-group">
+            <label for="role">Active</label>
+            <select id="role" name="confirm" required>
+                <option value="True" ${account.confirm  ? 'selected' : ''}>Yes</option>
+                <option value="False" ${!account.confirm   ? 'selected' : ''}>No</option>
+            </select>
+        </div>
 
         <button type="submit" class="btn-submit">Save Changes</button>
     </form>

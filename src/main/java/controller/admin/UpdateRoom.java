@@ -1,18 +1,19 @@
 package controller.admin;
 
-import DAO.listAccountDAO;
+import DAO.ManageRoomClassDAO;
+import DAO.getRoomManagerDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Account;
-import model.ManageAccount;
+import model.RoomClass;
+import model.RoomManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-@WebServlet(name = "listAccount", value = "/listAccount")
-public class listAccount extends HttpServlet {
+@WebServlet(name = "UpdateRoom", value = "/UpdateRoom")
+public class UpdateRoom extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,24 +34,31 @@ public class listAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
-        listAccountDAO dao = new listAccountDAO();
-        listAccounts = dao.listAccount();
-        request.setAttribute("listAccounts", listAccounts);
-        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        ArrayList<RoomClass> listRoomClass = new ArrayList<>();
+        ManageRoomClassDAO mdao = new ManageRoomClassDAO();
+        listRoomClass = mdao.getRoomClassList();
+        request.setAttribute("listRoomClass", listRoomClass);
+        getRoomManagerDAO dao = new getRoomManagerDAO();
+        RoomManager roomManager = dao.getRoomManagerById(id);
+        request.setAttribute("roomManager", roomManager);
+        request.getRequestDispatcher("Admin/UpdateRoom.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String text = request.getParameter("text");
-        listAccountDAO dao = new listAccountDAO();
-        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
-        listAccounts = dao.listAccountByNameOrPhone(text);
-        request.setAttribute("listAccounts", listAccounts);
-        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        String room_class_id = request.getParameter("type");
+        String room_name = request.getParameter("name");
+       int adults = Integer.parseInt(request.getParameter("adult"));
+        String status = request.getParameter("status");
+        getRoomManagerDAO dao = new getRoomManagerDAO();
+        dao.UpdateRoom(id, room_class_id, room_name, adults, status);
+        HttpSession session = request.getSession();
+        session.setAttribute("success", "Successfully updated");
+        response.sendRedirect("listRoomManager");
     }
-
 
     @Override
     public String getServletInfo() {

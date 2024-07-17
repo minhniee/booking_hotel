@@ -1,10 +1,12 @@
 package controller.admin;
+import DAO.ManageRoomImage;
 import DAO.detailRoomManagerDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.DetailRoomManager;
 import model.Material;
+import model.RoomImage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +39,12 @@ public class detailRoomManagerServlet extends HttpServlet {
         DetailRoomManager detailRoom = dao.getdetailRoomManager(rid);
         ArrayList<Material> materials = new ArrayList<>();
         materials = dao.getMaterialList(id);
+        ManageRoomImage imgdao = new ManageRoomImage();
+        ArrayList<RoomImage> roomImages = new ArrayList<>();
+        roomImages = imgdao.images(rid);
+        request.setAttribute("room_class_id", rid);
+        request.setAttribute("room_id", id);
+        request.setAttribute("roomImages", roomImages);
         request.setAttribute("materials", materials);
         request.setAttribute("detailRoom", detailRoom);
         request.getRequestDispatcher("detailRoomManager.jsp").forward(request, response);
