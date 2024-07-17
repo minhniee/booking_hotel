@@ -44,7 +44,12 @@ public class HistoryBooking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String text = request.getParameter("text");
+        managerBookingDAO dao = new managerBookingDAO();
+        ArrayList<ManagerBooking> managerBookings = new ArrayList<>();
+        managerBookings = dao.getManagerBooking(text);
+        request.setAttribute("managerBookings", managerBookings);
+        request.getRequestDispatcher("Admin/HistoryBooking.jsp").forward(request, response);
     }
 
     @Override

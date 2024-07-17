@@ -28,4 +28,27 @@ public class managerBookingDAO extends DBContext {
         }catch (Exception e) {}
         return ManagerBooking;
     }
+    public ArrayList<ManagerBooking> getManagerBooking(String id) {
+        ArrayList<ManagerBooking> list = new ArrayList<>();
+        String sql = "  select id, room_id, account_id, checkin_date, checkout_date, num_child, num_adults, booking_price from booking where room_id like ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, "%"+id+"%");
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                list.add(new ManagerBooking(rs.getInt(1)
+                        ,rs.getString(2)
+                        ,rs.getInt(3)
+                        ,rs.getDate(4)
+                        ,rs.getDate(5)
+                        ,rs.getInt(6)
+                        ,rs.getInt(7)
+                        ,rs.getDouble(8)));
+
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
