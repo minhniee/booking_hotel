@@ -11,6 +11,7 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="Assets/css/styleDashboard.css">
     <title>Dashboard</title>
@@ -40,7 +41,7 @@
         <li>
             <a href="#">
                 <i class="fas fa-briefcase"></i>
-                <span>Careers</span>
+                <span>List booking</span>
             </a>
         </li>
         <li>
@@ -105,7 +106,7 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search"/>
             </div>
-            <img src="images/img.png" alt="">
+            <img src="Assets/assets/img/admin.jpg" alt="">
         </div>
     </div>
     <div class="card--container">
@@ -176,7 +177,7 @@
     <div class="tabular--wrapper">
 
 
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="revenueChart" width="400" height="400"></canvas>
 
 
 
@@ -184,51 +185,35 @@
 
 </div>
 <script>
-    // Function to fetch data from servlet
-    function fetchData() {
-        fetch('chartData')
-            .then(response => response.json())
-            .then(data => {
-                // Prepare data for Chart.js
-                const labels = data.map(point => point.month);
-                const values = data.map(point => point.totalAmount);
+    // Fetch revenueData from servlet attribute
+    let revenueData = JSON.parse('${revenueData}');
 
-                // Create chart
-                const ctx = document.getElementById('myChart').getContext('2d');
-                const myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Total Amount Billed',
-                            data: values,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                labels: {
-                                    color: 'rgb(255, 99, 132)'
-                                }
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }
+    // Extract labels (months) and data (sales)
+    let labels = revenueData.map(item => `Month ${item.month}`);
+    let data = revenueData.map(item => item.totalAmount);
 
-    // Call fetchData() to fetch data and render the chart
-    fetchData();
+    // Create Chart.js instance
+    let ctx = document.getElementById('revenueChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // You can use 'line' for a line chart if preferred
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue background
+                borderColor: 'rgba(54, 162, 235, 1)', // Solid border color (blue)
+                borderWidth: 1 // Border width
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
 </body>
 </html>
