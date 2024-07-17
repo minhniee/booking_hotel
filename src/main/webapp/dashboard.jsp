@@ -121,7 +121,7 @@
                     <span class="amount-value">$500.00
                     </span>
                  </div>
-                 <i class="fas fa-dollar-sign icon"></i>
+                 <i class="fas fa-list icon"></i>
              </div>
            <span class="card-detail">
 
