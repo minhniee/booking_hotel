@@ -33,7 +33,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="chartData">
                 <i class="fas fa-chart-bar"></i>
                 <span>Statistics</span>
             </a>
@@ -59,7 +59,7 @@
         <li>
             <a href="listRoomManager">
                 <i class="fas fa-cog"></i>
-                <span>Settings</span>
+                <span>Setting room</span>
             </a>
         </li>
         <li>
@@ -116,7 +116,7 @@
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment amount
+                        Accept booking
                     </span>
                     <span class="amount-value">$500.00
                     </span>
@@ -124,14 +124,14 @@
                  <i class="fas fa-dollar-sign icon"></i>
              </div>
            <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
        </div>
          <div class="payment--card light-purple">
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment order
+                       Booking status
                     </span>
                      <span class="amount-value">$500.00
                     </span>
@@ -139,45 +139,17 @@
                  <i class="fas fa-list icon dark-purple"></i>
              </div>
              <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
          </div>
-         <div class="payment--card light-blue">
-             <div class="card--header ">
-                 <div class="amount">
-                    <span class="title">
-                        Payment customer
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-users icon dark-blue"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
-         <div class="payment--card light-green">
-             <div class="card--header">
-                 <div class="amount">
-                    <span class="title">
-                        Payment process
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-check icon dark-green"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
+
+
      </div>
     </div>
     <div class="tabular--wrapper">
 
 
-        <canvas id="revenueChart" width="400" height="400"></canvas>
+        <canvas id="revenueChart" style="height: 20%; "></canvas>
 
 
 
@@ -188,8 +160,17 @@
     // Fetch revenueData from servlet attribute
     let revenueData = JSON.parse('${revenueData}');
 
+    // Function to map numeric month to month name
+    function getMonthName(monthNumber) {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[monthNumber - 1]; // monthNumber is 1-indexed
+    }
+
     // Extract labels (months) and data (sales)
-    let labels = revenueData.map(item => `Month ${item.month}`);
+    let labels = revenueData.map(item => getMonthName(item.month));
     let data = revenueData.map(item => item.totalAmount);
 
     // Create Chart.js instance

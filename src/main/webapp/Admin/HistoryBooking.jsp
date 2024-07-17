@@ -61,6 +61,7 @@
             </tbody>
             </thead>
         </table>
+        <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
     </div>
 

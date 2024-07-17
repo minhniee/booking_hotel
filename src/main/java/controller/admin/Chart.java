@@ -29,7 +29,7 @@ public class Chart extends HttpServlet {
         }
 
         request.setAttribute("revenueData", jsonArray.toString());
-        request.getRequestDispatcher("/revenue-by-month-chart.jsp").forward(request, response);
+        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
