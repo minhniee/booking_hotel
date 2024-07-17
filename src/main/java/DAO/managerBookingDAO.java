@@ -16,7 +16,7 @@ public class managerBookingDAO extends DBContext {
             PreparedStatement stm = getConnection().prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                ManagerBooking.add(new ManagerBooking(rs.getInt(1)
+                ManagerBooking.add(new ManagerBooking(rs.getString(1)
                         ,rs.getString(2)
                         ,rs.getInt(3)
                         ,rs.getDate(4)
@@ -36,7 +36,7 @@ public class managerBookingDAO extends DBContext {
             stm.setString(1, "%"+id+"%");
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                list.add(new ManagerBooking(rs.getInt(1)
+                list.add(new ManagerBooking(rs.getString(1)
                         ,rs.getString(2)
                         ,rs.getInt(3)
                         ,rs.getDate(4)
