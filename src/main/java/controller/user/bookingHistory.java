@@ -54,7 +54,7 @@ public class bookingHistory extends HttpServlet {
 
             // Filter bookings based on the account ID
             for (Booking booking : bookingList) {
-                if (booking.getAccountId().equals(account.getId())) {
+                if (booking.getAccountId().equals("1234")) {
                     data.add(booking);
                 }
             }
@@ -67,6 +67,7 @@ public class bookingHistory extends HttpServlet {
         }
 
         // Forward the request to the booking history JSP page
+//        request.getRequestDispatcher("/homePage/datatest.jsp").forward(request, response);
         request.getRequestDispatcher("/user/booking_history.jsp").forward(request, response);
     }
 

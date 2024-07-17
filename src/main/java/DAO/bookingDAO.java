@@ -23,8 +23,8 @@ public class bookingDAO {
             pr.setString(2, booking.getRoomId());
             pr.setInt(3, booking.getPaymentId());
             pr.setString(4, booking.getCustomerId());
-            pr.setDate(5, booking.getCheckinDate());
-            pr.setDate(6, booking.getCheckoutDate());
+            pr.setDate(5, booking.getCheckInDate());
+            pr.setDate(6, booking.getCheckOutDate());
             pr.setInt(7, booking.getNumChildren());
             pr.setInt(8, booking.getNumAdults());
             pr.setDouble(9, booking.getBookingPrice());

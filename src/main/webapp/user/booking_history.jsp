@@ -87,56 +87,36 @@
                 background-color: #f5f5f5;
             }
         </style>
-
-        <table class="tab-content">
+        <table>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Room</th>
-                <th>Checkin date</th>
-                <th>Checkout date</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
                 <th>State</th>
                 <th>Detail</th>
             </tr>
             </thead>
             <tbody>
-            <%--            <c:forEach var="booking" items="${data}" >--%>
-
-            <%--                    <tr>--%>
-            <%--&lt;%&ndash;                        <td>${loop.index + 1}</td>&ndash;%&gt;--%>
-            <%--                        <td>${booking.roomId}</td>--%>
-            <%--                        <td>${booking.checkInDate}</td>--%>
-            <%--                        <td>${booking.checkOutDate}</td>--%>
-            <%--                        <td>${booking.bookingState}</td>--%>
-            <%--                        <!-- Trường ẩn chứa bookingID -->--%>
-            <%--                        <td>--%>
-            <%--                            <form action="${pageContext.request.contextPath}/bookingDetail" method="post">--%>
-            <%--                                <input type="hidden" name="bookingID" value="${booking.id}">--%>
-            <%--                                <button type="submit" class="btn btn-primary">Detail</button>--%>
-            <%--                            </form>--%>
-            <%--                        </td>--%>
-            <%--                    </tr>--%>
-            <%--            </c:forEach>--%>
-
-            <%--${b.roomId}--%>
-            <c:forEach var="b" items="${data}">
+            <c:forEach var="b" items="${requestScope.data}">
                 <tr>
-                    <td>${account.id}</td>
-                        <%--                <td>${b.roomId}</td>--%>
-                    <td>${aid}</td>
-                        <%--                <td>${b.roomId}</td>--%>
-                    <td>2</td>
+                    <td>${b.id}</td>
+                    <td>${b.roomId}</td>
+                    <td><fmt:formatDate value="${b.checkInDate}" pattern="yyyy-MM-dd" />${b.checkInDate}</td>
+                    <td><fmt:formatDate value="${b.checkOutDate}" pattern="yyyy-MM-dd" />${b.checkOutDate}</td>
+                    <td>${b.bookingState}</td>
                     <td>
                         <form action="${pageContext.request.contextPath}/bookingDetail" method="post">
-                            <input type="hidden" name="bookingID" value="${booking.id}">
+                            <input type="hidden" name="bookingID" value="${b.id}">
                             <button type="submit" class="btn btn-primary">Detail</button>
                         </form>
                     </td>
                 </tr>
             </c:forEach>
-
             </tbody>
         </table>
+
 
     </div>
 </div>

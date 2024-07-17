@@ -102,19 +102,20 @@ public class Booking {
         this.roomId = roomId;
     }
 
-    public java.sql.Date getCheckinDate() {
-        return (java.sql.Date) checkInDate;
+
+    public Date getCheckInDate() {
+        return checkInDate;
     }
 
-    public void setCheckinDate(Date checkInDate) {
+    public void setCheckInDate(Date checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public java.sql.Date getCheckoutDate() {
-        return (java.sql.Date) checkOutDate;
+    public Date getCheckOutDate() {
+        return checkOutDate;
     }
 
-    public void setCheckoutDate(Date checkOutDate) {
+    public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
