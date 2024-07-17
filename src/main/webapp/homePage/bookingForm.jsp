@@ -1,3 +1,4 @@
+
 <div class="col-md-5">
     <div class="booking-box">
         <div class="head-box">
@@ -8,20 +9,21 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input1_wrapper">
-                            <label>Check in</label>
+                            <label id=>Check in</label>
                             <div class="input1_inner">
-                                <input type="text" class="form-control input datepicker" value="${checkInDate}" name="checkInDate" placeholder="Check in" required>
+                                <input type="text" class="form-control input datepicker" id="from" value="${checkInDate}" name="checkInDate" placeholder="Check in" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input1_wrapper">
-                            <label>Check out</label>
+                            <label id=>Check out </label>
                             <div class="input1_inner">
-                                <input type="text" class="form-control input datepicker" value="${checkOutDate}" name="checkOutDate" placeholder="Check out" required>
+                                <input type="text" class="form-control input datepicker" id="to" value="${checkOutDate}" name="checkOutDate" placeholder="Check out" required>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="select1_wrapper">
                             <label>Adults</label>
@@ -50,6 +52,8 @@
                             </div>
                         </div>
                     </div>
+                    <span style="color: red">${noti}</span>
+                    <span style="color: red">${currentDate}</span>
                     <div class="col-md-12">
                         <button type="submit" class="btn-form1-submit mt-15">Check Availability</button>
                     </div>
@@ -58,3 +62,4 @@
         </div>
     </div>
 </div>
+
