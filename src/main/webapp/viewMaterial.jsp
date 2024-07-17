@@ -6,6 +6,7 @@
     <title>View Material</title>
     <style>
         .container {
+            text-align: center;
             max-width: 950px;
             margin: 0 auto;
             padding: 20px;
@@ -16,12 +17,16 @@
             font-size: 24px;
             color: #333;
             margin-bottom: 20px;
+            background-color: rgb(255,127,80);
+            padding: 10px;
+            border: 1px solid;
         }
 
         .room-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-bottom: 30px;
         }
 
         .room-table th, .room-table td {
@@ -58,6 +63,28 @@
         .room-actions button:hover {
             background-color: #45a049;
         }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .pagination a:hover {
+            background-color: rgba(73, 174, 80, 0.88);
+        }
+
+        .pagination strong {
+            margin: 0 2px;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: rgba(73, 174, 80, 0.88);
+        }
     </style>
 </head>
 <body>
@@ -80,36 +107,36 @@
                 <td>${material.name}</td>
                 <td>${material.quantity}</td>
                 <td>${material.price}</td>
-                <td>${material.image}</td>
+                <td><img src="Assets/image/material/${material.image}" alt="${material.name}" width="100"></td>
                 <td class="room-actions">
-                    <form action="editMaterial.jsp" method="post" style="display:inline;">
-                        <input type="hidden" name="roomId" value="${material.id}">
-                        <button type="submit">Edit</button>
-                    </form>
+                        <%--                    <form action="editMaterial" method="post" style="display:inline;">--%>
+                        <%--                        <input type="hidden" name="roomId" value="${material.id}">--%>
+                        <%--                        <button type="submit">Edit</button>--%>
+                        <%--                    </form>--%>
 
+                    <a href="editMaterial?id=${material.id}"><button type="submit">Edit</button></a>
                 </td>
             </tr>
         </c:forEach>
-    </table><!-- Pagination Links -->
+    </table>
     <div class="pagination">
-        <c:if test="${page > 1}">
-            <a href="viewMaterial?page=${page - 1}">&laquo; Previous</a>
+        <c:if test="${currentPage > 1}">
+            <a href="ViewMaterial?page=${currentPage - 1}">&laquo; Previous</a>
         </c:if>
         <c:forEach begin="1" end="${totalPages}" var="pageNumber">
             <c:choose>
-                <c:when test="${pageNumber == page}">
+                <c:when test="${pageNumber == currentPage}">
                     <strong>${pageNumber}</strong>
                 </c:when>
                 <c:otherwise>
-                    <a href="viewMaterial?page=${pageNumber}">${pageNumber}</a>
+                    <a href="ViewMaterial?page=${pageNumber}">${pageNumber}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
-        <c:if test="${page < totalPages}">
-            <a href="viewMaterial?page=${page + 1}">Next &raquo;</a>
+        <c:if test="${currentPage < totalPages}">
+            <a href="ViewMaterial?page=${currentPage + 1}">Next &raquo;</a>
         </c:if>
     </div>
 </div>
 </body>
 </html>
-

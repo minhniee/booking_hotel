@@ -77,6 +77,9 @@ public class UpdateProfile extends HttpServlet {
         } else if (!fullName.matches(nameRegex)) {
             request.setAttribute("fullNameError", "Full name must start with a capital letter and only contain letters and spaces.");
             hasError = true;
+        } else if (fullName.length() > 20) {
+            request.setAttribute("fullNameError", "Full name cannot be longer than 20 characters.");
+            hasError = true;
         }
 
         if (email == null || email.trim().isEmpty()) {
@@ -102,6 +105,9 @@ public class UpdateProfile extends HttpServlet {
 
         if (address == null || address.trim().isEmpty()) {
             request.setAttribute("addressError", "Address is required.");
+            hasError = true;
+        } else if (address.length() > 50) {
+            request.setAttribute("addressError", "Address cannot be longer than 50 characters.");
             hasError = true;
         }
 

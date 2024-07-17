@@ -29,16 +29,30 @@ public class RoomManager extends HttpServlet {
             out.println("</html>");
         }
     }
-
+    private static final int ITEMS_PER_PAGE = 10;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<Room> listRoom = new ArrayList<>();
         roomDAO dao = new roomDAO();
-        listRoom = dao.getRoom();
-        request.setAttribute("rooms", listRoom);
+        ArrayList<Room> listRoom = dao.getRoom();
+
+        int totalRooms = listRoom.size();
+        int totalPages = (int) Math.ceil((double) totalRooms / ITEMS_PER_PAGE);
+
+        int currentPage = 1;
+        if (request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        int startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalRooms);
+        ArrayList<Room> paginatedRooms = new ArrayList<>(listRoom.subList(startIndex, endIndex));
+
+        request.setAttribute("rooms", paginatedRooms);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("totalPages", totalPages);
+
         request.getRequestDispatcher("roomManager.jsp").forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -61,55 +75,55 @@ public class RoomManager extends HttpServlet {
                     break;
                 case "update":
                     try {
-                    String roomId = request.getParameter("id");
-                    String roomClassId = request.getParameter("roomClassId");
-                    String roomClassName = request.getParameter("roomClass");
-                    String roomName = request.getParameter("roomName");
-                    int numAdults = Integer.parseInt(request.getParameter("numAdults"));
-                    double price = Double.parseDouble(request.getParameter("price"));
+                        String roomId = request.getParameter("id");
+                        String roomClassId = request.getParameter("roomClassId");
+                        String roomClassName = request.getParameter("roomClass");
+                        String roomName = request.getParameter("roomName");
+                        int numAdults = Integer.parseInt(request.getParameter("numAdults"));
+                        double price = Double.parseDouble(request.getParameter("price"));
 
-                    if (roomClassId.isEmpty() || roomClassName.isEmpty() || roomName.isEmpty()) {
-                        throw new Exception("All fields are required.");
+                        if (roomClassId.isEmpty() || roomClassName.isEmpty() || roomName.isEmpty()) {
+                            throw new Exception("All fields are required.");
+                        }
+
+                        if (numAdults < 1) {
+                            throw new Exception("Number of adults must be a positive integer.");
+                        }
+
+                        if (price < 0) {
+                            throw new Exception("Price must be a non-negative number.");
+                        }
+
+                        Room updatedRoom = new Room(roomId, roomClassId, roomClassName, roomName, numAdults, request.getParameter("status"), price);
+                        dao.updateRoom(updatedRoom);
+                        response.sendRedirect("roomManager");
+                    } catch (NumberFormatException e) {
+                        request.setAttribute("error", "Invalid number format.");
+                        retainFormData(request);
+                        request.getRequestDispatcher("editRoom.jsp").forward(request, response);
+                    } catch (Exception e) {
+                        request.setAttribute("error", e.getMessage());
+                        retainFormData(request);
+                        request.getRequestDispatcher("editRoom.jsp").forward(request, response);
                     }
-
-                    if (numAdults < 1) {
-                        throw new Exception("Number of adults must be a positive integer.");
-                    }
-
-                    if (price < 0) {
-                        throw new Exception("Price must be a non-negative number.");
-                    }
-
-                    Room updatedRoom = new Room(roomId, roomClassId, roomClassName, roomName, numAdults, request.getParameter("status"), price);
-                    dao.updateRoom(updatedRoom);
-                    response.sendRedirect("roomManager");
-                } catch (NumberFormatException e) {
-                    request.setAttribute("error", "Invalid number format.");
-                    retainFormData(request);
-                    request.getRequestDispatcher("editRoom.jsp").forward(request, response);
-                } catch (Exception e) {
-                    request.setAttribute("error", e.getMessage());
-                    retainFormData(request);
-                    request.getRequestDispatcher("editRoom.jsp").forward(request, response);
-                }
-                break;
+                    break;
                 case "dele":
                     try {
-                    String roomId = request.getParameter("id");
-                    String roomClassId = request.getParameter("roomClassId");
-                    String roomClassName = request.getParameter("roomClass");
-                    String roomName = request.getParameter("roomName");
-                    int numAdults = Integer.parseInt(request.getParameter("numAdults"));
-                    double price = Double.parseDouble(request.getParameter("price"));
-                    Room DeleteRoom = new Room(roomId, roomClassId, roomClassName, roomName, numAdults, request.getParameter("status"), price);
-                    dao.deleteRoom(roomId);
-                    response.sendRedirect("roomManager");
-                
-                } catch (Exception e) {
-                    retainFormData(request);
-                    request.getRequestDispatcher("editRoom.jsp").forward(request, response);
-                }
-                break;
+                        String roomId = request.getParameter("id");
+                        String roomClassId = request.getParameter("roomClassId");
+                        String roomClassName = request.getParameter("roomClass");
+                        String roomName = request.getParameter("roomName");
+                        int numAdults = Integer.parseInt(request.getParameter("numAdults"));
+                        double price = Double.parseDouble(request.getParameter("price"));
+                        Room DeleteRoom = new Room(roomId, roomClassId, roomClassName, roomName, numAdults, request.getParameter("status"), price);
+                        dao.deleteRoom(roomId);
+                        response.sendRedirect("roomManager");
+
+                    } catch (Exception e) {
+                        retainFormData(request);
+                        request.getRequestDispatcher("editRoom.jsp").forward(request, response);
+                    }
+                    break;
                 default:
                     response.sendRedirect("roomManager");
                     break;
