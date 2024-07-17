@@ -88,11 +88,8 @@ padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    background: wheat;
-    border-radius: 10px;
-    padding: 10px 2rem;
-    margin-bottom: 1rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
 }
 .header--title{
     color: rgba(113, 99, 186, 255);
@@ -141,15 +138,11 @@ padding: 1rem;
     font-size: 15px;
 }
 .payment--card{
-    background: rgb(229, 223, 223);
+    flex: 1 1 calc(50% - 10px); /* 10px is half of the gap value to account for the spacing */
+    background-color: #ffeded; /* Example background color */
+    padding: 20px;
     border-radius: 10px;
-    padding: 1.2rem;
-    width: 290px;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.5s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .payment--card:hover{
     transform: translateY(-5px);
