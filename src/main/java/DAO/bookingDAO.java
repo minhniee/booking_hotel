@@ -1,6 +1,7 @@
 package DAO;
 
 import context.DBContext;
+import controller.booking.BookingDetail;
 import model.Booking;
 import model.Room;
 
@@ -181,14 +182,52 @@ public class bookingDAO {
 
     }
 
+    public Booking cancelBooking(String bookingId, String accId) throws SQLException {
+        con = new DBContext().getConnection();
+        Booking b = null;
+        String sql = "SELECT b.[id]\n" +
+                "      ,[room_id]\n" +
+                "      ,[payment_id]\n" +
+                "      ,[account_id]\n" +
+                "      ,[checkin_date]\n" +
+                "      ,[checkout_date]\n" +
+                "      ,[num_child]\n" +
+                "      ,[num_adults]\n" +
+                "      ,[booking_price]\n" +
+                "      ,[booking_date]" +
+                "  FROM booking as b\n" +
+                "  where account_id = ? and b.[id] =?";
+        pr = con.prepareStatement(sql);
+        pr.setString(1, accId);
+        pr.setString(2, bookingId);
+        ResultSet rs = pr.executeQuery();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String roomId = rs.getString("room_id");
+            Date checkinDate = rs.getDate("checkin_date");
+            Date checkoutDate = rs.getDate("checkout_date");
+            int numAdults = rs.getInt("num_adults");
+            int numChildren = rs.getInt("num_child");
+            double bookingPrice = rs.getDouble("booking_price");
+            int paymentId = rs.getInt("payment_id");
+            String accountId = rs.getString("account_id");
+            Timestamp bookingDate = rs.getTimestamp("booking_date");
+             b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
+        }
+        return b;
+    }
+
 
     public static void main(String[] args) throws SQLException {
-        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
-        int count = 0;
-        for (Booking a : bookings) {
-            System.out.println(a.toString());
-        }
-//        new bookingDAO().confirmBooking("F877D5065A54","confirm");
+//        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
+//        int count = 0;
+//        for (Booking a : bookings) {
+//            System.out.println(a.toString());
+//        }
+////        new bookingDAO().confirmBooking("F877D5065A54","confirm");
+        bookingDAO dao = new bookingDAO();
+        dao.cancelBooking("60876843","1234");
+        System.out.println(dao.cancelBooking("60876843","1234").toString());
 
 
     }
