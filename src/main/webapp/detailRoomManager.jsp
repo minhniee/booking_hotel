@@ -64,7 +64,7 @@
         <th>Quantity</th>
         <th>Price</th>
         <th>Image</th>
-        <th><a href="InsertMaterialRoom?room_id=${room_id}&room_class_id=${room_class_id}"><button style="background: #00c6ff; color: white">Insert material</button></a></th>
+        <th><a href="InsertMaterialRoom?room_id=${room_id}&room_class_id=${room_class_id}"><button style="background: #00c6ff; color: white; border-radius: 5px">Insert material</button></a></th>
     </tr>
     </thead>
     <tbody>
@@ -86,6 +86,7 @@
     </c:forEach>
     </tbody>
 </table>
+<a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 <script src="Assets/notification.js"></script>
 </body>
 </html>

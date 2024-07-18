@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit service</title>
+    <title>Insert service</title>
     <link rel="stylesheet" href="Assets/css/setAccount.css">
 
 </head>
 <body>
 
 <div class="edit-account-wrapper">
-    <h2>Edit service</h2>
+    <h2>Insert service</h2>
     <form class="edit-account-form" action="ManageInsertService" method="post" enctype="multipart/form-data">
     <c:set value="${requestScope.id}" var="error"/>
 

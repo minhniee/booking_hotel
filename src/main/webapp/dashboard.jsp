@@ -11,6 +11,7 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="Assets/css/styleDashboard.css">
     <title>Dashboard</title>
@@ -26,13 +27,13 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href ="user/user_profile.jsp">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="chartData">
                 <i class="fas fa-chart-bar"></i>
                 <span>Statistics</span>
             </a>
@@ -40,15 +41,10 @@
         <li>
             <a href="#">
                 <i class="fas fa-briefcase"></i>
-                <span>Careers</span>
+                <span>List booking</span>
             </a>
         </li>
-        <li>
-            <a href="listRoomManager">
-                <i class="fas fa-question-circle"></i>
-                <span>Manage room</span>
-            </a>
-        </li>
+
         <li>
             <a href="listAccount">
                 <i class="fas fa-star"></i>
@@ -58,7 +54,7 @@
         <li>
             <a href="listRoomManager">
                 <i class="fas fa-cog"></i>
-                <span>Settings</span>
+                <span>Manage rooms</span>
             </a>
         </li>
         <li>
@@ -105,7 +101,7 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search"/>
             </div>
-            <img src="images/img.png" alt="">
+            <img src="Assets/assets/img/admin.jpg" alt="">
         </div>
     </div>
     <div class="card--container">
@@ -115,22 +111,22 @@
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment amount
+                        Accept booking
                     </span>
                     <span class="amount-value">$500.00
                     </span>
                  </div>
-                 <i class="fas fa-dollar-sign icon"></i>
+                 <i class="fas fa-list icon"></i>
              </div>
            <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
        </div>
          <div class="payment--card light-purple">
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment order
+                       Booking status
                     </span>
                      <span class="amount-value">$500.00
                     </span>
@@ -138,45 +134,17 @@
                  <i class="fas fa-list icon dark-purple"></i>
              </div>
              <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
          </div>
-         <div class="payment--card light-blue">
-             <div class="card--header ">
-                 <div class="amount">
-                    <span class="title">
-                        Payment customer
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-users icon dark-blue"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
-         <div class="payment--card light-green">
-             <div class="card--header">
-                 <div class="amount">
-                    <span class="title">
-                        Payment process
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-check icon dark-green"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
+
+
      </div>
     </div>
     <div class="tabular--wrapper">
 
 
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="revenueChart" style="height: 20%; "></canvas>
 
 
 
@@ -184,51 +152,44 @@
 
 </div>
 <script>
-    // Function to fetch data from servlet
-    function fetchData() {
-        fetch('chartData')
-            .then(response => response.json())
-            .then(data => {
-                // Prepare data for Chart.js
-                const labels = data.map(point => point.month);
-                const values = data.map(point => point.totalAmount);
+    // Fetch revenueData from servlet attribute
+    let revenueData = JSON.parse('${revenueData}');
 
-                // Create chart
-                const ctx = document.getElementById('myChart').getContext('2d');
-                const myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Total Amount Billed',
-                            data: values,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                labels: {
-                                    color: 'rgb(255, 99, 132)'
-                                }
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
+    // Function to map numeric month to month name
+    function getMonthName(monthNumber) {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[monthNumber - 1]; // monthNumber is 1-indexed
     }
 
-    // Call fetchData() to fetch data and render the chart
-    fetchData();
+    // Extract labels (months) and data (sales)
+    let labels = revenueData.map(item => getMonthName(item.month));
+    let data = revenueData.map(item => item.totalAmount);
+
+    // Create Chart.js instance
+    let ctx = document.getElementById('revenueChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // You can use 'line' for a line chart if preferred
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue background
+                borderColor: 'rgba(54, 162, 235, 1)', // Solid border color (blue)
+                borderWidth: 1 // Border width
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
 </body>
 </html>

@@ -52,7 +52,7 @@
 
 
                     <td>
-                        <a href="detailListBooking?id=${managerBookings.id}"><button class="fas fa-edit"></button></a>
+                        <a href="detailListBooking?id=${managerBookings.id}"><button class="fas fa-info-circle"></button></a>
 
                     </td>
 
@@ -61,6 +61,7 @@
             </tbody>
             </thead>
         </table>
+        <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
     </div>
 

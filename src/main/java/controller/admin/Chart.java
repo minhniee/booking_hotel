@@ -9,16 +9,17 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "Chart", value = "/chartData")
 public class Chart extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<model.Chart> charts = new ArrayList<>();
-        ChartDAO dao = new ChartDAO();
-        charts = dao.getchar();
+        ChartDAO chartDAO = new ChartDAO();
+        List<model.Chart> charts = chartDAO.getCharts();
 
+        // Convert list to JSON
         JSONArray jsonArray = new JSONArray();
         for (model.Chart chart : charts) {
             JSONObject jsonObject = new JSONObject();
@@ -27,10 +28,8 @@ public class Chart extends HttpServlet {
             jsonArray.put(jsonObject);
         }
 
-        // Set response type and write JSON data to the response
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(jsonArray.toString());
+        request.setAttribute("revenueData", jsonArray.toString());
+        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
