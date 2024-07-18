@@ -27,7 +27,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href ="user/user_profile.jsp">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
