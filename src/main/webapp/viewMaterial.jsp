@@ -150,6 +150,20 @@
 </div>
 <div class="container">
     <h1>View Material</h1>
+    <!-- Search box -->
+    <div class="input-group">
+        <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="Search for services...">
+        <select id="sortByIdSelect" onchange="sortServicesById()">
+            <option value="default">Sort by ID</option>
+            <option value="idAsc">ID: Ascending</option>
+            <option value="idDesc">ID: Descending</option>
+        </select>
+        <select id="sortByPriceSelect" onchange="sortServicesByPrice()">
+            <option value="default">Sort by Price</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+        </select>
+    </div>
     <table class="room-table" border="1">
         <tr>
             <th>Room ID</th>
@@ -198,5 +212,51 @@
         </c:if>
     </div>
 </div>
+<script>
+    function filterServices() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('.room-table tbody tr');
+        rows.forEach(row => {
+            const cells = Array.from(row.cells);
+            const matches = cells.some(cell => cell.innerText.toLowerCase().includes(searchInput));
+            if (matches) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function sortServicesById() {
+        const sortValue = document.getElementById('sortByIdSelect').value;
+        const table = document.querySelector('.room-table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.rows);
+
+        if (sortValue === 'idAsc') {
+            rows.sort((a, b) => parseInt(a.cells[1].innerText) - parseInt(b.cells[1].innerText));
+        } else if (sortValue === 'idDesc') {
+            rows.sort((a, b) => parseInt(b.cells[1].innerText) - parseInt(a.cells[1].innerText));
+        }
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    function sortServicesByPrice() {
+        const sortValue = document.getElementById('sortByPriceSelect').value;
+        const table = document.querySelector('.room-table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.rows);
+
+        if (sortValue === 'priceAsc') {
+            rows.sort((a, b) => parseFloat(a.cells[4].innerText.replace(/[^0-9.-]/g, '')) - parseFloat(b.cells[4].innerText.replace(/[^0-9.-]/g, '')));
+        } else if (sortValue === 'priceDesc') {
+            rows.sort((a, b) => parseFloat(b.cells[4].innerText.replace(/[^0-9.-]/g, '')) - parseFloat(a.cells[4].innerText.replace(/[^0-9.-]/g, '')));
+        }
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
+</script>
+
 </body>
 </html>
