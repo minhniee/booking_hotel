@@ -12,7 +12,7 @@
 <div class="edit-account-wrapper">
     <h2>Edit service</h2>
     <form class="edit-account-form" action="UpdateService" method="post" enctype="multipart/form-data">
-        <c:set var="list" value="${requestScope.list}" />
+        <c:set var="manageService" value="${requestScope.manageService}" />
 
         <div class="form-group">
             <label for="username">ID</label>
@@ -23,7 +23,7 @@
             <label for="username">Category</label>
             <select name="type">
                 <c:forEach items="${requestScope.list}" var="item">
-                    <option value="${item.id}">${item.name}</option>
+                    <option value="${item.id}" ${item.id == manageService.category_id ?"selected=\"selected\"":""}>${item.name}</option>
                 </c:forEach>
             </select>
         </div>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit room</title>
+    <title>Insert room</title>
     <link rel="stylesheet" href="Assets/css/setAccount.css">
 
 </head>
 <body>
 
 <div class="edit-account-wrapper">
-    <h2>Edit service</h2>
+    <h2>Insert room</h2>
     <form class="edit-account-form" action="InsertRoom" method="post">
         <c:set var="roomManager" value="${requestScope.roomManager}" />
         <c:set var="error" value="${requestScope.error}" />
