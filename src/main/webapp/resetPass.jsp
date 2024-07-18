@@ -1,104 +1,138 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Reset Password</title>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap">
+
+    <title>Forgot Password</title>
     <style>
-        .error-message {
-            color: red; /* Màu chữ đỏ */
-            background-color: #ffe6e6; /* Màu nền hồng nhạt */
-            padding: 10px;
-            border-radius: 5px;
+        body {
+            background-image: url('${pageContext.request.contextPath}/Assets/image/Logo/background_login.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            padding: 12px;
+            width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #f5c542; /* Màu vàng */
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0b936; /* Vàng đậm hơn khi hover */
+            transform: scale(1.02);
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .forgot-password {
+            display: block;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .create-account {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .create-account a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<section class="bg-light p-3 p-md-4 p-xl-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xxl-11">
-                <div class="card border-light-subtle shadow-sm">
-                    <div class="row g-0">
-                        <div class="col-12 col-md-6">
-                            <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="Assets/image/room/img.png" alt="Welcome back you've been missed!">
-                        </div>
-                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                            <div class="col-12 col-lg-11 col-xl-10">
-                                <div class="card-body p-3 p-md-4 p-xl-5">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="mb-5">
-                                                <div class="text-center mb-4">
-                                                    <a href="#!">
-                                                        <img src="./Assets/image/Logo/logo_hotel.png" alt="logo hotel" width="175" height="57">
-                                                    </a>
-                                                </div>
-                                                <h2 class="h4 text-center">Password Reset</h2>
-                                                <h3 class="fs-6 fw-normal text-secondary text-center m-0">Provide the email address associated with your account to recover your password.</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <form action="resetPass" method="post">
-                                        <div class="row gy-3 overflow-hidden">
-                                            <div class="col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <div class="invalid-feedback" id="emailError"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="d-grid">
-                                                    <button class="btn btn-dark btn-lg" type="submit">Reset Password</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                                                <a href="login.jsp" class="link-secondary text-decoration-none">Login</a>
-                                                <a href="register.jsp" class="link-secondary text-decoration-none">Register</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <%-- Print message from servlet --%>
-                                    <% String msg = (String) request.getAttribute("msg"); %>
-                                    <% if (msg != null && !msg.isEmpty()) { %>
-                                    <p class="text-center mt-4 error-message"><%= msg %></p>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Forgot Password</h2>
+        <p class="text-center">Enter your email address below to receive a password reset link.</p>
+        <form action="resetPass" method="post">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
             </div>
+            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+            <p class="text-danger">${msg}</p>
+            <a href="login.jsp" class="forgot-password">Back to Login</a>
+        </form>
+        <div class="create-account">
+            Don't have an account? <a href="register.jsp">Create new</a>
         </div>
     </div>
-</section>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var emailInput = document.getElementById("email");
-        var emailError = document.getElementById("emailError");
-
-        emailInput.addEventListener("input", function() {
-            validateEmail();
-        });
-
-        function validateEmail() {
-            var email = emailInput.value;
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                emailInput.classList.add("is-invalid");
-                emailError.textContent = "Invalid email format.";
-            } else {
-                emailInput.classList.remove("is-invalid");
-                emailError.textContent = "";
-            }
-        }
-    });
-</script>
+</div>
 
 </body>
 </html>
