@@ -18,6 +18,7 @@ import model.Payment;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -71,17 +72,17 @@ public class Invoice extends HttpServlet {
             DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            LocalDateTime currentDate = LocalDateTime.now();
-
             // Prase date insert to sql
             LocalDate dateCheckInLocal = LocalDate.parse(checkinDateParam, inputFormatter);
             LocalDate dateCheckoutLocal = LocalDate.parse(checkoutDateParam, inputFormatter);
             //Prase date insert to sql
-            LocalDateTime currentDatel = LocalDateTime.now();
-            String formattedDateTime = currentDatel.format(formatter);
-            LocalDate localDate = currentDate.toLocalDate();
 
-            String invoiceDate = currentDatel.format(currentDateFormatter);
+            LocalDateTime currentDate = LocalDateTime.now();
+            String formattedDateTime = currentDate.format(formatter);
+            LocalDate localDate = currentDate.toLocalDate();
+            Timestamp timestamp = Timestamp.valueOf(currentDate);
+
+            String invoiceDate = currentDate.format(currentDateFormatter);
 
 
             // Format dates to yyyy-MM-dd
@@ -95,7 +96,7 @@ public class Invoice extends HttpServlet {
 
             Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkInDate),
                     Date.valueOf(dateCheckOut), adults, children,
-                    priceValue, 1, account_id, Date.valueOf(String.valueOf(localDate)));
+                    priceValue, 1, account_id, timestamp);
             bookingDAO bookingDao = new bookingDAO();
             bookingDao.insertBooking(booking);
             bookingDao.stateBooking(bookingId);

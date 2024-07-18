@@ -29,7 +29,7 @@ public class bookingDAO {
             pr.setInt(7, booking.getNumChildren());
             pr.setInt(8, booking.getNumAdults());
             pr.setDouble(9, booking.getBookingPrice());
-            pr.setDate(10, booking.getBookingDate());
+            pr.setTimestamp(10, booking.getBookingDate());
 
             pr.executeUpdate();
         } catch (SQLException e) {
@@ -79,7 +79,7 @@ public class bookingDAO {
             double bookingPrice = rs.getDouble("booking_price");
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
-            Date bookingDate = rs.getDate("booking_date");
+            Timestamp bookingDate = rs.getTimestamp("booking_date");
             String bookingStatus = rs.getString("state");
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);
@@ -116,7 +116,7 @@ public class bookingDAO {
             double bookingPrice = rs.getDouble("booking_price");
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
-            Date bookingDate = rs.getDate("booking_date");
+            Timestamp bookingDate = rs.getTimestamp("booking_date"); ;
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
             bookings.add(b);
         }
@@ -153,7 +153,7 @@ public class bookingDAO {
             double bookingPrice = rs.getDouble("booking_price");
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
-            Date bookingDate = rs.getDate("booking_date");
+            Timestamp bookingDate = rs.getTimestamp("booking_date");
             String bookingStatus = rs.getString("state");
             Booking b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate,bookingStatus);
             bookings.add(b);

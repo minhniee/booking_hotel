@@ -89,7 +89,7 @@ public class PaymentVNpayServlet extends HttpServlet {
                 vnp_Params.put("vnp_BankCode", bankCode);
             }
             vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-            vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + bookingID.toUpperCase());
+            vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
             vnp_Params.put("vnp_OrderType", orderType);
 
             String locate = request.getParameter("language");
@@ -154,14 +154,15 @@ public class PaymentVNpayServlet extends HttpServlet {
 //            request.setAttribute("price", price);
 
             session.setAttribute("cost", cost);
-            session.setAttribute("bookingID", bookingID);
+            session.setAttribute("bookingID", vnp_TxnRef);
             session.setAttribute("checkInDate", checkinDateParam);
             session.setAttribute("checkOutDate", checkoutDateParam);
             session.setAttribute("children", childrenParam);
             session.setAttribute("adults", adultsParam);
             session.setAttribute("roomId", roomId);
-
+            System.out.println(vnp_TxnRef);
             response.sendRedirect(paymentUrl);
+
 
         }
     }

@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>--%>
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 
@@ -59,7 +61,7 @@
                                         <th>#</th>
                                         <th>Booking Id</th>
                                         <th>Room Id</th>
-                                        <th>Date </th>
+                                        <th>Booking Date </th>
                                         <th>Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -73,7 +75,8 @@
                                         <td>${i + 1}</td>
                                         <td>${l.id}</td>
                                         <td>${l.roomId}</td>
-                                        <td>${l.bookingDate}</td>
+                                        <td> <fmt:formatDate pattern="dd-MM-yyyy" value="${l.bookingDate}"/></td>
+<%--                                        <td>${l.bookingDate}</td>--%>
                                         <td>${l.bookingPrice}</td>
                                         <td>
                                             <div class="badge badge-warning badge-shadow">${l.bookingState}</div>
@@ -87,17 +90,33 @@
 <%--                                                <td><button  class="btn btn-info">In process</button></td>--%>
 <%--                                            </c:when>--%>
 <%--                                        </c:choose>--%>
+<%--                                            <td>${i + 1}</td>--%>
+<%--                                            <td>${l.id}</td>--%>
+<%--                                            <td>${l.roomId}</td>--%>
+<%--                                            <td><fmt:formatDate pattern="dd-MM-yyyy" value="${l.bookingDate}" /></td>--%>
+<%--                                            <td>${l.bookingPrice}</td>--%>
+<%--                                            <td>--%>
+<%--                                                <div class="badge badge-warning badge-shadow">${l.bookingState}</div>--%>
+<%--                                            </td>--%>
 
 
-                                        <form action="BookingStatus" method="post">
                                             <td>
+                                        <form action="BookingStatus" method="post">
                                             <input type="hidden" name="bookingid" value="${l.id}">
                                             <input type="hidden" name="accountid" value="${l.accountId}">
                                             <input type="hidden" name="price" value="${l.bookingPrice}">
+                                            <input type="hidden" name="bookingdate" value="${l.bookingDate}">
                                             <button type="submit" name="action" value="confirm" class="btn btn-success">Confirm</button>
-                                        <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
-                                        </td>
                                         </form>
+                                        <form action="vnpayRefund" method="post">
+                                            <input type="hidden" name="order_id" value="${l.id}"> <!-- booking id -->
+                                            <input type="hidden" name="amount" value="${l.bookingPrice}"> <!-- amount-->
+                                            <input type="hidden" name="trantype" value="02"> <!-- account id -->
+                                            <input type="hidden" name="trans_date" value='<fmt:formatDate pattern="yyyyMMddHHmmss" value="${l.bookingDate}"/>' />
+                                            <!-- account id -->
+                                        <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+                                        </form>
+                                        </td>
                                         <td><a href="#" class="btn btn-primary">Detail</a></td>
                                     </tr>
                                         <c:set var="i" value="${i + 1}"/>
