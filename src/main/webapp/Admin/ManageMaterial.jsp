@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="Assets/css/notification.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Mange material</title>
 </head>
 <body>
-<div class="tabular--wrapper">
+<%@include file="dashBoardAdmin.jsp"%>
+<div class="main-content">
+<div class="tabular-wrapper">
 
     <c:if test="${sessionScope.success != null}">
         <div class="message info">
@@ -77,7 +80,7 @@
         <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
     </div>
-
+</div>
 </div>
 <script src="Assets/notification.js"></script>
 </body>

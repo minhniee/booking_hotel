@@ -11,12 +11,13 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="Assets/css/listAccount.css">
+    <title>History Booking</title>
 </head>
 <body>
 <div class="tabular--wrapper">
+    <%@include file="dashBoardAdmin.jsp"%>
 
-
-
+        <div class="main-content">
     <h3 class="main--title">List accounts</h3>
     <form action="HistoryBooking" method="post">
         <input type="text" name="text" placeholder="Room id"/>
@@ -64,7 +65,7 @@
         <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
     </div>
-
+        </div>
 </div>
 </body>
 </html>
