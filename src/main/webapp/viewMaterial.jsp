@@ -152,7 +152,7 @@
     <h1>View Material</h1>
     <!-- Search box -->
     <div class="input-group">
-        <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="Search for services...">
+        <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="Search for room...">
         <select id="sortByIdSelect" onchange="sortServicesById()">
             <option value="default">Sort by ID</option>
             <option value="idAsc">ID: Ascending</option>
