@@ -44,12 +44,7 @@
                 <span>List booking</span>
             </a>
         </li>
-        <li>
-            <a href="listRoomManager">
-                <i class="fas fa-question-circle"></i>
-                <span>Manage room</span>
-            </a>
-        </li>
+
         <li>
             <a href="listAccount">
                 <i class="fas fa-star"></i>
@@ -59,7 +54,7 @@
         <li>
             <a href="listRoomManager">
                 <i class="fas fa-cog"></i>
-                <span>Setting room</span>
+                <span>Manage rooms</span>
             </a>
         </li>
         <li>
