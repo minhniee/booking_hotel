@@ -54,6 +54,47 @@
         </table>
 
     </div>
+    <div class="table-container">
+
+        <c:choose>
+            <c:when test="${not empty requestScope.manageBillServices}">
+                <c:set var="totalAmount" value="${requestScope.manageBillServices[0].price}" />
+            </c:when>
+            <c:otherwise>
+                <c:set var="totalAmount" value="0" />
+            </c:otherwise>
+        </c:choose>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Service name</th>
+                    <th>Category name</th>
+                    <th>Quantity</th>
+                    <th>Order date</th>
+                    <th>Total Amount : ${totalAmount}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${requestScope.manageBillServices}" var="manageBillServices">
+                    <tr>
+                        <td>${manageBillServices.description}</td>
+                        <td>${manageBillServices.service_name}</td>
+                        <td>${manageBillServices.category_name}</td>
+                        <td>${manageBillServices.quantity}</td>
+                        <td>${manageBillServices.order_date}</td>
+
+                    </tr>
+
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
 
 </div>
 </body>

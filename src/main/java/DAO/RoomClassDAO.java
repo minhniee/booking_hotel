@@ -4,12 +4,14 @@ import context.DBContext;
 import model.Material;
 import model.RoomClass;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class RoomClassDAO extends DBContext {
 
@@ -98,4 +100,36 @@ public class RoomClassDAO extends DBContext {
         }
         return imageUrls;
     }
+    public BigDecimal getBasePriceByRoomId(String roomId) {
+        String sql = "SELECT rc.base_price " +
+                "FROM room r " +
+                "INNER JOIN room_class rc ON r.room_class_id = rc.id " +
+                "WHERE r.id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, roomId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBigDecimal("base_price");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//    public static void main(String[] args) {
+//        RoomClassDAO dao = new RoomClassDAO();
+//        String roomId = "L4001"; // Replace with actual room ID
+//
+//        BigDecimal basePrice = dao.getBasePriceByRoomId(roomId);
+//        if (basePrice != null) {
+//            System.out.println("Base price: " + basePrice);
+//        } else {
+//            System.out.println("Base price not found for room ID: " + roomId);
+//        }
+//    }
+
+
 }

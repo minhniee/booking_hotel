@@ -114,6 +114,13 @@
                             <button type="submit" class="btn btn-primary">Detail</button>
                         </form>
                     </td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/CancelBooking" method="post">
+                            <input type="hidden" name="bookingID" value="${b.id}">
+                            <input type="hidden" name="amount" value="${b.bookingPrice}">
+                            <button type="submit" class="btn btn-primary">Cancel booking</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
 <%--<<<<<<< HEAD--%>

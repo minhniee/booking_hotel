@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="url" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
@@ -27,7 +26,9 @@
   <!-- Header -->
   <header>
     <div class="row align-items-center gy-3">
-      <div class="col-sm-7 text-center text-sm-start"> <img id="logo" src="${url}/Assets/image/Logo/logo_hotel.png" title="Booking detail" alt="Booking detail" /> </div>
+      <div class="col-sm-7 text-center text-sm-start">
+        <img id="logo" src="${url}/Assets/image/Logo/logo_hotel.png" title="Booking detail" alt="Booking detail" />
+      </div>
       <div class="col-sm-5 text-center text-sm-end">
         <h4 class="mb-0">Detail</h4>
       </div>
@@ -85,7 +86,6 @@
       </div>
     </div>
 
-
     <div class="table-responsive">
       <table class="table border mb-0">
         <thead>
@@ -96,12 +96,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="nights" value="${((data.checkOutDate.time - data.checkInDate.time) / (  60 * 60 * 24))}" />
-
+        <c:set var="nights" value="${((data.checkOutDate.time - data.checkInDate.time) / (1000 * 60 * 60 * 24))}" />
         <tr>
           <td class="col-6">Room Charges</td>
-          <td class="col-4 text-end">$${data.bookingPrice} X ${nights} Night(s) X 1 Room</td>
-          <td class="col-2 text-end">$${data.bookingPrice * nights}.00</td>
+          <td class="col-4 text-end">$${base_price} X ${nights} Night(s) X 1 Room</td>
+          <td class="col-2 text-end"><fmt:formatNumber value="${base_price * nights}" type="currency" currencySymbol="$" maxFractionDigits="2" /></td>
         </tr>
         <tr>
           <td>Other Charges</td>
@@ -116,15 +115,15 @@
       <table class="table border border-top-0 mb-0">
         <tr class="bg-light">
           <td colspan="2" class="text-end"><strong>Sub Total:</strong></td>
-          <td class="col-sm-2 text-end">$${data.bookingPrice * nights}.00</td>
+          <td class="col-sm-2 text-end"><fmt:formatNumber value="${base_price * nights}" type="currency" currencySymbol="$" maxFractionDigits="2" /></td>
         </tr>
         <tr class="bg-light">
           <td colspan="2" class="text-end"><strong>Tax (10%):</strong></td>
-          <td class="col-sm-2 text-end">$${data.bookingPrice * nights * 0.1}.00</td>
+          <td class="col-sm-2 text-end"><fmt:formatNumber value="${base_price * nights * 0.1}" type="currency" currencySymbol="$" maxFractionDigits="2" /></td>
         </tr>
         <tr class="bg-light">
           <td colspan="2" class="text-end border-bottom-0"><strong>Total:</strong></td>
-          <td class="col-sm-2 text-end border-bottom-0">$${data.bookingPrice * nights * 1.1}.00</td>
+          <td class="col-sm-2 text-end border-bottom-0"><fmt:formatNumber value="${base_price * nights * 1.1}" type="currency" currencySymbol="$" maxFractionDigits="2" /></td>
         </tr>
       </table>
     </div>
@@ -136,13 +135,17 @@
   <footer class="text-center">
     <hr>
     <p class="lh-base"><strong>Hotel.</strong><br>
-      The Orchid Hotel
-      Plot No.3, Nr. HDFC Bank, Ashram Road
-      Ahmedabad, Gujarat,
+      The Orchid Hotel<br>
+      Plot No.3, Nr. HDFC Bank, Ashram Road<br>
+      Ahmedabad, Gujarat,<br />
       India.</p>
     <hr>
     <p class="text-1"><strong>NOTE :</strong> This is computer generated receipt and does not require physical signature.</p>
-    <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Print & Download</a> </div>
+    <div class="btn-group btn-group-sm d-print-none">
+      <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none">
+        <i class="fa fa-print"></i> Print & Download
+      </a>
+    </div>
   </footer>
 </div>
 <!-- Back to My Account Link -->
