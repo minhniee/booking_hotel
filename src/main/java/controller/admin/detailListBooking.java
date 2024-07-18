@@ -5,9 +5,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.DetailListBooking;
+import model.ManageBillService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet(name = "detailListBooking", value = "/detailListBooking")
 public class detailListBooking extends HttpServlet {
@@ -34,6 +36,9 @@ public class detailListBooking extends HttpServlet {
         String id = request.getParameter("id");
         detailListBookingDAO dao = new detailListBookingDAO();
         DetailListBooking list = dao.detailListBooking(id);
+        ArrayList<ManageBillService> manageBillServices = new ArrayList<>();
+        manageBillServices = dao.getManageBillService(id);
+        request.setAttribute("manageBillServices", manageBillServices);
         request.setAttribute("detailListBooking", list);
         request.getRequestDispatcher("Admin/detailListBooking.jsp").forward(request, response);
     }
