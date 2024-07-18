@@ -10,7 +10,7 @@
 <body>
 
 <div class="edit-account-wrapper">
-    <h2>Edit service</h2>
+    <h2>Edit room</h2>
     <form class="edit-account-form" action="UpdateRoom" method="post">
         <c:set var="roomManager" value="${requestScope.roomManager}" />
 
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Status name</label>
+            <label for="email">Status room</label>
             <select name="status">
                 <option value="Available" ${roomManager.status_name == 'Available' ? "selected=\"selected\"":""}>Available</option>
                 <option value="Disable" ${roomManager.status_name != 'Available' ? "selected=\"selected\"":""}>Disable</option>

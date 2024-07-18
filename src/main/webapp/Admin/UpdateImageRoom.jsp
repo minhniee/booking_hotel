@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit room class</title>
+    <title>Change image room</title>
     <link rel="stylesheet" href="Assets/css/setAccount.css">
 
 </head>
 <body>
 
 <div class="edit-account-wrapper">
-    <h2>Edit room class</h2>
+    <h2>Change image room</h2>
     <form class="edit-account-form" action="UpdateImageRoom" method="post"  enctype="multipart/form-data">
         <c:set var="room_id" value="${requestScope.room_id}" />
         <c:set var="room_image" value="${requestScope.room_image}" />

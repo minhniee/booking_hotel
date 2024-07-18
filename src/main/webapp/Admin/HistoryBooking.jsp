@@ -52,7 +52,7 @@
 
 
                     <td>
-                        <a href="detailListBooking?id=${managerBookings.id}"><button class="fas fa-edit"></button></a>
+                        <a href="detailListBooking?id=${managerBookings.id}"><button class="fas fa-info-circle"></button></a>
 
                     </td>
 
