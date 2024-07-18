@@ -22,6 +22,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
+import util.Email;
 
 /**
  *
@@ -106,13 +109,28 @@ public class vnpayRefund extends HttpServlet {
             response.append(output);
         }
         in.close();
+
+
+        //send email
+        HttpSession session = req.getSession();
+        Account account = (Account)session.getAttribute("account");
+        if (account != null){
+        Email email = new Email();
+        email.sendEmail(account.getEmail(),"Cancel Booking  ","Cancel Booking and you will return 100% ");
+        }else {
+            System.out.println("cannot catch session");
+        }
+        // change status room
         bookingDAO booking = new bookingDAO();
         booking.confirmBooking(vnp_TxnRef, "reject");
+
+        //test data
         System.out.println("Booking Refund");
         System.out.println(vnp_TransactionType);
         System.out.println(vnp_TxnRef);
         System.out.println(price);
         System.out.println(amount);
+
         System.out.println(response.toString());
 
     }

@@ -7,8 +7,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
 import model.Bill;
 import model.Booking;
+import util.Email;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -80,7 +83,19 @@ public class BookingStatus extends HttpServlet {
 
         }
 
+
         if (action.equalsIgnoreCase("confirm")) {
+            HttpSession session = request.getSession();
+            Account account = (Account)session.getAttribute("account");
+
+            if (account != null){
+                Email email = new Email();
+                email.sendEmail(account.getEmail(),"Comfirm Booking  ","Successful");
+                bookingDAO booking = new bookingDAO();
+                booking.confirmBooking(bookingId, "confirm");
+            }else {
+                System.out.println("cannot catch session");
+            }
             String billId = generateUniqueKey();
             Bill bill = new Bill(billId, accountId, bookingId, totalPrice);
             new billDAO().insertBill(bill);

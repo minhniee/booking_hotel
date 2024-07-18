@@ -105,8 +105,8 @@
                 <tr>
                     <td>${loop.index + 1}</td>
                     <td>${b.roomId}</td>
-                    <td><fmt:formatDate value="${b.checkInDate}" pattern="yyyy-MM-dd" />${b.checkInDate}</td>
-                    <td><fmt:formatDate value="${b.checkOutDate}" pattern="yyyy-MM-dd" />${b.checkOutDate}</td>
+                    <td><fmt:formatDate value="${b.checkInDate}" pattern="dd-MM-yyyy" /></td>
+                    <td><fmt:formatDate value="${b.checkOutDate}" pattern="dd-MM-yyyy" /></td>
                     <td>${b.bookingState}</td>
                     <td>
                         <form action="${pageContext.request.contextPath}/bookingdetailcus" method="post">

@@ -96,7 +96,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:set var="nights" value="${((data.checkOutDate.time - data.checkInDate.time) / (1000 * 60 * 60 * 24))}" />
+        <c:set var="nights" value="${((data.checkOutDate.time - data.checkInDate.time) / (  60 * 60 * 24))}" />
 
         <tr>
           <td class="col-6">Room Charges</td>
