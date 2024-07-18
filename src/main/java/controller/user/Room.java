@@ -66,8 +66,8 @@ public class Room extends HttpServlet {
 
         ArrayList<model.Room> listRoomType = new ArrayList<>();
         roomDAO dao = new roomDAO();
-        listRoomType = dao.getRoom();
-        request.setAttribute("listRoom", listRoomType);
+        listRoomType = dao.getRoomByType();
+        request.setAttribute("room", listRoomType);
 
         request.getRequestDispatcher("homePage/rooms2.jsp").forward(request,response);
 

@@ -1,5 +1,7 @@
+
+
 <section class="testimonials">
-    <div class="background bg-img bg-fixed section-padding pb-0" data-background="${url1}/Assets1/img/slider/2.jpg" data-overlay-dark="2">
+    <div class="background bg-img bg-fixed section-padding pb-0" data-background="${pageContext.request.contextPath}/Assets1/img/slider/2.jpg" data-overlay-dark="2">
         <div class="container">
             <div class="row">
                 <!-- Reservation -->

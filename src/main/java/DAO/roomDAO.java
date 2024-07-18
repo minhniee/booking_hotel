@@ -51,35 +51,36 @@ public class roomDAO {
         return list;
     }
 
-//    public ArrayList<Room> getRoomByType() {
-//        ArrayList<Room> list = new ArrayList<>();
-//        try {
-//            con = new DBContext().getConnection();
-//            String sql = "SELECT  room_class.id, room_class.class_name, room_class.base_price, room_class.main_image\n" +
-//                    "                    FROM     room_class \n" +
-//                    "order by room_class.base_price asc;";
-//
-//            pr = con.prepareStatement(sql);
-//
-//            System.err.println("getRoomByType");
-//            rs = pr.executeQuery();
-//
-//            while (rs.next()) {
-//                String roomClassId = rs.getString(1);
-//                String roomClassName = rs.getString(2);
-//                double basePrice = rs.getDouble(3); // Foreign key
-//                String roomImg = rs.getString(4); // Foreign key
-//
-//                Room p = new Room(roomClassId, roomClassName, basePrice, roomImg);
-//                list.add(p);
-//            }
-//            con.close();
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return list;
-//    }
+
+    public ArrayList<Room> getRoomByType() {
+        ArrayList<Room> list = new ArrayList<>();
+        try {
+            con = new DBContext().getConnection();
+            String sql = "SELECT  room_class.id, room_class.class_name, room_class.base_price, room_class.main_image\n" +
+                    "                    FROM     room_class \n" +
+                    "order by room_class.base_price asc;";
+
+            pr = con.prepareStatement(sql);
+
+            System.err.println("getRoomByType");
+            rs = pr.executeQuery();
+
+            while (rs.next()) {
+                String roomClassId = rs.getString(1);
+                String roomClassName = rs.getString(2);
+                double basePrice = rs.getDouble(3); // Foreign key
+                String roomImg = rs.getString(4); // Foreign key
+
+                Room p = new Room(roomClassId, roomClassName, basePrice, roomImg);
+                list.add(p);
+            }
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 
     public ArrayList<Room> getRoomByTypeValid() {
         ArrayList<Room> list = new ArrayList<>();
