@@ -79,4 +79,23 @@ public class RoomClassDAO extends DBContext {
         }
         return materials;
     }
+    public List<String> getImagesByRoomId(String roomId) {
+        List<String> imageUrls = new ArrayList<>();
+        String sql = "SELECT ri.image_url " +
+                "FROM room r " +
+                "INNER JOIN room_images ri ON r.room_class_id = ri.room_class_id " +
+                "WHERE r.id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, roomId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    imageUrls.add(rs.getString("image_url"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return imageUrls;
+    }
 }

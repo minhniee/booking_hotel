@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <%@ page contentType="text/html; ISO-8859-1" language="java" %>
@@ -99,31 +101,31 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="b" items="${requestScope.data}">
+            <c:forEach var="b" items="${requestScope.data}" varStatus="loop">
                 <tr>
-                    <td>${b.id}</td>
+                    <td>${loop.index + 1}</td>
                     <td>${b.roomId}</td>
                     <td><fmt:formatDate value="${b.checkInDate}" pattern="yyyy-MM-dd" />${b.checkInDate}</td>
                     <td><fmt:formatDate value="${b.checkOutDate}" pattern="yyyy-MM-dd" />${b.checkOutDate}</td>
                     <td>${b.bookingState}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/bookingDetail" method="post">
+                        <form action="${pageContext.request.contextPath}/bookingdetailcus" method="post">
                             <input type="hidden" name="bookingID" value="${b.id}">
                             <button type="submit" class="btn btn-primary">Detail</button>
                         </form>
                     </td>
                 </tr>
             </c:forEach>
-<<<<<<< HEAD
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-            </tr>
-=======
->>>>>>> 9042792de0aa8e9bc7c52c0db40bb9efb5b5dafd
+<%--<<<<<<< HEAD--%>
+<%--            <tr>--%>
+<%--                <td>1</td>--%>
+<%--                <td>2</td>--%>
+<%--                <td>3</td>--%>
+<%--                <td>4</td>--%>
+<%--                <td>5</td>--%>
+<%--            </tr>--%>
+<%--=======--%>
+<%-->>>>>>> 9042792de0aa8e9bc7c52c0db40bb9efb5b5dafd--%>
             </tbody>
         </table>
 

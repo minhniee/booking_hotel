@@ -116,7 +116,7 @@
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end"><strong>Tax(10%):</strong></td>
-                    <td class="col-sm-2 text-end">$${basePrice* nights*0.1}.00</td>
+                    <td class="col-sm-2 text-end">${basePrice* nights*0.1}.00</td>
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end border-bottom-0"><strong>Total:</strong></td>
