@@ -113,7 +113,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/CancelBooking" method="post">
+                        <form action="${pageContext.request.contextPath}/CancleBooking" method="get">
                             <input type="hidden" name="bookingID" value="${b.id}">
                             <input type="hidden" name="amount" value="${b.bookingPrice}">
                             <button type="submit" class="btn btn-primary">Cancel booking</button>

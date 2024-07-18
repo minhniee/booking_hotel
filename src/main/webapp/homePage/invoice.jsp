@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="images/favicon.png" rel="icon" />
-    <title>Hotel Booking Invoice - Koice</title>
+    <title>Hotel Booking Invoice </title>
     <meta name="author" content="harnishdesign.net">
 
     <!-- Web Fonts
@@ -139,6 +139,6 @@
     </footer>
 </div>
 <!-- Back to My Account Link -->
-<p class="text-center d-print-none"><a href="${url}user/user_profile.jsp">&laquo; Back to My Account</a></p>
+<p class="text-center d-print-none"><a href="${url}/user/user_profile.jsp">&laquo; Back to My Account</a></p>
 </body>
 </html>
