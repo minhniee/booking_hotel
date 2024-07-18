@@ -3,10 +3,17 @@
 <html>
 <head>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
+    <%@include file="layout/cdnpkg.jsp"%>
     <title>Room Manager</title>
     <style>
+        .room-table td {
+            color: black;
+            background-color: snow;
+        }
         .container {
-            max-width: 950px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 20px;
             font-family: Arial, sans-serif;
@@ -90,6 +97,59 @@
     </style>
 </head>
 <body>
+<div class="sidebar">
+    <div class="logo"></div>
+    <ul class="menu">
+        <li >
+            <a href="dashboardstaff.jsp" >
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li >
+            <a href="profileStaff.jsp">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="ViewService">
+                <i class="fas fa-chart-bar"></i>
+                <span>Service</span>
+            </a>
+        </li>
+        <li >
+            <a href="ViewMaterial">
+                <i class="fas fa-briefcase"></i>
+                <span>Material</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-question-circle"></i>
+                <span>FAQ</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="roomManager">
+                <i class="fas fa-cog"></i>
+                <span>Room</span>
+            </a>
+        </li>
+        <li>
+            <a href="customerInfo">
+                <i class="fas fa-star"></i>
+                <span>Customer</span>
+            </a>
+        </li>
+        <li class="logout">
+            <a href="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <div class="container">
     <h1>Room Manager</h1>
     <table class="room-table" border="1">
@@ -97,10 +157,10 @@
             <th>ID</th>
             <th>Room Class ID</th>
             <th>Room Class Name</th>
-            <th>Status</th>
-            <th>Name</th>
+            <th>Status Name</th>
             <th>Num Adults</th>
             <th>Price</th>
+            <th>Room Image</th>
             <th>Actions</th>
         </tr>
         <c:forEach var="room" items="${rooms}">
@@ -109,20 +169,16 @@
                 <td>${room.roomClassId}</td>
                 <td>${room.roomClassName}</td>
                 <td>${room.statusName}</td>
-                <td>${room.roomName}</td>
                 <td>${room.numAdults}</td>
                 <td>${room.basePrice}</td>
+                <td><img src="Assets/image/room/${room.roomImg}" alt="${room.roomImg}" width="100"></td>
                 <td class="room-actions">
-                    <form action="roomManager" method="post" style="display:inline;">
-                        <input type="hidden" name="action" value="edit">
-                        <input type="hidden" name="roomId" value="${room.id}">
-                        <button type="submit">Edit</button>
-                    </form>
                         <%--                    <form action="roomManager" method="post" style="display:inline;">--%>
-                        <%--                        <input type="hidden" name="action" value="delete">--%>
+                        <%--                        <input type="hidden" name="action" value="edit">--%>
                         <%--                        <input type="hidden" name="roomId" value="${room.id}">--%>
-                        <%--                        <button type="submit">Delete</button>--%>
+                        <%--                        <button type="submit">Edit</button>--%>
                         <%--                    </form>--%>
+                    <a href="editRoom?id=${room.id}"><button type="submit">Edit</button></a>
                 </td>
             </tr>
         </c:forEach>

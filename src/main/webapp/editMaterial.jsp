@@ -76,15 +76,6 @@
             return isValid;
         }
 
-        <%--function previewImage(event) {--%>
-        <%--    const reader = new FileReader();--%>
-        <%--    reader.onload = function() {--%>
-        <%--        const output = document.getElementById('imagePreview');--%>
-        <%--        output.innerHTML = `<img src="${reader.result}" alt="Image Preview" width="100%">`;--%>
-        <%--        output.style.display = 'block';--%>
-        <%--    }--%>
-        <%--    reader.readAsDataURL(event.target.files[0]);--%>
-        <%--}--%>
         function previewImage(event) {
             var input = event.target;
             var reader = new FileReader();
@@ -128,18 +119,10 @@
             <span id="priceError" class="error">${errorMessages.price}</span>
         </div>
         <div class="form-group">
-<%--            <label for="image">Image:</label>--%>
-<%--            <input type="text" id="image" name="image" value="${material.image}" readonly>--%>
-<%--            <img id="currentImage" src="Assets/image/material/${material.image}" alt="Không thể tải ảnh" class="img-fluid d-block mx-auto">--%>
-<%--            <input id="image" name="image" type="file" style="display:none;" onchange="previewImage(event);" />--%>
-<%--            <input type="button" class="btn btn-primary btn-block mx-auto text-uppercase" value="Chọn ảnh" onclick="document.getElementById('image').click();" />--%>
-<%--            <div id="imagePreview" class="mt-3"></div>--%>
             <label for="image">Image:</label>
-            <img id="currentImage" src="Assets/image/material/${material.image}" alt="Current Image" width="30%">
-            <input id="image" name="image" type="file" style="display:none;" onchange="previewImage(event);" />
-            <input type="button" class="btn btn-primary btn-block mx-auto text-uppercase" value="Choose Image" onclick="document.getElementById('image').click();" />
-            <div id="imagePreview" class="mt-3"></div>
-
+            <input type="hidden" name="oldImage" value="${material.image}">
+            <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
+            <img id="imagePreview" class="mt-3"  src="Assets/image/material/${material.image}" alt="image" width="30%">
         </div>
         <div class="form-group">
             <button type="submit">Save</button>

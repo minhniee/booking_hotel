@@ -18,15 +18,15 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="profileStaff.jsp">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="ViewService">
                 <i class="fas fa-chart-bar"></i>
-                <span>Statistics</span>
+                <span>Service</span>
             </a>
         </li>
         <li>

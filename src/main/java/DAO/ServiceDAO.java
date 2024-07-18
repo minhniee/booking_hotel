@@ -2,6 +2,7 @@ package DAO;
 
 import context.DBContext;
 import model.CartItem;
+import model.Material;
 import model.Service;
 
 import java.sql.Connection;
@@ -33,6 +34,29 @@ public class ServiceDAO extends DBContext {
             e.printStackTrace();
         }
         return services;
+    }
+
+    public ArrayList<Service> getService() {
+        ArrayList<Service> service = new ArrayList<>();
+        try {
+            String sql = "SELECT id,category_id,service_name,description,price,quantity,image\n" +
+                    "FROM service";
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                service.add(new Service(rs.getString(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDouble(5),
+                        rs.getInt(6),
+                        rs.getString(7)));
+            }
+
+        } catch (Exception e) {
+
+        }
+        return service;
     }
 
     public List<Service> getServicesByCategory(int categoryId) {
@@ -116,6 +140,40 @@ public class ServiceDAO extends DBContext {
             ps.setInt(1, service.getQuantity());
             ps.setString(2, service.getId());
             ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateService(Service service){
+        String query = "UPDATE service SET category_id = ?, service_name = ?, description = ?, price = ?, quantity = ?\n" +
+                "WHERE id = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+                ps.setInt(1,service.getCategoryId());
+                ps.setString(2,service.getServiceName());
+                ps.setString(3,service.getDescription());
+                ps.setDouble(4,service.getPrice());
+                ps.setInt(6,service.getQuantity());
+                ps.setString(7,service.getId());
+                ps.executeUpdate();
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+
+    }
+
+    public void updateService1(Service service) {
+        try {
+            String sql = "UPDATE service SET category_id = ?, service_name = ?, description = ?, price = ?, quantity = ?\n" +
+                    "WHERE id = ?";
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setInt(1, service.getCategoryId());
+            stm.setString(2, service.getServiceName());
+            stm.setString(3, service.getDescription());
+            stm.setDouble(4, service.getPrice());
+            stm.setInt(5, service.getQuantity());
+            stm.setString(6, service.getId());
+            stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

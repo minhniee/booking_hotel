@@ -21,13 +21,6 @@ public class Customer {
     private boolean gender;
     private List<Booking> bookings;
 
-//    public Customer(int id, String fullName, String email, String phone, List<Booking> bookings) {
-//        this.id = id;
-//        this.fullName = fullName;
-//        this.email = email;
-//        this.phone = phone;
-//        this.bookings = bookings;
-//    }
 
     public Customer(int id, String fullName, String email, String phone, boolean gender, Date dob, String address , List<Booking> bookings) {
         this.id = id;

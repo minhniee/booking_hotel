@@ -49,7 +49,8 @@
         <p>Full Name: ${customer.fullName}</p>
         <p>Email: ${customer.email}</p>
         <p>Phone: ${customer.phone}</p>
-        <p>Gender: ${customer.gender ? "Male" : "Female"}</p>
+        <p>Gender: ${customer.gender ? "Male" : "Female"}}</p>
+<%--        ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""--%>
         <p>Date of Birth: ${customer.dob}</p>
         <p>Address: ${customer.address}</p>
 
