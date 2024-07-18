@@ -1,105 +1,125 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: minhl
-  Date: 5/16/2024
-  Time: 8:29 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap">
 
-    <%@include file="layout/cdnpkg.jsp"%>
-    <%@include file="layout/subheader.jsp" %>
-
-    <title>login page</title>
+    <title>Login Page</title>
     <style>
-        .gradient-custom-2 {
-            /* fallback for old browsers */
-            background: #fccb90;
-
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+        body {
+            background-image: url('${pageContext.request.contextPath}/Assets/image/Logo/background_login.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
         }
 
-        @media (min-width: 768px) {
-            .gradient-form {
-                height: 100vh !important;
-            }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
         }
-        @media (min-width: 769px) {
-            .gradient-custom-2 {
-                border-top-right-radius: .3rem;
-                border-bottom-right-radius: .3rem;
-            }
-            img{
-                width: 610px;
-            }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 20px; /* Adjust the font size here */
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: #ee7724;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px 20px;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background-color: #d8363a;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .forgot-password {
+            display: block;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .create-account {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .create-account a {
+            color: #d8363a;
+            text-decoration: none;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-xl-10">
-                <div class="card rounded-3 text-black">
-                    <div class="row g-0">
-                        <div class="col-lg-6">
-                            <div class="card-body p-md-5 mx-md-4">
-
-                                <div class="text-center">
-                                    <!--<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"-->
-                                    <!--style="width: 185px;" alt="logo">-->
-                                    <h4 class="mt-1 mb-5 pb-1">We are FBT</h4>
-                                </div>
-
-<%--                                <form>--%>
-                                    <form action="${url}/login" method="post">
-                                    <div data-mdb-input-init class="form-outline mt-2">
-                                        <label class="form-label" for="form2Example11">Username</label>
-                                        <input type="text" id="form2Example11" name="username" class="form-control"
-                                               placeholder="Phone number or email address" />
-                                    </div>
-
-                                    <div data-mdb-input-init class="form-outline mb-2">
-                                        <label class="form-label" for="form2Example22">Password</label>
-                                        <input type="password" name="password" id="form2Example22" class="form-control" />
-                                    </div>
-                                    <div class="text-center pt-1 mb-5 pb-1">
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
-                                        <p class="text-danger">${msg}</p>
-                                        <p class="text-danger">${msg_ac}</p>
-                                        <p class="text-danger">${msg_register}</p>
-                                        <a class="text-muted" href="resetPass.jsp">Forgot password?</a>
-                                    </div>
-                                    </form>
-                                    <div class="d-flex align-items-center justify-content-center pb-4">
-                                        <p class="mb-0 me-2">Don't have an account?</p>
-                                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger" onclick="window.location.href='register.jsp'">Create new</button>
-                                    </div>
-
-<%--                                </form>--%>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-<%--                            <img src="${url}/assest/room/img.png" alt="alt"/>--%>
-                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Login to Your Account</h2>
+        <form action="login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username">
             </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="text-danger">${msg_register}</p>
+            <p class="text-danger">${msg}</p>
+            <a href="resetPass.jsp" class="forgot-password">Forgot password?</a>
+        </form>
+        <div class="create-account">
+            Don't have an account? <a href="register.jsp">Create new</a>
         </div>
     </div>
-</section>
-
-<%--<%@include file="layout/footer.jsp" %>--%>
+</div>
 
 </body>
 </html>

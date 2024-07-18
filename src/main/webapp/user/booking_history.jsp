@@ -119,6 +119,7 @@
                             <button type="submit" class="btn btn-primary">Cancel booking</button>
                         </form>
                     </td>
+
                 </tr>
             </c:forEach>
 <%--<<<<<<< HEAD--%>
