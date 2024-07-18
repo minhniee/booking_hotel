@@ -58,61 +58,20 @@
     </style>
     <script>
         function validateForm() {
-            const categoryId = document.querySelector('[name="categoryId"]').value.trim();
-            const serviceName = document.querySelector('[name="serviceName"]').value.trim();
-            const description = document.querySelector('[name="description"]').value.trim();
-            const price = document.querySelector('[name="price"]').value.trim();
-            const quantity = document.querySelector('[name="quantity"]').value.trim();
-
-            const categoryIdRegex = /^[1-9]\d*$/;
-            const priceRegex = /^[1-9]\d*(\.\d+)?$/;
-
+            let quantity = document.getElementById("quantity").value;
+            let price = document.getElementById("price").value;
             let isValid = true;
 
-            // Clear previous error messages
-            document.getElementById('categoryIdError').textContent = '';
-            document.getElementById('serviceNameError').textContent = '';
-            document.getElementById('descriptionError').textContent = '';
-            document.getElementById('priceError').textContent = '';
-            document.getElementById('quantityError').textContent = '';
+            document.getElementById("quantityError").innerText = "";
+            document.getElementById("priceError").innerText = "";
 
-            if (!categoryId) {
-                document.getElementById('categoryIdError').textContent = 'Category ID is required.';
-                isValid = false;
-            } else if (!categoryIdRegex.test(categoryId)) {
-                document.getElementById('categoryIdError').textContent = 'Category ID must be a positive integer.';
+            if (quantity === "" || isNaN(quantity) || parseInt(quantity) <= 0) {
+                document.getElementById("quantityError").innerText = "Please enter a positive integer for quantity.";
                 isValid = false;
             }
 
-            if (!serviceName) {
-                document.getElementById('serviceNameError').textContent = 'Service Name is required.';
-                isValid = false;
-            } else if (serviceName.length > 20) {
-                document.getElementById('serviceNameError').textContent = 'Service Name cannot be longer than 20 characters.';
-                isValid = false;
-            }
-
-            if (!description) {
-                document.getElementById('descriptionError').textContent = 'Description is required.';
-                isValid = false;
-            } else if (description.length > 200) {
-                document.getElementById('descriptionError').textContent = 'Description cannot be longer than 200 characters.';
-                isValid = false;
-            }
-
-            if (!price) {
-                document.getElementById('priceError').textContent = 'Price is required.';
-                isValid = false;
-            } else if (!priceRegex.test(price) || parseFloat(price) <= 0) {
-                document.getElementById('priceError').textContent = 'Price must be a positive decimal number greater than 0.';
-                isValid = false;
-            }
-
-            if (!quantity) {
-                document.getElementById('quantityError').textContent = 'Quantity is required.';
-                isValid = false;
-            } else if (!Number.isInteger(Number(quantity)) || quantity <= 0) {
-                document.getElementById('quantityError').textContent = 'Quantity must be a positive integer.';
+            if (price === "" || isNaN(price) || parseFloat(price) <= 0) {
+                document.getElementById("priceError").innerText = "Please enter a positive number for price.";
                 isValid = false;
             }
 
@@ -198,17 +157,17 @@
         </div>
         <div class="form-group">
             <label for="categoryId">Category ID:</label>
-            <input type="number" id="categoryId" name="id" value="${service.categoryId}" required >
+            <input type="number" id="categoryId" name="id" value="${service.categoryId}" readonly >
             <span id="categoryIdError" class="error">${errorMessages.categoryId}</span>
         </div>
         <div class="form-group">
             <label for="serviceName">Service Name:</label>
-            <input type="text" id="serviceName" name="serviceName" value="${service.serviceName}" required >
+            <input type="text" id="serviceName" name="serviceName" value="${service.serviceName}" readonly >
             <span id="serviceNameError" class="error">${errorMessages.serviceName}</span>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description" value="${service.description}" required>
+            <input type="text" id="description" name="description" value="${service.description}" readonly>
             <span id="descriptionError" class="error">${errorMessages.description}</span>
         </div>
         <div class="form-group">
@@ -224,7 +183,7 @@
 
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="hidden" name="oldImage" value="${service.image}">
+            <input type="hidden" name="oldImage" value="${service.image}" readonly>
             <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
             <img id="imagePreview" class="mt-3"  src="Assets/services/${service.image}" alt="image" width="30%">
         </div>

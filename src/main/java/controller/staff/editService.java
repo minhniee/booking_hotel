@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "editService", value = "/editService")
 public class editService extends HttpServlet {
@@ -45,46 +46,64 @@ public class editService extends HttpServlet {
         request.getRequestDispatcher("editService.jsp").forward(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Lấy các tham số từ form
         String id = request.getParameter("id");
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        String serviceName = request.getParameter("serviceName");
-        String description = request.getParameter("description");
-        double price = Double.valueOf(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String priceStr = request.getParameter("price");
+        String quantityStr = request.getParameter("quantity");
 
-        Part part1 = request.getPart("image");
-        String fileName1 = extractFileName(part1);
-        fileName1 = new File(fileName1).getName();
-        if (fileName1 != null && !fileName1.isEmpty()) {
-            String uploadPath = getServletContext().getRealPath("") + File.separator + "Assets/image/services";
-            // Create the directory if it does not exist
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+        // Tạo một đối tượng Service
+        Service service = new Service();
+        service.setId(id);
+
+        // Xử lý lỗi và xác thực dữ liệu
+        Map<String, String> errorMessages = new HashMap<>();
+        boolean isValid = true;
+
+        // Kiểm tra giá
+        double price = 0;
+        try {
+            price = Double.parseDouble(priceStr);
+            if (price <= 0) {
+                errorMessages.put("price", "Price must be a positive number.");
+                isValid = false;
             }
-            part1.write(uploadPath + File.separator + fileName1);
+        } catch (NumberFormatException e) {
+            errorMessages.put("price", "Invalid price format.");
+            isValid = false;
         }
-        String roomImg = (fileName1 != null && !fileName1.isEmpty()) ? fileName1 : request.getParameter("oldImage");
+        service.setPrice(price);
 
-        Service service = new Service(id, categoryId, serviceName, description, price, quantity, roomImg);
-        ServiceDAO dao = new ServiceDAO();
-        dao.updateService(service);
-        response.sendRedirect("ViewService");
-
-    }
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+        // Kiểm tra số lượng
+        int quantity = 0;
+        try {
+            quantity = Integer.parseInt(quantityStr);
+            if (quantity <= 0) {
+                errorMessages.put("quantity", "Quantity must be a positive integer.");
+                isValid = false;
             }
+        } catch (NumberFormatException e) {
+            errorMessages.put("quantity", "Invalid quantity format.");
+            isValid = false;
         }
-        return "";
+        service.setQuantity(quantity);
+
+        // Nếu dữ liệu hợp lệ, cập nhật dịch vụ
+        if (isValid) {
+            ServiceDAO dao = new ServiceDAO();
+            dao.updateService1(service);
+            response.sendRedirect("ViewService"); // Điều hướng đến trang danh sách dịch vụ
+        } else {
+            // Nếu có lỗi, gửi lại thông tin lỗi và dịch vụ hiện tại đến trang chỉnh sửa
+            request.setAttribute("service", service);
+            request.setAttribute("errorMessages", errorMessages);
+            request.getRequestDispatcher("editService.jsp").forward(request, response);
+        }
     }
+
 
 
     @Override

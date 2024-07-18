@@ -145,8 +145,7 @@ public class ServiceDAO extends DBContext {
         }
     }
     public void updateService(Service service){
-        String query = "UPDATE service SET category_id = ?, service_name = ?, description = ?, price = ?, quantity = ?\n" +
-                "WHERE id = ?";
+        String query = "UPDATE service SET category_id = ?, service_name = ?, description = ?, price = ?, quantity = ? WHERE id = ?";
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
                 ps.setInt(1,service.getCategoryId());
@@ -164,15 +163,12 @@ public class ServiceDAO extends DBContext {
 
     public void updateService1(Service service) {
         try {
-            String sql = "UPDATE service SET category_id = ?, service_name = ?, description = ?, price = ?, quantity = ?\n" +
+            String sql = "UPDATE service SET  price = ?, quantity = ?\n" +
                     "WHERE id = ?";
             PreparedStatement stm = getConnection().prepareStatement(sql);
-            stm.setInt(1, service.getCategoryId());
-            stm.setString(2, service.getServiceName());
-            stm.setString(3, service.getDescription());
-            stm.setDouble(4, service.getPrice());
-            stm.setInt(5, service.getQuantity());
-            stm.setString(6, service.getId());
+            stm.setDouble(1, service.getPrice());
+            stm.setInt(2, service.getQuantity());
+            stm.setString(3, service.getId());
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
