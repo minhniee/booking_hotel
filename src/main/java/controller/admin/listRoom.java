@@ -1,11 +1,13 @@
 package controller.admin;
 
+import DAO.ManageRoomClassDAO;
 import DAO.getRoomManagerDAO;
 import DAO.roomDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Room;
+import model.RoomClass;
 import model.RoomManager;
 
 import java.io.IOException;
@@ -36,7 +38,11 @@ public class listRoom extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<RoomManager> listRoom = new ArrayList<>();
        getRoomManagerDAO dao = new getRoomManagerDAO();
+       ArrayList<RoomClass> listRoomClass = new ArrayList<>();
+       ManageRoomClassDAO mdao = new ManageRoomClassDAO();
+       listRoomClass = mdao.getRoomClassList();
         listRoom = dao.getRoomManager();
+        request.setAttribute("listRoomClass", listRoomClass);
         request.setAttribute("list", listRoom);
         request.getRequestDispatcher("ManagerListRoom.jsp").forward(request, response);
     }
@@ -44,7 +50,24 @@ public class listRoom extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+             String id = request.getParameter("type");
+        ArrayList<RoomManager> listRoom = new ArrayList<>();
+        ArrayList<RoomClass> listRoomClass = new ArrayList<>();
+        ManageRoomClassDAO mdao = new ManageRoomClassDAO();
+        getRoomManagerDAO dao = new getRoomManagerDAO();
+             if(id.equals("-1")) {
+                 listRoom = dao.getRoomManager();
+                 listRoomClass = mdao.getRoomClassList();
+                 request.setAttribute("list", listRoom);
+                 request.setAttribute("listRoomClass", listRoomClass);
+             }else {
+                 listRoom = dao.getRoomManagerByName(id);
+                 listRoomClass = mdao.getRoomClassList();
+                 request.setAttribute("listRoomClass", listRoomClass);
+                 request.setAttribute("list", listRoom);
+             }
+        request.setAttribute("subjectId", id);
+           request.getRequestDispatcher("ManagerListRoom.jsp").forward(request, response);
     }
 
     @Override

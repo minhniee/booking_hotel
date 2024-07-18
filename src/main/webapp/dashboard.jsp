@@ -11,6 +11,7 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="Assets/css/styleDashboard.css">
     <title>Dashboard</title>
@@ -26,13 +27,13 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href ="user/user_profile.jsp">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="chartData">
                 <i class="fas fa-chart-bar"></i>
                 <span>Statistics</span>
             </a>
@@ -40,15 +41,10 @@
         <li>
             <a href="#">
                 <i class="fas fa-briefcase"></i>
-                <span>Careers</span>
+                <span>List booking</span>
             </a>
         </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
-            </a>
-        </li>
+
         <li>
             <a href="listAccount">
                 <i class="fas fa-star"></i>
@@ -58,10 +54,34 @@
         <li>
             <a href="listRoomManager">
                 <i class="fas fa-cog"></i>
-                <span>Settings</span>
+                <span>Manage rooms</span>
             </a>
         </li>
-        <li class="logout">
+        <li>
+            <a href="HistoryBooking">
+                <i class="fas fa-cog"></i>
+                <span>History booking</span>
+            </a>
+        </li>
+        <li>
+            <a href="ManageRoomClass">
+                <i class="fas fa-cog"></i>
+                <span>Manage room class</span>
+            </a>
+        </li>
+        <li>
+            <a href="ManageService">
+                <i class="fas fa-cog"></i>
+                <span>Manage service</span>
+            </a>
+        </li>
+        <li>
+            <a href="ManageMaterial">
+                <i class="fas fa-cog"></i>
+                <span>Manage material </span>
+            </a>
+        </li>
+        <li >
             <a href="logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Logout</span>
@@ -81,7 +101,7 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search"/>
             </div>
-            <img src="images/img.png" alt="">
+            <img src="Assets/assets/img/admin.jpg" alt="">
         </div>
     </div>
     <div class="card--container">
@@ -91,22 +111,22 @@
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment amount
+                        Accept booking
                     </span>
                     <span class="amount-value">$500.00
                     </span>
                  </div>
-                 <i class="fas fa-dollar-sign icon"></i>
+                 <i class="fas fa-list icon"></i>
              </div>
            <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
        </div>
          <div class="payment--card light-purple">
              <div class="card--header">
                  <div class="amount">
                     <span class="title">
-                        Payment order
+                       Booking status
                     </span>
                      <span class="amount-value">$500.00
                     </span>
@@ -114,94 +134,62 @@
                  <i class="fas fa-list icon dark-purple"></i>
              </div>
              <span class="card-detail">
-                       **** **** **** 3484
+
            </span>
          </div>
-         <div class="payment--card light-blue">
-             <div class="card--header ">
-                 <div class="amount">
-                    <span class="title">
-                        Payment customer
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-users icon dark-blue"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
-         <div class="payment--card light-green">
-             <div class="card--header">
-                 <div class="amount">
-                    <span class="title">
-                        Payment process
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-check icon dark-green"></i>
-             </div>
-             <span class="card-detail">
-                       **** **** **** 3484
-           </span>
-         </div>
+
+
      </div>
     </div>
     <div class="tabular--wrapper">
 
 
-
-<c:choose>
-    <c:when test="${requestScope.status == 'History Lists Room Booking'}">
-        <h3 class="main--title">${requestScope.status}</h3>
-
-        <div class="table-container">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Room ID</th>
-                    <th>Customer ID</th>
-                    <th>Check Date</th>
-                    <th>Checkout Date</th>
-                    <th>Num Child</th>
-                    <th>Num Adults</th>
-                    <th>Booking price</th>
-                    <th>Details</th>
-                </tr>
-                <tbody>
-                <c:forEach items="${requestScope.bookingLists}" var="list">
-                    <tr>
-                        <td>${list.id}</td>
-                        <td>${list.room_id}</td>
-                        <td>${list.customer_id}</td>
-                        <td>${list.checkin_date}</td>
-                        <td>${list.checkout_date}</td>
-                        <td>${list.num_child}</td>
-                        <td>${list.num_adults}</td>
-                        <td>${list.booking_price}</td>
-                        <td>
-
-                            <a href="detailListBooking?id=${list.id}"><button class="fas fa-info-circle"></button></a>
-                        </td>
-
-                    </tr>
-                </c:forEach>
-                </tbody>
-                </thead>
-            </table>
-
-        </div>
-    </c:when>
-</c:choose>
+        <canvas id="revenueChart" style="height: 20%; "></canvas>
 
 
 
     </div>
-</div>
 
+</div>
+<script>
+    // Fetch revenueData from servlet attribute
+    let revenueData = JSON.parse('${revenueData}');
+
+    // Function to map numeric month to month name
+    function getMonthName(monthNumber) {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[monthNumber - 1]; // monthNumber is 1-indexed
+    }
+
+    // Extract labels (months) and data (sales)
+    let labels = revenueData.map(item => getMonthName(item.month));
+    let data = revenueData.map(item => item.totalAmount);
+
+    // Create Chart.js instance
+    let ctx = document.getElementById('revenueChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // You can use 'line' for a line chart if preferred
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue background
+                borderColor: 'rgba(54, 162, 235, 1)', // Solid border color (blue)
+                borderWidth: 1 // Border width
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package DAO;
 
 import context.DBContext;
+import model.CartItem;
 import model.Service;
 
 import java.sql.Connection;
@@ -106,5 +107,17 @@ public class ServiceDAO extends DBContext {
             e.printStackTrace();
         }
         return service;
+    }
+
+    public void updateQuantityService(Service service) {
+        String query = "UPDATE [service] SET quantity = ? WHERE id = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, service.getQuantity());
+            ps.setString(2, service.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

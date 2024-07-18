@@ -285,25 +285,25 @@
     </div>
 </section>
 <!-- Promo Video -->
-<section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="3" data-background="${url}/Assets1/img/slider/2.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2 text-center"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
-                <div class="section-subtitle"><span>The Cappa Luxury Hotel</span></div>
-                <div class="section-title"><span>Promotional Video</span></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="text-center col-md-12">
-                <a class="vid" href="https://youtu.be/7BGNAGahig8">
-                    <div class="vid-butn"> <span class="icon">
-                                <i class="ti-control-play"></i>
-                            </span> </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+<%--<section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="3" data-background="${url}/Assets1/img/slider/2.jpg">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-8 offset-md-2 text-center"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>--%>
+<%--                <div class="section-subtitle"><span>The Cappa Luxury Hotel</span></div>--%>
+<%--                <div class="section-title"><span>Promotional Video</span></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="row">--%>
+<%--            <div class="text-center col-md-12">--%>
+<%--                <a class="vid" href="https://youtu.be/7BGNAGahig8">--%>
+<%--                    <div class="vid-butn"> <span class="icon">--%>
+<%--                                <i class="ti-control-play"></i>--%>
+<%--                            </span> </div>--%>
+<%--                </a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
 <!-- Facilties -->
 <section class="facilties section-padding">
     <div class="container">
@@ -360,52 +360,52 @@
     </div>
 </section>
 <!-- Testiominals -->
-<section class="testimonials">
-    <div class="background bg-img bg-fixed section-padding pb-0" data-background="${url}/Assets1/img/slider/2.jpg" data-overlay-dark="3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="testimonials-box">
-                        <div class="head-box">
-                            <h6>Testimonials</h6>
-                            <h4>What Client's Say?</h4>
-                            <div class="line"></div>
-                        </div>
-                        <div class="owl-carousel owl-theme">
-                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>
-                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="${url}/Assets1/img/team/4.jpg" alt=""> </div>
-                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
-                                        <h6>Emily Brown</h6> <span>Guest review</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>
-                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="${url}/Assets1/img/team/1.jpg" alt=""> </div>
-                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
-                                        <h6>Nolan White</h6> <span>Guest review</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>
-                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                <div class="info">
-                                    <div class="author-img"> <img src="${url}/Assets1/img/team/5.jpg" alt=""> </div>
-                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
-                                        <h6>Olivia Martin</h6> <span>Guest review</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<%--<section class="testimonials">--%>
+<%--    <div class="background bg-img bg-fixed section-padding pb-0" data-background="${url}/Assets1/img/slider/2.jpg" data-overlay-dark="3">--%>
+<%--        <div class="container">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-8 offset-md-2">--%>
+<%--                    <div class="testimonials-box">--%>
+<%--                        <div class="head-box">--%>
+<%--                            <h6>Testimonials</h6>--%>
+<%--                            <h4>What Client's Say?</h4>--%>
+<%--                            <div class="line"></div>--%>
+<%--                        </div>--%>
+<%--                        <div class="owl-carousel owl-theme">--%>
+<%--                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                <div class="info">--%>
+<%--                                    <div class="author-img"> <img src="${url}/Assets1/img/team/4.jpg" alt=""> </div>--%>
+<%--                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>--%>
+<%--                                        <h6>Emily Brown</h6> <span>Guest review</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                <div class="info">--%>
+<%--                                    <div class="author-img"> <img src="${url}/Assets1/img/team/1.jpg" alt=""> </div>--%>
+<%--                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>--%>
+<%--                                        <h6>Nolan White</h6> <span>Guest review</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="item"> <span class="quote"><img src="${url}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                <div class="info">--%>
+<%--                                    <div class="author-img"> <img src="${url}/Assets1/img/team/5.jpg" alt=""> </div>--%>
+<%--                                    <div class="cont"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>--%>
+<%--                                        <h6>Olivia Martin</h6> <span>Guest review</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
 <!-- Services -->
 <section class="services section-padding">
     <div class="container">
@@ -579,34 +579,34 @@
 <!-- Reservation & Booking Form -->
 <%@include file="ReservationAndBookingForm.jsp"%>
 <!-- Clients -->
-<section class="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="owl-carousel owl-theme">
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/1.png" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/2.png" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/3.png" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/4.png" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/5.png" alt=""></a>
-                    </div>
-                    <div class="clients-logo">
-                        <a href="#0"><img src="${url}/Assets1/img/clients/6.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<%--<section class="clients">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-7">--%>
+<%--                <div class="owl-carousel owl-theme">--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/1.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/2.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/3.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/4.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/5.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="clients-logo">--%>
+<%--                        <a href="#0"><img src="${url}/Assets1/img/clients/6.png" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-top">
@@ -619,7 +619,6 @@
                         <div class="footer-language"> <i class="lni ti-world"></i>
                             <select onchange="location = this.value;">
                                 <option value="http://duruthemes.com/">English</option>
-                                <option value="http://duruthemes.com/">German</option>
                             </select>
                         </div>
                     </div>
@@ -640,12 +639,12 @@
                 <div class="col-md-4">
                     <div class="footer-column footer-contact">
                         <h3 class="footer-title">Contact</h3>
-                        <p class="footer-contact-text">1616 Broadway NY, New York 10001
-                            <br>United States of America
+                        <p class="footer-contact-text">Thach That, Hoa Lac
+                            <br>Viet Nam
                         </p>
                         <div class="footer-contact-info">
-                            <p class="footer-contact-phone"><span class="flaticon-call"></span> 855 100 4444</p>
-                            <p class="footer-contact-mail">info@luxuryhotel.com</p>
+                            <p class="footer-contact-phone"><span class="flaticon-call"></span> 0123456789</p>
+                            <p class="footer-contact-mail">info@info.com</p>
                         </div>
                         <div class="footer-about-social-list"> <a href="#"><i class="ti-instagram"></i></a> <a href="#"><i class="ti-twitter"></i></a> <a href="#"><i class="ti-youtube"></i></a> <a href="#"><i class="ti-facebook"></i></a> <a href="#"><i class="ti-pinterest"></i></a> </div>
                     </div>
@@ -658,7 +657,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer-bottom-inner">
-                        <p class="footer-bottom-copy-right">© Copyright 2024 by <a href="#">DuruThemes.com</a></p>
+                        <form action="" method="post">
+                        <label for="email"></label>
+                        <input type="email" id="email" placeholder="Enter you email">
+
+                        </form>
+
                     </div>
                 </div>
             </div>

@@ -12,7 +12,11 @@ import model.Booking;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 @WebServlet(name = "BookingStatusServlet", value = "/BookingStatus")
@@ -20,12 +24,11 @@ public class BookingStatus extends HttpServlet {
     private String message;
 
 
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //        response.setContentType("text/html");
         try {
-       bookingDAO booking = new bookingDAO();
+            bookingDAO booking = new bookingDAO();
             ArrayList<Booking> listBooking = booking.GetBookingsPending();
 
             request.setAttribute("listBooking", listBooking);
@@ -42,24 +45,48 @@ public class BookingStatus extends HttpServlet {
         String bookingId = request.getParameter("bookingid");
         String accountId = request.getParameter("accountid");
         String price = request.getParameter("price");
-        double totalPrice=0;
-//        try {
-//
-         totalPrice = Double.parseDouble(price);
-//        }catch (Exception e){
-//            System.out.println(price);
-//            System.out.println("loi o day ");
-//        }
+        String bookingDate = request.getParameter("bookingdate");
+
+        double totalPrice = 0;
+
+        totalPrice = Double.parseDouble(price);
+
+        if (action.equalsIgnoreCase("reject")) {
+
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+            // Date format for the desired output date string
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            String vnp_CreateDate ="";
+            Date date = null;
+            try {
+                 date = inputFormat.parse(bookingDate);
+                vnp_CreateDate = outputFormat.format(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(bookingId);
+            System.out.println(price);
+            System.out.println(vnp_CreateDate);
+
+            request.setAttribute("trantype", "02");
+            request.setAttribute("order_id", bookingId);
+            request.setAttribute("amount", (int)totalPrice);
+            request.setAttribute("trans_date", vnp_CreateDate);
         bookingDAO booking = new bookingDAO();
         booking.confirmBooking(bookingId, action);
+            request.getRequestDispatcher("vnpayRefund").forward(request, response);
 
-        if (action.equalsIgnoreCase("confirm")){
-        String billId = generateUniqueKey();
-        Bill bill = new Bill(billId, accountId,bookingId, totalPrice);
-        new billDAO().insertBill(bill);
         }
 
-        doGet(request,response);
+        if (action.equalsIgnoreCase("confirm")) {
+            String billId = generateUniqueKey();
+            Bill bill = new Bill(billId, accountId, bookingId, totalPrice);
+            new billDAO().insertBill(bill);
+        }
+
+        doGet(request, response);
 
     }
 

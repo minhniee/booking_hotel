@@ -5,6 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.Account;
+import model.ManageAccount;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +33,7 @@ public class listAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Account> listAccounts = new ArrayList<>();
+        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
         listAccountDAO dao = new listAccountDAO();
         listAccounts = dao.listAccount();
         request.setAttribute("listAccounts", listAccounts);
@@ -42,8 +43,14 @@ public class listAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String text = request.getParameter("text");
+        listAccountDAO dao = new listAccountDAO();
+        ArrayList<ManageAccount> listAccounts = new ArrayList<>();
+        listAccounts = dao.listAccountByNameOrPhone(text);
+        request.setAttribute("listAccounts", listAccounts);
+        request.getRequestDispatcher("listAccount.jsp").forward(request, response);
     }
+
 
     @Override
     public String getServletInfo() {

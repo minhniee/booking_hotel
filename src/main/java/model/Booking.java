@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Booking {
     private String id;
@@ -16,7 +17,7 @@ public class Booking {
     private double bookingPrice;
     private int paymentId ;
     private String accountId;
-    private Date bookingDate;
+    private Timestamp bookingDate;
     private String bookingState;
     
     public Booking(String id, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice) {
@@ -28,7 +29,7 @@ public class Booking {
         this.bookingPrice = bookingPrice;
     }
 
-    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId,Date bookingDate) {
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId,Timestamp bookingDate) {
         this.id = id;
         this.roomId = roomId;
         this.checkInDate = checkInDate;
@@ -41,7 +42,7 @@ public class Booking {
         this.bookingDate = bookingDate;
     }
 
-    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Date bookingDate, String bookingState) {
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Timestamp bookingDate, String bookingState) {
         this.id = id;
         this.roomId = roomId;
         this.checkInDate = checkInDate;
@@ -151,11 +152,11 @@ public class Booking {
         this.accountId = accountId;
     }
 
-    public Date getBookingDate() {
+    public Timestamp getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(Timestamp bookingDate) {
         this.bookingDate = bookingDate;
     }
 

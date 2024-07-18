@@ -116,9 +116,15 @@ public class BookingHandle extends HttpServlet {
 
             // Determine URL based on validation
             String url;
-            if (person > 3 || checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween <= 0) {
-                request.setAttribute("noti", "Date invalid or too many persons");
-                url = "/errorPage.jsp";
+            if (checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween < 0 || earlyBirdDays <0){
+                request.setAttribute("noti",
+                        "Please choose date greater than Current date!");
+                request.setAttribute("currentDate",currentDate);
+                url = "home";
+            }else
+            if (person > 3) {
+                request.setAttribute("noti", "Too many persons (2 people/per room)");
+                url =  "home";
             } else {
                 roomDAO roomDAO = new roomDAO();
                 List<Room> rooms = roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1, date2));
@@ -132,9 +138,11 @@ public class BookingHandle extends HttpServlet {
                 session.setAttribute("checkOutDate", checkOutDate);
                 session.setAttribute("earlyBirdDays", earlyBirdDays);
 
+
                 url = "/homePage/rooms2.jsp";
             }
         System.out.println(daysBetween);
+            System.out.println(earlyBirdDays);
         request.getRequestDispatcher(url).forward(request, response);
         }
 
