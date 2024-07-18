@@ -9,6 +9,7 @@ import model.Booking;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class bookingdetailcus extends HttpServlet {
         bookingDAO bookingDAO = new bookingDAO();
         Booking bookingdetail = null;
         RoomClassDAO getImg= new RoomClassDAO();
+        BigDecimal baseprice = null;
         try {
             // Retrieve all bookings from the DAO
             ArrayList<Booking> bookingList = bookingDAO.GetAllBookings();
@@ -54,9 +56,11 @@ public class bookingdetailcus extends HttpServlet {
                 if (booking.getId().equals(bid)) {
                     bookingdetail = booking;
                     getAll_img = (ArrayList<String>) getImg.getImagesByRoomId(booking.getRoomId());
+                    baseprice = getImg.getBasePriceByRoomId(booking.getRoomId());
                     break;
                 }
             }
+            request.setAttribute("base_price",baseprice);
             request.setAttribute("dataimg", getAll_img);
             // Set the filtered booking data as a request attribute
             request.setAttribute("data", bookingdetail);
