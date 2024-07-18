@@ -26,7 +26,7 @@
     </head>
 </head>
 <body>
-
+<%@include file="dashBoardAdmin.jsp"%>
 
 <div class="row">
     <div class="col-2">

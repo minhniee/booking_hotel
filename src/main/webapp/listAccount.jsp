@@ -16,7 +16,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="tabular--wrapper">
+<%@include file="Admin/dashBoardAdmin.jsp"%>
+<div class="main-content">
+<div class="tabular-wrapper">
     <c:if test="${sessionScope.success != null}">
         <div class="message info">
             <div class="alert alert-success" show-alert data-time="4000"> ${sessionScope.success}  <span close-alert>x</span> </div>
@@ -81,7 +83,7 @@
 
 
     </div>
-
+</div>
 </div>
 <script src="Assets/notification.js"></script>
 </body>

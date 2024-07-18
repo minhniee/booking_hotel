@@ -7,103 +7,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="url"
+       value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <html>
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
+    <link rel="stylesheet" href="${url}/Assets/css/styleDashboard.css">
+<%@include file="dashBoardAdmin.jsp"%>
     <title>Dashboard</title>
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo"></div>
-    <ul class="menu">
-        <li class="active">
-            <a href="#" >
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a href ="user/user_profile.jsp">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="chartData">
-                <i class="fas fa-chart-bar"></i>
-                <span>Statistics</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-briefcase"></i>
-                <span>List booking</span>
-            </a>
-        </li>
 
-        <li>
-            <a href="listAccount">
-                <i class="fas fa-star"></i>
-                <span>Accounts</span>
-            </a>
-        </li>
-        <li>
-            <a href="listRoomManager">
-                <i class="fas fa-cog"></i>
-                <span>Manage rooms</span>
-            </a>
-        </li>
-        <li>
-            <a href="HistoryBooking">
-                <i class="fas fa-cog"></i>
-                <span>History booking</span>
-            </a>
-        </li>
-        <li>
-            <a href="ManageRoomClass">
-                <i class="fas fa-cog"></i>
-                <span>Manage room class</span>
-            </a>
-        </li>
-        <li>
-            <a href="ManageService">
-                <i class="fas fa-cog"></i>
-                <span>Manage service</span>
-            </a>
-        </li>
-        <li>
-            <a href="ManageMaterial">
-                <i class="fas fa-cog"></i>
-                <span>Manage material </span>
-            </a>
-        </li>
-        <li >
-            <a href="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
-        </li>
-    </ul>
-</div>
 
-<div class="main--content">
-    <div class="header--wrapper">
-        <div class="header--title">
-            <span>Primary</span>
-            <h2>Dashboard</h2>
-        </div>
-        <div class="user--info">
-            <div class="search--box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search"/>
-            </div>
-            <img src="Assets/assets/img/admin.jpg" alt="">
-        </div>
-    </div>
+<div class="main-content">
+
     <div class="card--container">
         <h3 class="main--title">Today's data</h3>
      <div class="card--wrapper">
@@ -137,20 +56,13 @@
 
            </span>
          </div>
-
-
      </div>
     </div>
     <div class="tabular--wrapper">
-
-
         <canvas id="revenueChart" style="height: 20%; "></canvas>
-
-
-
     </div>
-
 </div>
+
 <script>
     // Fetch revenueData from servlet attribute
     let revenueData = JSON.parse('${revenueData}');

@@ -38,7 +38,7 @@
 <!-- Navbar -->
 <%@include file="../homePage/navbar.jsp" %>
 <div class="banner-header full-height section-padding valign bg-img bg-fixed" data-overlay-dark="4"
-     data-background="${url}/Assets1/img/slider/3.jpg">
+     data-background="${url}/Assets1/img/slider/3.jpg" style="height: 50%">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -60,9 +60,7 @@
         </div>
     </div>
     <!-- arrow down -->
-    <div class="arrow bounce text-center">
-        <a href="#" data-scroll-nav="1" class=""> <i class="ti-arrow-down"></i> </a>
-    </div>
+
 </div>
 <div class="container-xxl py-5">
     <div class="container">

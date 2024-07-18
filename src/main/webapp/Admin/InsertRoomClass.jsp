@@ -8,7 +8,7 @@
 
 </head>
 <body>
-
+<%@include file="dashBoardAdmin.jsp"%>
 <div class="edit-account-wrapper">
     <h2>Insert room class</h2>
     <form class="edit-account-form" action="InsertRoomClass" method="post"  enctype="multipart/form-data">

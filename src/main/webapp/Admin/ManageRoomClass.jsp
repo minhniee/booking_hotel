@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/listAccount.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Assets/css/notification.css">
+    <title>Manager Room Class</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="tabular--wrapper">
+<%@include file="dashBoardAdmin.jsp"%>
+<div class="main-content">
+<div class="tabular-wrapper">
 
     <c:if test="${sessionScope.success != null}">
         <div class="message info">
@@ -71,7 +74,7 @@
         <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
     </div>
-
+</div>
 </div>
 <script src="Assets/notification.js"></script>
 </body>

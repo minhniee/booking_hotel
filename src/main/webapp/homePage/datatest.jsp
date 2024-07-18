@@ -45,7 +45,6 @@
   <div class="table-responsive">
     <form action="vnpayRefund" id="frmrefund" method="Post">
         <input type="text" value="${account.id}" name="accountId">
-        <input type="text" value="1" name="amount">
         <div class="form-group">
           <label for="order_id">Mã giao dịch cần hoàn (Giá trị của vnp_TxnRef)</label>
         <input class="form-control" id="order_id"

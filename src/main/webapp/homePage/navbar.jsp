@@ -7,7 +7,7 @@
     <div class="container">
         <!-- Logo -->
         <div class="logo-wrapper">
-            <a class="logo" href="${url}/home"> <img src="${url}/Assets1/img/logo.png" class="logo-img" alt="???"> </a>
+<%--            <a class="logo" href="${url}/home"> <img src="../Assets1/img/logo.png" class="logo-img" alt="???"> </a>--%>
         </div>
         <!-- Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
