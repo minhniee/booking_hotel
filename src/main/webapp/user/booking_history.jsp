@@ -3,11 +3,9 @@
 
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
-<%@ page contentType="text/html; ISO-8859-1" language="java" %>
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" %>
 <!DOCTYPE html>
 <html lang="zxx">
-
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -21,7 +19,6 @@
 </head>
 
 <body>
-
 <!-- Preloader -->
 <%--<div class="preloader-bg"></div>--%>
 <%--<div id="preloader">--%>
@@ -60,7 +57,6 @@
         </div>
     </div>
     <!-- arrow down -->
-
 </div>
 <div class="container-xxl py-5">
     <div class="container">
@@ -96,6 +92,7 @@
                 <th>Check-out Date</th>
                 <th>State</th>
                 <th>Detail</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -105,7 +102,16 @@
                     <td>${b.roomId}</td>
                     <td><fmt:formatDate value="${b.checkInDate}" pattern="dd-MM-yyyy" /></td>
                     <td><fmt:formatDate value="${b.checkOutDate}" pattern="dd-MM-yyyy" /></td>
-                    <td>${b.bookingState}</td>
+                    <td style="color:
+                    <c:choose>
+                    <c:when test="${b.bookingState == 'pending'}">green</c:when>
+                    <c:when test="${b.bookingState == 'cancelled'}">red</c:when>
+                    <c:when test="${b.bookingState == 'confirmed'}">yellow</c:when>
+                    <c:otherwise>black</c:otherwise>
+                    </c:choose>
+                            ">
+                            ${b.bookingState}
+                    </td>
                     <td>
                         <form action="${pageContext.request.contextPath}/bookingdetailcus" method="post">
                             <input type="hidden" name="bookingID" value="${b.id}">
@@ -113,39 +119,26 @@
                         </form>
                     </td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/CancleBooking" method="get">
-                            <input type="hidden" name="bookingID" value="${b.id}">
-                            <input type="hidden" name="amount" value="${b.bookingPrice}">
-                            <button type="submit" class="btn btn-primary">Cancel booking</button>
-                        </form>
+                        <c:if test="${b.bookingState != 'cancelled'}">
+                            <form action="${pageContext.request.contextPath}/CancelBooking" method="get">
+                                <input type="hidden" name="bookingID" value="${b.id}">
+                                <input type="hidden" name="amount" value="${b.bookingPrice}">
+                                <button type="submit" class="btn btn-primary">Cancel booking</button>
+                            </form>
+                        </c:if>
                     </td>
-
                 </tr>
             </c:forEach>
-<%--<<<<<<< HEAD--%>
-<%--            <tr>--%>
-<%--                <td>1</td>--%>
-<%--                <td>2</td>--%>
-<%--                <td>3</td>--%>
-<%--                <td>4</td>--%>
-<%--                <td>5</td>--%>
-<%--            </tr>--%>
-<%--=======--%>
-<%-->>>>>>> 9042792de0aa8e9bc7c52c0db40bb9efb5b5dafd--%>
             </tbody>
         </table>
-
-
     </div>
 </div>
 <!-- Process Start -->
-
 
 <%--<%@include file="Component/Footer.jsp" %>--%>
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -184,5 +177,4 @@
     }
 </script>
 </body>
-
 </html>
