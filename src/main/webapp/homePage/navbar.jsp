@@ -77,7 +77,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="logout" class="dropdown-item">
+                                <a href="${pageContext.request.contextPath}/logout" class="dropdown-item">
                                     <span><img src="${url}/Assets1/img/icon/signout.ico" style="width:15px;height:15px;"
                                                alt="">Logout</span>
                                 </a>
