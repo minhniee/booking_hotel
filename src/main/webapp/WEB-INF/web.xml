@@ -7,12 +7,19 @@
         <welcome-file>home</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>bookingHistory</servlet-name>
-        <servlet-class>controller.user.bookingHistory</servlet-class>
+        <servlet-name>CustomerInfo</servlet-name>
+        <servlet-class>controller.staff.CustomerInfo</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>bookingHistory</servlet-name>
-        <url-pattern>/bookingHistory</url-pattern>
+        <servlet-name>CustomerInfo</servlet-name>
+        <url-pattern>/customerInfo</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>editService</servlet-name>
+        <servlet-class>controller.staff.editService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editService</servlet-name>
+        <url-pattern>/editService</url-pattern>
+    </servlet-mapping>
 </web-app>

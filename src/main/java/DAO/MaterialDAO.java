@@ -39,12 +39,52 @@ public class MaterialDAO extends DBContext {
         }
         return material;
     }
+
+
+
     public static void main(String[] args) {
         System.out.println(new DBContext().getConnection());
         MaterialDAO dao = new MaterialDAO();
     }
 
 
+    public Material getMaterialById(String id) {
+        Material material = null;
+        try {
+            String sql = "SELECT rm.room_id, m.id, m.material_name, m.quantity, m.price, m.material_image " +
+                    "FROM material m JOIN room_material rm ON m.id = rm.material_id WHERE m.id = ?";
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                material = new Material(rs.getString("room_id"),
+                        rs.getString("id"),
+                        rs.getString("material_name"),
+                        rs.getInt("quantity"),
+                        rs.getDouble("price"),
+                        rs.getString("material_image"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return material;
+    }
+
+    public void updateMaterial(Material material) {
+        try {
+            String sql = "UPDATE material SET material_name = ?, quantity = ?, price = ?, material_image = ? " +
+                    "WHERE id = ?";
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, material.getName());
+            stm.setInt(2, material.getQuantity());
+            stm.setDouble(3, material.getPrice());
+            stm.setString(4, material.getImage());
+            stm.setString(5, material.getId());
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

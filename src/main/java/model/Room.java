@@ -34,7 +34,9 @@ public class Room {
         this.roomImg = roomImg;
         this.basePrice = basePrice;
     }
-    public Room(String id,String roomClassId,String roomClassName, String roomName, int numAdults, String statusName,double basePrice) {
+
+
+    public Room(String id, String roomClassId, String roomClassName, String roomName, int numAdults, String statusName, double basePrice, String roomImg) {
         this.id = id;
         this.roomClassId = roomClassId;
         this.roomClassName = roomClassName;
@@ -42,6 +44,7 @@ public class Room {
         this.numAdults = numAdults;
         this.statusName = statusName;
         this.basePrice = basePrice;
+        this.roomImg = roomImg;
     }
     public Room(String id,String roomClassName, String roomName, int numAdults, String statusName,double basePrice) {
         this.id = id;
@@ -58,14 +61,14 @@ public class Room {
         this.basePrice = basePrice;
         this.roomImg = roomImg;
     }
-    public Room(String id, String roomClassId, int statusId, String roomName, int numAdults, String statusName, String roomImg) {
+    public Room(String id, String roomClassId,String roomClassName, String statusName, int numAdults, double basePrice,  String roomImg) {
 
         this.id = id;
         this.roomClassId = roomClassId;
-        this.statusId = statusId;
-        this.roomName = roomName;
-        this.numAdults = numAdults;
+        this.roomClassName = roomClassName;
         this.statusName = statusName;
+        this.numAdults = numAdults;
+        this.basePrice = basePrice;
         this.roomImg = roomImg;
     }
 

@@ -21,13 +21,6 @@ public class Customer {
     private boolean gender;
     private List<Booking> bookings;
 
-//    public Customer(int id, String fullName, String email, String phone, List<Booking> bookings) {
-//        this.id = id;
-//        this.fullName = fullName;
-//        this.email = email;
-//        this.phone = phone;
-//        this.bookings = bookings;
-//    }
 
     public Customer(int id, String fullName, String email, String phone, boolean gender, Date dob, String address , List<Booking> bookings) {
         this.id = id;
@@ -78,5 +71,29 @@ public class Customer {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 }

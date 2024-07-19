@@ -81,7 +81,7 @@ public class CustomerInfo extends HttpServlet {
         request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
     }
 
-//    @Override
+    //    @Override
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //    throws ServletException, IOException {
 //        int customerId = Integer.parseInt(request.getParameter("customerId"));

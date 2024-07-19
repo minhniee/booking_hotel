@@ -77,4 +77,17 @@ public class Service {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id='" + id + '\'' +
+                ", categoryId=" + categoryId +
+                ", serviceName='" + serviceName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

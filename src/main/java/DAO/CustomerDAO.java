@@ -24,8 +24,9 @@ public class CustomerDAO {
 
             connection = new DBContext().getConnection();
             if (connection != null) {
-                String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address "
-                        + "FROM Customer c JOIN account a ON c.account_id = a.id";
+                String sql = "SELECT id, full_name, email, phone, gender, dob, address \n" +
+                        "FROM account";
+
                 statement = connection.prepareStatement(sql);
                 resultSet = statement.executeQuery();
 
@@ -69,9 +70,9 @@ public class CustomerDAO {
 
         try {
             connection = new DBContext().getConnection();
-            String sql = "SELECT c.id, a.full_name, a.email, a.phone, a.gender, a.dob, a.address "
-                    + "FROM Customer c JOIN account a ON c.account_id = a.id "
-                    + "WHERE c.id = ?";
+            String sql = "SELECT id, full_name, email, phone, gender, dob, address \n" +
+                    "FROM account" +
+                    "WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -118,7 +119,7 @@ public class CustomerDAO {
         try {
             connection = new DBContext().getConnection();
             String sql = "SELECT b.id, b.room_id, b.checkin_date, b.checkout_date, b.num_adults, b.num_child, b.booking_price \n"
-                    + "FROM Booking b WHERE b.customer_id = ?";
+                    + "FROM booking b WHERE b.account_id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, customerId);
             resultSet = statement.executeQuery();
@@ -149,13 +150,5 @@ public class CustomerDAO {
         }
     }
 
-//    public static void main(String[] args) {
-//        CustomerDAO dao = new CustomerDAO();
-//        Customer customer = dao.getCustomerById(1); // Correct the method call to match the return type
-//        if (customer != null) {
-//            System.out.println(customer.toString());
-//        } else {
-//            System.out.println("Customer not found");
-//        }
-//    }
+
 }

@@ -1,4 +1,4 @@
-package controller.user;
+package controller.staff;
 
 import DAO.AccountDAO;
 import DAO.setAccountDAO;
@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 
-@WebServlet(name = "UpdateProfile", value = "/UpdateProfile")
-public class UpdateProfile extends HttpServlet {
+@WebServlet(name = "ProfileStaff", value = "/profileStaff")
+public class ProfileStaff extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -114,11 +114,11 @@ public class UpdateProfile extends HttpServlet {
         if (hasError) {
             Account account = new Account(userName, fullName, email, gender, phone, dob != null ? Date.valueOf(dob) : null, address);
             request.setAttribute("account", account);
-            request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
+            request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
             return;
         }
 
-       // If validation passes, update the account
+        // If validation passes, update the account
         AccountDAO dao = new AccountDAO();
         dao.updateAccount(userName, fullName, email, gender, phone, Date.valueOf(dob), address);
 
@@ -129,7 +129,7 @@ public class UpdateProfile extends HttpServlet {
         request.setAttribute("account", updatedAccount);
 
         // Forward to the profile page
-        request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
+        request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
     }
 
     @Override
