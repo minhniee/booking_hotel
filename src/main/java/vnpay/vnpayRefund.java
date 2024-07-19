@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vnpay;
-
 
 import DAO.bookingDAO;
 import com.google.gson.JsonObject;
@@ -34,17 +28,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-/**
- * @author CTT VNPAY
- */
 @WebServlet(name = "vnpayRefund", value = "/vnpayRefund")
 public class vnpayRefund extends HttpServlet {
 
     @Override
-
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //Command: refund
+        // Command: refund
         String vnp_RequestId = Config.getRandomNumber(8);
         String vnp_Version = "2.1.0";
         String vnp_Command = "refund";
@@ -55,17 +45,17 @@ public class vnpayRefund extends HttpServlet {
         String accountId = req.getParameter("accountId");
         double price = 0;
         Booking booking = null;
+        String msgEmail = "";
+
         if (accountId != null) {
             bookingDAO bookingDAO = new bookingDAO();
             try {
                 booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
                 vnp_TransactionType = "03";
                 price = booking.getBookingPrice();
-
                 LocalDate currentDate = LocalDate.now();
                 LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
                 LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
-
 
                 // Format the LocalDateTime object to the desired output format
                 Timestamp bookingTimestamp = booking.getBookingDate();
@@ -81,12 +71,13 @@ public class vnpayRefund extends HttpServlet {
                 if (daysBetweenCheckinAndCheckout < 7) {
                     req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
                 } else if (daysBetweenCheckinAndCheckout < 15) {
-
                     price = price * 0.5;
                     vnp_TransactionType = "02";
+                    msgEmail = "Cancel Booking and you will return 50%";
                     System.out.println("-50%");
                 } else {
                     vnp_TransactionType = "02";
+                    msgEmail = "Cancel Booking and you will return 100%";
                     System.out.println("+100%");
                 }
             } catch (SQLException e) {
@@ -95,14 +86,12 @@ public class vnpayRefund extends HttpServlet {
         } else {
             vnp_TransactionDate = req.getParameter("trans_date");
             price = Double.parseDouble(req.getParameter("amount"));
-
         }
-
 
         long amount = (long) price * 23000 * 100;
         String vnp_Amount = String.valueOf(amount);
         String vnp_OrderInfo = "Hoan tien GD OrderId:" + vnp_TxnRef;
-        String vnp_TransactionNo = ""; //Assuming value of the parameter "vnp_TransactionNo" does not exist on your system.
+        String vnp_TransactionNo = ""; // Assuming value of the parameter "vnp_TransactionNo" does not exist on your system.
         String vnp_CreateBy = "admin";
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -149,7 +138,7 @@ public class vnpayRefund extends HttpServlet {
         wr.flush();
         wr.close();
         int responseCode = con.getResponseCode();
-        System.out.println("nSending 'POST' request to URL : " + url);
+        System.out.println("Sending 'POST' request to URL : " + url);
         System.out.println("Post Data : " + vnp_Params);
         System.out.println("Response Code : " + responseCode);
         BufferedReader in = new BufferedReader(
@@ -161,21 +150,20 @@ public class vnpayRefund extends HttpServlet {
         }
         in.close();
 
-
-        //send email
+        // Send email
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
-            Email email = new Email();
-            Email.sendEmail(account.getEmail(), "Cancel Booking  ", "Cancel Booking and you will return 100% ");
+            Email.sendEmail(account.getEmail(), "Cancel Booking", msgEmail);
         } else {
             System.out.println("cannot catch session");
         }
-        // change status room
+
+        // Change status room
         bookingDAO bookingd = new bookingDAO();
         bookingd.confirmBooking(vnp_TxnRef, "reject");
 
-        //test data
+        // Test data
         System.out.println("Booking Refund");
         System.out.println(vnp_TransactionType);
         System.out.println(vnp_TxnRef);
@@ -183,6 +171,5 @@ public class vnpayRefund extends HttpServlet {
         System.out.println(amount);
 
         System.out.println(response);
-
     }
 }

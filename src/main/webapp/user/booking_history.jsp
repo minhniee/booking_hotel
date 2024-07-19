@@ -120,7 +120,7 @@
                     </td>
                     <td>
                         <c:if test="${b.bookingState != 'cancelled'}">
-                            <form action="${pageContext.request.contextPath}/CancelBooking" method="get">
+                            <form action="${pageContext.request.contextPath}/CancleBooking" method="get">
                                 <input type="hidden" name="bookingID" value="${b.id}">
                                 <input type="hidden" name="amount" value="${b.bookingPrice}">
                                 <button type="submit" class="btn btn-primary">Cancel booking</button>
