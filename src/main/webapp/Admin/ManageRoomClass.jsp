@@ -61,7 +61,7 @@
 
                     <td>${roomClasses.basePrice}</td>
 
-                    <td><img src="${pageContext.request.contextPath}/Assets1/img/rooms/${roomClasses.mainImage}" width="120px"></td>
+                    <td><img src="${pageContext.request.contextPath}/Assets/image/room/${roomClasses.mainImage}" width="120px"></td>
                     <td>
                         <a href="UpdateRoomClass?id=${roomClasses.id}"><button class="fas fa-edit"></button></a>
                         <a href="UpdateImageRoomClass?id=${roomClasses.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>

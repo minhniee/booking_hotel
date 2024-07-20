@@ -24,83 +24,115 @@
 <div class="main-content">
 
     <div class="card--container">
-        <h3 class="main--title">Today's data</h3>
-     <div class="card--wrapper">
-       <div class="payment--card light-red">
-             <div class="card--header">
-                 <div class="amount">
-                    <span class="title">
-                        Accept booking
-                    </span>
-                    <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-list icon"></i>
-             </div>
-           <span class="card-detail">
 
-           </span>
+     <div class="card--wrapper">
+       <div class="payment--card light-green">
+           <h3 class="main--title">Monthly revenue of bookings</h3>
+           <canvas id="chartForBillDetail" style="height: 20%; "></canvas>
        </div>
          <div class="payment--card light-purple">
-             <div class="card--header">
-                 <div class="amount">
-                    <span class="title">
-                       Booking status
-                    </span>
-                     <span class="amount-value">$500.00
-                    </span>
-                 </div>
-                 <i class="fas fa-list icon dark-purple"></i>
-             </div>
-             <span class="card-detail">
-
-           </span>
+             <h3 class="main--title">Monthly revenue of services</h3>
+             <canvas id="getChartBillService" style="height: 20%; "></canvas>
          </div>
      </div>
     </div>
     <div class="tabular--wrapper">
-        <canvas id="revenueChart" style="height: 20%; "></canvas>
+        <h3 class="main--title">Total monthly revenue</h3>
+      <canvas id="revenueChart" style="height: 20%; "></canvas>
     </div>
 </div>
 
 <script>
-    // Fetch revenueData from servlet attribute
-    let revenueData = JSON.parse('${revenueData}');
+    document.addEventListener('DOMContentLoaded', function() {
+        let revenueData = JSON.parse('${revenueData}');
+        let labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    // Function to map numeric month to month name
-    function getMonthName(monthNumber) {
-        const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        return monthNames[monthNumber - 1]; // monthNumber is 1-indexed
-    }
-
-    // Extract labels (months) and data (sales)
-    let labels = revenueData.map(item => getMonthName(item.month));
-    let data = revenueData.map(item => item.totalAmount);
-
-    // Create Chart.js instance
-    let ctx = document.getElementById('revenueChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar', // You can use 'line' for a line chart if preferred
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Revenue',
-                data: data,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue background
-                borderColor: 'rgba(54, 162, 235, 1)', // Solid border color (blue)
-                borderWidth: 1 // Border width
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        // Monthly Revenue Chart
+        let data = new Array(12).fill(0);
+        revenueData.forEach(item => {
+            let monthIndex = item.month - 1;
+            data[monthIndex] = item.totalAmount;
+        });
+        let ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctxRevenue, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total monthly revenue',
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
+        });
+
+        // Monthly Revenue of Bookings Chart
+        let getChartBillBooking = JSON.parse('${getChartBillBooking}');
+        let dataBill = new Array(12).fill(0);
+        getChartBillBooking.forEach(item => {
+            let monthIndex = item.month - 1;
+            dataBill[monthIndex] = item.totalAmount;
+        });
+        let ctxBill = document.getElementById('chartForBillDetail').getContext('2d');
+        new Chart(ctxBill, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Revenue of bookings',
+                    data: dataBill,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Monthly Revenue of Services Chart
+        let getChartBillService = JSON.parse('${getChartBillService}');
+        let dataBillService = new Array(12).fill(0);
+        getChartBillService.forEach(item => {
+            let monthIndex = item.month - 1;
+            dataBillService[monthIndex] = item.totalAmount;
+        });
+        let ctxService = document.getElementById('getChartBillService').getContext('2d');
+        new Chart(ctxService, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Revenue of services',
+                    data: dataBillService,
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     });
 </script>
 </body>
