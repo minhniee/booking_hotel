@@ -174,4 +174,34 @@ public class ServiceDAO extends DBContext {
             e.printStackTrace();
         }
     }
+
+    public List<Service> getServicesByBooking(String bookingId, String accountId) {
+        List<Service> services = new ArrayList<>();
+        String query = "  select s.*, bds.quantity from booking b\n" +
+                "  join bill_service bs on b.id = bs.booking_id\n" +
+                "  left join bill_detail_service bds on bs.id = bds.bill_service_id\n" +
+                "  left join [service] s on s.id = bds.service_id\n" +
+                "  where b.id = ? and b.account_id = ?";
+        try  {
+            Connection connection = new DBContext().getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1,bookingId);
+            ps.setString(2,accountId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Service service = new Service();
+                service.setId(rs.getString("id"));
+                service.setCategoryId(rs.getInt("category_id"));
+                service.setServiceName(rs.getString("service_name"));
+                service.setDescription(rs.getString("description"));
+                service.setPrice(rs.getDouble("price"));
+                service.setQuantity(rs.getInt(8));
+                service.setImage(rs.getString("image"));
+                services.add(service);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return services;
+    }
 }

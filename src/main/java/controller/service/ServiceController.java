@@ -38,6 +38,6 @@ public class ServiceController extends HttpServlet {
 
         request.setAttribute("services", services);
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("services/services.jsp").forward(request, response);
+        request.getRequestDispatcher("services/services1.jsp").forward(request, response);
     }
 }

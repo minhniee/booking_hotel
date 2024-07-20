@@ -2,6 +2,7 @@ package DAO;
 
 import context.DBContext;
 import model.Booking;
+import model.Customer;
 import model.Room;
 
 import java.sql.*;
@@ -215,6 +216,55 @@ public class bookingDAO {
             b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
         }
         return b;
+    }
+
+    public Booking getBookingById(String id) {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        try {
+            connection = new DBContext().getConnection();
+            String sql = "SELECT * \n" +
+                    "FROM [booking]" +
+                    "WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            rs = statement.executeQuery();
+
+            if (rs.next()) {
+                String idSQl = rs.getString("id");
+                String roomId = rs.getString("room_id");
+                Date checkinDate = rs.getDate("checkin_date");
+                Date checkoutDate = rs.getDate("checkout_date");
+                int numAdults = rs.getInt("num_adults");
+                int numChildren = rs.getInt("num_child");
+                double bookingPrice = rs.getDouble("booking_price");
+                int paymentId = rs.getInt("payment_id");
+                String accountId = rs.getString("account_id");
+                Timestamp bookingDate = rs.getTimestamp("booking_date");
+                return new Booking(idSQl, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 
 

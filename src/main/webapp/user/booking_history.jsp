@@ -113,10 +113,16 @@
                             ${b.bookingState}
                     </td>
                     <td>
+                        <div style="display: flex">
                         <form action="${pageContext.request.contextPath}/bookingdetailcus" method="post">
                             <input type="hidden" name="bookingID" value="${b.id}">
                             <button type="submit" class="btn btn-primary">Detail</button>
                         </form>
+                        <form action="${pageContext.request.contextPath}/servicedetailcus" method="post" style="margin-left: 6px">
+                            <input type="hidden" name="bookingID" value="${b.id}">
+                            <button type="submit" class="btn btn-primary">Services</button>
+                        </form>
+                        </div>
                     </td>
                     <td>
                         <c:if test="${b.bookingState != 'cancelled'}">
