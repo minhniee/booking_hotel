@@ -43,7 +43,10 @@ public class vnpayRefund extends HttpServlet {
     @Override
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        //Command: Declare the info when refund
+        double price = 0;
+        Booking booking = null;
+        String content="";
         //Command: refund
         String vnp_RequestId = Config.getRandomNumber(8);
         String vnp_Version = "2.1.0";
@@ -53,50 +56,52 @@ public class vnpayRefund extends HttpServlet {
         String vnp_TransactionType = req.getParameter("trantype");
         String vnp_TxnRef = req.getParameter("order_id");
         String accountId = req.getParameter("accountId");
-        double price = 0;
-        Booking booking = null;
-//        if (accountId != null) {
-//            bookingDAO bookingDAO = new bookingDAO();
-//            try {
-//                booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
-//                vnp_TransactionType = "03";
-//                price = booking.getBookingPrice();
-//
-//                LocalDate currentDate = LocalDate.now();
-//                LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
-//                LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
-//
-//
-//                // Format the LocalDateTime object to the desired output format
-//                Timestamp bookingTimestamp = booking.getBookingDate();
-//
-//                // Convert the Timestamp to LocalDateTime
-//                LocalDateTime bookingDateTime = bookingTimestamp.toLocalDateTime();
-//
-//                // Define the output formatter for the desired format
-//                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-//                vnp_TransactionDate = bookingDateTime.format(outputFormatter);
-//
-//                long daysBetweenCheckinAndCheckout = ChronoUnit.DAYS.between(currentDate, checkInDate);
-//                if (daysBetweenCheckinAndCheckout < 7) {
-//                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
-//                } else if (daysBetweenCheckinAndCheckout < 15) {
-//
-//                    price = price * 0.5;
-//                    vnp_TransactionType = "02";
-//                    System.out.println("-50%");
-//                } else {
-//                    vnp_TransactionType = "02";
-//                    System.out.println("+100%");
-//                }
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } else {
+
+        if (accountId != null) {
+            bookingDAO bookingDAO = new bookingDAO();
+            try {
+                booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
+                vnp_TransactionType = "03";
+                price = booking.getBookingPrice();
+
+                LocalDate currentDate = LocalDate.now();
+                LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
+                LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
+
+
+                // Format the LocalDateTime object to the desired output format
+                Timestamp bookingTimestamp = booking.getBookingDate();
+
+                // Convert the Timestamp to LocalDateTime
+                LocalDateTime bookingDateTime = bookingTimestamp.toLocalDateTime();
+
+                // Define the output formatter for the desired format
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+                vnp_TransactionDate = bookingDateTime.format(outputFormatter);
+
+                long daysBetweenCurrentDateAndCheckin = ChronoUnit.DAYS.between(currentDate, checkInDate);
+                if (daysBetweenCurrentDateAndCheckin < 7) {
+                    content ="You will not refund money but.days Between Current Date And Check In Date less than 7.";
+                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
+                } else if (daysBetweenCurrentDateAndCheckin < 15) {
+
+                    price = price * 0.5;
+                    vnp_TransactionType = "03";
+                    content ="You will refund (50%) money.";
+                    System.out.println("-50%");
+                } else {
+                    content ="You will refund (100%) money.";
+                    vnp_TransactionType = "02";
+                    System.out.println("+100%");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
             vnp_TransactionDate = req.getParameter("trans_date");
             price = Double.parseDouble(req.getParameter("amount"));
 //
-//        }
+        }
 
 
         long amount = (long) price * 23000 * 100;
@@ -167,7 +172,7 @@ public class vnpayRefund extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
             Email email = new Email();
-            Email.sendEmail(account.getEmail(), "Cancel Booking  ", "Cancel Booking and you will return 100% ");
+            Email.sendEmail(account.getEmail(), "Cancel Booking  ", content);
         } else {
             System.out.println("cannot catch session");
         }
