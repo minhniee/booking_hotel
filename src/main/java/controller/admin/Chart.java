@@ -18,7 +18,8 @@ public class Chart extends HttpServlet {
             throws ServletException, IOException {
         ChartDAO chartDAO = new ChartDAO();
         List<model.Chart> charts = chartDAO.getCharts();
-
+        List<model.Chart> getChartBillBooking = chartDAO.getChartsForBillDetail();
+        List<model.Chart> getChartBillService = chartDAO.getChartsForBillService();
         // Convert list to JSON
         JSONArray jsonArray = new JSONArray();
         for (model.Chart chart : charts) {
@@ -27,7 +28,23 @@ public class Chart extends HttpServlet {
             jsonObject.put("totalAmount", chart.getPrice());
             jsonArray.put(jsonObject);
         }
+        JSONArray jsonArrayForBooking = new JSONArray();
+        for (model.Chart chart : getChartBillBooking) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("month", chart.getMonth());
+            jsonObject.put("totalAmount", chart.getPrice());
+            jsonArrayForBooking.put(jsonObject);
+        }
+        JSONArray jsonArrayForService = new JSONArray();
+        for (model.Chart chart : getChartBillService) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("month", chart.getMonth());
+            jsonObject.put("totalAmount", chart.getPrice());
+            jsonArrayForService.put(jsonObject);
+        }
+        request.setAttribute("getChartBillService", jsonArrayForService.toString());
 
+        request.setAttribute("getChartBillBooking", jsonArrayForBooking.toString());
         request.setAttribute("revenueData", jsonArray.toString());
         request.getRequestDispatcher("Admin/dashboard.jsp").forward(request, response);
     }

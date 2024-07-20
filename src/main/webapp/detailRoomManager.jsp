@@ -42,7 +42,7 @@
     <tr>
         <td>${detail.name}</td>
         <td>${detail.price}</td>
-        <td><img src="Assets1/img/rooms/${detail.image}" height="200px" width="300px" "></td>
+        <td><img src="Assets/image/room/${detail.image}" height="200px" width="300px" "></td>
         <td>
             <c:forEach items="${requestScope.roomImages}" var="roomImages">
                 <img src="Assets/image/demoRoom/${roomImages.image}" height="200px" width="300px">

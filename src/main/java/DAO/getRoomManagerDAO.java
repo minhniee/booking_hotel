@@ -123,7 +123,7 @@ public void InsertRoom(String id, String room_class_id, String name, int adult, 
            "           ,[room_class_id]\n" +
            "           ,[name]\n" +
            "           ,[num_adults]\n" +
-           "           ,[status_name])\n" +
+           "           ,[state])\n" +
            "     VALUES\n" +
            "           (?\n" +
            "           ,?\n" +
