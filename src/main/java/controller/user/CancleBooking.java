@@ -26,7 +26,7 @@ import model.Booking;
 /**
  * @author minhl
  */
-@WebServlet(name = "CancleBookingServlet", urlPatterns = {"/CancleBooking"})
+@WebServlet(name = "CancleBookingServlet", urlPatterns = {"/CancelBooking"})
 public class CancleBooking extends HttpServlet {
 
     /**

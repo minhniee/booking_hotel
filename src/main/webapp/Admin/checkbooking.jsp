@@ -94,18 +94,18 @@
 
 
                                             <td>
-                                        <form action="BookingStatus" method="post">
+                                        <form action="paymentvnpay" method="post">
                                             <input type="hidden" name="bookingid" value="${l.id}">
                                             <input type="hidden" name="accountid" value="${l.accountId}">
-                                            <input type="hidden" name="price" value="${l.bookingPrice}">
+                                            <input type="hidden" name="total" value="${l.bookingPrice}">
                                             <input type="hidden" name="bookingdate" value="${l.bookingDate}">
-                                            <button type="submit" name="action" value="confirm" class="btn btn-success">Confirm</button>
+                                            <button type="submit" name="action" value="confirm" class="btn btn-success">Approve</button>
                                         </form>
-                                        <form action="vnpayRefund" method="post">
-                                            <input type="hidden" name="order_id" value="${l.id}"> <!-- booking id -->
-                                            <input type="hidden" name="amount" value="${l.bookingPrice}"> <!-- amount-->
-                                            <input type="hidden" name="trantype" value="02"> <!-- account id -->
-                                            <input type="hidden" name="trans_date" value='<fmt:formatDate pattern="yyyyMMddHHmmss" value="${l.bookingDate}"/>' />
+                                        <form action="BookingStatus" method="post">
+                                            <input type="hidden" name="bookingid" value="${l.id}"> <!-- booking id -->
+<%--                                            <input type="hidden" name="amount" value="${l.bookingPrice}"> <!-- amount-->--%>
+<%--                                            <input type="hidden" name="trantype" value="02"> <!-- account id -->--%>
+<%--                                            <input type="hidden" name="trans_date" value='<fmt:formatDate pattern="yyyyMMddHHmmss" value="${l.bookingDate}"/>' />--%>
                                             <!-- account id -->
                                         <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
                                         </form>

@@ -19,6 +19,7 @@ import model.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -90,7 +91,7 @@ public class BookingDetail extends HttpServlet {
             LocalDate checkOutDatep = LocalDate.parse(checkOutDate, dtf);
 
             // get room available
-            List<String> availableRooms = new roomDAO().checkAllRoomsStatusByClassId(checkInDatep, checkOutDatep, roomClassId);
+            List<String> availableRooms = new roomDAO().getRoomByClassId(checkInDatep, checkOutDatep, roomClassId);
             String roomId = availableRooms.stream().findFirst().get();
 
             session.setAttribute("roomClassName", roomClassName);
@@ -113,71 +114,65 @@ public class BookingDetail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        String prefixId = "";
-//        String location = request.getParameter("location");
-//        String payment = request.getParameter("paymentMethod");
-//        String account_id = request.getParameter("accountid");
-//        String checkinDateParam = request.getParameter("checkInDate");
-//        String checkoutDateParam = request.getParameter("checkOutDate");
-//        String childrenParam = request.getParameter("children");
-//        String adultsParam = request.getParameter("adults");
-//        String roomId = request.getParameter("roomId");
-//        String price = request.getParameter("price");
-//        String bookingId = generateUniqueKey().toUpperCase();
-//
-//
-//        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//
-//        try {
-//            LocalDateTime currentDate = LocalDateTime.now();
-//
-//            if ("ha noi".equalsIgnoreCase(location)) prefixId = "HN";
-//            if ("da nang".equalsIgnoreCase(location)) prefixId = "DN";
-//            if ("quy nhon".equalsIgnoreCase(location)) prefixId = "QN";
-//            if ("Ho Chi Minh".equalsIgnoreCase(location)) prefixId = "HCM";
-//            // Parse and format dates
-//
-//            LocalDate dateCheckIn = LocalDate.parse(checkinDateParam, inputFormatter);
-//            LocalDate dateCheckOut = LocalDate.parse(checkoutDateParam, inputFormatter);
-//
-//            String checkInDate = dateCheckIn.format(outputFormatter);
-//            String checkOutDate = dateCheckOut.format(outputFormatter);
-//
-//            int adults = Integer.parseInt(adultsParam);
-//            int children = Integer.parseInt(childrenParam);
-//            double priceValue = Double.parseDouble(price);
-//
-//            bookingId = prefixId + bookingId;
-//            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkInDate),
-//                    Date.valueOf(checkOutDate), adults, children,
-//                    priceValue, 1, account_id, Date.valueOf(currentDate.format(outputFormatter)));
-//
-//            // Insert booking into database
-//            bookingDAO bookingDao = new bookingDAO();
-//            bookingDao.insertBooking(booking);
-//            bookingDao.stateBooking(bookingId);
-////                PrintWriter out = response.getWriter();
-////                out.println("thank for booking ");
-//            TimerTask.timer.cancel();
-//            // Set response status
-//            response.setStatus(HttpServletResponse.SC_OK);
-//        } catch (DateTimeParseException e) {
-//            // Handle date parsing errors
-//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
-//        } catch (NumberFormatException e) {
-//            // Handle number parsing errors
-//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
-//        } catch (Exception e) {
-//            // Handle other errors
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
-//        }
+        HttpSession session = request.getSession();
+        String account_id = request.getParameter("accountid");
+        String checkinDateParam = getSessionAttribute(session, "checkInDate");
+        String checkoutDateParam = getSessionAttribute(session, "checkOutDate");
+        String childrenParam = getSessionAttribute(session, "children");
+        String adultsParam = getSessionAttribute(session, "adults");
+        String roomId = getSessionAttribute(session, "roomId");
+        String price = request.getParameter("price");
+        String bookingId = generateUniqueKey().toUpperCase();
+
+        try {
+            LocalDateTime currentDate = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate checkInDate = LocalDate.parse(checkinDateParam, formatter);
+            LocalDate checkOutDate = LocalDate.parse(checkoutDateParam, formatter);
+
+            int adults = Integer.parseInt(adultsParam);
+            int children = Integer.parseInt(childrenParam);
+            double priceValue = Double.parseDouble(price);
+
+            Booking booking = new Booking(
+                    bookingId, roomId, Date.valueOf(checkInDate),
+                    Date.valueOf(checkOutDate), adults, children,
+                    priceValue, 1, account_id, Timestamp.valueOf(currentDate)
+            );
+
+            // Insert booking into database
+            bookingDAO bookingDao = new bookingDAO();
+            bookingDao.insertBooking(booking);
+            bookingDao.insertStateBooking(bookingId);
+
+            // Set response status and forward to the next page
+//            session.setAttribute("bookingId", bookingId);
+            request.getRequestDispatcher("testdata.jsp").forward(request, response);
+            response.setStatus(HttpServletResponse.SC_OK);
+        } catch (DateTimeParseException e) {
+            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
+        } catch (Exception e) {
+            handleException(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
+        }
+    }
+
+    private String getSessionAttribute(HttpSession session, String attributeName) throws ServletException {
+        Object attribute = session.getAttribute(attributeName);
+        if (attribute == null) {
+            throw new ServletException("Missing session attribute: " + attributeName);
+        }
+        return attribute.toString();
+    }
+
+    private void handleException(HttpServletResponse response, int statusCode, String message) throws IOException {
+        response.sendError(statusCode, message);
     }
 
 
     public static String generateUniqueKey() {
         String key;
-
         // Generate a UUID and take the first 12 characters (to ensure length 12)
         String uuid = UUID.randomUUID().toString().replace("-", "");
         key = uuid.substring(0, 12);

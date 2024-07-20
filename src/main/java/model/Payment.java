@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Payment {
     private String id;
@@ -9,12 +10,12 @@ public class Payment {
 
     private double total;
 
-    private Date payment_date;
+    private Timestamp payment_date;
 
     private int payment_method_id;
 
 
-    public Payment(String booking_id, double total, Date payment_date, int payment_method_id) {
+    public Payment(String id,String booking_id, double total, Timestamp payment_date, int payment_method_id) {
         this.id = id;
         this.booking_id = booking_id;
         this.total = total;
@@ -46,11 +47,11 @@ public class Payment {
         this.total = total;
     }
 
-    public Date getPayment_date() {
+    public Timestamp getPayment_date() {
         return payment_date;
     }
 
-    public void setPayment_date(Date payment_date) {
+    public void setPayment_date(Timestamp payment_date) {
         this.payment_date = payment_date;
     }
 
