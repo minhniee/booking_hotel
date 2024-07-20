@@ -55,48 +55,48 @@ public class vnpayRefund extends HttpServlet {
         String accountId = req.getParameter("accountId");
         double price = 0;
         Booking booking = null;
-        if (accountId != null) {
-            bookingDAO bookingDAO = new bookingDAO();
-            try {
-                booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
-                vnp_TransactionType = "03";
-                price = booking.getBookingPrice();
-
-                LocalDate currentDate = LocalDate.now();
-                LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
-                LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
-
-
-                // Format the LocalDateTime object to the desired output format
-                Timestamp bookingTimestamp = booking.getBookingDate();
-
-                // Convert the Timestamp to LocalDateTime
-                LocalDateTime bookingDateTime = bookingTimestamp.toLocalDateTime();
-
-                // Define the output formatter for the desired format
-                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-                vnp_TransactionDate = bookingDateTime.format(outputFormatter);
-
-                long daysBetweenCheckinAndCheckout = ChronoUnit.DAYS.between(currentDate, checkInDate);
-                if (daysBetweenCheckinAndCheckout < 7) {
-                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
-                } else if (daysBetweenCheckinAndCheckout < 15) {
-
-                    price = price * 0.5;
-                    vnp_TransactionType = "02";
-                    System.out.println("-50%");
-                } else {
-                    vnp_TransactionType = "02";
-                    System.out.println("+100%");
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
+//        if (accountId != null) {
+//            bookingDAO bookingDAO = new bookingDAO();
+//            try {
+//                booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
+//                vnp_TransactionType = "03";
+//                price = booking.getBookingPrice();
+//
+//                LocalDate currentDate = LocalDate.now();
+//                LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
+//                LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
+//
+//
+//                // Format the LocalDateTime object to the desired output format
+//                Timestamp bookingTimestamp = booking.getBookingDate();
+//
+//                // Convert the Timestamp to LocalDateTime
+//                LocalDateTime bookingDateTime = bookingTimestamp.toLocalDateTime();
+//
+//                // Define the output formatter for the desired format
+//                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+//                vnp_TransactionDate = bookingDateTime.format(outputFormatter);
+//
+//                long daysBetweenCheckinAndCheckout = ChronoUnit.DAYS.between(currentDate, checkInDate);
+//                if (daysBetweenCheckinAndCheckout < 7) {
+//                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
+//                } else if (daysBetweenCheckinAndCheckout < 15) {
+//
+//                    price = price * 0.5;
+//                    vnp_TransactionType = "02";
+//                    System.out.println("-50%");
+//                } else {
+//                    vnp_TransactionType = "02";
+//                    System.out.println("+100%");
+//                }
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } else {
             vnp_TransactionDate = req.getParameter("trans_date");
             price = Double.parseDouble(req.getParameter("amount"));
-
-        }
+//
+//        }
 
 
         long amount = (long) price * 23000 * 100;
