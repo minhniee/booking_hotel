@@ -15,10 +15,13 @@ import model.Room;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,9 +74,14 @@ public class BookingHandle extends HttpServlet {
         if (session.getAttribute("account") == null) {
             response.sendRedirect("login.jsp");
         } else {
-
-
-// Current date and time
+            String url = "";
+            String locate = request.getParameter("locate");
+            if (locate != null) {
+                url = "Room";
+            } else {
+                url = "home";
+            }
+            // Current date and time
             LocalDateTime now = LocalDateTime.now();
             int earlyBirdDays = 0;
             int children = 0;
@@ -111,27 +119,46 @@ public class BookingHandle extends HttpServlet {
             earlyBirdDays = (int) ChronoUnit.DAYS.between(currentDate, date1);
 
             // Determine URL based on validation
-            String url;
-
             if (checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween <= 0 || earlyBirdDays < 0) {
                 request.setAttribute("noti",
-                        "Please choose date greater than Current date!");
+                        "Please choose a date greater than the current date!");
                 request.setAttribute("currentDate", currentDate);
-                url = "home";
             } else if (person > 3) {
                 request.setAttribute("noti", "Too many persons (2 people/per room)");
-                url = "home";
             } else {
                 roomDAO roomDAO = new roomDAO();
                 List<Room> rooms = roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1, date2));
+
+                // Example list of holidays (you can replace it with your actual holiday list or logic)
+                List<LocalDate> holidays = Arrays.asList(
+                        LocalDate.of(now.getYear(), 1, 1),   // New Year's Day
+                        LocalDate.of(now.getYear(), 12, 25)  // Christmas
+                        // Add more holidays as needed
+                );
+
+//                    long quantity = roomDAO.getRoomQuantity(room.getId()); // Assuming this method returns the quantity of rooms
+                int quantity = rooms.size();
+                System.out.println(quantity);
                 for (Room room : rooms) {
+
+                    BigDecimal basePrice = BigDecimal.valueOf(room.getBasePrice());
+
                     if (daysBetween < 3) {
-                        room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
+                        basePrice = basePrice.add(basePrice.multiply(BigDecimal.valueOf(0.3)));
                     } else if (daysBetween < 10) {
-                        room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
-                    }else {
-                        room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
+                        basePrice = basePrice.add(basePrice.multiply(BigDecimal.valueOf(0.15)));
+                    } else {
+                        basePrice = basePrice.subtract(basePrice.multiply(BigDecimal.valueOf(0.1)));
                     }
+
+                    // Check if the date1 is a holiday and the room quantity is less than 10
+                    if (holidays.contains(date1) && quantity < 10) {
+                        basePrice = basePrice.add(basePrice.multiply(BigDecimal.valueOf(0.2))); // Increase by 20%
+                    }
+
+                    // Round to 2 decimal places
+                    basePrice = basePrice.setScale(2, RoundingMode.HALF_UP);
+                    room.setBasePrice(basePrice.doubleValue());
                 }
 
                 request.setAttribute("rooms", rooms);
@@ -143,15 +170,14 @@ public class BookingHandle extends HttpServlet {
                 session.setAttribute("checkOutDate", checkOutDate);
                 session.setAttribute("earlyBirdDays", earlyBirdDays);
 
-
                 url = "/homePage/rooms2.jsp";
             }
             System.out.println(daysBetween);
             System.out.println(earlyBirdDays);
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
+
 
 //    private static LocalDate[] parseDateRange(String dateRangeString) {
 //        String[] dateStrings = dateRangeString.split(" to ");

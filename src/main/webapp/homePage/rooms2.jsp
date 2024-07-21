@@ -244,6 +244,7 @@
                 <div class="section-title">Search Rooms</div>
                 <div class="booking-inner clearfix">
                     <form class="form1 clearfix" method="get" action="BookingHandle">
+                        <input type="hidden" name="locate" value="bookatroom">
                         <div class="col1 c1">
                             <div class="input1_wrapper">
                                 <label>Check in</label>
