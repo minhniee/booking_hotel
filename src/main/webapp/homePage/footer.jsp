@@ -20,6 +20,11 @@
         border-radius: 4px;
         cursor: pointer;
     }
+    .error {
+        color: red;
+        display: none;
+        margin-top: 10px;
+    }
 </style>
 
 <footer class="footer">
@@ -63,11 +68,13 @@
 
                         <div class="footer-subscribe">
                             <h3 class="footer-title">Subscribe to Our Newsletter</h3>
-                            <form action="subscribe.jsp" method="post">
-                                <input type="email" name="email" placeholder="Enter your email" required>
+                            <form method="get" action="ContactServlet" onsubmit="return validateEmail()">
+                                <input type="email" style="color: white" id="email" name="email" placeholder="Enter your email" required>
                                 <button type="submit">Subscribe</button>
+                                <div id="error-message" class="error">Please enter a valid email address.</div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -78,10 +85,30 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer-bottom-inner">
-                        <p class="footer-bottom-copy-right">© Copyright 2024 by <a href="#">DuruThemes.com</a></p>
+<%--                        <p class="footer-bottom-copy-right">© Copyright 2024 by <a href="#">DuruThemes.com</a></p>--%>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </footer>
+
+<script>
+    function validateEmail() {
+        var email = document.getElementById('email').value;
+        var errorMessage = document.getElementById('error-message');
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+        if (emailPattern.test(email)) {
+            errorMessage.style.display = 'none';
+            return true;
+        } else {
+            errorMessage.style.display = 'block';
+            return false;
+        }
+    }
+
+    document.getElementById('email').addEventListener('input', function() {
+        document.getElementById('error-message').style.display = 'none';
+    });
+</script>
