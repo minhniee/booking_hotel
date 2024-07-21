@@ -50,7 +50,7 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
+<div class="sidebar">
     <div class="logo"></div>
     <ul class="menu">
         <li >
@@ -103,37 +103,39 @@
         </li>
     </ul>
 </div>
-    <div class="container">
-        <h1>Customer Information</h1>
-        <table class="customer-table">
+<div class="container">
+    <h1>Customer Information</h1>
+    <table class="customer-table">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        <c:forEach var="customer" items="${customers}">
             <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Gender</th>
-                <th>Date of Birth</th>
-                <th>Address</th>
-                <th>Action</th>
+                <td>${customer.id}</td>
+                <td>${customer.fullName}</td>
+                <td>${customer.email}</td>
+                <td>${customer.phone}</td>
+                <td>${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</td>
+                <td>${customer.dob}</td>
+                <td>${customer.address}</td>
+                <td>
+                        <%--                        <form action="customerDetail" method="get">--%>
+                        <%--                            <input type="hidden" name="customerId" value="${customer.id}">--%>
+                        <%--                            <button type="submit">View Bookings</button>--%>
+                        <%--                        </form>--%>
+                    <a href="customerDetail?customerId=${customer.id}"><button type="submit">View Bookings</button></a>
+                </td>
+
             </tr>
-            <c:forEach var="customer" items="${customers}">
-                <tr>
-                    <td>${customer.id}</td>
-                    <td>${customer.fullName}</td>
-                    <td>${customer.email}</td>
-                    <td>${customer.phone}</td>
-                    <td>${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</td>
-                    <td>${customer.dob}</td>
-                    <td>${customer.address}</td>
-                    <td>
-                        <form action="customerInfo" method="post">
-                            <input type="hidden" name="customerId" value="${customer.id}">
-                            <button type="submit">View Bookings</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>

@@ -43,14 +43,17 @@
 </head>
 <body>
 <div class="container">
+    <form action="customerDetail" >
+
+    </form>
     <h1>Customer Detail</h1>
     <div class="customer-container">
         <p>ID: ${customer.id}</p>
         <p>Full Name: ${customer.fullName}</p>
         <p>Email: ${customer.email}</p>
         <p>Phone: ${customer.phone}</p>
-        <p>Gender: ${customer.gender ? "Male" : "Female"}}</p>
-<%--        ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""--%>
+        <%--        <p>Gender: ${customer.gender ? "Male" : "Female"}</p>--%>
+        <p>Gender: ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</p>
         <p>Date of Birth: ${customer.dob}</p>
         <p>Address: ${customer.address}</p>
 
