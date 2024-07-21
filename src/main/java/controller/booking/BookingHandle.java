@@ -11,19 +11,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
 import model.Room;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author minhl
@@ -72,9 +68,9 @@ public class BookingHandle extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        if(session.getAttribute("account") == null){
+        if (session.getAttribute("account") == null) {
             response.sendRedirect("login.jsp");
-        }else {
+        } else {
 
 
 // Current date and time
@@ -116,18 +112,27 @@ public class BookingHandle extends HttpServlet {
 
             // Determine URL based on validation
             String url;
-            if (checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween < 0 || earlyBirdDays <0){
+
+            if (checkInDate.isEmpty() || checkOutDate.isEmpty() || daysBetween <= 0 || earlyBirdDays < 0) {
                 request.setAttribute("noti",
                         "Please choose date greater than Current date!");
-                request.setAttribute("currentDate",currentDate);
+                request.setAttribute("currentDate", currentDate);
                 url = "home";
-            }else
-            if (person > 3) {
+            } else if (person > 3) {
                 request.setAttribute("noti", "Too many persons (2 people/per room)");
-                url =  "home";
+                url = "home";
             } else {
                 roomDAO roomDAO = new roomDAO();
                 List<Room> rooms = roomDAO.getRoomClasses(roomDAO.checkAllRoomsStatus(date1, date2));
+                for (Room room : rooms) {
+                    if (daysBetween < 3) {
+                        room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
+                    } else if (daysBetween < 10) {
+                        room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
+                    }else {
+                        room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
+                    }
+                }
 
                 request.setAttribute("rooms", rooms);
                 session.setAttribute("nights", daysBetween);
@@ -141,9 +146,9 @@ public class BookingHandle extends HttpServlet {
 
                 url = "/homePage/rooms2.jsp";
             }
-        System.out.println(daysBetween);
+            System.out.println(daysBetween);
             System.out.println(earlyBirdDays);
-        request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
 
     }
