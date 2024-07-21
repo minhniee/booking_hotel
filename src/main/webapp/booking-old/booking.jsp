@@ -23,7 +23,7 @@
             crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Roboto", arial, sans-serif, Courier, monospace;
         }
 
         .container {
@@ -68,17 +68,32 @@
         .section-info p {
             margin: 10px;
         }
+
+        .section input[type="text"] {
+            border: none; /* Removes the outline */
+            background-color: transparent; /* Keeps the background transparent */
+            box-shadow: none; /* Removes any shadow effects */
+            margin-bottom: 10px; /* Adds space between input fields */
+            width: 100%; /* Makes input fields span the width of the container */
+            padding: 10px; /* Adds padding inside the input fields */
+            font-size: 16px; /* Adjusts font size */
+        }
+
+        .section input[type="text"]:focus {
+            outline: none; /* Removes focus outline */
+        }
+
     </style>
 </head>
 <body>
-<div class="container-fruid p-5  h-100 bg-dark text-white">
-    <h1>FuTel</br><span style="font-size: 16px;">i hotel infomation</span></h1>
+<div class="container-fruid p-b-5  h-100 bg-dark text-white">
+    <h1 class="p-5">Renager</br><span style="font-size: 16px;"> </span></h1>
 </div>
 
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index">Home</a></li>
+            <li class="breadcrumb-item"><a href="home">Home</a></li>
             <li class="breadcrumb-item"><a
                     href="BookingHandle?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}&children=${children}">Select
                 Room</a></li>
@@ -87,7 +102,7 @@
     </nav>
 
     <div class="header">
-        <h1>Finalize your stay</h1>
+        <h1 class="p-5">Finalize your stay</h1>
         <p>Book with confidence: you are on the hotel website.</p>
     </div>
 
@@ -108,7 +123,7 @@
         <h3>Room 1</h3>
         <p><strong id="room1-type">${roomType}</strong></p>
         <p><span id="room1-adults">${persons}</span> adults</p>
-        <p>Bedding options: <span id="room1-bedding">${roomType}</span></p>
+        <p>Bedding options: <span id="room1-bedding" class="fs-4">${roomClassName}</span></p>
         <p>Early Bird ${earlyBirdDays} Days</p>
         <p>Breakfast included: <span id="room1-breakfast">[Breakfast Details]</span></p>
         <p>Price: <span id="room1-price">${total}</span></p>
@@ -117,27 +132,26 @@
 
     <div class="section total">
         <p>Total: <span id="total-price">${total}</span></p>
-        <p>Not included: Service Charge <span id="service-charge">[Service Charge Amount]</span></p>
-        <p>Not included: VAT / Consumption tax <span id="vat">[VAT Amount]</span></p>
+        <p>Included: VAT / Consumption tax <span id="vat">${(total*0.1)}</span></p>
+        <p>Not included: Service Charge <span id="service-charge"></span></p>
     </div>
     <hr>
 
     <div class="section total">
         <p>The taxes which are not included are to be paid to the hotel. The total amount is:</p>
-        <p><strong id="total-with-taxes">${total}</strong></p>
+        <p><strong id="total-with-taxes">${total + (total*0.1)}</strong></p>
     </div>
 
 
     <div class="section">
         <c:set var="user" value="${sessionScope.account}"/>
-        <p>Infomation</p>
-
-        <input type="text" value="${user.fullName}" readonly>
-        <input type="text" value="${user.email}" readonly>
-        <input type="text" value="${user.dob}" readonly>
-        <input type="text" value="${user.gender?"Male":"Female"}" readonly>
-        <input type="text" value="${user.phone}" readonly>
-        <input type="text" value="${user.address}" readonly>
+        <p><strong>Infomation</strong></p>
+        <strong>Full Name:</strong><input type="text" value="${user.fullName}" readonly><br>
+        <strong>Email:</strong> <input type="text" value="${user.email}" readonly><br>
+        <strong>Date of birth:</strong><input type="text" value="${user.dob}" readonly><br>
+        <strong>Gender:</strong> <input type="text" value="${user.gender?"Male":"Female"}" readonly><br>
+        <strong>Phone: </strong><input type="text" value="${user.phone}" readonly><br>
+        <strong>Address:</strong><input type="text" value="${user.address}" readonly><br>
     </div>
 
     <div class="section">

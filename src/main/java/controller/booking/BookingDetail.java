@@ -147,7 +147,7 @@ public class BookingDetail extends HttpServlet {
 
             // Set response status and forward to the next page
 //            session.setAttribute("bookingId", bookingId);
-            request.getRequestDispatcher("testdata.jsp").forward(request, response);
+            request.getRequestDispatcher("homePage/thankbooking.jsp").forward(request, response);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (DateTimeParseException e) {
             handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());

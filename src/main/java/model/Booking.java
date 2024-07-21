@@ -51,9 +51,9 @@ public class Booking {
         this.numChildren = numChildren;
         this.bookingPrice = bookingPrice;
         this.paymentId = paymentId;
-        this.paymentIdd = paymentIdd;
         this.accountId = accountId;
         this.bookingDate = bookingDate;
+        this.paymentIdd = paymentIdd;
     }
 
     public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Timestamp bookingDate, String bookingState) {

@@ -58,7 +58,6 @@
                                         <th>Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        <th>Action</th>
 
                                     </tr>
 
@@ -103,6 +102,8 @@
                                         </form>
                                         <form action="BookingStatus" method="post">
                                             <input type="hidden" name="bookingid" value="${l.id}"> <!-- booking id -->
+                                            <input type="hidden" name="acid" value="${l.accountId}">
+
 <%--                                            <input type="hidden" name="amount" value="${l.bookingPrice}"> <!-- amount-->--%>
 <%--                                            <input type="hidden" name="trantype" value="02"> <!-- account id -->--%>
 <%--                                            <input type="hidden" name="trans_date" value='<fmt:formatDate pattern="yyyyMMddHHmmss" value="${l.bookingDate}"/>' />--%>
@@ -110,7 +111,6 @@
                                         <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
                                         </form>
                                         </td>
-                                        <td><a href="#" class="btn btn-primary">Detail</a></td>
                                     </tr>
                                         <c:set var="i" value="${i + 1}"/>
                                     </c:forEach>
