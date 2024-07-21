@@ -38,7 +38,7 @@
                                 <img alt="image" src="${url}/Assets/assets/img/hehe.png">
                             </div>
                             <div class="sidebar-user-details">
-                                <div class="user-name">Sarah Smith</div>
+                                <div class="user-name">${account.fullName}</div>
                                 <div class="user-role">Administrator</div>
                             </div>
                         </div>

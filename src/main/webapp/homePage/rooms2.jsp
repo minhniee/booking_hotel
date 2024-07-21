@@ -123,8 +123,9 @@
                                 </div>
                                 <hr class="border-2">
                                 <div class="info-wrapper">
+                                    <div class="butn-dark"> <a href="#" data-scroll-nav="1"><span>Book Now</span></a> </div>
                                     <div class="more"><a href="${pageContext.request.contextPath}/RoomDetail?rooms=${r.roomClassId}&roomClassName=${r.roomClassName}" class="link-btn" tabindex="0">Details <i class="ti-arrow-right"></i></a></div>
-                                    <div class="butn-dark"> <a href="BookingDetail?&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}&basePrice=${r.basePrice}" ><span>Book Now</span></a> </div>
+<%--                                    <div class="butn-dark"> <a href="BookingDetail?&roomClassName=${r.roomClassName}&roomClassId=${r.roomClassId}&adults=${adults}&children=${children}&persons=${persons}&nights=${nights}&earlyBirdDays=${earlyBirdDays}&total=${r.basePrice * nights}&basePrice=${r.basePrice}" ><span>Book Now</span></a> </div>--%>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +243,7 @@
                 <div class="section-subtitle">Availabilitiy</div>
                 <div class="section-title">Search Rooms</div>
                 <div class="booking-inner clearfix">
-                    <form class="form1 clearfix">
+                    <form class="form1 clearfix" method="get" action="BookingHandle">
                         <div class="col1 c1">
                             <div class="input1_wrapper">
                                 <label>Check in</label>
@@ -286,23 +287,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col2 c5">
-                            <div class="select1_wrapper">
-                                <label>Rooms</label>
-                                <div class="select1_inner">
-                                    <select class="select2 select" name ="roomNum"  style="width: 100%">
-                                        <option value="1">1 Room</option>
-                                        <option value="2">2 Rooms</option>
-                                        <option value="3">3 Rooms</option>
-                                        <option value="4">4 Rooms</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <div class="col2 c5">--%>
+<%--                            <div class="select1_wrapper">--%>
+<%--                                <label>Rooms</label>--%>
+<%--                                <div class="select1_inner">--%>
+<%--                                    <select class="select2 select" name ="roomNum"  style="width: 100%">--%>
+<%--                                        <option value="1">1 Room</option>--%>
+<%--                                        <option value="2">2 Rooms</option>--%>
+<%--                                        <option value="3">3 Rooms</option>--%>
+<%--                                        <option value="4">4 Rooms</option>--%>
+<%--                                    </select>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <div class="col3 c6">
                             <button type="submit" class="btn-form1-submit">Check Now</button>
                         </div>
                     </form>
+                    <h5>${noti}</h5>
                 </div>
             </div>
     </section> 

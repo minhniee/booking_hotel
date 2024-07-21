@@ -92,6 +92,14 @@ public class Invoice extends HttpServlet {
 
             int nights =(int) ChronoUnit.DAYS.between(checkInDate,checkOutDate);
 
+            if (nights < 3) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
+            } else if (nights < 10) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
+            }else {
+                room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
+            }
+
             LocalDateTime currentDate = LocalDateTime.now();
             Timestamp timePayment = Timestamp.valueOf(currentDate);
             String invoiceDate = currentDate.format(currentDateFormatter);
