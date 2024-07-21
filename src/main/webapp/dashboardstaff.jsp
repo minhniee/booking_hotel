@@ -75,7 +75,7 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search"/>
             </div>
-            <img src="images/img.png" alt="">
+            <img src="Assets/image/staff/Staff.jpg" alt="">
         </div>
     </div>
     <div class="card--container">
