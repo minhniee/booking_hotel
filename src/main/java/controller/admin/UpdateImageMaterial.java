@@ -60,10 +60,18 @@ public class UpdateImageMaterial extends HttpServlet {
         }
         image.write(realPath +"/"+ filename);
         ManageMaterialDAO dao = new ManageMaterialDAO();
-        dao.UpdateMaterial(id, name, quantity, price, filename);
-        HttpSession session = request.getSession();
-        session.setAttribute("success", "Successfully updated !!!");
-        response.sendRedirect("ManageMaterial");
+        Material imageMaterial = dao.getMaterialByImage(filename);
+        if (imageMaterial == null) {
+            dao.UpdateMaterial(id, name, quantity, price, filename);
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Successfully updated !!!");
+            response.sendRedirect("ManageMaterial");
+        }else{
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Duplicate image !!!");
+            response.sendRedirect("ManageMaterial");
+        }
+
     }
 
     @Override

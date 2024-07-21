@@ -19,7 +19,7 @@ public class managerBookingDAO extends DBContext {
                 ManagerBooking.add(new ManagerBooking(rs.getString(1)
 
                         ,rs.getString(2)
-                        ,rs.getInt(3)
+                        ,rs.getString(3)
                         ,rs.getDate(4)
                         ,rs.getDate(5)
                         ,rs.getInt(6)
@@ -39,7 +39,7 @@ public class managerBookingDAO extends DBContext {
             while (rs.next()) {
                 list.add(new ManagerBooking(rs.getString(1)
                         ,rs.getString(2)
-                        ,rs.getInt(3)
+                        ,rs.getString(3)
                         ,rs.getDate(4)
                         ,rs.getDate(5)
                         ,rs.getInt(6)

@@ -57,4 +57,20 @@ public class ManageRoomImage extends DBContext {
         }
 
     }
+    public RoomImage getImageFile(String  image){
+        String sql = "select * from room_images where image_url = ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, image);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return new RoomImage(rs.getInt(1)
+                        ,rs.getString(2), rs.getString(3));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 }

@@ -55,14 +55,19 @@ public class InsertRoomClass extends HttpServlet {
         image.write(realPath +"/"+ filename);
         ManageRoomClassDAO dao = new ManageRoomClassDAO();
         RoomClass roomClass = dao.getRoomClassById(id);
-        if (roomClass == null) {
+        RoomClass roomClassImage = dao.getRoomClassByImage(filename);
+        if (roomClass != null) {
+            request.setAttribute("error", "Id is already in use!!!");
+            request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
+
+        }else if (roomClassImage != null){
+            request.setAttribute("errorImg", "Image is already in use!!!");
+            request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
+        }else{
             dao.InsertRoomClass(id, name, price, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Successfully Inserted Room Class!!!");
             response.sendRedirect("ManageRoomClass");
-        }else{
-            request.setAttribute("error", "Id is already in use!!!");
-            request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
         }
     }
 

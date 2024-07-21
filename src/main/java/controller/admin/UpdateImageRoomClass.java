@@ -58,10 +58,18 @@ public class UpdateImageRoomClass extends HttpServlet {
         }
         image.write(realPath +"/"+ filename);
         ManageRoomClassDAO dao = new ManageRoomClassDAO();
-        dao.UpdateRoomClass(id, name, price, filename);
-        HttpSession session = request.getSession();
-        session.setAttribute("success", "Successfully updated !!!");
-        response.sendRedirect("ManageRoomClass");
+        RoomClass roomClassImage = dao.getRoomClassByImage(filename);
+        if (roomClassImage == null) {
+            dao.UpdateRoomClass(id, name, price, filename);
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Successfully updated !!!");
+            response.sendRedirect("ManageRoomClass");
+        }else{
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Duplicate image !!!");
+            response.sendRedirect("ManageRoomClass");
+        }
+
     }
 
 

@@ -42,6 +42,23 @@ public class ManageRoomClassDAO extends DBContext {
         }
         return null;
     }
+    public RoomClass getRoomClassByImage(String image) {
+        String sql = "select * from room_class  where main_image = ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, image);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return new RoomClass(rs.getString(1)
+                        ,rs.getString(2)
+                        ,rs.getDouble(3)
+                        , rs.getString(4),null );
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public void UpdateRoomClass(String id, String name, double price, String image) {
         String sql = "UPDATE [dbo].[room_class]\n" +
                 "   SET\n" +
