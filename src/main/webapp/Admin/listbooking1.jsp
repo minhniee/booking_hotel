@@ -139,7 +139,7 @@
                 <%--                                            <div class="${stateClass}">${l.bookingState}</div>--%>
                 <%--                                        </td>--%>
 
-            <td><a href="#" class="btn btn-primary">Detail</a></td>
+            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Detail</a></td>
             <c:set var="i" value="${i+1}"/>
 
         </tr>
