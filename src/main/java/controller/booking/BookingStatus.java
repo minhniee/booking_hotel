@@ -49,17 +49,17 @@ public class BookingStatus extends HttpServlet {
         String accountId = request.getParameter("acid");
         String price = request.getParameter("price");
 //        String email = request.getParameter("email");
-        System.out.println(accountId);
+        System.out.println(accountId +"asdsadsda");
         String bookingDate = request.getParameter("bookingdate");
-        AccountDAO dao = new AccountDAO();
-        Account ac =dao.getAccountById(accountId);
-        String email = ac.getEmail();
-        double totalPrice = 0;
 
 //        totalPrice = Double.parseDouble(price);
 
         if (action.equalsIgnoreCase("reject")) {
 
+        AccountDAO dao = new AccountDAO();
+        Account ac =dao.getAccountById(accountId);
+        String email = ac.getEmail();
+        double totalPrice = 0;
 //            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
             // Date format for the desired output date string

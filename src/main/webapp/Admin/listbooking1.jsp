@@ -79,6 +79,10 @@
                                             aria-label="Status: activate to sort column ascending"
                                             style="width: 192.453px;">State
                                         </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
+
+                                            style="width: 192.453px;">Action
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>

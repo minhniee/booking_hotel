@@ -6,16 +6,16 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <!-- Logo -->
-        <div class="logo-wrapper">
+<%--        <div class="logo-wrapper">--%>
 <%--            <a class="logo" href="${url}/home"> <img src="../Assets1/img/logo.png" class="logo-img" alt="???"> </a>--%>
-        </div>
+<%--        </div>--%>
         <!-- Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
                 aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
         <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" style="margin-left: 140px !important;">
                 <li class="nav-item"><a class="nav-link" href="${url}/home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="${url}/homePage/about.jsp">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="Room">Rooms & Suites</a></li>
@@ -28,6 +28,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="${url}/homePage/services.jsp" class="dropdown-item"><span>Services1</span></a></li>
                         <li><a href="${url}/services" class="dropdown-item"><span>Services2</span></a></li>
+                        <li><a href="${url}/cart" class="dropdown-item"><span>Cart</span></a></li>
                         <li><a href="${url}/homePage/facilities.jsp" class="dropdown-item"><span>Facilities</span></a>
                         </li>
                         <li><a href="${url}/homePage/gallery.jsp" class="dropdown-item"><span>Gallery</span></a></li>

@@ -74,7 +74,7 @@ public class Checkout extends HttpServlet {
         dao.InsertBillDetail(id, bill_id, accountid, material, total_amount, date);
 
 
-    response.sendRedirect("chartData");
+    response.sendRedirect("listBooking");
     }
 
     @Override

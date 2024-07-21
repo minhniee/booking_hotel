@@ -50,12 +50,14 @@ public class PaymentVNpayServlet extends HttpServlet {
             Don't touch please
              */
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String accountId = request.getParameter("accountid");
+//        String accountId = request.getParameter("accountid");
             String bookingId = request.getParameter("bookingid");
         bookingDAO bookingDAO = new bookingDAO();
         AccountDAO accountDAO = new AccountDAO();
-        Account account = accountDAO.getAccountById(accountId);
         Booking booking = bookingDAO.GetBookingById(bookingId);
+        Account account = accountDAO.getAccountById(booking.getAccountId());
+        System.out.println(account.getEmail());
+        System.out.println(account.getUserName());
 //            String checkinDateParam = session.getAttribute("checkInDate").toString();
 //            String checkoutDateParam = session.getAttribute("checkOutDate").toString();
 //            String childrenParam = session.getAttribute("children").toString();
@@ -166,7 +168,7 @@ public class PaymentVNpayServlet extends HttpServlet {
 //        request.setAttribute("adults", booking.getNumAdults());
 //        request.setAttribute("roomId", booking.getRoomId());
 //        request.setAttribute("bookingId",booking.getId());
-        System.out.println(account.getUserName());
+//        System.out.println(account.getUserName());
         Email.sendEmail(account.getEmail(), "Payment", "The link contain in 5 minute " + paymentUrl);
 //        System.out.println();
         request.getRequestDispatcher("BookingStatus").forward(request,response);

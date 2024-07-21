@@ -103,6 +103,8 @@
                                         <form action="BookingStatus" method="post">
                                             <input type="hidden" name="bookingid" value="${l.id}"> <!-- booking id -->
                                             <input type="hidden" name="acid" value="${l.accountId}">
+                                            <input type="hidden" name="total" value="${l.bookingPrice}">
+                                            <input type="hidden" name="bookingdate" value="${l.bookingDate}">
 
 <%--                                            <input type="hidden" name="amount" value="${l.bookingPrice}"> <!-- amount-->--%>
 <%--                                            <input type="hidden" name="trantype" value="02"> <!-- account id -->--%>
