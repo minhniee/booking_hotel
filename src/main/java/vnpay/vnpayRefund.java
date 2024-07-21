@@ -82,7 +82,7 @@ public class vnpayRefund extends HttpServlet {
                 long daysBetweenCurrentDateAndCheckin = ChronoUnit.DAYS.between(currentDate, checkInDate);
                 if (daysBetweenCurrentDateAndCheckin < 7) {
                     content ="You will not refund money but.days Between Current Date And Check In Date less than 7.";
-                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
+
                 } else if (daysBetweenCurrentDateAndCheckin < 15) {
 
                     price = price * 0.5;
@@ -180,6 +180,8 @@ public class vnpayRefund extends HttpServlet {
         bookingDAO bookingd = new bookingDAO();
         bookingd.confirmBooking(vnp_TxnRef, "reject");
 
+        req.setAttribute("noti", "Please check the email associated with your account for detailed information.");
+        req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
         //test data
         System.out.println("Booking Refund");
         System.out.println(vnp_TransactionType);

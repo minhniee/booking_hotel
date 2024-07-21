@@ -70,10 +70,10 @@ public class ChangePass extends HttpServlet {
                 AccountDAO accountDAO = new AccountDAO();
                 accountDAO.updatePassword(account.getId(), password);
                 System.out.println("Password changed successfully");
-                session.setAttribute("msg", "Change password successful");
+                session.setAttribute("msgss", "Change password successful");
             } else {
                 System.out.println("Old password is incorrect");
-                session.setAttribute("msg", "Old password is incorrect");
+                session.setAttribute("msgrr", "Old password is incorrect");
             }
 
             response.sendRedirect(request.getContextPath() + "/user/changePass.jsp");
