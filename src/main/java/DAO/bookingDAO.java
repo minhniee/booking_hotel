@@ -253,26 +253,26 @@ public class bookingDAO {
                     int numAdults = rs.getInt("num_adults");
                     int numChildren = rs.getInt("num_child");
                     double bookingPrice = rs.getDouble("booking_price");
-                    int paymentMethodId = rs.getInt("payment_id");
-                    String payment = rs.getString("paymentId");
+                    int paymentMethodId = rs.getInt("payment_id"); //paymentmethod_id
+                    String payment = rs.getString(11); // paymentId
                     String accountId = rs.getString("account_id");
                     Timestamp bookingDate = rs.getTimestamp("booking_date");
 
-                    return new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentMethodId, payment, accountId, bookingDate);
+//                    return new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren,bookingPrice, );
+                    return new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentMethodId, payment,accountId, bookingDate) ;
+
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw e;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
+            return null;
+
         }
-        return null;
-    }
 
-
-
-
+}
     public static void main(String[] args) throws SQLException {
-        Booking bookings = new bookingDAO().cancelBooking("D1570DEE700B","1234");
+        Booking bookings = new bookingDAO().cancelBooking("E2D6BAF2599A","1234");
         int count = 0;
         System.out.println(bookings.getPaymentIdd());
 //        for (Booking a : bookings) {

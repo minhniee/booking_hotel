@@ -205,192 +205,192 @@
         </div>
     </section>
     <!-- Team -->
-    <section class="team section-padding bg-cream">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-subtitle">Professionals</div>
-                    <div class="section-title">Meet The Team</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="img"> <img src="${url1}/Assets1/img/team/4.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Valentina Karla</h6>
-                            <p>General Manager</p>
-                            <div class="social valign">
-                                <div class="full-width"> 
-                                   <a href="#"><i class="ti-instagram"></i></a> 
-                                   <a href="#"><i class="ti-twitter"></i></a> 
-                                   <a href="#"><i class="ti-facebook"></i></a> 
-                                   <a href="#"><i class="ti-pinterest"></i></a>
-                                   <p>valentina@hotel.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="img"> 
-                        <img src="${url1}/Assets1/img/team/1.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Micheal White</h6>
-                            <p>Guest Service Department</p>
-                            <div class="social valign">
-                                <div class="full-width"> 
-                                    <a href="#"><i class="ti-instagram"></i></a>
-                                    <a href="#"><i class="ti-twitter"></i></a> 
-                                    <a href="#"><i class="ti-facebook"></i></a> 
-                                    <a href="#"><i class="ti-pinterest"></i></a>
-                                    <p>micheal@hotel.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="img"> <img src="${url1}/Assets1/img/team/2.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Olivia Martin</h6>
-                            <p>Reservations Manager</p>
-                            <div class="social valign">
-                                <div class="social valign">
-                                    <div class="full-width"> 
-                                       <a href="#"><i class="ti-instagram"></i></a> 
-                                       <a href="#"><i class="ti-twitter"></i></a> 
-                                       <a href="#"><i class="ti-facebook"></i></a> 
-                                       <a href="#"><i class="ti-pinterest"></i></a>
-                                       <p>olivia@hotel.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="img"> <img src="${url1}/Assets1/img/team/5.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Mariana Dana</h6>
-                            <p>F&B Manager</p>
-                            <div class="social valign">
-                                <div class="full-width"> 
-                                   <a href="#"><i class="ti-instagram"></i></a> 
-                                   <a href="#"><i class="ti-twitter"></i></a> 
-                                   <a href="#"><i class="ti-facebook"></i></a> 
-                                   <a href="#"><i class="ti-pinterest"></i></a>
-                                   <p>mariana@hotel.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="img"> <img src="${url1}/Assets1/img/team/3.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Enrico Brown</h6>
-                            <p>Head Chef</p>
-                            <div class="social valign">
-                                <div class="full-width"> 
-                                   <a href="#"><i class="ti-instagram"></i></a> 
-                                   <a href="#"><i class="ti-twitter"></i></a> 
-                                   <a href="#"><i class="ti-facebook"></i></a> 
-                                   <a href="#"><i class="ti-pinterest"></i></a>
-                                   <p>enrico@hotel.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="img"> <img src="${url1}/Assets1/img/team/6.jpg" alt=""> </div>
-                        <div class="info">
-                            <h6>Victoria Dan</h6>
-                            <p>Meetings and Events Manager</p>
-                            <div class="social valign">
-                                <div class="full-width"> 
-                                   <a href="#"><i class="ti-instagram"></i></a> 
-                                   <a href="#"><i class="ti-twitter"></i></a> 
-                                   <a href="#"><i class="ti-facebook"></i></a> 
-                                   <a href="#"><i class="ti-pinterest"></i></a>
-                                   <p>victoria@hotel.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<%--    <section class="team section-padding bg-cream">--%>
+<%--        <div class="container">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-12">--%>
+<%--                    <div class="section-subtitle">Professionals</div>--%>
+<%--                    <div class="section-title">Meet The Team</div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-12 owl-carousel owl-theme">--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> <img src="${url1}/Assets1/img/team/4.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Valentina Karla</h6>--%>
+<%--                            <p>General Manager</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="full-width"> --%>
+<%--                                   <a href="#"><i class="ti-instagram"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                   <p>valentina@hotel.com</p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> --%>
+<%--                        <img src="${url1}/Assets1/img/team/1.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Micheal White</h6>--%>
+<%--                            <p>Guest Service Department</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="full-width"> --%>
+<%--                                    <a href="#"><i class="ti-instagram"></i></a>--%>
+<%--                                    <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                    <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                    <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                    <p>micheal@hotel.com</p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> <img src="${url1}/Assets1/img/team/2.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Olivia Martin</h6>--%>
+<%--                            <p>Reservations Manager</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="social valign">--%>
+<%--                                    <div class="full-width"> --%>
+<%--                                       <a href="#"><i class="ti-instagram"></i></a> --%>
+<%--                                       <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                       <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                       <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                       <p>olivia@hotel.com</p>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> <img src="${url1}/Assets1/img/team/5.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Mariana Dana</h6>--%>
+<%--                            <p>F&B Manager</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="full-width"> --%>
+<%--                                   <a href="#"><i class="ti-instagram"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                   <p>mariana@hotel.com</p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> <img src="${url1}/Assets1/img/team/3.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Enrico Brown</h6>--%>
+<%--                            <p>Head Chef</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="full-width"> --%>
+<%--                                   <a href="#"><i class="ti-instagram"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                   <p>enrico@hotel.com</p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="item">--%>
+<%--                        <div class="img"> <img src="${url1}/Assets1/img/team/6.jpg" alt=""> </div>--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Victoria Dan</h6>--%>
+<%--                            <p>Meetings and Events Manager</p>--%>
+<%--                            <div class="social valign">--%>
+<%--                                <div class="full-width"> --%>
+<%--                                   <a href="#"><i class="ti-instagram"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-twitter"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-facebook"></i></a> --%>
+<%--                                   <a href="#"><i class="ti-pinterest"></i></a>--%>
+<%--                                   <p>victoria@hotel.com</p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </section>--%>
     <!-- Testiominals -->
-    <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="${url1}/Assets1/img/slider/2.jpg" data-overlay-dark="3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <div class="testimonials-box">
-                            <div class="head-box">
-                                <h6>Testimonials</h6>
-                                <h4>What Client's Say?</h4>
-                                <div class="line"></div>
-                            </div>
-                            <div class="owl-carousel owl-theme">
-                                <div class="item"> 
-                                    <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>
-                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                    <div class="info">
-                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/4.jpg" alt=""> </div>
-                                        <div class="cont"> 
-                                           <span>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                            </span>
-                                            <h6>Emily Brown</h6> 
-                                            <span>Guest review</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item"> <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>
-                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                    <div class="info">
-                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/1.jpg" alt=""> </div>
-                                        <div class="cont"> 
-                                           <span>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                               <i class="star-rating"></i>
-                                            </span>
-                                            <h6>Nolan White</h6> 
-                                            <span>Guest review</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item"> 
-                                    <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>
-                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>
-                                    <div class="info">
-                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/5.jpg" alt=""> </div>
-                                        <div class="cont"> 
-                                            <span>
-                                                <i class="star-rating"></i>
-                                                <i class="star-rating"></i>
-                                                <i class="star-rating"></i>
-                                                <i class="star-rating"></i>
-                                                <i class="star-rating"></i>
-                                            </span>
-                                            <h6>Olivia Martin</h6> 
-                                            <span>Guest review</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<%--    <section class="testimonials">--%>
+<%--        <div class="background bg-img bg-fixed section-padding pb-0" data-background="${url1}/Assets1/img/slider/2.jpg" data-overlay-dark="3">--%>
+<%--            <div class="container">--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-8 offset-md-2">--%>
+<%--                        <div class="testimonials-box">--%>
+<%--                            <div class="head-box">--%>
+<%--                                <h6>Testimonials</h6>--%>
+<%--                                <h4>What Client's Say?</h4>--%>
+<%--                                <div class="line"></div>--%>
+<%--                            </div>--%>
+<%--                            <div class="owl-carousel owl-theme">--%>
+<%--                                <div class="item"> --%>
+<%--                                    <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                    <div class="info">--%>
+<%--                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/4.jpg" alt=""> </div>--%>
+<%--                                        <div class="cont"> --%>
+<%--                                           <span>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                            </span>--%>
+<%--                                            <h6>Emily Brown</h6> --%>
+<%--                                            <span>Guest review</span>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="item"> <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                    <div class="info">--%>
+<%--                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/1.jpg" alt=""> </div>--%>
+<%--                                        <div class="cont"> --%>
+<%--                                           <span>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                               <i class="star-rating"></i>--%>
+<%--                                            </span>--%>
+<%--                                            <h6>Nolan White</h6> --%>
+<%--                                            <span>Guest review</span>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="item"> --%>
+<%--                                    <span class="quote"><img src="${url1}/Assets1/img/quot.png" alt=""></span>--%>
+<%--                                    <p>Hotel dapibus asue metus the nec feusiate eraten miss hendreri net ve ante the lemon sanleo nectan feugiat erat hendrerit necuis ve ante otel inilla duiman at finibus viverra neca the sene on satien the miss drana inc fermen norttito sit space, mus nellentesque habitan.</p>--%>
+<%--                                    <div class="info">--%>
+<%--                                        <div class="author-img"> <img src="${url1}/Assets1/img/team/5.jpg" alt=""> </div>--%>
+<%--                                        <div class="cont"> --%>
+<%--                                            <span>--%>
+<%--                                                <i class="star-rating"></i>--%>
+<%--                                                <i class="star-rating"></i>--%>
+<%--                                                <i class="star-rating"></i>--%>
+<%--                                                <i class="star-rating"></i>--%>
+<%--                                                <i class="star-rating"></i>--%>
+<%--                                            </span>--%>
+<%--                                            <h6>Olivia Martin</h6> --%>
+<%--                                            <span>Guest review</span>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </section>--%>
     <!-- Footer -->
     <%@include file="footer.jsp"%>
     <!-- jQuery -->
