@@ -6,6 +6,7 @@ package controller.booking;
 
 import DAO.bookingDAO;
 import DAO.paymentDAO;
+import DAO.roomDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,14 +16,17 @@ import jakarta.servlet.http.HttpSession;
 import model.Account;
 import model.Booking;
 import model.Payment;
+import model.Room;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 //import static controller.booking.BookingDetail;
 
@@ -46,62 +50,75 @@ public class Invoice extends HttpServlet {
         /* TODO output your page here. You may use following sample code. */
         HttpSession session = request.getSession();
 
-        String checkinDateParam = session.getAttribute("checkInDate").toString();
-        String checkoutDateParam = session.getAttribute("checkOutDate").toString();
-        String childrenParam = session.getAttribute("children").toString();
-        String adultsParam = session.getAttribute("adults").toString();
-        String roomId = session.getAttribute("roomId").toString();
-        String bookingId = session.getAttribute("bookingID").toString();
-        String cost = session.getAttribute("cost").toString();
+//        String checkinDateParam = request.getAttribute("checkInDate").toString();
+//        String checkoutDateParam = request.getAttribute("checkOutDate").toString();
+//        String childrenParam = session.getAttribute("children").toString();
+//        String adultsParam = session.getAttribute("adults").toString();
+//        String roomId = session.getAttribute("roomId").toString();
+//        String bookingId = re.getAttribute("bookingID").toString();
+//        String cost = session.getAttribute("cost").toString();
+//        Booking booking = (Booking) request.getAttribute("BookingObj");
+//        String bookingId = booking.getId();
+        String vnp_TxnRef = request.getParameter("vnp_TxnRef");
         String vnp_Amount = request.getParameter("vnp_Amount");
         String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
-        String vnp_TxnRef = request.getParameter("vnp_TxnRef");
-        Account account = (Account) session.getAttribute("account");
-        String account_id = account.getId();
-        System.out.println(account_id);
+        String bookingId = request.getParameter("vnp_OrderInfo");
+        bookingDAO bookingDAO = new bookingDAO();
+        roomDAO roomDAO = new roomDAO();
+        Booking booking = null;
+        Room room = null;
         try {
-            if (account_id == null || checkinDateParam == null || checkoutDateParam == null ||
-                    childrenParam == null || adultsParam == null || roomId == null || bookingId == null ||
+            booking = bookingDAO.GetBookingById(bookingId);
+            room = roomDAO.getRoomById(booking.getRoomId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+//        Account account = (Account) session.getAttribute("account");
+//        String account_id = account.getId();
+        try {
+            if (booking.getAccountId() == null || booking.getCheckInDate() == null || booking.getCheckOutDate() == null ||
+                      booking.getRoomId() == null || booking.getId() == null ||
                     vnp_Amount == null || vnp_ResponseCode == null) {
                 request.setAttribute("noti", "Invalid input parameters");
                 request.getRequestDispatcher("errorPage.jsp").forward(request, response);
                 return;
             }
 
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            // Prase date insert to sql
-            LocalDate dateCheckInLocal = LocalDate.parse(checkinDateParam, inputFormatter);
-            LocalDate dateCheckoutLocal = LocalDate.parse(checkoutDateParam, inputFormatter);
-            //Prase date insert to sql
+            LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
+            LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
+
+            int nights =(int) ChronoUnit.DAYS.between(checkInDate,checkOutDate);
+
+            if (nights < 3) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
+            } else if (nights < 10) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
+            }else {
+                room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
+            }
 
             LocalDateTime currentDate = LocalDateTime.now();
-            String formattedDateTime = currentDate.format(formatter);
-            LocalDate localDate = currentDate.toLocalDate();
-            Timestamp timestamp = Timestamp.valueOf(currentDate);
-
+            Timestamp timePayment = Timestamp.valueOf(currentDate);
             String invoiceDate = currentDate.format(currentDateFormatter);
 
+            int adults = booking.getNumAdults();
+            int children = booking.getNumChildren();
+            double priceValue = booking.getBookingPrice();
 
-            // Format dates to yyyy-MM-dd
-            String checkInDate = dateCheckInLocal.format(DateTimeFormatter.ISO_LOCAL_DATE);
-            String dateCheckOut = dateCheckoutLocal.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
-            System.out.println(checkinDateParam);
-            int adults = Integer.parseInt(adultsParam);
-            int children = Integer.parseInt(childrenParam);
-            double priceValue = Double.parseDouble(cost);
-
-            Booking booking = new Booking(bookingId, roomId, Date.valueOf(checkInDate),
-                    Date.valueOf(dateCheckOut), adults, children,
-                    priceValue, 1, account_id, timestamp);
-            bookingDAO bookingDao = new bookingDAO();
-            bookingDao.insertBooking(booking);
-            bookingDao.stateBooking(bookingId);
-            Payment payment = new Payment(bookingId,priceValue,Date.valueOf(String.valueOf(localDate)),1);
+            bookingDAO.updateStateBooking(bookingId,"confirm");
+            // insert pay
+            Payment payment = new Payment(vnp_TxnRef,bookingId,priceValue,timePayment,1);
              new paymentDAO().insertPayment(payment);
+             request.setAttribute("checkInDate",booking.getCheckInDate());
+             request.setAttribute("checkOutDate",booking.getCheckOutDate());
+             request.setAttribute("roomId",booking.getRoomId());
+             request.setAttribute("bookingID",booking.getId());
+             request.setAttribute("nights",nights);
+             request.setAttribute("basePrice",room.getBasePrice());
             request.setAttribute("noti", "Add successful");
             request.setAttribute("vnp_TxnRef", vnp_TxnRef);
             request.setAttribute("invoiceDate", invoiceDate);
@@ -111,12 +128,13 @@ public class Invoice extends HttpServlet {
             e.printStackTrace();
             //            request.setAttribute("paymentMethod", payment);
             request.setAttribute("bookingID", bookingId.toUpperCase());
-            request.setAttribute("accountid", account_id);
-            request.setAttribute("checkInDate", checkinDateParam);
-            request.setAttribute("checkOutDate", checkoutDateParam);
-            request.setAttribute("children", childrenParam);
-            request.setAttribute("adults", adultsParam);
-            request.setAttribute("roomId", roomId);
+            request.setAttribute("accountid", booking.getAccountId());
+            request.setAttribute("checkInDate", booking.getCheckInDate());
+            request.setAttribute("checkOutDate", booking.getCheckOutDate());
+            request.setAttribute("children", booking.getNumChildren());
+            request.setAttribute("adults", booking.getNumAdults());
+            request.setAttribute("roomId", booking.getRoomId());
+            request.setAttribute("vnp_TxnRef",vnp_TxnRef);
             request.setAttribute("noti", "Invalid number format");
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);
         } catch (DateTimeParseException e) {

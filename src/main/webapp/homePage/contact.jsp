@@ -7,13 +7,14 @@
 <!-- Mirrored from duruthemes.com/demo/html/cappa/demo1-light/contact.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 06:13:22 GMT -->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>The Cappa Luxury Hotel</title>
-    <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
-    <link rel="stylesheet" href="${url1}/Assets1/css/plugins.css" />
-    <link rel="stylesheet" href="${url1}/Assets1/css/style.css" />
+    <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
+    <link rel="stylesheet" href="${url1}/Assets1/css/plugins.css"/>
+    <link rel="stylesheet" href="${url1}/Assets1/css/style.css"/>
 </head>
 <body>
 <!-- Preloader -->
@@ -33,6 +34,7 @@
 <%@include file="navbar.jsp"%>
 <!-- Header Banner -->
 <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="3" data-background="${url1}/Assets1/img/slider/5.jpg">
+  
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-left caption mt-90">
@@ -49,6 +51,7 @@
             <div class="col-md-6 mb-60">
                 <h3>The Cappa Luxury Hotel</h3>
                 <p>Hotel ut nisl quam nestibulum ac quam nec odio elementum sceisue the aucan ligula. Orci varius natoque penatibus et magnis dis parturient monte nascete ridiculus mus nellentesque habitant morbine.</p>
+                
                 <div class="reservations mb-30">
                     <div class="icon"><span class="flaticon-call"></span></div>
                     <div class="text">
@@ -78,6 +81,7 @@
                             <c:if test="${not empty message}">
                                 <div class="alert ${alertClass}" role="alert">${message}</div>
                             </c:if>
+
                         </div>
                     </div>
                     <!-- form elements -->
@@ -107,7 +111,9 @@
         <!-- Map Section -->
         <div class="row">
             <div class="col-md-12 map animate-box" data-animate-effect="fadeInUp">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1573147.7480448114!2d-74.84628175962355!3d41.04009641088412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25856139b3d33%3A0xb2739f33610a08ee!2s1616%20Broadway%2C%20New%20York%2C%20NY%2010019%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1646760525018!5m2!1str!2str" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.5063419445323!2d105.52270891184536!3d21.01241668055203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc60e7d3f19%3A0x2be9d7d0b5abcbf4!2sFPT%20University!5e0!3m2!1sen!2s!4v1721557575738!5m2!1sen!2s"
+                        width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
@@ -139,73 +145,13 @@
                         <a href="#0"><img src="${url1}/Assets1/img/clients/6.png" alt=""></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </section>
 <!-- Footer -->
-<footer class="footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="footer-column footer-about">
-                        <h3 class="footer-title">About Hotel</h3>
-                        <p class="footer-about-text">Welcome to the best five-star deluxe hotel in New York. Hotel elementum sesue the aucan vestibulum aliquam justo in sapien rutrum volutpat.</p>
-
-                        <div class="footer-language"> <i class="lni ti-world"></i>
-                            <select onchange="location = this.value;">
-                                <option value="#0">English</option>
-                                <option value="#0">German</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 offset-md-1">
-                    <div class="footer-column footer-explore clearfix">
-                        <h3 class="footer-title">Explore</h3>
-                        <ul class="footer-explore-list list-unstyled">
-                            <li><a href="index.jsp">Home</a></li>
-                            <li><a href="rooms2.jsp">Rooms & Suites</a></li>
-                            <li><a href="restaurant.jsp">Restaurant</a></li>
-                            <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>
-                            <li><a href="about.jsp">About Hotel</a></li>
-                            <li><a href="contact.jsp">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="footer-column footer-contact">
-                        <h3 class="footer-title">Contact</h3>
-                        <p class="footer-contact-text">1616 Broadway NY, New York 10001<br>United States of America</p>
-                        <div class="footer-contact-info">
-                            <p class="footer-contact-phone"><span class="flaticon-call"></span> 855 100 4444</p>
-                            <p class="footer-contact-mail">info@luxuryhotel.com</p>
-                        </div>
-                        <div class="footer-about-social-list">
-                            <a href="#"><i class="ti-instagram"></i></a>
-                            <a href="#"><i class="ti-twitter"></i></a>
-                            <a href="#"><i class="ti-youtube"></i></a>
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer-bottom-inner">
-                        <p class="footer-bottom-copy-right">© Copyright 2024 by <a href="#">DuruThemes.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<%@include file="footer.jsp" %>
 <!-- jQuery -->
 <script src="${url1}/Assets1/js/jquery-3.6.3.min.js"></script>
 <script src="${url1}/Assets1/js/jquery-migrate-3.0.0.min.js"></script>

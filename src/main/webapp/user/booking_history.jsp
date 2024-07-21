@@ -104,9 +104,9 @@
                     <td><fmt:formatDate value="${b.checkOutDate}" pattern="dd-MM-yyyy" /></td>
                     <td style="color:
                     <c:choose>
-                    <c:when test="${b.bookingState == 'pending'}">green</c:when>
+                    <c:when test="${b.bookingState == 'pending'}">#F2B400</c:when>
                     <c:when test="${b.bookingState == 'cancelled'}">red</c:when>
-                    <c:when test="${b.bookingState == 'confirmed'}">yellow</c:when>
+                    <c:when test="${b.bookingState == 'confirmed'}">green</c:when>
                     <c:otherwise>black</c:otherwise>
                     </c:choose>
                             ">

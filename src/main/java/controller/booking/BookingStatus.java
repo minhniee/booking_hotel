@@ -1,5 +1,6 @@
 package controller.booking;
 
+import DAO.AccountDAO;
 import DAO.billDAO;
 import DAO.bookingDAO;
 import jakarta.servlet.ServletException;
@@ -15,7 +16,6 @@ import util.Email;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,60 +46,65 @@ public class BookingStatus extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         String bookingId = request.getParameter("bookingid");
-        String accountId = request.getParameter("accountid");
+        String accountId = request.getParameter("acid");
         String price = request.getParameter("price");
+//        String email = request.getParameter("email");
+        System.out.println(accountId);
         String bookingDate = request.getParameter("bookingdate");
-
+        AccountDAO dao = new AccountDAO();
+        Account ac =dao.getAccountById(accountId);
+        String email = ac.getEmail();
         double totalPrice = 0;
 
-        totalPrice = Double.parseDouble(price);
+//        totalPrice = Double.parseDouble(price);
 
         if (action.equalsIgnoreCase("reject")) {
 
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
             // Date format for the desired output date string
-            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            String vnp_CreateDate ="";
-            Date date = null;
-            try {
-                 date = inputFormat.parse(bookingDate);
-                vnp_CreateDate = outputFormat.format(date);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(bookingId);
-            System.out.println(price);
-            System.out.println(vnp_CreateDate);
-
-            request.setAttribute("trantype", "02");
-            request.setAttribute("order_id", bookingId);
-            request.setAttribute("amount", (int)totalPrice);
-            request.setAttribute("trans_date", vnp_CreateDate);
-        bookingDAO booking = new bookingDAO();
-        booking.confirmBooking(bookingId, action);
-            request.getRequestDispatcher("vnpayRefund").forward(request, response);
+//            String vnp_CreateDate = "";
+//            Date date = null;
+//            try {
+//                date = inputFormat.parse(bookingDate);
+//                vnp_CreateDate = outputFormat.format(date);
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//            System.out.println(bookingId);
+//            System.out.println(price);
+//            System.out.println(vnp_CreateDate);
+//
+//            request.setAttribute("trantype", "02");
+//            request.setAttribute("order_id", bookingId);
+//            request.setAttribute("amount", (int) totalPrice);
+//            request.setAttribute("trans_date", vnp_CreateDate);
+            Email.sendEmail(email,"Your booking have been cancle","Sorry booking have been cancle");
+            bookingDAO booking = new bookingDAO();
+            booking.updateStateBooking(bookingId, action);
+//            request.getRequestDispatcher("vnpayRefund").forward(request, response);
 
         }
 
 
-        if (action.equalsIgnoreCase("confirm")) {
-            HttpSession session = request.getSession();
-            Account account = (Account)session.getAttribute("account");
-
-            if (account != null){
-                Email email = new Email();
-                email.sendEmail(account.getEmail(),"Comfirm Booking  ","Successful");
-                bookingDAO booking = new bookingDAO();
-                booking.confirmBooking(bookingId, "confirm");
-            }else {
-                System.out.println("cannot catch session");
-            }
-            String billId = generateUniqueKey();
-            Bill bill = new Bill(billId, accountId, bookingId, totalPrice);
-            new billDAO().insertBill(bill);
-        }
+//        if (action.equalsIgnoreCase("confirm")) {
+//            HttpSession session = request.getSession();
+//            Account account = (Account) session.getAttribute("account");
+//
+//            if (account != null) {
+//                Email email = new Email();
+//                Email.sendEmail(account.getEmail(), "Comfirm Booking  ", "Successful");
+//                bookingDAO booking = new bookingDAO();
+//                booking.updateStateBooking(bookingId, "confirm");
+//            } else {
+//                System.out.println("cannot catch session");
+//            }
+//            String billId = generateUniqueKey();
+//            Bill bill = new Bill(billId, accountId, bookingId, totalPrice);
+//            new billDAO().insertBill(bill);
+//        }
 
         doGet(request, response);
 

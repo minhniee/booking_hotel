@@ -13,10 +13,11 @@ public class managerBookingDAO extends DBContext {
         ArrayList<ManagerBooking> ManagerBooking = new ArrayList<ManagerBooking>();
         String sql = "  select id, room_id, account_id, checkin_date, checkout_date, num_child, num_adults, booking_price from booking\n";
         try {
-            PreparedStatement stm = getConnection().prepareStatement(sql);
+            PreparedStatement stm =  getConnection().prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 ManagerBooking.add(new ManagerBooking(rs.getString(1)
+
                         ,rs.getString(2)
                         ,rs.getInt(3)
                         ,rs.getDate(4)
@@ -50,5 +51,10 @@ public class managerBookingDAO extends DBContext {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<ManagerBooking> list = new managerBookingDAO().managerBookingList();
+        System.out.println(list);
     }
 }

@@ -54,13 +54,16 @@ public class vnpayRefund extends HttpServlet {
         String vnp_TmnCode = Config.vnp_TmnCode;
         String vnp_TransactionDate = "";
         String vnp_TransactionType = req.getParameter("trantype");
-        String vnp_TxnRef = req.getParameter("order_id");
+        String vnp_TxnRef = "";
         String accountId = req.getParameter("accountId");
 
         if (accountId != null) {
+                String bookingId = req.getParameter("order_id");
             bookingDAO bookingDAO = new bookingDAO();
             try {
-                booking = bookingDAO.cancelBooking(vnp_TxnRef, accountId);
+                booking = bookingDAO.cancelBooking(bookingId, accountId);
+
+                vnp_TxnRef = String.valueOf(booking.getPaymentIdd());
                 vnp_TransactionType = "03";
                 price = booking.getBookingPrice();
 
@@ -82,7 +85,7 @@ public class vnpayRefund extends HttpServlet {
                 long daysBetweenCurrentDateAndCheckin = ChronoUnit.DAYS.between(currentDate, checkInDate);
                 if (daysBetweenCurrentDateAndCheckin < 7) {
                     content ="You will not refund money but.days Between Current Date And Check In Date less than 7.";
-                    req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
+
                 } else if (daysBetweenCurrentDateAndCheckin < 15) {
 
                     price = price * 0.5;
@@ -98,6 +101,7 @@ public class vnpayRefund extends HttpServlet {
                 throw new RuntimeException(e);
             }
         } else {
+            vnp_TxnRef = req.getParameter("order_id");
             vnp_TransactionDate = req.getParameter("trans_date");
             price = Double.parseDouble(req.getParameter("amount"));
 //
@@ -178,8 +182,10 @@ public class vnpayRefund extends HttpServlet {
         }
         // change status room
         bookingDAO bookingd = new bookingDAO();
-        bookingd.confirmBooking(vnp_TxnRef, "reject");
+        bookingd.updateStateBooking(vnp_TxnRef, "reject");
 
+        req.setAttribute("noti", "Please check the email associated with your account for detailed information.");
+        req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
         //test data
         System.out.println("Booking Refund");
         System.out.println(vnp_TransactionType);

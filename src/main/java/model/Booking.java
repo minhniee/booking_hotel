@@ -19,6 +19,7 @@ public class Booking {
     private String accountId;
     private Timestamp bookingDate;
     private String bookingState;
+    private String paymentIdd;
     
     public Booking(String id, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice) {
         this.id = id;
@@ -40,6 +41,19 @@ public class Booking {
         this.paymentId = paymentId;
         this.accountId = accountId;
         this.bookingDate = bookingDate;
+    }
+    public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId,String paymentIdd, String accountId,Timestamp bookingDate) {
+        this.id = id;
+        this.roomId = roomId;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.numAdults = numAdults;
+        this.numChildren = numChildren;
+        this.bookingPrice = bookingPrice;
+        this.paymentId = paymentId;
+        this.accountId = accountId;
+        this.bookingDate = bookingDate;
+        this.paymentIdd = paymentIdd;
     }
 
     public Booking(String id, String roomId, Date checkInDate, Date checkOutDate, int numAdults, int numChildren, double bookingPrice, int paymentId, String accountId, Timestamp bookingDate, String bookingState) {
@@ -70,6 +84,13 @@ public class Booking {
 
     }
 
+    public String getPaymentIdd() {
+        return paymentIdd;
+    }
+
+    public void setPaymentIdd(String paymentIdd) {
+        this.paymentIdd = paymentIdd;
+    }
 
     public int getPaymentId() {
         return paymentId;

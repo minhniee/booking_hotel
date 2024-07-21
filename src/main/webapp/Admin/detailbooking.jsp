@@ -149,6 +149,6 @@
   </footer>
 </div>
 <!-- Back to My Account Link -->
-<p class="text-center d-print-none"><a href="${url}/bookingHistory">&laquo; Back to Home</a></p>
+<p class="text-center d-print-none"><a href="${url}/user/booking_history.jsp">&laquo; Back to Home</a></p>
 </body>
 </html>

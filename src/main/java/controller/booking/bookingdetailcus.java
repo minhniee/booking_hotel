@@ -43,6 +43,7 @@ public class bookingdetailcus extends HttpServlet {
             throws ServletException, IOException {
         String bid = request.getParameter("bookingID");
         bookingDAO bookingDAO = new bookingDAO();
+        HttpSession ss = request.getSession();
         Booking bookingdetail = null;
         RoomClassDAO getImg= new RoomClassDAO();
         BigDecimal baseprice = null;
