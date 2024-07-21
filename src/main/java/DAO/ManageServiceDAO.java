@@ -115,6 +115,26 @@ public class ManageServiceDAO extends DBContext {
        }
        return null;
     }
+    public ManageService getManageServiceByImage(String image) {
+        String sql = "select * from service where image = ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, image);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return new ManageService(rs.getString(1)
+                        ,rs.getInt(2)
+                        ,rs.getString(3)
+                        ,rs.getString(4)
+                        ,rs.getDouble(5)
+                        ,rs.getInt(6)
+                        ,rs.getString(7));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public void InsertManageService(String id, int category_id, String service_name, String description, double price, int quantity, String image) {
         String sql = "INSERT INTO [dbo].[service]\n" +
                 "           ([id]\n" +

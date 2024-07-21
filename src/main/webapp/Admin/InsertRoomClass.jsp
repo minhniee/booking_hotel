@@ -13,7 +13,7 @@
     <h2>Insert room class</h2>
     <form class="edit-account-form" action="InsertRoomClass" method="post"  enctype="multipart/form-data">
         <c:set var="error" value="${requestScope.error}" />
-
+        <c:set var="errorImg" value="${requestScope.errorImg}" />
         <div class="form-group">
             <label for="username">ID</label>
             <input type="text" id="username" name="id"  required />
@@ -38,7 +38,10 @@
 
         <div class="form-group">
             <label for="email">Image</label>
-            <input type="file"  name="image"   required readonly/>
+            <input type="file"  name="image"   required />
+            <c:if test="${not empty errorImg}">
+                ${errorImg}
+            </c:if>
         </div>
 
         <button type="submit" class="btn-submit">Save Changes</button>
