@@ -3,6 +3,9 @@
 <html>
 <head>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
+    <%@include file="layout/cdnpkg.jsp"%>
     <title>Customer Detail</title>
     <style>
         .container {
@@ -42,6 +45,59 @@
     </style>
 </head>
 <body>
+<div class="sidebar">
+    <div class="logo"></div>
+    <ul class="menu">
+        <li >
+            <a href="dashboardstaff.jsp" >
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li >
+            <a href="profileStaff.jsp">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="ViewService">
+                <i class="fas fa-chart-bar"></i>
+                <span>Service</span>
+            </a>
+        </li>
+        <li >
+            <a href="ViewMaterial">
+                <i class="fas fa-briefcase"></i>
+                <span>Material</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-question-circle"></i>
+                <span>FAQ</span>
+            </a>
+        </li>
+        <li >
+            <a href="roomManager">
+                <i class="fas fa-cog"></i>
+                <span>Room</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="customerInfo">
+                <i class="fas fa-star"></i>
+                <span>Customer</span>
+            </a>
+        </li>
+        <li class="logout">
+            <a href="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <div class="container">
     <form action="customerDetail" >
 
