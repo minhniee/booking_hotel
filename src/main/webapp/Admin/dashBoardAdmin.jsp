@@ -35,10 +35,11 @@
                     <aside id="sidebar-wrapper">
                         <div class="sidebar-user">
                             <div class="sidebar-user-picture">
-                                <img alt="image" src="${url}/Assets/assets/img/hehe.png">
+                                <img alt="image" src="${url}/Assets/assets/img/admin.jpg">
                             </div>
                             <div class="sidebar-user-details">
-                                <div class="user-name">Sarah Smith</div>
+                                <c:set value="${sessionScope.account}" var="account"/>
+                                <div class="user-name">${account.userName}</div>
                                 <div class="user-role">Administrator</div>
                             </div>
                         </div>

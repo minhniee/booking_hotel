@@ -327,4 +327,35 @@ public class AccountDAO extends MyDAO{
         return account;
     }
 
+    public Account getAccountById(String accountId) {
+        Account account = null;
+        String sql = "SELECT * FROM account WHERE id = ?";
+        try (
+                Connection conn = new DBContext().getConnection();
+                PreparedStatement st = conn.prepareStatement(sql)
+        ) {
+            st.setString(1, accountId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                account = new Account();
+                account.setId(rs.getString("id"));
+                account.setUserName(rs.getString("user_name"));
+                account.setFullName(rs.getString("full_name"));
+                account.setEmail(rs.getString("email"));
+                account.setGender(rs.getBoolean("gender"));
+                account.setPhone(rs.getString("phone"));
+                account.setDob(rs.getDate("dob"));
+                account.setAddress(rs.getString("address"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
+//    public static void main(String[] args) {
+//        Account av = new AccountDAO().getAccountById("8273650f");
+//        System.out.println(av.getEmail());
+//    }
+
 }

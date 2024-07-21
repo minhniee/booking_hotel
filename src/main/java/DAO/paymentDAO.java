@@ -12,13 +12,14 @@ public class paymentDAO {
 
     public void insertPayment(Payment payment) throws SQLException {
         con = new DBContext().getConnection();
-        String sql = "insert into payment values(?,?,?,?)";
+        String sql = "insert into payment values(?,?,?,?,?)";
         pr = con.prepareStatement(sql);
 //        pr.setString(1, payment.getId());
-        pr.setString(1, payment.getBooking_id());
-        pr.setDouble(2, payment.getTotal());
-        pr.setDate(3, payment.getPayment_date());
+        pr.setString(1, payment.getId());
+        pr.setString(2, payment.getBooking_id());
+        pr.setDouble(3, payment.getTotal());
         pr.setInt(4, payment.getPayment_method_id());
+        pr.setTimestamp(5, payment.getPayment_date());
         pr.executeUpdate();
     }
 

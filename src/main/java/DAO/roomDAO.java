@@ -274,7 +274,9 @@ public class roomDAO {
     public  List<String> checkAllRoomsStatus(LocalDate checkInDate ,LocalDate checkOutDate ) {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room";
-        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+//        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? AND bs.state ='confirmed' AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+
         try{
             con = new DBContext().getConnection();
             pr = con.prepareStatement(query);
@@ -303,10 +305,11 @@ public class roomDAO {
         return availableRooms;
     }
 
-    public  List<String> checkAllRoomsStatusByClassId(LocalDate checkInDate ,LocalDate checkOutDate, String roomClassId ) {
+    public  List<String> getRoomByClassId(LocalDate checkInDate ,LocalDate checkOutDate, String roomClassId ) {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room where room_class_id = ?";
-        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+//        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date) ";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? and bs.state like 'confirmed' AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
         try{
             con = new DBContext().getConnection();
             pr = con.prepareStatement(query);
@@ -391,18 +394,19 @@ public class roomDAO {
         roomDAO r = new roomDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-        LocalDate currentDate =LocalDate.parse("07/21/2024", formatter);
-        LocalDate currentDate2 = LocalDate.parse("07/29/2024", formatter);
+        LocalDate currentDate =LocalDate.parse("07/23/2024", formatter);
+        LocalDate currentDate2 = LocalDate.parse("07/30/2024", formatter);
         ;
-        List<String> availableRooms = r.checkAllRoomsStatusByClassId(currentDate,currentDate2,"DE");
+        List<String> availableRooms = r.checkAllRoomsStatus(currentDate,currentDate2);
+        List<String> availableRooms1 = r.getRoomByClassId(currentDate,currentDate2,"PRD");
 
-        System.out.println( availableRooms.stream().findFirst().get());
-        System.out.println(availableRooms.get(0));
+//        System.out.println( availableRooms1.stream().findFirst().get());
+        System.out.println(availableRooms1.get(0));
         System.out.println("Available rooms on " + currentDate + ": " + availableRooms);
         List<Room> availableRooms2 = r.getRoomClasses(availableRooms);
-        for (Room room : availableRooms2) {
-            System.out.println(room);
-        }
+//        for (String room : availableRooms) {
+//            System.out.println(room);
+//        }
     }
 }
 

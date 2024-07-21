@@ -18,7 +18,7 @@
     <%@include file="dashBoardAdmin.jsp"%>
 
         <div class="main-content">
-    <h3 class="main--title">List accounts</h3>
+    <h3 class="main--title">History Bookings</h3>
     <form action="HistoryBooking" method="post">
         <input type="text" name="text" placeholder="Room id"/>
         <button style="background: #00c6ff">Search</button>
