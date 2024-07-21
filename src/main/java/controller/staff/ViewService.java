@@ -57,7 +57,7 @@ public class ViewService extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", page);
 
-        request.getRequestDispatcher("viewService.jsp").forward(request, response);
+        request.getRequestDispatcher("ViewService.jsp").forward(request, response);
     }
 
     @Override

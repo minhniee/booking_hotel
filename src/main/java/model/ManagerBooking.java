@@ -5,14 +5,14 @@ import java.sql.Date;
 public class ManagerBooking {
     private String id;
     private String   room_id;
-    private int customer_id;
+    private String customer_id;
     private Date checkin_date;
     private Date checkout_date;
     private int num_child;
     private int num_adults;
     private double booking_price;
 
-    public ManagerBooking(String id, String room_id, int customer_id, Date checkin_date, Date checkout_date, int num_child, int num_adults, double booking_price) {
+    public ManagerBooking(String id, String room_id, String customer_id, Date checkin_date, Date checkout_date, int num_child, int num_adults, double booking_price) {
         this.id = id;
         this.room_id = room_id;
         this.customer_id = customer_id;
@@ -47,11 +47,11 @@ public class ManagerBooking {
         this.checkout_date = checkout_date;
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 

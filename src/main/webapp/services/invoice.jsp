@@ -138,7 +138,7 @@
     </footer>
 </div>
 <!-- Back to My Account Link -->
-<p class="text-center d-print-none"><a href="${url}/user/user_profile.jsp">&laquo; Back to My Account</a></p>
+<p class="text-center d-print-none"><a href="${url}/bookingHistory">&laquo; Back to My Account</a></p>
 <!-- Footer -->
 <jsp:include page="/homePage/footer.jsp"></jsp:include>
 <!-- jQuery -->

@@ -8,6 +8,7 @@ import model.ManagerBooking;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "managerBooking", value = "/managerBooking")
@@ -34,8 +35,12 @@ public class managerBooking extends HttpServlet {
             throws ServletException, IOException {
        ArrayList<ManagerBooking> managerBookings = new ArrayList<>();
        managerBookingDAO dao = new managerBookingDAO();
-       managerBookings = dao.managerBookingList();
-       request.setAttribute("bookingLists", managerBookings);
+        try {
+            managerBookings = dao.managerBookingList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        request.setAttribute("bookingLists", managerBookings);
        request.setAttribute("status","History Lists Room Booking");
        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
