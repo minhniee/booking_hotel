@@ -112,7 +112,12 @@
                                                 </c:when>
                                             </c:choose>
 
-                                            <c:set var="i" value="${i+1}"/>
+
+            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Detail</a></td>
+            <c:set var="i" value="${i+1}"/>
+
+                                  
+
 
                                         </tr>
                                     </c:forEach>
