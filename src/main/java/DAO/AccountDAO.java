@@ -353,5 +353,9 @@ public class AccountDAO extends MyDAO{
         return account;
     }
 
+//    public static void main(String[] args) {
+//        Account av = new AccountDAO().getAccountById("8273650f");
+//        System.out.println(av.getEmail());
+//    }
 
 }

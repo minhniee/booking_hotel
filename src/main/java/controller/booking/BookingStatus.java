@@ -1,5 +1,6 @@
 package controller.booking;
 
+import DAO.AccountDAO;
 import DAO.billDAO;
 import DAO.bookingDAO;
 import jakarta.servlet.ServletException;
@@ -45,10 +46,14 @@ public class BookingStatus extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         String bookingId = request.getParameter("bookingid");
-        String accountId = request.getParameter("accountid");
+        String accountId = request.getParameter("acid");
         String price = request.getParameter("price");
+//        String email = request.getParameter("email");
+        System.out.println(accountId);
         String bookingDate = request.getParameter("bookingdate");
-
+        AccountDAO dao = new AccountDAO();
+        Account ac =dao.getAccountById(accountId);
+        String email = ac.getEmail();
         double totalPrice = 0;
 
 //        totalPrice = Double.parseDouble(price);
@@ -76,6 +81,7 @@ public class BookingStatus extends HttpServlet {
 //            request.setAttribute("order_id", bookingId);
 //            request.setAttribute("amount", (int) totalPrice);
 //            request.setAttribute("trans_date", vnp_CreateDate);
+            Email.sendEmail(email,"Your booking have been cancle","Sorry booking have been cancle");
             bookingDAO booking = new bookingDAO();
             booking.updateStateBooking(bookingId, action);
 //            request.getRequestDispatcher("vnpayRefund").forward(request, response);
