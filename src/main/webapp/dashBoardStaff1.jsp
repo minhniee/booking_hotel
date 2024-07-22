@@ -45,7 +45,7 @@
                         </div>
                     </aside>
                     <ul class="sidebar-menu">
-                        <li><a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                        <li><a class="nav-link" href="${url}/dashboardstaff.jsp"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
 
                         <li class="menu-header">Booking</li>
                         <li><a class="nav-link" href="listBooking"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
