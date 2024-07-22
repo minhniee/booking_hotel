@@ -61,7 +61,7 @@
                         <td>${item.service.description}</td>
                         <td>$${item.service.price}</td>
                         <td>
-                            <input type="number" value="${item.quantity}" min="1" readonly class="form-control quantity" data-id="${item.id}">
+                            <input type="number" value="${item.quantity}" min="1" class="form-control quantity" data-id="${item.id}">
                         </td>
                         <td>$${item.quantity * item.service.price}</td>
                         <td>
@@ -116,6 +116,10 @@
         $('.quantity').change(function() {
             var cartItemId = $(this).data('id');
             var quantity = $(this).val();
+            if(quantity <1){
+                $(this).val(1);
+                quantity=1;
+            }
             $.post('cart', {
                 action: 'update',
                 cartItemId: cartItemId,
