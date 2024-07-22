@@ -62,8 +62,8 @@ public class vnpayRefund extends HttpServlet {
             bookingDAO bookingDAO = new bookingDAO();
             try {
                 booking = bookingDAO.cancelBooking(bookingId, accountId);
-
-                vnp_TxnRef = String.valueOf(booking.getPaymentIdd());
+                System.out.println("booking id:" +bookingId);
+                vnp_TxnRef = String.valueOf(booking.getId());
                 vnp_TransactionType = "03";
                 price = booking.getBookingPrice();
 
