@@ -1,4 +1,7 @@
 <%@ include file="../layout/cdnpkg.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="url"
+       value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="user">
 <style>
     body {

@@ -45,7 +45,7 @@ public class ContactServlet extends HttpServlet {
                 + "<p>Message: " + message + "</p>";
 
         // Send the email
-        boolean emailSent = Email.sendEmail("thieuducdung254@gmail.com", subject, emailContent);
+        boolean emailSent = Email.sendEmail("thatlavailonnn@gmail.com", subject, emailContent);
 
         // Set response based on email send status
         if (emailSent) {

@@ -26,8 +26,8 @@
                                                  data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                                  aria-expanded="false">Pages <i class="ti-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="${url}/homePage/services.jsp" class="dropdown-item"><span>Services1</span></a></li>
-                        <li><a href="${url}/services" class="dropdown-item"><span>Services2</span></a></li>
+                        <li><a href="${url}/homePage/services.jsp" class="dropdown-item"><span>Services </span></a></li>
+                        <li><a href="${url}/services" class="dropdown-item"><span>Rental Service</span></a></li>
                         <li><a href="${url}/cart" class="dropdown-item"><span>Cart</span></a></li>
                         <li><a href="${url}/homePage/facilities.jsp" class="dropdown-item"><span>Facilities</span></a>
                         </li>
