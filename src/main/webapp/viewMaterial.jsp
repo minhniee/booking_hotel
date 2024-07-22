@@ -132,11 +132,6 @@
                 <td>${material.price}</td>
                 <td><img src="Assets/image/material/${material.image}" alt="${material.name}" width="100"></td>
                 <td class="room-actions">
-                        <%--                    <form action="editMaterial" method="post" style="display:inline;">--%>
-                        <%--                        <input type="hidden" name="roomId" value="${material.id}">--%>
-                        <%--                        <button type="submit">Edit</button>--%>
-                        <%--                    </form>--%>
-
                     <a href="editMaterial?id=${material.id}"><button type="submit">Edit</button></a>
                 </td>
             </tr>

@@ -19,7 +19,7 @@
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgb(246, 231, 209);
         }
 
         h1 {
@@ -150,6 +150,8 @@
 
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
 <div class="container">
     <h1>Edit Room</h1>
     <form action="editRoom" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
@@ -196,6 +198,7 @@
                 <button type="button" onclick="window.location.href = 'roomManager'">Cancel</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>

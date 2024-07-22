@@ -93,6 +93,8 @@
     </script>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
 <div class="container">
     <h1>Edit Material</h1>
     <form action="editMaterial" method="post" onsubmit="return validateForm()">
@@ -129,6 +131,7 @@
             <button type="button" onclick="window.location.href = 'ViewMaterial'">Cancel</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>
