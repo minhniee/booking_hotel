@@ -9,6 +9,7 @@
     <title>Customer Detail</title>
     <style>
         .container {
+            color: black;
             width: 80%;
             margin: 0 auto;
         }

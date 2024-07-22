@@ -13,6 +13,8 @@
             background-color: snow;
         }
         .container {
+            text-align: center;
+            color: black;
             width: 80%;
             margin: 0 auto;
         }
@@ -25,7 +27,16 @@
             padding: 8px;
             text-align: left;
         }
+        .container h1{
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            background-color: rgb(255,127,80);
+            padding: 10px;
+            border: 1px solid;
+        }
         .customer-table th {
+
             background-color: #f2f2f2;
         }
         .customer-table tr:nth-child(even) {
