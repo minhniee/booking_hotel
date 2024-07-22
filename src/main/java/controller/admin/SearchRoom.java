@@ -1,9 +1,11 @@
 package controller.admin;
 
+import DAO.ManageRoomClassDAO;
 import DAO.getRoomManagerDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.RoomClass;
 import model.RoomManager;
 
 import java.io.IOException;
@@ -36,7 +38,12 @@ public class SearchRoom extends HttpServlet {
        ArrayList<RoomManager> rooms = new ArrayList<>();
        getRoomManagerDAO dao = new getRoomManagerDAO();
        rooms = dao.SearchRoomManagerByName(text);
-       request.setAttribute("list", rooms);
+        ArrayList<RoomClass> listRoomClass = new ArrayList<>();
+        ManageRoomClassDAO mdao = new ManageRoomClassDAO();
+        listRoomClass = mdao.getRoomClassList();
+        request.setAttribute("listRoomClass", listRoomClass);
+
+        request.setAttribute("list", rooms);
         request.getRequestDispatcher("ManagerListRoom.jsp").forward(request, response);
     }
 
