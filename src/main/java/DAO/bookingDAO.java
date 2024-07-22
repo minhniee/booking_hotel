@@ -101,8 +101,8 @@ public class bookingDAO {
                 "      ,[num_adults]\n" +
                 "      ,[booking_price]\n" +
                 "      ,[booking_date]" +
-                "  FROM booking as b\n" +
-                "  where account_id = ? and checkout_date >= GETDATE()";
+                "  FROM booking as  b join booking_status as bs on bs.booking_id = b.id\n" +
+                "  where account_id = ? and checkout_date >= GETDATE() and bs.state = 'confirmed'";
         ArrayList<Booking> bookings = new ArrayList<>();
         pr = con.prepareStatement(sql);
         pr.setString(1, accId);

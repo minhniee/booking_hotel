@@ -18,7 +18,7 @@
             <ul class="navbar-nav ms-auto" style="margin-left: 140px !important;">
                 <li class="nav-item"><a class="nav-link" href="${url}/home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="${url}/homePage/about.jsp">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="Room">Rooms & Suites</a></li>
+                <li class="nav-item"><a class="nav-link" href="${url}/Room">Rooms & Suites</a></li>
                 <li class="nav-item"><a class="nav-link" href="${url}/homePage/restaurant.jsp">Restaurant</a></li>
                 <li class="nav-item"><a class="nav-link" href="${url}/homePage/spa-wellness.jsp">Spa</a></li>
 

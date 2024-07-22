@@ -103,8 +103,8 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img src="${url}/Assets1/img/rooms/1.jpg" alt=""> </div> <span class="category"><a href="rooms2.jsp">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.jsp">150$ / Night</a></h6>
-                        <h5><a href="room-details.jsp">Junior Suite</a> </h5>
+                        <h6><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">150$ / Night</a></h6>
+                        <h5><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">Junior Suite</a> </h5>
                         <div class="line"></div>
                         <div class="row facilities">
                             <div class="col col-md-7">
@@ -126,8 +126,8 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img src="${url}/Assets1/img/rooms/2.jpg" alt=""> </div> <span class="category"><a href="rooms2.jsp">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.jsp">200$ / Night</a></h6>
-                        <h5><a href="room-details.jsp">Family Room</a></h5>
+                        <h6><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">200$ / Night</a></h6>
+                        <h5><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">Executive Suite</a></h5>
                         <div class="line"></div>
                         <div class="row facilities">
                             <div class="col col-md-7">
@@ -149,8 +149,8 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img src="${url}/Assets1/img/rooms/3.jpg" alt=""> </div> <span class="category"><a href="rooms2.jsp">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.jsp">250$ / Night</a></h6>
-                        <h5><a href="room-details.jsp">Double Room</a></h5>
+                        <h6><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">250$ / Night</a></h6>
+                        <h5><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">Double Room</a></h5>
                         <div class="line"></div>
                         <div class="row facilities">
                             <div class="col col-md-7">
@@ -172,8 +172,8 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img src="${url}/Assets1/img/rooms/4.jpg" alt=""> </div> <span class="category"><a href="rooms2.jsp">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.jsp">300$ / Night</a></h6>
-                        <h5><a href="room-details.jsp">Deluxe Room</a></h5>
+                        <h6><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">300$ / Night</a></h6>
+                        <h5><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">Deluxe Room</a></h5>
                         <div class="line"></div>
                         <div class="row facilities">
                             <div class="col col-md-7">
@@ -195,8 +195,8 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img src="${url}/Assets1/img/rooms/7.jpg" alt=""> </div> <span class="category"><a href="rooms2.jsp">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.jsp">150$ / Night</a></h6>
-                        <h5><a href="room-details.jsp">Superior Room</a></h5>
+                        <h6><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">150$ / Night</a></h6>
+                        <h5><a href="http://localhost:8080/Booking_Hotell/RoomDetail?rooms=EXS&roomClassName=Executive%20Suite">Superior Room</a></h5>
                         <div class="line"></div>
                         <div class="row facilities">
                             <div class="col col-md-7">

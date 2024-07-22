@@ -76,7 +76,7 @@ public class ChangePass extends HttpServlet {
                 session.setAttribute("msgrr", "Old password is incorrect");
             }
 
-            response.sendRedirect(request.getContextPath() + "/user/changePass.jsp");
+            response.sendRedirect(request.getContextPath() + "/ChangePass");
         }
     }
 

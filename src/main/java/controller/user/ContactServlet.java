@@ -16,6 +16,25 @@ import java.util.regex.Pattern;
 public class ContactServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        Email em = new Email();
+        String emailContent = "<div style=\"font-family: Arial, sans-serif; color: #333;\">"
+                + "<h2 style=\"color: #4CAF50;\">Contact Form Submission</h2>"
+                + "<p><strong>Name:</strong> " + "Guess" + "</p>"
+                + "<p><strong>Email:</strong> " + email + "</p>"
+                + "<p><strong>Subject:</strong> " + "Welcome to my website" + "</p>"
+                + "<p><strong>Message:</strong></p>"
+                + "<div style=\"border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9;\">"
+                + "</div>"
+                + "</div>";
+        em.sendEmail(email,"Welcome!","emailContent");
+
+
+        request.getRequestDispatcher("home").forward(request, response);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve form parameters
@@ -38,14 +57,25 @@ public class ContactServlet extends HttpServlet {
         name = capitalizeWords(name);
 
         // Construct the email content
-        String emailContent = "<p>Name: " + name + "</p>"
-                + "<p>Email: " + email + "</p>"
-                + "<p>Phone: " + phone + "</p>"
-                + "<p>Subject: " + subject + "</p>"
-                + "<p>Message: " + message + "</p>";
+//        String emailContent = "<p>Name: " + name + "</p>"
+//                + "<p>Email: " + email + "</p>"
+//                + "<p>Phone: " + phone + "</p>"
+//                + "<p>Subject: " + subject + "</p>"
+//                + "<p>Message: " + message + "</p>";
+        String emailContent = "<div style=\"font-family: Arial, sans-serif; color: #333;\">"
+                + "<h2 style=\"color: #4CAF50;\">Contact Form Submission</h2>"
+                + "<p><strong>Name:</strong> " + name + "</p>"
+                + "<p><strong>Email:</strong> " + email + "</p>"
+                + "<p><strong>Phone:</strong> " + phone + "</p>"
+                + "<p><strong>Subject:</strong> " + subject + "</p>"
+                + "<p><strong>Message:</strong></p>"
+                + "<div style=\"border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9;\">"
+                + "<p>" + message + "</p>"
+                + "</div>"
+                + "</div>";
 
         // Send the email
-        boolean emailSent = Email.sendEmail("thatlavailonnn@gmail.com", subject, emailContent);
+        boolean emailSent = Email.sendEmail("minhlqhe172686@fpt.edu.vn", subject, emailContent);
 
         // Set response based on email send status
         if (emailSent) {
