@@ -42,6 +42,8 @@
     </style>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content" >
 <div class="container">
     <h1>Customer Detail</h1>
     <div class="customer-container">
