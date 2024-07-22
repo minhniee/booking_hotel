@@ -61,7 +61,7 @@
                         <td>${item.service.description}</td>
                         <td>$${item.service.price}</td>
                         <td>
-                            <input type="number" value="${item.quantity}" min="1" class="form-control quantity" data-id="${item.id}">
+                            <input type="number" value="${item.quantity}" min="1" readonly class="form-control quantity" data-id="${item.id}">
                         </td>
                         <td>$${item.quantity * item.service.price}</td>
                         <td>
