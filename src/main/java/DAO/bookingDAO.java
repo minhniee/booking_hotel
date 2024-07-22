@@ -149,6 +149,8 @@ public class bookingDAO {
                 pr.setString(1, "cancelled");
             } else if (action.equals("confirm")) {
                 pr.setString(1, "confirmed");
+            }else if(action.equals("inprocess")){
+                pr.setString(1, "inprocess");
             }
             pr.setString(2, bookingId);
             pr.executeUpdate();
@@ -230,24 +232,24 @@ public class bookingDAO {
 
     }
 
-    public void confirmBooking(String bookingId, String action) {
-        try {
-            con = new DBContext().getConnection();
-            String sql = "UPDATE booking_status set state=? where booking_id =? ";
-
-            pr = con.prepareStatement(sql);
-            if (action.equals("reject")){
-                pr.setString(1, "cancelled");
-            }else if(action.equals("confirm")) {
-                pr.setString(1, "confirmed");
-            }
-            pr.setString(2, bookingId);
-            pr.executeUpdate();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void confirmBooking(String bookingId, String action) {
+//        try {
+//            con = new DBContext().getConnection();
+//            String sql = "UPDATE booking_status set state=? where booking_id =? ";
+//
+//            pr = con.prepareStatement(sql);
+//            if (action.equals("reject")){
+//                pr.setString(1, "cancelled");
+//            }else if(action.equals("confirm")) {
+//                pr.setString(1, "confirmed");
+//            }
+//            pr.setString(2, bookingId);
+//            pr.executeUpdate();
+//            con.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public Booking cancelBooking(String bookingId, String accId) throws SQLException {
         con = new DBContext().getConnection();

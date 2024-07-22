@@ -58,6 +58,8 @@
                                         <th>Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
+                                        <th>Action</th>
+                                        <th>Action</th>
 
                                     </tr>
 
@@ -100,6 +102,8 @@
                                             <input type="hidden" name="bookingdate" value="${l.bookingDate}">
                                             <button type="submit" name="action" value="confirm" class="btn btn-success">Approve</button>
                                         </form>
+                                            </td>
+                                        <td>
                                         <form action="BookingStatus" method="post">
                                             <input type="hidden" name="bookingid" value="${l.id}"> <!-- booking id -->
                                             <input type="hidden" name="acid" value="${l.accountId}">
@@ -113,6 +117,9 @@
                                         <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
                                         </form>
                                         </td>
+                                        <td>
+                                        detail
+                                        <td>
                                     </tr>
                                         <c:set var="i" value="${i + 1}"/>
                                     </c:forEach>

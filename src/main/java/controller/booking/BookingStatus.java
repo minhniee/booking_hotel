@@ -49,10 +49,9 @@ public class BookingStatus extends HttpServlet {
         String accountId = request.getParameter("acid");
         String price = request.getParameter("price");
 //        String email = request.getParameter("email");
-        System.out.println(accountId +"asdsadsda");
+//        System.out.println(accountId +"asdsadsda");
         String bookingDate = request.getParameter("bookingdate");
 
-//        totalPrice = Double.parseDouble(price);
 
         if (action.equalsIgnoreCase("reject")) {
 

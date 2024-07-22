@@ -13,13 +13,14 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="${url}/Assets/assets/css/app.min.css">
     <link rel="stylesheet" href="${url}/Assets/assets/bundles/datatables/datatables.min.css">
-    <link rel="stylesheet" href="${url}/Assets/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="${url}/Assets/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="${url}/Assets/assets/css/style.css">
     <link rel="stylesheet" href="${url}/Assets/assets/css/components.css">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="${url}/Assets/assets/css/custom.css">
-    <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+    <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico'/>
     <!-- jQuery UI CSS -->
     <link rel="stylesheet" href="${url}/Assets/assets/bundles/jquery-ui/jquery-ui.min.css">
 </head>
@@ -95,7 +96,7 @@
                                             </td>
                                             <td>${l.id}</td>
                                             <td>${l.roomId}</td>
-                                            <td> <fmt:formatDate pattern="dd-MM-yyyy" value="${l.bookingDate}"/></td>
+                                            <td><fmt:formatDate pattern="dd-MM-yyyy" value="${l.bookingDate}"/></td>
                                             <td>${l.bookingPrice}</td>
 
                                             <c:choose>
@@ -117,10 +118,8 @@
                                             </c:choose>
 
 
-            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Detail</a></td>
-            <c:set var="i" value="${i+1}"/>
-
-                                  
+                                            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Detail</a></td>
+                                            <c:set var="i" value="${i+1}"/>
 
 
                                         </tr>
@@ -139,7 +138,9 @@
 </div>
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2019 <div class="bullet"></div> Design By <a href="#">Redstar</a>
+        Copyright &copy; 2019
+        <div class="bullet"></div>
+        Design By <a href="#">Redstar</a>
     </div>
     <div class="footer-right">
     </div>
@@ -158,11 +159,11 @@
 <!-- Custom JS File -->
 <script src="${url}/Assets/assets/js/custom.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize the date picker
         $("#date-filter").datepicker({
             dateFormat: 'dd-mm-yy', // Set the date format to match your table's format
-            onSelect: function(dateText) {
+            onSelect: function (dateText) {
                 filterTableByDate(dateText);
             }
         });
@@ -171,7 +172,7 @@
             // Convert the date to a format that matches the table's date format
             var formattedDate = $.datepicker.formatDate('dd-mm-yy', new Date(date));
 
-            $('#table-1 tbody tr').each(function() {
+            $('#table-1 tbody tr').each(function () {
                 var rowDate = $(this).find('td').eq(3).text().trim(); // Adjust index based on your table
                 if (rowDate === formattedDate || formattedDate === '') {
                     $(this).show();
