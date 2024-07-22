@@ -87,7 +87,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Room</th>
+                <th>Booking ID</th>
                 <th>Check-in Date</th>
                 <th>Check-out Date</th>
                 <th>State</th>
@@ -99,7 +99,7 @@
             <c:forEach var="b" items="${requestScope.data}" varStatus="loop">
                 <tr>
                     <td>${loop.index + 1}</td>
-                    <td>${b.roomId}</td>
+                    <td>${b.id}</td>
                     <td><fmt:formatDate value="${b.checkInDate}" pattern="dd-MM-yyyy" /></td>
                     <td><fmt:formatDate value="${b.checkOutDate}" pattern="dd-MM-yyyy" /></td>
                     <td style="color:

@@ -186,46 +186,49 @@
     function validateForm(event) {
         var errorMsg = "";
 
-        // Kiểm tra fullName
+        // Validate fullName
         var fullName = document.forms["registerForm"]["fullName"].value;
+        var fullNameRegex = /^[a-zA-Z\s]+$/;
         if (fullName.trim() === "") {
             errorMsg = "Full name cannot be left blank.";
+        } else if (!fullNameRegex.test(fullName)) {
+            errorMsg = "Full name cannot contain special characters or numbers.";
         } else {
-            // Kiểm tra address
+            // Validate address
             var address = document.forms["registerForm"]["address"].value;
             if (address.trim() === "") {
                 errorMsg = "Address cannot be left blank.";
             } else {
-                // Kiểm tra gender
+                // Validate gender
                 var gender = document.forms["registerForm"]["gender"].value;
                 if (!gender) {
                     errorMsg = "Gender must be selected.";
                 } else {
-                    // Kiểm tra password
+                    // Validate password
                     var password = document.forms["registerForm"]["password"].value;
                     if (password.trim() === "") {
                         errorMsg = "Password cannot be blank.";
                     } else if (password.length < 6) {
                         errorMsg = "Password must have at least 6 characters.";
                     } else {
-                        // Kiểm tra confirmPassword
+                        // Validate confirmPassword
                         var confirmPassword = document.forms["registerForm"]["confirmPassword"].value;
                         if (confirmPassword !== password) {
                             errorMsg = "Confirm Password does not match Password.";
                         } else {
-                            // Kiểm tra email
+                            // Validate email
                             var email = document.forms["registerForm"]["email"].value;
                             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                             if (!emailRegex.test(email)) {
                                 errorMsg = "Invalid email.";
                             } else {
-                                // Kiểm tra phone
+                                // Validate phone
                                 var phone = document.forms["registerForm"]["phone"].value;
                                 var phoneRegex = /^\d{10}$/;
                                 if (!phoneRegex.test(phone)) {
                                     errorMsg = "Invalid phone number.";
                                 } else {
-                                    // Kiểm tra birthdate
+                                    // Validate birthdate
                                     var birthdate = document.forms["registerForm"]["birthdate"].value;
                                     if (birthdate === "") {
                                         errorMsg = "Date of birth cannot be left blank.";
@@ -251,10 +254,10 @@
             }
         }
 
-        // Hiển thị thông báo lỗi nếu có
+        // Display error message if any
         if (errorMsg) {
             document.getElementById("validationError").innerText = errorMsg;
-            event.preventDefault(); // Ngăn chặn việc submit form
+            event.preventDefault(); // Prevent form submission
             return false;
         }
 
@@ -264,8 +267,8 @@
     }
 
     function redirectToLogin(event) {
-        event.preventDefault(); // Ngăn chặn việc submit form mặc định
-        window.location.href = 'login'; // Thay đổi URL tới trang login
+        event.preventDefault(); // Prevent default form submission
+        window.location.href = 'login'; // Redirect to login page
     }
 </script>
 </body>
