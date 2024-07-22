@@ -93,6 +93,9 @@
     </script>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+
+<div class="main-content">
 <div class="container">
     <h1>Edit Material</h1>
     <form action="editMaterial" method="post" onsubmit="return validateForm()">

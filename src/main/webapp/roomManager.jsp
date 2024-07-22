@@ -97,6 +97,9 @@
     </style>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
+
 <div class="sidebar">
     <div class="logo"></div>
     <ul class="menu">
@@ -171,7 +174,7 @@
                 <td>${room.statusName}</td>
                 <td>${room.numAdults}</td>
                 <td>${room.basePrice}</td>
-                <td><img src="Assets/image/room/${room.roomImg}" alt="${room.roomImg}" width="100"></td>
+                <td><img src="Assets1/img/rooms/${room.roomImg}" alt="${room.roomImg}" width="100"></td>
                 <td class="room-actions">
                         <%--                    <form action="roomManager" method="post" style="display:inline;">--%>
                         <%--                        <input type="hidden" name="action" value="edit">--%>
@@ -206,6 +209,7 @@
             </form>
         </c:if>
     </div>
+</div>
 </div>
 </body>
 </html>

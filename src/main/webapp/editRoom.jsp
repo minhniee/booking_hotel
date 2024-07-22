@@ -150,6 +150,9 @@
 
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+
+<div class="main-content">
 <div class="container">
     <h1>Edit Room</h1>
     <form action="editRoom" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
