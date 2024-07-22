@@ -32,7 +32,7 @@
     <section class="section">
         <ul class="breadcrumb breadcrumb-style ">
             <li class="breadcrumb-item">
-                <h4 class="page-title m-b-0">Data Tables</h4>
+                <h4 class="page-title m-b-0">List All Booking Status</h4>
             </li>
             <li class="breadcrumb-item">
                 <a href="index.html">
@@ -46,7 +46,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Basic DataTables</h4>
                             <!-- Date Picker Input -->
                             <input type="text" id="date-filter" class="form-control" placeholder="Select Date">
                         </div>
@@ -115,10 +114,15 @@
                                                         <div class="badge badge-danger badge-shadow">Cancelled</div>
                                                     </td>
                                                 </c:when>
+                                                <c:when test="${l.bookingState eq 'inprocess' }">
+                                                    <td>
+                                                        <div class="badge badge-info badge-shadow">In process</div>
+                                                    </td>
+                                                </c:when>
                                             </c:choose>
 
 
-                                            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Detail</a></td>
+                                            <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Checkout</a></td>
                                             <c:set var="i" value="${i+1}"/>
 
 
