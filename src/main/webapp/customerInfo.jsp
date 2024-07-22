@@ -50,94 +50,41 @@
     </style>
 </head>
 <body>
-<%--    <div class="sidebar">--%>
-<%--    <div class="logo"></div>--%>
-<%--    <ul class="menu">--%>
-<%--        <li >--%>
-<%--            <a href="dashboardstaff.jsp" >--%>
-<%--                <i class="fas fa-tachometer-alt"></i>--%>
-<%--                <span>Dashboard</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li >--%>
-<%--            <a href="profileStaff.jsp">--%>
-<%--                <i class="fas fa-user"></i>--%>
-<%--                <span>Profile</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li>--%>
-<%--            <a href="ViewService">--%>
-<%--                <i class="fas fa-chart-bar"></i>--%>
-<%--                <span>Service</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li >--%>
-<%--            <a href="ViewMaterial">--%>
-<%--                <i class="fas fa-briefcase"></i>--%>
-<%--                <span>Material</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li>--%>
-<%--            <a href="#">--%>
-<%--                <i class="fas fa-question-circle"></i>--%>
-<%--                <span>FAQ</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li >--%>
-<%--            <a href="roomManager">--%>
-<%--                <i class="fas fa-cog"></i>--%>
-<%--                <span>Room</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li class="active">--%>
-<%--            <a href="customerInfo">--%>
-<%--                <i class="fas fa-star"></i>--%>
-<%--                <span>Customer</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <li class="logout">--%>
-<%--            <a href="logout">--%>
-<%--                <i class="fas fa-sign-out-alt"></i>--%>
-<%--                <span>Logout</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
-<%--</div>--%>
 <%@include file="dashBoardStaff1.jsp"%>
-<div class="main-content">
-
+<div class="main-content" >
 <div class="container">
-        <h1>Customer Information</h1>
-        <table class="customer-table">
+    <h1>Customer Information</h1>
+    <table class="customer-table">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        <c:forEach var="customer" items="${customers}">
             <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Gender</th>
-                <th>Date of Birth</th>
-                <th>Address</th>
-                <th>Action</th>
+                <td>${customer.id}</td>
+                <td>${customer.fullName}</td>
+                <td>${customer.email}</td>
+                <td>${customer.phone}</td>
+                <td>${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</td>
+                <td>${customer.dob}</td>
+                <td>${customer.address}</td>
+                <td>
+                        <%--                        <form action="customerDetail" method="get">--%>
+                        <%--                            <input type="hidden" name="customerId" value="${customer.id}">--%>
+                        <%--                            <button type="submit">View Bookings</button>--%>
+                        <%--                        </form>--%>
+                    <a href="customerDetail?customerId=${customer.id}"><button type="submit">View Bookings</button></a>
+                </td>
+
             </tr>
-            <c:forEach var="customer" items="${customers}">
-                <tr>
-                    <td>${customer.id}</td>
-                    <td>${customer.fullName}</td>
-                    <td>${customer.email}</td>
-                    <td>${customer.phone}</td>
-                    <td>${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</td>
-                    <td>${customer.dob}</td>
-                    <td>${customer.address}</td>
-                    <td>
-                        <form action="customerInfo" method="post">
-                            <input type="hidden" name="customerId" value="${customer.id}">
-                            <button type="submit">View Bookings</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+        </c:forEach>
+    </table>
 </div>
 </body>
 </html>
