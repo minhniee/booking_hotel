@@ -11,6 +11,9 @@
             font-size: 40px;
             font-family: auto;
         }
+        .table{
+            background-color: #f6e7d1;
+        }
 
         .input-group-text, select.form-control:not([size]):not([multiple]), .form-control:not(.form-control-sm):not(.form-control-lg) {
             border-color: black;

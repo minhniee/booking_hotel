@@ -11,7 +11,8 @@
             padding: 20px;
             font-family: Arial, sans-serif;
             border: 2px solid;
-            background-color: rgba(236, 231, 231, 0.29);
+            border-radius: 20px;
+            background-color: rgb(246, 231, 209);
         }
 
         h1 {

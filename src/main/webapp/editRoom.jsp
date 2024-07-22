@@ -17,9 +17,10 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgb(246, 231, 209);
+            background-color: #f6e7d1;
+            border-radius: 20px;
+            border: 2px solid;
+            box-shadow: 0px 0px 10px rgba(220, 220, 220, 0.4);
         }
 
         h1 {
