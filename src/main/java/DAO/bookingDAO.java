@@ -254,18 +254,19 @@ public class bookingDAO {
     public Booking cancelBooking(String bookingId, String accId) throws SQLException {
         con = new DBContext().getConnection();
         Booking b = null;
-        String sql = "SELECT b.[id]\n" +
-                "      ,[room_id]\n" +
-                "      ,[payment_id]\n" +
-                "      ,[account_id]\n" +
-                "      ,[checkin_date]\n" +
-                "      ,[checkout_date]\n" +
-                "      ,[num_child]\n" +
-                "      ,[num_adults]\n" +
-                "      ,[booking_price]\n" +
-                "      ,[booking_date]" +
-                "  FROM booking as b\n" +
-                "  where account_id = ? and b.[id] =?";
+        String sql = "SELECT b.[id],\n" +
+                "       [room_id],\n" +
+                "       [payment_id],\n" +
+                "       [account_id],\n" +
+                "       [checkin_date],\n" +
+                "       [checkout_date],\n" +
+                "       [num_child],\n" +
+                "       [num_adults],\n" +
+                "       [booking_price],\n" +
+                "       [booking_date],\n" +
+                "\t   ps.id\n" +
+                "FROM booking as b join payment as ps on ps.booking_id = b.id \n" +
+                "WHERE account_id = ? AND b.[id] = ?;";
         pr = con.prepareStatement(sql);
         pr.setString(1, accId);
         pr.setString(2, bookingId);
@@ -281,7 +282,8 @@ public class bookingDAO {
             int paymentId = rs.getInt("payment_id");
             String accountId = rs.getString("account_id");
             Timestamp bookingDate = rs.getTimestamp("booking_date");
-            b = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, accountId, bookingDate);
+            String paymentIdBank = rs.getString(11);
+           b= new Booking( id,  roomId,  checkinDate,  checkoutDate,  numAdults,  numChildren,  bookingPrice,  paymentId, paymentIdBank,  accountId, bookingDate);
         }
         return b;
     }
@@ -337,11 +339,13 @@ public class bookingDAO {
 
 
     public static void main(String[] args) throws SQLException {
-        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
-        int count = 0;
-        for (Booking a : bookings) {
-            System.out.println(a.toString());
-        }
+//        ArrayList<Booking> bookings = new bookingDAO().GetBookingsPending();
+//        int count = 0;
+//        for (Booking a : bookings) {
+//            System.out.println(a.toString());
+//        }
+        Booking  a = new bookingDAO().cancelBooking("ABF9A8272763","1234");
+        System.out.println(a.getPaymentIdBank());
 //        new bookingDAO().confirmBooking("F877D5065A54","confirm");
 
 

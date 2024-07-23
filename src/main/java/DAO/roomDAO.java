@@ -258,14 +258,6 @@ public class roomDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(roomDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pr != null) pr.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return room;
     }
