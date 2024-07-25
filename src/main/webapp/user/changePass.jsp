@@ -75,13 +75,16 @@
                             ${sessionScope.msgrr}
                     </div>
                 </c:when>
+                <c:otherwise>
+                    <div id="message-error" class="alert alert-error" style="display: none;"></div>
+                </c:otherwise>
             </c:choose>
             <form action="${pageContext.request.contextPath}/ChangePass" method="post" id="passwordForm" onsubmit="return validateForm()">
                 <input type="password" class="input-lg form-control" name="oldPass" id="password0" placeholder="Old Password" required>
                 <br>
-                <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="New Password" value="${password != null ? password : ''}" required>
+                <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="New Password" required>
                 <br>
-                <input type="password" class="input-lg form-control" name="confirmPassword" id="password2" placeholder="Repeat Password" value="${confirmPassword != null ? confirmPassword : ''}" required>
+                <input type="password" class="input-lg form-control" name="confirmPassword" id="password2" placeholder="Repeat Password" required>
                 <br>
                 <input type="submit" class="col-xs-4 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change">
             </form>
@@ -95,11 +98,9 @@
         var newpass = document.getElementById("password1").value;
         var confirmpass = document.getElementById("password2").value;
         var errorMessage = document.getElementById("message-error");
-        var successMessage = document.getElementById("message-success");
 
-        // Hide both messages initially
+        // Hide the message initially
         errorMessage.style.display = "none";
-        successMessage.style.display = "none";
 
         if (oldpass === "" || newpass === "" || confirmpass === "") {
             errorMessage.innerHTML = "All fields are required.";

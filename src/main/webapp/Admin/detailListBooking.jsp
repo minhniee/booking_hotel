@@ -18,6 +18,7 @@
 <div class="tabular--wrapper">
     <%@include file="dashBoardAdmin.jsp"%>
 
+<div  class="main-content">
 
     <h3 class="main--title">Detail Booking</h3>
     <div class="table-container">
@@ -96,7 +97,7 @@
 
 
     </div>
-
+</div>
 </div>
 </body>
 </html>

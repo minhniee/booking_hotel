@@ -23,4 +23,11 @@ public class ManageServiceCategoryDAO extends DBContext {
         }
         return list;
     }
+
+    public static void main(String[] args) {
+        ArrayList<ManageServiceCategory> list = new ManageServiceCategoryDAO().selectAll();
+        for (ManageServiceCategory msc : list) {
+            System.out.println(msc.getName());
+        }
+    }
 }

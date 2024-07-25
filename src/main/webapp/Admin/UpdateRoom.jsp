@@ -44,7 +44,7 @@
             <label for="email">Status room</label>
             <select name="status">
                 <option value="Available" ${roomManager.status_name == 'Available' ? "selected=\"selected\"":""}>Available</option>
-                <option value="Disable" ${roomManager.status_name != 'Available' ? "selected=\"selected\"":""}>Disable</option>
+                <option value="Unavailable" ${roomManager.status_name != 'Available' ? "selected=\"selected\"":""}>Unavailable</option>
             </select>
         </div>
 

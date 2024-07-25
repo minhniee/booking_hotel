@@ -88,7 +88,7 @@ public class getRoomManagerDAO extends DBContext {
                 "     [room_class_id] = ?\n" +
                 "      ,[name] = ?\n" +
                 "      ,[num_adults] = ?\n" +
-                "      ,[status_name] = ?\n" +
+                "      ,[state] = ?\n" +
                 " WHERE id = ?";
         try {
             PreparedStatement stm = getConnection().prepareStatement(sql);

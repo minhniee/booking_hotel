@@ -17,8 +17,8 @@ import jakarta.mail.internet.MimeMessage;
 
 public class Email {
 
-    static final String email = "thatlavailonnn@gmail.com";
-    static final String password = "ewaa uigm dmyq rtoj";
+    static final String email = "renager.hotel@gmail.com";
+    static final String password = "rdvf biks gtvy luij";
 
     public static boolean sendEmail(String to, String title, String content) {
         Properties properties = new Properties();
@@ -69,5 +69,9 @@ public class Email {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        sendEmail("thatlavailonnn@gmail.com","ok","ok");
     }
 }

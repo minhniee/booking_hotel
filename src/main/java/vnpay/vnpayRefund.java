@@ -62,8 +62,8 @@ public class vnpayRefund extends HttpServlet {
             bookingDAO bookingDAO = new bookingDAO();
             try {
                 booking = bookingDAO.cancelBooking(bookingId, accountId);
-
-                vnp_TxnRef = String.valueOf(booking.getPaymentIdd());
+                System.out.println("booking id:" +bookingId);
+                vnp_TxnRef = String.valueOf(booking.getPaymentIdBank());
                 vnp_TransactionType = "03";
                 price = booking.getBookingPrice();
 
@@ -84,8 +84,9 @@ public class vnpayRefund extends HttpServlet {
 
                 long daysBetweenCurrentDateAndCheckin = ChronoUnit.DAYS.between(currentDate, checkInDate);
                 if (daysBetweenCurrentDateAndCheckin < 7) {
+                    price =0;
                     content ="You will not refund money but.days Between Current Date And Check In Date less than 7.";
-
+                    resp.sendRedirect("CancelBooking");
                 } else if (daysBetweenCurrentDateAndCheckin < 15) {
 
                     price = price * 0.5;

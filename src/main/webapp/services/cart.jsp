@@ -116,6 +116,10 @@
         $('.quantity').change(function() {
             var cartItemId = $(this).data('id');
             var quantity = $(this).val();
+            if(quantity <1){
+                $(this).val(1);
+                quantity=1;
+            }
             $.post('cart', {
                 action: 'update',
                 cartItemId: cartItemId,
