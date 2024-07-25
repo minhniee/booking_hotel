@@ -3,9 +3,13 @@
 <html>
 <head>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
+    <%@include file="layout/cdnpkg.jsp"%>
     <title>Customer Detail</title>
     <style>
         .container {
+            color: black;
             width: 80%;
             margin: 0 auto;
         }
@@ -42,15 +46,20 @@
     </style>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content" >
 <div class="container">
+    <form action="customerDetail" >
+
+    </form>
     <h1>Customer Detail</h1>
     <div class="customer-container">
         <p>ID: ${customer.id}</p>
         <p>Full Name: ${customer.fullName}</p>
         <p>Email: ${customer.email}</p>
         <p>Phone: ${customer.phone}</p>
-        <p>Gender: ${customer.gender ? "Male" : "Female"}}</p>
-<%--        ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""--%>
+        <%--        <p>Gender: ${customer.gender ? "Male" : "Female"}</p>--%>
+        <p>Gender: ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""}</p>
         <p>Date of Birth: ${customer.dob}</p>
         <p>Address: ${customer.address}</p>
 
