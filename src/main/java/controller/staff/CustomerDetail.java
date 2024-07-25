@@ -48,6 +48,7 @@ public class CustomerDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         int customerId = Integer.parseInt(request.getParameter("customerId"));
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.getCustomerById(customerId);

@@ -10,7 +10,7 @@ import model.Account;
 
 public class FilteStaff {
 
-    protected static void filterRoleAdmin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected static void filterRoleStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Account account = (Account) session.getAttribute("account");
         if (account != null) {

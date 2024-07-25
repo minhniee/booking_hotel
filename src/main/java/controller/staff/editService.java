@@ -38,6 +38,7 @@ public class editService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         String id = request.getParameter("id");
         ServiceDAO dao = new ServiceDAO();
         Service service = dao.getServiceById(id);
@@ -50,6 +51,7 @@ public class editService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         // Lấy các tham số từ form
         String id = request.getParameter("id");
         String priceStr = request.getParameter("price");

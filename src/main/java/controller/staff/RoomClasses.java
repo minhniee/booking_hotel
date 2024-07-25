@@ -32,6 +32,7 @@ public class RoomClasses extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         ArrayList<RoomClass> roomClasses = new ArrayList<>();
         ManageRoomClassDAO dao = new ManageRoomClassDAO();
         roomClasses = dao.getRoomClassList();

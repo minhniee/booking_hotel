@@ -32,6 +32,7 @@ public class RoomManager extends HttpServlet {
     private static final int ITEMS_PER_PAGE = 10;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         roomDAO dao = new roomDAO();
         ArrayList<Room> listRoom = dao.getRoom();
 
@@ -55,7 +56,7 @@ public class RoomManager extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        FilteStaff.filterRoleStaff(request, response);
     }
 
     private void retainFormData(HttpServletRequest request) {

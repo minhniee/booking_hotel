@@ -35,6 +35,7 @@ public class editMaterial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         String id = request.getParameter("id");
         MaterialDAO dao = new MaterialDAO();
         Material material = dao.getMaterialById(id);
@@ -46,6 +47,7 @@ public class editMaterial extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         String roomId = request.getParameter("roomId");
         String id = request.getParameter("id");
         String name = request.getParameter("name");

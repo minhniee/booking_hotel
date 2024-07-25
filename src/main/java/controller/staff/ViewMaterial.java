@@ -34,6 +34,7 @@ public class ViewMaterial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         MaterialDAO dao = new MaterialDAO();
         ArrayList<Material> allMaterials = dao.listMaterial();
         int totalMaterials = allMaterials.size();

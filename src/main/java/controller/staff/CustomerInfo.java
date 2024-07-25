@@ -56,6 +56,7 @@ public class CustomerInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
         CustomerDAO customerDAO = new CustomerDAO();
         List<Customer> customers = customerDAO.getAllCustomers();
         request.setAttribute("customers", customers);
@@ -73,6 +74,7 @@ public class CustomerInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        FilteStaff.filterRoleStaff(request, response);
 //        int customerId = Integer.parseInt(request.getParameter("customerId"));
 //        response.sendRedirect("customerDetail?customerId=" + customerId);
 
