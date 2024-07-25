@@ -11,7 +11,8 @@
             padding: 20px;
             font-family: Arial, sans-serif;
             border: 2px solid;
-            background-color: rgba(236, 231, 231, 0.29);
+            border-radius: 20px;
+            background-color: rgb(246, 231, 209);
         }
 
         h1 {
@@ -93,6 +94,8 @@
     </script>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
 <div class="container">
     <h1>Edit Material</h1>
     <form action="editMaterial" method="post" onsubmit="return validateForm()">
@@ -129,6 +132,7 @@
             <button type="button" onclick="window.location.href = 'ViewMaterial'">Cancel</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>
