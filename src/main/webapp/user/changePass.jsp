@@ -64,22 +64,17 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <!-- Message div -->
-            <c:choose>
-                <c:when test="${not empty sessionScope.msgss}">
-                    <div id="message-success" class="alert alert-info">
-                            ${sessionScope.msgss}
-                    </div>
-                </c:when>
-                <c:when test="${not empty sessionScope.msgrr}">
-                    <div id="message-error" class="alert alert-error">
-                            ${sessionScope.msgrr}
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div id="message-error" class="alert alert-error" style="display: none;"></div>
-                </c:otherwise>
-            </c:choose>
-            <form action="${pageContext.request.contextPath}/ChangePass" method="post" id="passwordForm" onsubmit="return validateForm()">
+            <c:if test="${not empty msgrr}">
+                <div id="message-error" class="alert alert-error">
+                        ${msgrr}
+                </div>
+            </c:if>
+            <c:if test="${not empty msgss}">
+                <div id="message-success" class="alert alert-info">
+                        ${msgss}
+                </div>
+            </c:if>
+            <form action="${pageContext.request.contextPath}/ChangePass" method="post" id="passwordForm">
                 <input type="password" class="input-lg form-control" name="oldPass" id="password0" placeholder="Old Password" required>
                 <br>
                 <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="New Password" required>
@@ -91,38 +86,6 @@
         </div><!--/col-sm-6-->
     </div><!--/row-->
 </div>
-
-<script>
-    function validateForm() {
-        var oldpass = document.getElementById("password0").value;
-        var newpass = document.getElementById("password1").value;
-        var confirmpass = document.getElementById("password2").value;
-        var errorMessage = document.getElementById("message-error");
-
-        // Hide the message initially
-        errorMessage.style.display = "none";
-
-        if (oldpass === "" || newpass === "" || confirmpass === "") {
-            errorMessage.innerHTML = "All fields are required.";
-            errorMessage.style.display = "block";
-            return false;
-        }
-
-        if (newpass.length < 6) {
-            errorMessage.innerHTML = "New Password must be at least 6 characters long.";
-            errorMessage.style.display = "block";
-            return false;
-        }
-
-        if (newpass !== confirmpass) {
-            errorMessage.innerHTML = "New Password and Repeat Password do not match.";
-            errorMessage.style.display = "block";
-            return false;
-        }
-
-        return true;
-    }
-</script>
 
 </body>
 </html>
