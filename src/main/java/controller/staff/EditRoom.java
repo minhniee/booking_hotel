@@ -40,7 +40,6 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FilteStaff.filterRoleStaff(request, response);
         String id = request.getParameter("id");
         roomDAO dao = new roomDAO();
         Room room = dao.getRoomById(id);
@@ -53,7 +52,6 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FilteStaff.filterRoleStaff(request, response);
         String id = request.getParameter("id");
         String roomClassId = request.getParameter("roomClassId");
         String roomClassName = request.getParameter("roomClass");

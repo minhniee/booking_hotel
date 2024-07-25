@@ -33,7 +33,7 @@ public class ProfileStaff extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FilteStaff.filterRoleStaff(request, response);
+
 //        String userName = request.getParameter("userName");
 //        String fullName = request.getParameter("fname");
 //        String email = request.getParameter("email");
@@ -57,7 +57,6 @@ public class ProfileStaff extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FilteStaff.filterRoleStaff(request, response);
         String userName = request.getParameter("userName");
         String fullName = request.getParameter("fname");
         String email = request.getParameter("email");
