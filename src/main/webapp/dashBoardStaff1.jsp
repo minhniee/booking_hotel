@@ -45,7 +45,7 @@
                         </div>
                     </aside>
                     <ul class="sidebar-menu">
-                        <li><a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                        <li><a class="nav-link" href="${url}/dashboardstaff.jsp"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
 
                         <li class="menu-header">Booking</li>
                         <li><a class="nav-link" href="listBooking"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
@@ -53,12 +53,12 @@
                         <li><a class="nav-link" href="customerInfo"><i class="fas fa-history"></i><span>Customer</span></a></li>
 
                         <li class="menu-header">Room</li>
-                        <li><a class="nav-link" href="ManageRoomClass"><i class="fas fa-layer-group"></i><span>Manage Room Class</span></a></li>
-                        <li><a class="nav-link" href="roomManager"><i class="fas fa-layer-group"></i><span> Room </span></a></li>
-                        <li><a class="nav-link" href="ViewService"><i class="fas fa-concierge-bell"></i><span>Manage Service</span></a></li>
+                        <li><a class="nav-link" href="${url}/RoomClasses"><i class="fas fa-layer-group"></i><span>Room Class</span></a></li>
+                        <li><a class="nav-link" href="${url}/roomManager"><i class="fas fa-layer-group"></i><span>Manage Room </span></a></li>
+                        <li><a class="nav-link" href="${url}/ViewService"><i class="fas fa-concierge-bell"></i><span>Manage Service</span></a></li>
+                        <li><a class="nav-link" href="${url}/ViewMaterial"><i class="fas fa-tools"></i><span>Manage Material</span></a></li>
 
-                        <li class="menu-header">Materials</li>
-                        <li><a class="nav-link" href="ViewMaterial"><i class="fas fa-tools"></i><span>Manage Material</span></a></li>
+                        <li class="menu-header">Profile</li>
                         <li><a class="nav-link" href="${url}/profileStaff.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
                         <li><a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
                     </ul>

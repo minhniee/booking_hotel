@@ -12,7 +12,7 @@ import java.util.List;
 public class Customer {
 
 
-    private int id;
+    private String id;
     private String fullName;
     private String email;
     private String phone;
@@ -22,7 +22,7 @@ public class Customer {
     private List<Booking> bookings;
 
 
-    public Customer(int id, String fullName, String email, String phone, boolean gender, Date dob, String address , List<Booking> bookings) {
+    public Customer(String id, String fullName, String email, String phone, boolean gender, Date dob, String address , List<Booking> bookings) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -33,11 +33,22 @@ public class Customer {
         this.bookings = bookings;
     }
 
-    public int getId() {
+    public Customer(String id, String fullName, String email, String phone, boolean gender, Date dob, String address) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.dob = dob;
+        this.gender = gender;
+        this.bookings = bookings;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

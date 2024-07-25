@@ -125,7 +125,7 @@
                         </div>
                     </td>
                     <td>
-                        <c:if test="${b.bookingState != 'cancelled'}">
+                        <c:if test="${b.bookingState != 'cancelled' && b.bookingState != 'pending'}">
                             <form action="${pageContext.request.contextPath}/CancelBooking" method="get">
                                 <input type="hidden" name="bookingID" value="${b.id}">
                                 <input type="hidden" name="amount" value="${b.bookingPrice}">

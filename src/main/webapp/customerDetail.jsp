@@ -3,9 +3,13 @@
 <html>
 <head>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
+    <%@include file="layout/cdnpkg.jsp"%>
     <title>Customer Detail</title>
     <style>
         .container {
+            color: black;
             width: 80%;
             margin: 0 auto;
         }
@@ -42,17 +46,23 @@
     </style>
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content" >
 <div class="container">
+    <form action="customerDetail" >
+
+    </form>
     <h1>Customer Detail</h1>
     <div class="customer-container">
-        <p>ID: ${customer.id}</p>
-        <p>Full Name: ${customer.fullName}</p>
-        <p>Email: ${customer.email}</p>
-        <p>Phone: ${customer.phone}</p>
-        <p>Gender: ${customer.gender ? "Male" : "Female"}}</p>
-<%--        ${customer.gender != null ? (customer.gender ? "Male" : "Female") : ""--%>
-        <p>Date of Birth: ${customer.dob}</p>
-        <p>Address: ${customer.address}</p>
+        <c:set var="cus" value="${customer}"/>
+        <p>ID: ${customerId}</p>
+        <p>Full Name: ${cus.fullName}</p>
+        <p>Email: ${cus.email}</p>
+        <p>Phone: ${cus.phone}</p>
+        <%--        <p>Gender: ${customer.gender ? "Male" : "Female"}</p>--%>
+        <p>Gender: ${cus.gender != null ? (cus.gender ? "Male" : "Female") : ""}</p>
+        <p>Date of Birth: ${cus.dob}</p>
+        <p>Address: ${cus.address}</p>
 
         <h2>Bookings</h2>
         <table>
@@ -64,14 +74,14 @@
                 <th>Children</th>
                 <th>Price</th>
             </tr>
-            <c:forEach var="booking" items="${customer.bookings}">
+            <c:forEach var="od" items="${booking}">
                 <tr>
-                    <td>${booking.id}</td>
-                    <td>${booking.checkinDate}</td>
-                    <td>${booking.checkoutDate}</td>
-                    <td>${booking.numAdults}</td>
-                    <td>${booking.numChildren}</td>
-                    <td>${booking.bookingPrice}</td>
+                    <td>${od.id}</td>
+                    <td>${od.checkInDate}</td>
+                    <td>${od.checkOutDate}</td>
+                    <td>${od.numAdults}</td>
+                    <td>${od.numChildren}</td>
+                    <td>${od.bookingPrice}</td>
                 </tr>
             </c:forEach>
         </table>
