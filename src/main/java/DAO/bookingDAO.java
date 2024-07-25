@@ -265,6 +265,7 @@ public class bookingDAO {
                 "       [booking_price],\n" +
                 "       [booking_date],\n" +
                 "\t   ps.id\n" +
+                ""+
                 "FROM booking as b join payment as ps on ps.booking_id = b.id \n" +
                 "WHERE account_id = ? AND b.[id] = ?;";
         pr = con.prepareStatement(sql);
@@ -336,6 +337,52 @@ public class bookingDAO {
 
         return null;
     }
+    public Booking cancelBooking1(String bookingId, String accId) throws SQLException {
+        Connection con = null;
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        Booking booking = null;
+
+        try {
+            con = new DBContext().getConnection();
+            String sql = "SELECT b.id, b.room_id, b.payment_id, b.account_id, b.checkin_date, b.checkout_date, " +
+                    "b.num_child, b.num_adults, b.booking_price, b.booking_date, ps.id AS paymentIdBank " +
+                    "FROM booking b " +
+                    "JOIN payment ps ON ps.booking_id = b.id " +
+                    "WHERE b.account_id = ? AND b.id = ?";
+
+            pr = con.prepareStatement(sql);
+            pr.setString(1, accId);
+            pr.setString(2, bookingId);
+            rs = pr.executeQuery();
+
+            if (rs.next()) {
+                String id = rs.getString("id");
+                String roomId = rs.getString("room_id");
+                Date checkinDate = rs.getDate("checkin_date");
+                Date checkoutDate = rs.getDate("checkout_date");
+                int numAdults = rs.getInt("num_adults");
+                int numChildren = rs.getInt("num_child");
+                double bookingPrice = rs.getDouble("booking_price");
+                int paymentId = rs.getInt("payment_id");
+                String accountId = rs.getString("account_id");
+                Timestamp bookingDate = rs.getTimestamp("booking_date");
+                String paymentIdBank = rs.getString("paymentIdBank");
+
+                booking = new Booking(id, roomId, checkinDate, checkoutDate, numAdults, numChildren, bookingPrice, paymentId, paymentIdBank, accountId, bookingDate);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // Rethrow the exception after logging it
+        } finally {
+            if (rs != null) try { rs.close(); } catch (SQLException ignore) {}
+            if (pr != null) try { pr.close(); } catch (SQLException ignore) {}
+            if (con != null) try { con.close(); } catch (SQLException ignore) {}
+        }
+
+        return booking;
+    }
 
 
     public static void main(String[] args) throws SQLException {
@@ -344,8 +391,8 @@ public class bookingDAO {
 //        for (Booking a : bookings) {
 //            System.out.println(a.toString());
 //        }
-        Booking  a = new bookingDAO().cancelBooking("ABF9A8272763","1234");
-        System.out.println(a.getPaymentIdBank());
+        Booking  a = new bookingDAO().cancelBooking1("9F1BC2888B55","1234");
+        System.out.println(a.toString());
 //        new bookingDAO().confirmBooking("F877D5065A54","confirm");
 
 

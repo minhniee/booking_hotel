@@ -6,10 +6,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Booking;
 import model.Customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "CustomerDetail", value = "/customerDetail")
 public class CustomerDetail extends HttpServlet {
@@ -48,9 +51,12 @@ public class CustomerDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         CustomerDAO customerDAO = new CustomerDAO();
         Customer customer = customerDAO.getCustomerById(customerId);
+        List<Booking> listBookingByCustomerId = new ArrayList<>();
+        listBookingByCustomerId = customerDAO.getBookingsByCustomerId(customerId);
+        request.setAttribute("booking",listBookingByCustomerId);
         request.setAttribute("customer", customer);
         request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
     }
