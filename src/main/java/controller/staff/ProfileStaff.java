@@ -33,7 +33,15 @@ public class ProfileStaff extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountDAO dao = new AccountDAO();
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
 //        String userName = request.getParameter("userName");
+//        System.out.println(userName);
+        Account updatedAccount = dao.getAccountByUserName(account.getUserName());
+
+        // Set the updated account information as request attributes
+        request.setAttribute("ac", updatedAccount);
 //        String fullName = request.getParameter("fname");
 //        String email = request.getParameter("email");
 //        String phone = request.getParameter("phone");
@@ -50,7 +58,7 @@ public class ProfileStaff extends HttpServlet {
 //        request.setAttribute("phone", phone);
 //
 ////        request.setAttribute("", account);
-//        request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
+        request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
     }
 
     @Override
@@ -126,7 +134,7 @@ public class ProfileStaff extends HttpServlet {
         Account updatedAccount = dao.getAccountByUserName(userName);
 
         // Set the updated account information as request attributes
-        request.setAttribute("account", updatedAccount);
+        request.setAttribute("ac", updatedAccount);
 
         // Forward to the profile page
         request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
