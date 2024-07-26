@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class LoginFilter implements Filter {
+public class LoginFilterStaff implements Filter {
 
     private static final boolean debug = true;
 
@@ -23,7 +23,7 @@ public class LoginFilter implements Filter {
     // configured.
     private FilterConfig filterConfig = null;
 
-    public LoginFilter() {
+    public LoginFilterStaff() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
