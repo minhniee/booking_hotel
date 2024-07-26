@@ -1,10 +1,12 @@
 package controller.admin;
 
+import DAO.ManageServiceCategoryDAO;
 import DAO.ManageServiceDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.ManageService;
+import model.ManageServiceCategory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +39,10 @@ public class SearchServiceByName extends HttpServlet {
         ArrayList<ManageService> list = new ArrayList<>();
         list= dao.getManageServicesByName(text);
         request.setAttribute("manageServices", list);
+        ArrayList<ManageServiceCategory> manageServiceCategory = new ArrayList<>();
+        ManageServiceCategoryDAO manageServiceCategoryDAO = new ManageServiceCategoryDAO();
+        manageServiceCategory = manageServiceCategoryDAO.selectAll();
+        request.setAttribute("manageServiceCategory", manageServiceCategory);
         request.getRequestDispatcher("Admin/ManageService.jsp").forward(request, response);
     }
 
