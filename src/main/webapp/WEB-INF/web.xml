@@ -68,6 +68,7 @@
     <filter-mapping>
         <filter-name>LoginFilterStaff</filter-name>
         <url-pattern>/dashboardstaff</url-pattern>
+        <url-pattern>/dashboardstaff.jsp</url-pattern>
         <url-pattern>/profileStaff.jsp</url-pattern>
         <url-pattern>/profileStaff</url-pattern>
         <url-pattern>/ViewMaterial</url-pattern>
@@ -79,5 +80,14 @@
         <url-pattern>/RoomClasses</url-pattern>
         <url-pattern>/customerDetail</url-pattern>
         <url-pattern>/customerInfo</url-pattern>
+        <url-pattern>/viewMaterial.jsp</url-pattern>
+        <url-pattern>/editMaterial.jsp</url-pattern>
+        <url-pattern>/viewService.jsp</url-pattern>
+        <url-pattern>/editService.jsp</url-pattern>
+        <url-pattern>/roomManager.jsp</url-pattern>
+        <url-pattern>/editRoom.jsp</url-pattern>
+        <url-pattern>/RoomClasses.jsp</url-pattern>
+
+
     </filter-mapping>
 </web-app>
