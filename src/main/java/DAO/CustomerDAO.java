@@ -25,7 +25,7 @@ public class CustomerDAO {
             connection = new DBContext().getConnection();
             if (connection != null) {
                 String sql = "SELECT id, full_name, email, phone, gender, dob, address \n" +
-                        "FROM account";
+                        "FROM account where role = 'customer' ";
 
                 statement = connection.prepareStatement(sql);
                 resultSet = statement.executeQuery();

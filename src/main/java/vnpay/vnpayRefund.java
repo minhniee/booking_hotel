@@ -56,9 +56,9 @@ public class vnpayRefund extends HttpServlet {
         String vnp_TransactionType = req.getParameter("trantype");
         String vnp_TxnRef = "";
         String accountId = req.getParameter("accountId");
-
+        String bookingId ="";
         if (accountId != null) {
-                String bookingId = req.getParameter("order_id");
+                 bookingId = req.getParameter("order_id");
             bookingDAO bookingDAO = new bookingDAO();
             try {
                 booking = bookingDAO.cancelBooking(bookingId, accountId);
@@ -182,8 +182,8 @@ public class vnpayRefund extends HttpServlet {
             System.out.println("cannot catch session");
         }
         // change status room
-        bookingDAO bookingd = new bookingDAO();
-        bookingd.updateStateBooking(vnp_TxnRef, "reject");
+//        bookingDAO bookingd = new bookingDAO();
+        new bookingDAO().updateStateBooking(bookingId, "reject");
 
         req.setAttribute("noti", "Please check the email associated with your account for detailed information.");
         req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);

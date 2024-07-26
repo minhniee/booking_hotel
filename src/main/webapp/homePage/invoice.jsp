@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -116,7 +117,11 @@
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end"><strong>Tax(10%):</strong></td>
-                    <td class="col-sm-2 text-end">${basePrice* nights*0.1}.00</td>
+                    <c:set var = "balance" value = "${basePrice* nights*0.1}" />
+                    <fmt:parseNumber var = "i" integerOnly = "false"
+                                     type = "number" value = "${balance}" />
+<%--                    <p>Included: VAT / Consumption tax <span><c:out value = "${i}" /></span></p>--%>
+                    <td class="col-sm-2 text-end"><c:out value = "${i}" /></td>
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end border-bottom-0"><strong>Total:</strong></td>
