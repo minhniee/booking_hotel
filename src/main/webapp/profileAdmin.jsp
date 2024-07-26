@@ -37,7 +37,7 @@
                 <div class="row mt-2">
                     <div class="col-md-6">
                         <label class="labels">User name</label>
-                        <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${ac.userName}">
+                        <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${account.userName}">
                     </div>
                 </div>
                 <div class="row mt-3">

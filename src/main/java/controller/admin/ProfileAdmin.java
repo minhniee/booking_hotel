@@ -30,15 +30,15 @@ public class ProfileAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-//        AccountDAO dao = new AccountDAO();
-//        HttpSession session = request.getSession();
-//        Account account = (Account) session.getAttribute("account");
+     //   AccountDAO dao = new AccountDAO();
+      //  HttpSession session = request.getSession();
+//Account account = (Account) session.getAttribute("account");
 //        String userName = request.getParameter("userName");
 //        System.out.println(userName);
       //  Account updatedAccount = dao.getAccountByUserName(account.getUserName());
 
         // Set the updated account information as request attributes
-    //    request.setAttribute("ac", updatedAccount);
+//request.setAttribute("ac", updatedAccount);
 //        String fullName = request.getParameter("fname");
 //        String email = request.getParameter("email");
 //        String phone = request.getParameter("phone");
@@ -55,7 +55,7 @@ public class ProfileAdmin extends HttpServlet {
 //        request.setAttribute("phone", phone);
 //
 ////        request.setAttribute("", account);
-    //    request.getRequestDispatcher("profileAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("profileAdmin.jsp").forward(request, response);
     } 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -128,8 +128,9 @@ public class ProfileAdmin extends HttpServlet {
 
         // Fetch the updated account information
         Account updatedAccount = dao.getAccountByUserName(userName);
-          HttpSession session = request.getSession();
+
         // Set the updated account information as request attributes
+        HttpSession session = request.getSession();
         session.setAttribute("account", updatedAccount);
 
         // Forward to the profile page
