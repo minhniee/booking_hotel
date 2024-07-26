@@ -48,9 +48,11 @@ public class Login extends HttpServlet {
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else if (aDAO.checkConfirm(account.getUserName())) {
-
             session.setAttribute("account", account);
+            String role = account.getRole();
+            session.setAttribute("role", role);
             if ("admin".equals(account.getRole())) {
+
 
                 response.sendRedirect("chartData");
 
