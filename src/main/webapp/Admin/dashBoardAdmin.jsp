@@ -65,7 +65,7 @@
                         <li class="menu-header">Materials</li>
                         <li><a class="nav-link" href="ManageMaterial"><i class="fas fa-tools"></i><span>Manage Material</span></a></li>
                         <li><a class="nav-link" href="listAccount"><i class="fas fa-user-cog"></i><span>Accounts</span></a></li>
-                        <li><a class="nav-link" href="${url}/user/user_profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                        <li><a class="nav-link" href="${url}/profileAdmin.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
                         <li><a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
                     </ul>
                     </aside>
