@@ -22,4 +22,42 @@
         <servlet-name>editService</servlet-name>
         <url-pattern>/editService</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>controller.admin.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/chartData</url-pattern>
+        <url-pattern>/Checkout</url-pattern>
+        <url-pattern>/DeleteMaterialRoom</url-pattern>
+        <url-pattern>/detailListBooking</url-pattern>
+        <url-pattern>/detailRoomManager</url-pattern>
+        <url-pattern>/HistoryBooking</url-pattern>
+        <url-pattern>/InsertMaterial</url-pattern>
+        <url-pattern>/InsertMaterialRoom</url-pattern>
+        <url-pattern>/InsertRoom</url-pattern>
+        <url-pattern>/InsertRoomClass</url-pattern>
+        <url-pattern>/listAccount</url-pattern>
+        <url-pattern>/listBooking</url-pattern>
+        <url-pattern>/listRoomManager</url-pattern>
+        <url-pattern>/ManageInsertService</url-pattern>
+        <url-pattern>/ManageMaterial</url-pattern>
+        <url-pattern>/managerBooking</url-pattern>
+        <url-pattern>/ManageRoomClass</url-pattern>
+        <url-pattern>/ManageService</url-pattern>
+        <url-pattern>/removeAccount</url-pattern>
+        <url-pattern>/SearchMaterial</url-pattern>
+        <url-pattern>/SearchRoom</url-pattern>
+        <url-pattern>/SearchRoomClass</url-pattern>
+        <url-pattern>/SearchServiceByName</url-pattern>
+        <url-pattern>/setAccount</url-pattern>
+        <url-pattern>/UpdateImageMaterial</url-pattern>
+        <url-pattern>/UpdateImageRoom</url-pattern>
+        <url-pattern>/UpdateImageRoomClass</url-pattern>
+        <url-pattern>/UpdateMaterial</url-pattern>
+        <url-pattern>/UpdateRoom</url-pattern>
+        <url-pattern>/UpdateRoomClass</url-pattern>
+        <url-pattern>/UpdateService</url-pattern>
+    </filter-mapping>
 </web-app>
