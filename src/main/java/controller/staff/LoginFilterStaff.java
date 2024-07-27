@@ -94,8 +94,10 @@ public class LoginFilterStaff implements Filter {
         HttpServletResponse res =(HttpServletResponse)response;
         HttpSession session = req.getSession();
         String role = (String)session.getAttribute("role");
-        if(session.getAttribute("account") == null || !role.equalsIgnoreCase("staff")){
-            res.sendRedirect("home");
+        if(session.getAttribute("account") == null ){
+            res.sendRedirect("login");
+        }else if(!role.equalsIgnoreCase("staff")){
+            res.sendRedirect("errorPage/errors-404.jsp");
         }
 
         Throwable problem = null;
