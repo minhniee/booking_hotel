@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,7 +133,10 @@
 
     <div class="section total">
         <p>Total: <span id="total-price">${total}</span></p>
-        <p>Included: VAT / Consumption tax <span id="vat">${(total*0.1)}</span></p>
+        <c:set var = "balance" value = "${total*0.1}" />
+        <fmt:parseNumber var = "i" integerOnly = "false"
+                                                                             type = "number" value = "${balance}" />
+        <p>Included: VAT / Consumption tax <span><c:out value = "${i}" /></span></p>
         <p>Not included: Service Charge <span id="service-charge"></span></p>
     </div>
     <hr>
@@ -241,6 +245,7 @@
     //         }
     //     }, 1000);
     // }
+
 </script>
 </body>
 </html>

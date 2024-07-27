@@ -303,7 +303,7 @@ public class AccountDAO extends MyDAO{
         }
     }
     public Account getAccountByUserName(String userName) {
-        Account account = null;
+        Account a = null;
         String sql = "SELECT * FROM account WHERE user_name = ?";
         try (
                 Connection conn = new DBContext().getConnection();
@@ -312,19 +312,23 @@ public class AccountDAO extends MyDAO{
             st.setString(1, userName);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                account = new Account();
-                account.setUserName(rs.getString("user_name"));
-                account.setFullName(rs.getString("full_name"));
-                account.setEmail(rs.getString("email"));
-                account.setGender(rs.getBoolean("gender"));
-                account.setPhone(rs.getString("phone"));
-                account.setDob(rs.getDate("dob"));
-                account.setAddress(rs.getString("address"));
+                a = new Account();
+                a.setId(rs.getString("id"));
+                a.setUserName(rs.getString("user_name"));
+                a.setPassword(rs.getString("password"));
+                a.setFullName(rs.getString("full_name"));
+                a.setEmail(rs.getString("email"));
+                a.setRole(rs.getString("role"));
+                a.setGender(rs.getBoolean("gender"));
+                a.setPhone(rs.getString("phone"));
+                a.setAddress(rs.getString("address"));
+                a.setDob(rs.getDate("dob"));
+                return a;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return account;
+        return a;
     }
 
     public Account getAccountById(String accountId) {

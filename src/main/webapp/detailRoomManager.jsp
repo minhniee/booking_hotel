@@ -29,6 +29,9 @@
     </div>
     ${sessionScope.remove("success")}
 </c:if>
+<%@include file="Admin/dashBoardAdmin.jsp"%>
+<div class="main-content">
+
 <table class="plain-table">
     <thead>
     <tr>
@@ -42,10 +45,10 @@
     <tr>
         <td>${detail.name}</td>
         <td>${detail.price}</td>
-        <td><img src="Assets/image/room/${detail.image}" height="200px" width="300px" "></td>
+        <td><img src="Assets1/img/rooms/${detail.image}" height="200px" width="300px "></td>
         <td>
             <c:forEach items="${requestScope.roomImages}" var="roomImages">
-                <img src="Assets/image/demoRoom/${roomImages.image}" height="200px" width="300px">
+                <img src="Assets/image/demoRoom/${roomImages.image}" height="200px" width="300px" alt="">
                 <a href="UpdateImageRoom?id=${roomImages.id}&room_id=${room_id}&room_class_id=${detail.id}"><button class="fas fa-edit"></button></a>
 
             </c:forEach>
@@ -86,6 +89,7 @@
     </c:forEach>
     </tbody>
 </table>
+</div>
 <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 <script src="Assets/notification.js"></script>
 </body>

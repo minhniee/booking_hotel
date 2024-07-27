@@ -33,25 +33,13 @@ public class ProfileStaff extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountDAO dao = new AccountDAO();
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        Account updatedAccount = dao.getAccountByUserName(account.getUserName());
 
-//        String userName = request.getParameter("userName");
-//        String fullName = request.getParameter("fname");
-//        String email = request.getParameter("email");
-//        String phone = request.getParameter("phone");
-//        String address = request.getParameter("address");
-//        Boolean gender = Boolean.valueOf(request.getParameter("gender"));
-//        String dob = request.getParameter("dob");
-//        AccountDAO dao = new AccountDAO();
-//        dao.updateAccount(userName,fullName,email,false,phone,Date.valueOf(dob),address);
-//        request.setAttribute("userName", userName);
-//        request.setAttribute("fullName", fullName);
-//        request.setAttribute("email", email);
-//        request.setAttribute("gender", gender);
-//        request.setAttribute("dob", dob);
-//        request.setAttribute("phone", phone);
-//
-////        request.setAttribute("", account);
-//        request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
+        request.setAttribute("ac", updatedAccount);
+        request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
     }
 
     @Override
@@ -65,7 +53,6 @@ public class ProfileStaff extends HttpServlet {
         Boolean gender = Boolean.valueOf(request.getParameter("gender"));
         String dob = request.getParameter("dob");
 
-        // Server-side validation
         String nameRegex = "^[A-Z][a-zA-Z\\s]*$";
         String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
         String phoneRegex = "^\\d{10}$";
@@ -119,17 +106,13 @@ public class ProfileStaff extends HttpServlet {
             return;
         }
 
-        // If validation passes, update the account
         AccountDAO dao = new AccountDAO();
         dao.updateAccount(userName, fullName, email, gender, phone, Date.valueOf(dob), address);
 
-        // Fetch the updated account information
         Account updatedAccount = dao.getAccountByUserName(userName);
 
-        // Set the updated account information as request attributes
-        request.setAttribute("account", updatedAccount);
+        request.setAttribute("ac", updatedAccount);
 
-        // Forward to the profile page
         request.getRequestDispatcher("profileStaff.jsp").forward(request, response);
     }
 

@@ -63,7 +63,7 @@ public class UpdateProfile extends HttpServlet {
         String address = request.getParameter("address");
         Boolean gender = Boolean.valueOf(request.getParameter("gender"));
         String dob = request.getParameter("dob");
-
+        HttpSession ss = request.getSession();
         // Server-side validation
         String nameRegex = "^[A-Z][a-zA-Z\\s]*$";
         String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
@@ -116,20 +116,19 @@ public class UpdateProfile extends HttpServlet {
             request.setAttribute("account", account);
             request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
             return;
-        }
+        }else {
 
-        // If validation passes, update the account
+
         AccountDAO dao = new AccountDAO();
         dao.updateAccount(userName, fullName, email, gender, phone, Date.valueOf(dob), address);
 
-        // Fetch the updated account information
+
         Account updatedAccount = dao.getAccountByUserName(userName);
+        request.setAttribute("mess", "Updated profile successfully.");
 
-        // Set the updated account information as request attributes
-        request.setAttribute("account", updatedAccount);
-
-        // Forward to the profile page
+        ss.setAttribute("account", updatedAccount);
         request.getRequestDispatcher("user/user_profile.jsp").forward(request, response);
+        }
     }
 
     @Override

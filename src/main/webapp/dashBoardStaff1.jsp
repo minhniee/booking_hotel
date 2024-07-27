@@ -59,7 +59,7 @@
                         <li><a class="nav-link" href="${url}/ViewMaterial"><i class="fas fa-tools"></i><span>Manage Material</span></a></li>
 
                         <li class="menu-header">Profile</li>
-                        <li><a class="nav-link" href="${url}/profileStaff.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                        <li><a class="nav-link" href="${url}/profileStaff"><i class="fas fa-user"></i><span>Profile</span></a></li>
                         <li><a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
                     </ul>
                     </aside>

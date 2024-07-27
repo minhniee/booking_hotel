@@ -1,14 +1,18 @@
 package controller.admin;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -99,7 +103,8 @@ public class LoginFilter implements Filter {
         HttpSession session = req.getSession();
          String role = (String)session.getAttribute("role");
         if(session.getAttribute("account") == null || !role.equalsIgnoreCase("admin")){
-            res.sendRedirect("login");
+//            res.sendRedirect("login");
+            res.sendError(404,"no assest");
         }
 
         Throwable problem = null;

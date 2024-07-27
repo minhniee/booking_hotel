@@ -25,13 +25,13 @@ public class CustomerDAO {
             connection = new DBContext().getConnection();
             if (connection != null) {
                 String sql = "SELECT id, full_name, email, phone, gender, dob, address \n" +
-                        "FROM account";
+                        "FROM account where role = 'customer' ";
 
                 statement = connection.prepareStatement(sql);
                 resultSet = statement.executeQuery();
 
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
+                    String id = resultSet.getString("id");
                     String fullName = resultSet.getString("full_name");
                     String email = resultSet.getString("email");
                     String phone = resultSet.getString("phone");
@@ -62,7 +62,7 @@ public class CustomerDAO {
         return customers;
     }
 
-    public Customer getCustomerById(int id) {
+    public Customer getCustomerById(String id) {
         Customer customer = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -71,10 +71,10 @@ public class CustomerDAO {
         try {
             connection = new DBContext().getConnection();
             String sql = "SELECT id, full_name, email, phone, gender, dob, address \n" +
-                    "FROM account" +
-                    "WHERE id = ?";
+                    "FROM account where id = ?"
+                    ;
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setString(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
@@ -85,9 +85,9 @@ public class CustomerDAO {
                 Date dob = resultSet.getDate("dob");
                 String address = resultSet.getString("address");
 
-                List<Booking> bookings = getBookingsByCustomerId(id);
+//                List<Booking> bookings = getBookingsByCustomerId(id);
 
-                customer = new Customer(id, fullName, email, phone, gender, dob, address, bookings);
+                customer = new Customer(id, fullName, email, phone, gender, dob, address);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,7 +110,7 @@ public class CustomerDAO {
         return customer;
     }
 
-    private List<Booking> getBookingsByCustomerId(int customerId) {
+    public List<Booking> getBookingsByCustomerId(String customerId) {
         List<Booking> bookings = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -121,7 +121,7 @@ public class CustomerDAO {
             String sql = "SELECT b.id, b.room_id, b.checkin_date, b.checkout_date, b.num_adults, b.num_child, b.booking_price \n"
                     + "FROM booking b WHERE b.account_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, customerId);
+            statement.setString(1, customerId);
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -144,10 +144,11 @@ public class CustomerDAO {
 
     public static void main(String[] args) {
         CustomerDAO dao = new CustomerDAO();
-        List<Customer> list = dao.getAllCustomers();
-        for (Customer c : list) {
-            System.out.println(c.toString());
-        }
+//        List<Customer> list = dao.getCustomerById("1234");
+//        for (Customer c : list) {
+//            System.out.println(c.toString());
+//        }
+//        System.out.println(dao.getBookingsByCustomerId("1234").get(0));
     }
 
 

@@ -16,6 +16,7 @@ public class Chart extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        FilteAdmin.filterRoleAdmin(request,response);
         ChartDAO chartDAO = new ChartDAO();
         List<model.Chart> charts = chartDAO.getCharts();
         List<model.Chart> getChartBillBooking = chartDAO.getChartsForBillDetail();
@@ -51,6 +52,7 @@ public class Chart extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        FilteAdmin.filterRoleAdmin(request,response);
         processRequest(request, response);
     }
 

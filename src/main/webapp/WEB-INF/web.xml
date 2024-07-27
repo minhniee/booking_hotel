@@ -59,35 +59,6 @@
         <url-pattern>/UpdateRoom</url-pattern>
         <url-pattern>/UpdateRoomClass</url-pattern>
         <url-pattern>/UpdateService</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>LoginFilterStaff</filter-name>
-        <filter-class>controller.staff.LoginFilterStaff</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginFilterStaff</filter-name>
-        <url-pattern>/dashboardstaff</url-pattern>
-        <url-pattern>/dashboardstaff.jsp</url-pattern>
-        <url-pattern>/profileStaff.jsp</url-pattern>
-        <url-pattern>/profileStaff</url-pattern>
-        <url-pattern>/ViewMaterial</url-pattern>
-        <url-pattern>/editMaterial</url-pattern>
-        <url-pattern>/ViewService</url-pattern>
-        <url-pattern>/editService</url-pattern>
-        <url-pattern>/roomManager</url-pattern>
-        <url-pattern>/editRoom</url-pattern>
-        <url-pattern>/RoomClasses</url-pattern>
-        <url-pattern>/customerDetail</url-pattern>
-        <url-pattern>/customerInfo</url-pattern>
-        <url-pattern>/viewMaterial.jsp</url-pattern>
-        <url-pattern>/editMaterial.jsp</url-pattern>
-        <url-pattern>/viewService.jsp</url-pattern>
-        <url-pattern>/editService.jsp</url-pattern>
-        <url-pattern>/roomManager.jsp</url-pattern>
-        <url-pattern>/editRoom.jsp</url-pattern>
-        <url-pattern>/RoomClasses.jsp</url-pattern>
-
-
+        <url-pattern>/BookingStatus</url-pattern>
     </filter-mapping>
 </web-app>

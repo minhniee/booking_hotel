@@ -109,15 +109,6 @@ public class BookingStatus extends HttpServlet {
 
     }
 
-    public static String generateUniqueKey() {
-        String key;
-
-        // Generate a UUID and take the first 12 characters (to ensure length 12)
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        key = uuid.substring(0, 8);
-
-        return key;
-    }
 
     public void destroy() {
     }

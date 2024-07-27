@@ -37,18 +37,18 @@
             <div class="row mt-2">
                 <div class="col-md-6">
                     <label class="labels">User name</label>
-                    <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${account.userName}">
+                    <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${ac.userName}">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label class="labels">Full name</label>
-                    <input type="text" name="fname" class="form-control" placeholder="enter full name" value="${account.fullName}">
+                    <input type="text" name="fname" class="form-control" placeholder="enter full name" value="${ac.fullName}">
                     <small class="error-message text-danger" id="fullNameError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="enter email" value="${account.email}" readonly>
+                    <input type="text" name="email" class="form-control" placeholder="enter email" value="${ac.email}" readonly>
                     <small class="error-message text-danger" id="emailError"></small>
                 </div>
                 <div class="col-md-12">
@@ -60,17 +60,17 @@
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Phone</label>
-                    <input type="text" name="phone" class="form-control" placeholder="enter phone number" value="${account.phone}">
+                    <input type="text" name="phone" class="form-control" placeholder="enter phone number" value="${ac.phone}">
                     <small class="error-message text-danger" id="phoneError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Date of birth</label>
-                    <input type="date" name="dob" class="form-control" max="2024-07-31" value="${account.dob}">
+                    <input type="date" name="dob" class="form-control" max="2024-07-31" value="${ac.dob}">
                     <small class="error-message text-danger" id="dobError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Address</label>
-                    <input type="text" name="address" class="form-control" placeholder="enter address" value="${account.address}">
+                    <input type="text" name="address" class="form-control" placeholder="enter address" value="${ac.address}">
                     <small class="error-message text-danger" id="addressError"></small>
                 </div>
             </div>

@@ -34,7 +34,6 @@ public class ViewService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         ServiceDAO dao = new ServiceDAO();
         ArrayList<Service> allService = dao.getService();
         int totalMaterials = allService.size();
