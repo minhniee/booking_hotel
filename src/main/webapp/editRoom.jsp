@@ -192,7 +192,7 @@
             <label for="image">Image:</label>
             <input type="hidden" name="oldImage" value="${room.roomImg}">
             <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
-            <img id="imagePreview" class="mt-3"  src="Assets1/image/room/${room.roomImg}" alt="image" width="30%">
+            <img id="imagePreview" class="mt-3"  src="Assets1/img/rooms/${room.roomImg}" alt="image" width="30%">
         </div>
         <div class="form-group">
                 <button type="submit">Update</button>

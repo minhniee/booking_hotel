@@ -64,7 +64,7 @@ public class EditRoom extends HttpServlet {
         String fileName1 = extractFileName(part1);
         fileName1 = new File(fileName1).getName();
         if (fileName1 != null && !fileName1.isEmpty()) {
-            String uploadPath = getServletContext().getRealPath("") + File.separator + "Assets/image/room";
+            String uploadPath = getServletContext().getRealPath("") + File.separator + "Assets1/img/rooms";
             // Create the directory if it does not exist
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
