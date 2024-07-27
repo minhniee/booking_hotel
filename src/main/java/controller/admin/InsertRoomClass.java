@@ -44,7 +44,7 @@ public class InsertRoomClass extends HttpServlet {
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         Part image = request.getPart("image");
-        String realPath = request.getServletContext().getRealPath("/Assets/image/room");
+        String realPath = request.getServletContext().getRealPath("/Assets1/img/rooms");
         String filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
 
 
@@ -60,9 +60,9 @@ public class InsertRoomClass extends HttpServlet {
             request.setAttribute("error", "Id is already in use!!!");
             request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
 
-        }else if (roomClassImage != null){
-            request.setAttribute("errorImg", "Image is already in use!!!");
-            request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
+//        }else if (roomClassImage != null){
+//            request.setAttribute("errorImg", "Image is already in use!!!");
+//            request.getRequestDispatcher("Admin/InsertRoomClass.jsp").forward(request, response);
         }else{
             dao.InsertRoomClass(id, name, price, filename);
             HttpSession session = request.getSession();

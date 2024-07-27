@@ -60,9 +60,9 @@ public class InsertMaterial extends HttpServlet {
         if(material != null ) {
             request.setAttribute("error", "Id is already in use!!!");
             request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
-        }else if(materialImage != null){
-            request.setAttribute("errorImg", "Image is already in use!!!");
-            request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
+//        }else if(materialImage != null){
+//            request.setAttribute("errorImg", "Image is already in use!!!");
+//            request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
         }else{
             dao.InsertMaterial(id.toUpperCase(), name, quantity, price, filename);
             HttpSession session = request.getSession();

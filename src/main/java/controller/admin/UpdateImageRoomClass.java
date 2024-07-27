@@ -48,27 +48,33 @@ public class UpdateImageRoomClass extends HttpServlet {
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         Part image = request.getPart("image");
-        String realPath = request.getServletContext().getRealPath("/Assets/image/room");
-        String filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
-
-
-        // Ensure the directory exists
-        if (!Files.exists(Path.of(realPath))) {
-            Files.createDirectory(Path.of(realPath));
+        String oldImage = request.getParameter("oldImage");
+        String filename = null;
+        if (image != null && image.getSize() > 0) {
+            // New image file is uploaded
+            String realPath = request.getServletContext().getRealPath("/Assets1/img/rooms");
+            filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
+            // Ensure the directory exists
+            if (!Files.exists(Path.of(realPath))) {
+                Files.createDirectory(Path.of(realPath));
+            }
+            image.write(realPath + "/" + filename);
+        } else {
+            // No new image file is uploaded, use old image
+            filename = oldImage;
         }
-        image.write(realPath +"/"+ filename);
         ManageRoomClassDAO dao = new ManageRoomClassDAO();
         RoomClass roomClassImage = dao.getRoomClassByImage(filename);
-        if (roomClassImage == null) {
+    //    if (roomClassImage == null) {
             dao.UpdateRoomClass(id, name, price, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Successfully updated !!!");
             response.sendRedirect("ManageRoomClass");
-        }else{
-            HttpSession session = request.getSession();
-            session.setAttribute("success", "Duplicate image !!!");
-            response.sendRedirect("ManageRoomClass");
-        }
+//        }else{
+//            HttpSession session = request.getSession();
+//            session.setAttribute("success", "Duplicate image !!!");
+//            response.sendRedirect("ManageRoomClass");
+//        }
 
     }
 
