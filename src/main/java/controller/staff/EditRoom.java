@@ -9,6 +9,7 @@ import model.Material;
 import model.Room;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,19 +53,33 @@ public class EditRoom extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        roomDAO dao = new roomDAO();
         String id = request.getParameter("id");
         String roomClassId = request.getParameter("roomClassId");
         String roomClassName = request.getParameter("roomClass");
+        String roomName = request.getParameter("roomName");
+        String roomNameOld = request.getParameter("roomNameOld");
         String statusName = request.getParameter("status");
         int numAdults = Integer.parseInt(request.getParameter("numAdults"));
         double basePrice = Double.valueOf(request.getParameter("price"));
 //        String roomImg = request.getParameter("image");
 
+        //check room name
+        if(!roomName.equals(roomNameOld)) {
+            Room r = dao.getRoomByName(roomName);
+            if (r != null) {
+                request.setAttribute("id", id);
+                request.setAttribute("error", "This room name already existed !");
+                doGet(request,response);
+                return;
+            }
+        }
+
         Part part1 = request.getPart("image");
         String fileName1 = extractFileName(part1);
         fileName1 = new File(fileName1).getName();
         if (fileName1 != null && !fileName1.isEmpty()) {
-            String uploadPath = getServletContext().getRealPath("") + File.separator + "Assets/image/room";
+            String uploadPath = getServletContext().getRealPath("") + File.separator + "Assets1/img/rooms";
             // Create the directory if it does not exist
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
@@ -74,8 +89,7 @@ public class EditRoom extends HttpServlet {
         }
         String roomImg = (fileName1 != null && !fileName1.isEmpty()) ? fileName1 : request.getParameter("oldImage");
 
-        Room room = new Room(id, roomClassId, roomClassName, statusName, numAdults, basePrice, roomImg);
-        roomDAO dao = new roomDAO();
+        Room room = new Room(id, roomClassId, roomClassName, statusName, numAdults, basePrice, roomImg, roomName);
         dao.updateRoom(room);
         response.sendRedirect("roomManager");
 
