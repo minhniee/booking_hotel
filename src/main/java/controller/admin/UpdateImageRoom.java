@@ -53,27 +53,34 @@ public class UpdateImageRoom extends HttpServlet {
         String room_class_id = request.getParameter("room_class_id");
         int id = Integer.parseInt(request.getParameter("id"));
         Part image = request.getPart("image");
-        String realPath = request.getServletContext().getRealPath("/Assets/image/demoRoom");
-        String filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
-
-
-        // Ensure the directory exists
-        if (!Files.exists(Path.of(realPath))) {
-            Files.createDirectory(Path.of(realPath));
+        String oldImage = request.getParameter("oldImage");
+        String filename = null;
+        if (image != null && image.getSize() > 0) {
+            // New image file is uploaded
+            String realPath = request.getServletContext().getRealPath("/Assets/image/demoRoom");
+            filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
+            // Ensure the directory exists
+            if (!Files.exists(Path.of(realPath))) {
+                Files.createDirectory(Path.of(realPath));
+            }
+            image.write(realPath + "/" + filename);
+        } else {
+            // No new image file is uploaded, use old image
+            filename = oldImage;
         }
-        image.write(realPath +"/"+ filename);
+
         ManageRoomImage dao = new ManageRoomImage();
         RoomImage roomImage = dao.getImageFile(filename);
-        if (roomImage == null){
+   //     if (roomImage == null){
             dao.UpdateImage(id, room_class_id, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Successfully updated!!!");
             response.sendRedirect("detailRoomManager?id=" + room_id + "&rid=" + room_class_id);
-        }else{
-            HttpSession session = request.getSession();
-            session.setAttribute("success", "Duplicate image!!!");
-            response.sendRedirect("detailRoomManager?id=" + room_id + "&rid=" + room_class_id);
-        }
+//        }else{
+//            HttpSession session = request.getSession();
+//            session.setAttribute("success", "Duplicate image!!!");
+//            response.sendRedirect("detailRoomManager?id=" + room_id + "&rid=" + room_class_id);
+//        }
 
 
     }

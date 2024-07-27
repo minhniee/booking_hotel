@@ -74,11 +74,11 @@ public class ManageInsertService extends HttpServlet {
             request.setAttribute("list", list);
             request.setAttribute("id","Id is already in use");
             request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
-        }else if(manageServiceImage != null) {
-            list = mdao.selectAll();
-            request.setAttribute("list", list);
-            request.setAttribute("errorImg","Image is already in use");
-            request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
+//        }else if(manageServiceImage != null) {
+//            list = mdao.selectAll();
+//            request.setAttribute("list", list);
+//            request.setAttribute("errorImg","Image is already in use");
+//            request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
 
         }else {
             dao.InsertManageService(id, category, name,description,price,quantity,filename);
