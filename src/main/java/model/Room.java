@@ -35,6 +35,16 @@ public class Room {
         this.basePrice = basePrice;
     }
 
+    public Room(String id, String roomClassId,String roomClassName, String statusName, int numAdults, double basePrice,  String roomImg, String roomName) {
+        this.id = id;
+        this.roomClassId = roomClassId;
+        this.roomClassName = roomClassName;
+        this.statusName = statusName;
+        this.numAdults = numAdults;
+        this.basePrice = basePrice;
+        this.roomImg = roomImg;
+        this.roomName = roomName;
+    }
 
     public Room(String id, String roomClassId, String roomClassName, String roomName, int numAdults, String statusName, double basePrice, String roomImg) {
         this.id = id;
