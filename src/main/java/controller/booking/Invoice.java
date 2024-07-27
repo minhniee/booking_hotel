@@ -146,7 +146,7 @@ public class Invoice extends HttpServlet {
                         "                    <tr>\n" +
                         "                        <td style=\"background-color: #ffffff; color: #333333;\">\n" +
                         "                            <p>Dear <strong>"+account.getUserName()+"</strong>,</p>\n" +
-                        "                            <p>Thank you for choosing <strong>Renager</strong>. We are pleased to inform you that your booking has been successfully received and is currently pending approval from our admin team.</p>\n" +
+                        "                            <p>Thank you for choosing <strong>FU Hotel</strong>. We are pleased to inform you that your booking has been successfully received and is currently pending approval from our admin team.</p>\n" +
                         "                            <p><strong>Booking Details:</strong></p>\n" +
                         "                            <ul>\n" +
                         "                                <li><strong>Booking ID:</strong> "+ bookingId+"</li>\n" +
@@ -158,7 +158,7 @@ public class Invoice extends HttpServlet {
                         "                            <p>We will notify you once your booking has been approved. In the meantime, if you have any questions or need further assistance, please do not hesitate to contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a> or call us at <strong>031234567</strong>.</p>\n" +
                         "                            <p>Thank you for your patience.</p>\n" +
                         "                            <p>Sincerely,</p>\n" +
-                        "                            Renager Hotel<br>\n" +
+                        "                            FU Hotel Hotel<br>\n" +
                         "                            Thach That, Hoa Lac, Ha Noi<br>\n" +
                         "                            <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a><br>\n" +
                         "                            031234567<br>\n" +

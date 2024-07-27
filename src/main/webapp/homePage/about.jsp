@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>The Cappa Luxury Hotel</title>
+    <title>FU Hotel</title>
     <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
     <link rel="stylesheet" href="${url1}/Assets1/css/plugins.css" />
@@ -55,7 +55,7 @@
                         <i class="star-rating"></i>
                         <i class="star-rating"></i>
                     </span>
-                    <div class="section-subtitle">The Cappa Luxury Hotel</div>
+                    <div class="section-subtitle">FU Hotel</div>
                     <div class="section-title">Enjoy a Luxury Experience</div>
                     <p>Welcome to the best five-star deluxe hotel in New York. Hotel elementum sesue the aucan vestibulum aliquam justo in sapien rutrum volutpat. Donec in quis the pellentesque velit. Donec id velit ac arcu posuere blane.</p>
                     <p>Hotel ut nisl quam nestibulum ac quam nec odio elementum sceisue the aucan ligula. Orci varius natoque penatibus et magnis dis parturient monte nascete ridiculus mus nellentesque habitant morbine.</p>

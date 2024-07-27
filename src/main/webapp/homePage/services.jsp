@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>The Cappa Luxury Hotel</title>
+    <title>FU Hotel</title>
     <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
     <link rel="stylesheet" href="${url1}/Assets1/css/plugins.css" />

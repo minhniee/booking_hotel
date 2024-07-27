@@ -25,7 +25,7 @@ public class ContactServlet extends HttpServlet {
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "    <title>Thank You for Registering at Renager</title>\n" +
+                "    <title>Thank You for Registering at FU Hotel</title>\n" +
                 "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap\">\n" +
                 "\n" +
                 "</head>\n" +
@@ -36,13 +36,13 @@ public class ContactServlet extends HttpServlet {
                 "                <table width=\"600\" cellpadding=\"20\" cellspacing=\"0\" border=\"0\" style=\"border: 1px solid #dddddd; border-radius: 5px; margin-top: 20px;\">\n" +
                 "                    <tr>\n" +
                 "                        <td align=\"center\" style=\"background-color: #F8F5F0; color: black;\">\n" +
-                "                            <h1>Thank You for Registering at Renager</h1>\n" +
+                "                            <h1>Thank You for Registering at FU Hotel</h1>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                    <tr>\n" +
                 "                        <td style=\"background-color: #ffffff; color: #333333;\">\n" +
                 "                            <p>Dear <strong>You</strong>,</p>\n" +
-                "                            <p>We sincerely thank you for registering at <strong>Renager</strong>. Your interest and support are great encouragement for us in providing the best services.</p>\n" +
+                "                            <p>We sincerely thank you for registering at <strong>FU Hotel</strong>. Your interest and support are great encouragement for us in providing the best services.</p>\n" +
                 "                            <p><strong>Here are the benefits of being our member:</strong></p>\n" +
                 "                            <ul>\n" +
                 "                                <li><strong>Exclusive Offers:</strong> Receive information about promotional programs and special offers exclusive to members.</li>\n" +
@@ -53,7 +53,7 @@ public class ContactServlet extends HttpServlet {
                 "                            <p>Sincerely,</p>\n" +
                 "                            <p><strong>Le Quang Minh</strong><br>\n" +
                 "                            Manager <br>\n" +
-                "                            Renager Hotel<br>\n" +
+                "                            FU Hotel Hotel<br>\n" +
                 "                            Thach That, Hoa Lac<br>\n" +
                 "                            <a href=\"mailto:[Email Address]\">renager.hotel@gmail.com</a><br>\n" +
                 "                            031234567<br>\n" +
@@ -62,7 +62,7 @@ public class ContactServlet extends HttpServlet {
                 "                    </tr>\n" +
                 "                    <tr>\n" +
                 "                        <td align=\"center\" style=\"background-color: #f9f9f9; color: #999999; font-size: 12px;\">\n" +
-                "                            <p>You are receiving this email because you registered at Renager Hotel. If you no longer wish to receive these emails, please <a href=\"[Unsubscribe Link]\">unsubscribe</a>.</p>\n" +
+                "                            <p>You are receiving this email because you registered at FU Hotel Hotel. If you no longer wish to receive these emails, please <a href=\"[Unsubscribe Link]\">unsubscribe</a>.</p>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                </table>\n" +

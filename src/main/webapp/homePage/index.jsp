@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>The Cappa Luxury Hotel</title>
+    <title>FU Hotel</title>
     <link rel="shortcut icon" href="${url}/Assets1/img/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
     <link rel="stylesheet" href="${url}/Assets1/css/plugins.css" />
@@ -72,7 +72,7 @@
                         <i class="star-rating"></i>
                         <i class="star-rating"></i>
                     </span>
-                <div class="section-subtitle">The Cappa Luxury Hotel</div>
+                <div class="section-subtitle">FU Hotel</div>
                 <div class="section-title">Enjoy a Luxury Experience</div>
                 <p>Welcome to the best five-star deluxe hotel in New York. Hotel elementum sesue the aucan vestibulum aliquam justo in sapien rutrum volutpat. Donec in quis the pellentesque velit. Donec id velit ac arcu posuere blane.</p>
                 <p>Hotel ut nisl quam nestibulum ac quam nec odio elementum sceisue the aucan ligula. Orci varius natoque penatibus et magnis dis parturient monte nascete ridiculus mus nellentesque habitant morbine.</p>
@@ -94,7 +94,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="section-subtitle">The Cappa Luxury Hotel</div>
+                <div class="section-subtitle">FU Hotel</div>
                 <div class="section-title">Rooms & Suites</div>
             </div>
         </div>
@@ -289,7 +289,7 @@
 <%--    <div class="container">--%>
 <%--        <div class="row">--%>
 <%--            <div class="col-md-8 offset-md-2 text-center"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>--%>
-<%--                <div class="section-subtitle"><span>The Cappa Luxury Hotel</span></div>--%>
+<%--                <div class="section-subtitle"><span>FU Hotel</span></div>--%>
 <%--                <div class="section-title"><span>Promotional Video</span></div>--%>
 <%--            </div>--%>
 <%--        </div>--%>
@@ -407,86 +407,86 @@
 <%--    </div>--%>
 <%--</section>--%>
 <!-- Services -->
-<section class="services section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                <div class="img left">
-                    <a href="restaurant.jsp"><img src="${url}/Assets1/img/restaurant/1.jpg" alt=""></a>
-                </div>
-            </div>
-            <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                <div class="content">
-                    <div class="cont text-left">
-                        <div class="info">
-                            <h6>Discover</h6>
-                        </div>
-                        <h4>The Restaurant</h4>
-                        <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                        <div class="butn-dark"> <a href="restaurant.jsp"><span>Learn More</span></a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">
-                <div class="content">
-                    <div class="cont text-left">
-                        <div class="info">
-                            <h6>Experiences</h6>
-                        </div>
-                        <h4>Spa Center</h4>
-                        <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
-                <div class="img">
-                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/3.jpg" alt=""></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                <div class="img left">
-                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/2.jpg" alt=""></a>
-                </div>
-            </div>
-            <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                <div class="content">
-                    <div class="cont text-left">
-                        <div class="info">
-                            <h6>Modern</h6>
-                        </div>
-                        <h4>Fitness Center</h4>
-                        <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">
-                <div class="content">
-                    <div class="cont text-left">
-                        <div class="info">
-                            <h6>Experiences</h6>
-                        </div>
-                        <h4>The Health Club & Pool</h4>
-                        <p>The health club & pool at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>
-                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
-                <div class="img">
-                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/1.jpg" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<%--<section class="services section-padding">--%>
+<%--    <div class="container">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                <div class="img left">--%>
+<%--                    <a href="homePage/restaurant.jsp"><img src="${url}/Assets1/img/restaurant/1.jpg" alt=""></a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">--%>
+<%--                <div class="content">--%>
+<%--                    <div class="cont text-left">--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Discover</h6>--%>
+<%--                        </div>--%>
+<%--                        <h4>The Restaurant</h4>--%>
+<%--                        <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                        <div class="butn-dark"> <a href="homePage/restaurant.jsp"><span>Learn More</span></a> </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                <div class="content">--%>
+<%--                    <div class="cont text-left">--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Experiences</h6>--%>
+<%--                        </div>--%>
+<%--                        <h4>Spa Center</h4>--%>
+<%--                        <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">--%>
+<%--                <div class="img">--%>
+<%--                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/3.jpg" alt=""></a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                <div class="img left">--%>
+<%--                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/2.jpg" alt=""></a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">--%>
+<%--                <div class="content">--%>
+<%--                    <div class="cont text-left">--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Modern</h6>--%>
+<%--                        </div>--%>
+<%--                        <h4>Fitness Center</h4>--%>
+<%--                        <p>Restaurant inilla duiman at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                <div class="content">--%>
+<%--                    <div class="cont text-left">--%>
+<%--                        <div class="info">--%>
+<%--                            <h6>Experiences</h6>--%>
+<%--                        </div>--%>
+<%--                        <h4>The Health Club & Pool</h4>--%>
+<%--                        <p>The health club & pool at elit finibus viverra nec a lacus themo the nesudea seneoice misuscipit non sagie the fermen ziverra tristiue duru the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                        <div class="butn-dark"> <a href="${url}/homePage/spa-wellness.jsp"><span>Learn More</span></a> </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">--%>
+<%--                <div class="img">--%>
+<%--                    <a href="${url}/homePage/spa-wellness.jsp"><img src="${url}/Assets1/img/spa/1.jpg" alt=""></a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
 <!-- News -->
 <section class="news section-padding bg-blck">
     <div class="container">
@@ -502,73 +502,73 @@
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/1.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>02</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>02</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Restaurant</a>
                                 </span>
-                            <h5><a href="post.jsp">Historic restaurant renovated</a></h5>
+                            <h5><a href="homePage/news.jsp">Historic restaurant renovated</a></h5>
                         </div>
                     </div>
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/2.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>04</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>04</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Spa</a>
                                 </span>
-                            <h5><a href="post.jsp">Benefits of Spa Treatments</a></h5>
+                            <h5><a href="homePage/news.jsp">Benefits of Spa Treatments</a></h5>
                         </div>
                     </div>
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/3.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>06</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>06</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Bathrooms</a>
                                 </span>
-                            <h5><a href="post.jsp">Hotel Bathroom Collections</a></h5>
+                            <h5><a href="homePage/news.jsp">Hotel Bathroom Collections</a></h5>
                         </div>
                     </div>
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/4.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>08</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Health</a>
                                 </span>
-                            <h5><a href="post.jsp">Weight Loss with Fitness Health Club</a></h5>
+                            <h5><a href="homePage/news.jsp">Weight Loss with Fitness Health Club</a></h5>
                         </div>
                     </div>
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/6.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>08</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Design</a>
                                 </span>
-                            <h5><a href="post.jsp">Retro Lighting Design in The Hotels</a></h5>
+                            <h5><a href="homePage/news.jsp">Retro Lighting Design in The Hotels</a></h5>
                         </div>
                     </div>
                     <div class="item">
                         <div class="position-re o-hidden"> <img src="${url}/Assets1/img/news/5.jpg" alt="">
                             <div class="date">
-                                <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                <a href="homePage/news.jsp"> <span>Dec</span> <i>08</i> </a>
                             </div>
                         </div>
                         <div class="con"> <span class="category">
                                     <a href="news.jsp">Health</a>
                                 </span>
-                            <h5><a href="post.jsp">Benefits of Swimming for Your Health</a></h5>
+                            <h5><a href="homePage/news.jsp">Benefits of Swimming for Your Health</a></h5>
                         </div>
                     </div>
                 </div>

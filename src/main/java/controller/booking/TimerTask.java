@@ -86,11 +86,11 @@ public class TimerTask {
                 "            <p>We apologize for any inconvenience this may have caused and appreciate your prompt attention to this matter.</p>\n" +
                 "            <p>Thank you!</p>\n" +
                 "            <p>Best regards,</p>\n" +
-                "            <p>Renager</p>\n" +
+                "            <p>FU Hotel</p>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
                 "            <p>&copy; 2024 [Your Company Name]. All rights reserved.</p>\n" +
-                "            <p>Renager</p>\n" +
+                "            <p>FU Hotel</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +
