@@ -227,11 +227,11 @@ public class PaymentVNpayServlet extends HttpServlet {
                 "            <p>If you have any questions or need further assistance, feel free to reply to this email.</p>\n" +
                 "            <p>Thank you!</p>\n" +
                 "            <p>Best regards,</p>\n" +
-                "            <p><strong>Renager</strong></p>\n" +
+                "            <p><strong>FU Hotel</strong></p>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
-                "            <p>&copy; 2024 Renager. All rights reserved.</p>\n" +
-                "            <p>Renager</p>\n" +
+                "            <p>&copy; 2024 FU Hotel. All rights reserved.</p>\n" +
+                "            <p>FU Hotel</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +

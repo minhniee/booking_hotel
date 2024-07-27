@@ -103,8 +103,9 @@ public class LoginFilter implements Filter {
         HttpSession session = req.getSession();
          String role = (String)session.getAttribute("role");
         if(session.getAttribute("account") == null || !role.equalsIgnoreCase("admin")){
-//            res.sendRedirect("login");
-            res.sendError(404,"no assest");
+            res.sendRedirect("errorPage/errors-404.jsp");
+//            re
+//            res.sendError(404,"no assest");
         }
 
         Throwable problem = null;

@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>The Cappa Luxury Hotel</title>
+    <title>FU Hotel</title>
     <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row mb-90">
             <div class="col-md-6 mb-60">
-                <h3>The Cappa Luxury Hotel</h3>
+                <h3>FU Hotel</h3>
                 <p>Hotel ut nisl quam nestibulum ac quam nec odio elementum sceisue the aucan ligula. Orci varius natoque penatibus et magnis dis parturient monte nascete ridiculus mus nellentesque habitant morbine.</p>
                 
                 <div class="reservations mb-30">
