@@ -75,16 +75,16 @@ public class UpdateService extends HttpServlet {
         }
         ManageServiceDAO dao = new ManageServiceDAO();
         ManageService manageService = dao.getManageServiceByImage(filename);
-       // if (manageService == null) {
+       if (manageService == null) {
             dao.updateService(id, category, name, description, price, quantity, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Updated Successfully!!!");
             response.sendRedirect("ManageService");
-//        }else {
-//            HttpSession session = request.getSession();
-//            session.setAttribute("success", "Duplicate image!!!");
-//            response.sendRedirect("ManageService");
-//        }
+        }else {
+            HttpSession session = request.getSession();
+            session.setAttribute("success", "Duplicate image!!!");
+            response.sendRedirect("ManageService");
+        }
 
     }
 
