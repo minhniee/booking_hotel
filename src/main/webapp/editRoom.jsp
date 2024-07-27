@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Edit Room</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <style>
         /* CSS for Edit Room Page */
         body {
@@ -159,53 +160,70 @@
 <body>
 <%@include file="dashBoardStaff1.jsp"%>
 <div class="main-content">
-<div class="container">
-    <h1>Edit Room</h1>
-    <form action="editRoom" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id" value="${room.id}" readonly />
-        </div>
-        <div class="form-group">
-            <label for="roomClassId">Room Class ID:</label>
-            <input type="text" id="roomClassId" name="roomClassId" value="${room.roomClassId}" required />
-            <span id="roomClassIdError" class="error">${errorMessages.roomClassId}</span>
-        </div>
+    <div class="container">
+        <h1>Edit Room</h1>
+        <form action="editRoom" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="${room.id}" readonly />
+            </div>
+            <div class="form-group">
+                <label for="roomClassId">Room Class ID:</label>
+                <input type="text" id="roomClassId" name="roomClassId" value="${room.roomClassId}" required />
+                <span id="roomClassIdError" class="error">${errorMessages.roomClassId}</span>
+            </div>
 
-        <div class="form-group">
-            <label for="roomClass">Room Class Name:</label>
-            <input type="text" id="roomClass" name="roomClass" value="${room.roomClassName}" required />
-            <span id="roomClassError" class="error">${errorMessages.roomClass}</span>
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status" name="status" required>
-                <option value="Available" ${room.statusName == 'Available' ? 'selected' : ''}>Available</option>
-                <option value="Occupied" ${room.statusName == 'Unavailable' ? 'selected' : ''}>Unavailable</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="numAdults">Num Adults:</label>
-            <input type="number" id="numAdults" name="numAdults" value="${room.numAdults}" required />
-            <span id="numAdultsError" class="error">${errorMessages.numAdults}</span>
-        </div>
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number"step="0.01" id="price" name="price" value="${room.basePrice}" required />
-            <span id="priceError" class="error">${errorMessages.price}</span>
-        </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="hidden" name="oldImage" value="${room.roomImg}">
-            <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
-            <img id="imagePreview" class="mt-3"  src="Assets/image/room/${room.roomImg}" alt="image" width="30%">
-        </div>
-        <div class="form-group">
+            <div class="form-group">
+                <label for="roomClass">Room Class Name:</label>
+                <input type="text" id="roomClass" name="roomClass" value="${room.roomClassName}" required />
+                <span id="roomClassError" class="error">${errorMessages.roomClass}</span>
+            </div>
+            <div class="form-group">
+                <label for="roomClass">Room Name:</label>
+                <input type="hidden" id="roomNameOld" name="roomNameOld" value="${room.roomName}" />
+                <input type="text" id="roomName" name="roomName" value="${room.roomName}" required />
+                <span id="roomNameError" class="error">${errorMessages.roomName}</span>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="Available" ${room.statusName == 'Available' ? 'selected' : ''}>Available</option>
+                    <option value="Unavailable" ${room.statusName == 'Unavailable' ? 'selected' : ''}>Unavailable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numAdults">Num Adults:</label>
+                <input type="number" id="numAdults" name="numAdults" value="${room.numAdults}" required />
+                <span id="numAdultsError" class="error">${errorMessages.numAdults}</span>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number"step="0.01" id="price" name="price" value="${room.basePrice}" required />
+                <span id="priceError" class="error">${errorMessages.price}</span>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="hidden" name="oldImage" value="${room.roomImg}">
+                <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
+                <img id="imagePreview" class="mt-3"  src="Assets1/img/rooms/${room.roomImg}" alt="image" width="30%">
+            </div>
+            <div class="form-group">
                 <button type="submit">Update</button>
                 <button type="button" onclick="window.location.href = 'roomManager'">Cancel</button>
-        </div>
-    </form>
+            </div>
+        </form>
+    </div>
 </div>
-</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<c:if test="${message != null}">
+    <script type="text/javascript">
+        toastr.success(`${message}`, 'Success', {timeOut: 1000});
+    </script>
+</c:if>
+<c:if test="${error != null}">
+    <script type="text/javascript">
+        toastr.error(`${error}`, 'Error', {timeOut: 1000});
+    </script>
+</c:if>
 </body>
 </html>
