@@ -64,6 +64,10 @@ public class editMaterial extends HttpServlet {
             Files.createDirectory(Path.of(realPath));
         }
 
+        if(filename != null && !filename.isEmpty()) {
+            imageSrc.write(realPath + "/" + filename);
+            image = filename;
+        }
 
         Map<String, String> errorMessages = new HashMap<>();
         boolean hasError = false;
