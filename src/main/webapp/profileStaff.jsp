@@ -87,6 +87,8 @@
 </div>
 </body>
 </html>
+
+
 <script>
     function validateForm() {
         const fullName = document.querySelector('[name="fname"]').value.trim();
@@ -138,6 +140,19 @@
         if (!dob) {
             document.getElementById('dobError').textContent = 'Date of birth is required.';
             isValid = false;
+        } else {
+            const birthDate = new Date(dob);
+            const currentDate = new Date();
+            let age = currentDate.getFullYear() - birthDate.getFullYear();
+            const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+            const dayDiff = currentDate.getDate() - birthDate.getDate();
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+            if (age < 12) {
+                document.getElementById('dobError').textContent = 'You must be at least 12 years old.';
+                isValid = false;
+            }
         }
 
         if (!address) {
@@ -151,6 +166,7 @@
         return isValid;
     }
 </script>
+
 
 </div>
 </div>
