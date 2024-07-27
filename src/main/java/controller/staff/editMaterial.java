@@ -6,10 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.Material;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,8 +53,11 @@ public class editMaterial extends HttpServlet {
         String name = request.getParameter("name");
         String quantityStr = request.getParameter("quantity");
         String priceStr = request.getParameter("price");
-        String image = request.getParameter("image");
-
+        //String image = request.getParameter("image");
+        String image = request.getParameter("oldImage");
+        Part imageSrc = request.getPart("image");
+        String realPath = request.getServletContext().getRealPath("/Assets/image/material");
+        String filename = Path.of(imageSrc.getSubmittedFileName()).getFileName().toString();
         Map<String, String> errorMessages = new HashMap<>();
         boolean hasError = false;
 
