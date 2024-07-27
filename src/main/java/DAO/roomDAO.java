@@ -21,7 +21,7 @@ public class roomDAO {
         try {
             con = new DBContext().getConnection();
             if (con != null) {
-                String sql = "SELECT  r.id, r.room_class_id, c.class_name, r.state, r.num_adults, c.base_price, c.main_image\n" +
+                String sql = "SELECT  r.id, r.room_class_id, c.class_name, r.state, r.num_adults, c.base_price, c.main_image, r.name\n" +
                         "FROM room r\n" +
                         "JOIN room_class c ON r.room_class_id = c.id;";
                 pr = con.prepareStatement(sql);
@@ -37,10 +37,11 @@ public class roomDAO {
                     int numAdults = rs.getInt(5);
                     Double base_price = rs.getDouble(6);
                     String roomImg = rs.getString(7);
+                    String roomName = rs.getString(8);
 
 //                    Room p = new Room(id, roomClassName, statusId, roomName, numAdults, statusName, roomImg);
 //                    Room p = new Room(className, roomName, numAdults, );
-                    Room p = new Room(id, roomClassId, roomClassName, statusName, numAdults, base_price, roomImg);
+                    Room p = new Room(id, roomClassId, roomClassName, statusName, numAdults, base_price, roomImg, roomName);
                     list.add(p);
                 }
                 con.close();
@@ -241,7 +242,7 @@ public class roomDAO {
         Room room = null;
         try {
             con = new DBContext().getConnection();
-            String sql = "SELECT r.id, r.room_class_id, c.class_name, r.state, r.num_adults, c.base_price, c.main_image " +
+            String sql = "SELECT r.id, r.room_class_id, c.class_name, r.state, r.num_adults, c.base_price, c.main_image, r.name " +
                     "FROM room r JOIN room_class c ON r.room_class_id = c.id " +
                     "WHERE r.id = ?";
             PreparedStatement stm = con.prepareStatement(sql);
@@ -254,7 +255,32 @@ public class roomDAO {
                         rs.getString("state"),
                         rs.getInt("num_adults"),
                         rs.getDouble("base_price"),
-                        rs.getString("main_image"));
+                        rs.getString("main_image"), rs.getString("name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(roomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return room;
+    }
+
+    public Room getRoomByName(String name) {
+        Room room = null;
+        try {
+            con = new DBContext().getConnection();
+            String sql = "SELECT r.id, r.room_class_id, c.class_name, r.state, r.num_adults, c.base_price, c.main_image, r.name " +
+                    "FROM room r JOIN room_class c ON r.room_class_id = c.id " +
+                    "WHERE r.name = ?";
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, name);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                room = new Room(rs.getString("id"),
+                        rs.getString("room_class_id"),
+                        rs.getString("class_name"),
+                        rs.getString("state"),
+                        rs.getInt("num_adults"),
+                        rs.getDouble("base_price"),
+                        rs.getString("main_image"), rs.getString("name"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(roomDAO.class.getName()).log(Level.SEVERE, null, ex);
