@@ -89,8 +89,6 @@
         <url-pattern>/roomManager.jsp</url-pattern>
         <url-pattern>/editRoom.jsp</url-pattern>
         <url-pattern>/RoomClasses.jsp</url-pattern>
-
-
-        <url-pattern>/BookingStatus</url-pattern>
+        <url-pattern>/ListBookingStaff</url-pattern>
     </filter-mapping>
 </web-app>
