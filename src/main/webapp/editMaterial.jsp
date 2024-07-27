@@ -96,43 +96,43 @@
 <body>
 <%@include file="dashBoardStaff1.jsp"%>
 <div class="main-content">
-<div class="container">
-    <h1>Edit Material</h1>
-    <form action="editMaterial" method="post" onsubmit="return validateForm()">
-        <div class="form-group">
-            <label for="roomId">Room ID:</label>
-            <input type="text" id="roomId" name="roomId" value="${material.room_id}" readonly>
-        </div>
-        <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id" value="${material.id}" readonly>
-        </div>
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="${material.name}" readonly>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" value="${material.quantity}">
-            <span id="quantityError" class="error">${errorMessages.quantity}</span>
-        </div>
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" step="0.01" id="price" name="price" value="${material.price}">
-            <span id="priceError" class="error">${errorMessages.price}</span>
-        </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="hidden" name="oldImage" value="${material.image}">
-            <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
-            <img id="imagePreview" class="mt-3"  src="Assets/image/material/${material.image}" alt="image" width="30%">
-        </div>
-        <div class="form-group">
-            <button type="submit">Save</button>
-            <button type="button" onclick="window.location.href = 'ViewMaterial'">Cancel</button>
-        </div>
-    </form>
-</div>
+    <div class="container">
+        <h1>Edit Material</h1>
+        <form action="editMaterial" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="roomId">Room ID:</label>
+                <input type="text" id="roomId" name="roomId" value="${material.room_id}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="${material.id}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="${material.name}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="${material.quantity}">
+                <span id="quantityError" class="error">${errorMessages.quantity}</span>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" id="price" name="price" value="${material.price}">
+                <span id="priceError" class="error">${errorMessages.price}</span>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="hidden" name="oldImage" value="${material.image}">
+                <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
+                <img id="imagePreview" class="mt-3"  src="Assets/image/material/${material.image}" alt="image" width="30%">
+            </div>
+            <div class="form-group">
+                <button type="submit">Save</button>
+                <button type="button" onclick="window.location.href = 'ViewMaterial'">Cancel</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
