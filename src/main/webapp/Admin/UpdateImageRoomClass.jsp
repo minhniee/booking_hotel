@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit room class</title>
     <link rel="stylesheet" href="Assets/css/setAccount.css">
-
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('imagePreview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </head>
 <body>
 <%@include file="dashBoardAdmin.jsp"%>
@@ -35,7 +44,9 @@
 
         <div class="form-group">
             <label for="email">Image</label>
-            <input type="file"  name="image"   required readonly/>
+            <input type="file"  name="image"  onchange="previewImage(event)"  />
+            <img id="imagePreview" class="mt-3"  src="Assets1/img/rooms/${roomClass.mainImage}" alt="image" width="30%">
+            <input type="hidden" name="oldImage" value="${roomClass.mainImage}" />
         </div>
 
         <button type="submit" class="btn-submit">Save Changes</button>

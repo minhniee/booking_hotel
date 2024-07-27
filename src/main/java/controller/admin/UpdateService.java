@@ -51,33 +51,40 @@ public class UpdateService extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
+        String oldImage = request.getParameter("oldImage");
         int category = Integer.parseInt(request.getParameter("type"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         Part image = request.getPart("image");
-        String realPath = request.getServletContext().getRealPath("/Assets/services");
-        String filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
 
-
-        // Ensure the directory exists
-        if (!Files.exists(Path.of(realPath))) {
-            Files.createDirectory(Path.of(realPath));
+        String filename = null;
+        if (image != null && image.getSize() > 0) {
+            // New image file is uploaded
+            String realPath = request.getServletContext().getRealPath("/Assets/services");
+            filename = Path.of(image.getSubmittedFileName()).getFileName().toString();
+            // Ensure the directory exists
+            if (!Files.exists(Path.of(realPath))) {
+                Files.createDirectory(Path.of(realPath));
+            }
+            image.write(realPath + "/" + filename);
+        } else {
+            // No new image file is uploaded, use old image
+            filename = oldImage;
         }
-        image.write(realPath +"/"+ filename);
         ManageServiceDAO dao = new ManageServiceDAO();
         ManageService manageService = dao.getManageServiceByImage(filename);
-        if (manageService == null) {
+       // if (manageService == null) {
             dao.updateService(id, category, name, description, price, quantity, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Updated Successfully!!!");
             response.sendRedirect("ManageService");
-        }else {
-            HttpSession session = request.getSession();
-            session.setAttribute("success", "Duplicate image!!!");
-            response.sendRedirect("ManageService");
-        }
+//        }else {
+//            HttpSession session = request.getSession();
+//            session.setAttribute("success", "Duplicate image!!!");
+//            response.sendRedirect("ManageService");
+//        }
 
     }
 
