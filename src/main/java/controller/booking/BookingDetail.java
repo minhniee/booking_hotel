@@ -224,11 +224,11 @@ public class BookingDetail extends HttpServlet {
                 "            <p>We appreciate your patience and look forward to serving you.</p>\n" +
                 "            <p>Thank you!</p>\n" +
                 "            <p>Best regards,</p>\n" +
-                "            <p>Renager</p>\n" +
+                "            <p>FU Hotel</p>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
-                "            <p>&copy; 2024 Renager. All rights reserved.</p>\n" +
-                "            <p>Renager</p>\n" +
+                "            <p>&copy; 2024 FU Hotel. All rights reserved.</p>\n" +
+                "            <p>FU Hotel</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +

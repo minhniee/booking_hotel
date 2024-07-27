@@ -366,7 +366,7 @@ public class roomDAO {
             String query = "SELECT distinct rc.id, rc.class_name, rc.base_price, rc.main_image " +
                     "FROM room_class rc " +
                     "JOIN room r ON r.room_class_id = rc.id " +
-                    "WHERE r.id IN (";
+                    "WHERE r.state = 'Available'  and r.id IN (";
 
             // Appending placeholders for each room ID
             for (int i = 0; i < roomIds.size(); i++) {

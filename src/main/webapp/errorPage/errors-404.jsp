@@ -29,7 +29,7 @@
             </div>
 
               <div class="mt-3">
-                <a href="index">Back to Home</a>
+                <a href="${url}/home">Back to Home</a>
               </div>
             </div>
           </div>

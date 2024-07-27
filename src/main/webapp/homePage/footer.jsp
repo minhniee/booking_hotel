@@ -45,25 +45,25 @@
                     </div>
                 </div>
                 <div class="col-md-3 offset-md-1">
-                    <div class="footer-column footer-explore clearfix">
-                        <h3 class="footer-title">Explore</h3>
-                        <ul class="footer-explore-list list-unstyled">
-                            <li><a href="home">Home</a></li>
-                            <li><a href="Room">Rooms & Suites</a></li>
-                            <li><a href="restaurant.jsp">Restaurant</a></li>
-                            <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>
-                            <li><a href="about.jsp">About Hotel</a></li>
-                            <li><a href="contact.jsp">Contact</a></li>
-                        </ul>
-                    </div>
+<%--                    <div class="footer-column footer-explore clearfix">--%>
+<%--                        <h3 class="footer-title">Explore</h3>--%>
+<%--                        <ul class="footer-explore-list list-unstyled">--%>
+<%--                            <li><a href="home">Home</a></li>--%>
+<%--                            <li><a href="Room">Rooms & Suites</a></li>--%>
+<%--                            <li><a href="restaurant.jsp">Restaurant</a></li>--%>
+<%--                            <li><a href="${url}/homePage/spa-wellness.jsp">Spa & Wellness</a></li>--%>
+<%--                            <li><a href="about.jsp">About Hotel</a></li>--%>
+<%--                            <li><a href="contact.jsp">Contact</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-column footer-contact">
                         <h3 class="footer-title">Contact</h3>
-                        <p class="footer-contact-text">Khu Cong Nghe Cao, Hoa Lac, Thach That<br>Viet Name</p>
+                        <p class="footer-contact-text">Khu Cong Nghe Cao, Hoa Lac, Thach That<br>Viet Nam</p>
                         <div class="footer-contact-info">
-                            <p class="footer-contact-phone"><span class="flaticon-call"></span> 855 100 4444</p>
-                            <p class="footer-contact-mail">info@luxuryhotel.com</p>
+                            <p class="footer-contact-phone"><span class="flaticon-call"></span> 0312345678</p>
+                            <p class="footer-contact-mail">renager.hotel@gmail.com</p>
                         </div>
 
                         <div class="footer-subscribe">

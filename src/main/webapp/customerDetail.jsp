@@ -55,7 +55,7 @@
     <h1>Customer Detail</h1>
     <div class="customer-container">
         <c:set var="cus" value="${customer}"/>
-        <p>ID: ${customerId}</p>
+        <p>ID: ${cus.id}</p>
         <p>Full Name: ${cus.fullName}</p>
         <p>Email: ${cus.email}</p>
         <p>Phone: ${cus.phone}</p>

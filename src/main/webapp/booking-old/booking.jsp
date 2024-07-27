@@ -89,7 +89,7 @@
 </head>
 <body>
 <div class="container-fruid p-b-5  h-100 bg-dark text-white">
-    <h1 class="p-5">Renager</br><span style="font-size: 16px;"> </span></h1>
+    <h1 class="p-5">FU Hotel</br><span style="font-size: 16px;"> </span></h1>
 </div>
 
 <div class="container">

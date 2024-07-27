@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>The Cappa Luxury Hotel</title>
+    <title>FU Hotel</title>
     <link rel="shortcut icon" href="${url1}/Assets1/img/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap">
     <link rel="stylesheet" href="${url1}/Assets1/css/plugins.css" />
@@ -51,13 +51,13 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/1.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>02</i> </a>
+                                    <a  href="#" onclick="return false;"> <span>Dec</span> <i>02</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="news.jsp">Restaurant</a>
+                                    <a  href="#" onclick="return false;">Restaurant</a>
                                 </span>
-                                <h5><a href="post.jsp">Historic restaurant renovated</a></h5>
+                                <h5><a  href="#" onclick="return false;">Historic restaurant renovated</a></h5>
                             </div>
                         </div>
                 </div>
@@ -65,13 +65,13 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/2.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>04</i> </a>
+                                    <a href="#" onclick="return false;" > <span>Dec</span> <i>04</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="news.jsp">Spa</a>
+                                    <a href="#" onclick="return false;">Spa</a>
                                 </span>
-                                <h5><a href="post.jsp">Benefits of Spa Treatments</a></h5>
+                                <h5><a href="#" onclick="return false;">Benefits of Spa Treatments</a></h5>
                             </div>
                         </div>
                 </div>
@@ -79,13 +79,13 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/3.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>06</i> </a>
+                                    <a href="#" onclick="return false;"> <span>Dec</span> <i>06</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="news.jsp">Bathrooms</a>
+                                    <a  href="#" onclick="return false;">Bathrooms</a>
                                 </span>
-                                <h5><a href="post.jsp">Hotel Bathroom Collections</a></h5>
+                                <h5><a  href="#" onclick="return false;">Hotel Bathroom Collections</a></h5>
                             </div>
                         </div>
                 </div>
@@ -93,14 +93,14 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/4.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                    <a  href="#" onclick="return false;"> <span>Dec</span> <i>08</i> </a>
                                 </div>
                             </div>
                             <div class="con"> 
                                 <span class="category">
-                                    <a href="news.jsp">Health</a>
+                                    <a  href="#" onclick="return false;">Health</a>
                                 </span>
-                                <h5><a href="post.jsp">Weight Loss with Fitness Health Club</a></h5>
+                                <h5><a  href="#" onclick="return false;">Weight Loss with Fitness Health Club</a></h5>
                             </div>
                         </div>
                 </div>
@@ -108,13 +108,13 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/6.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                    <a  href="#" onclick="return false;"> <span>Dec</span> <i>08</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="news.jsp">Design</a>
+                                    <a  href="#" onclick="return false;">Design</a>
                                 </span>
-                                <h5><a href="post.jsp">Retro Lighting Design in The Hotels</a></h5>
+                                <h5><a  href="#" onclick="return false;">Retro Lighting Design in The Hotels</a></h5>
                             </div>
                         </div>
                 </div>
@@ -122,13 +122,13 @@
                     <div class="item">
                             <div class="position-re o-hidden"> <img src="${url1}/Assets1/img/news/5.jpg" alt="">
                                 <div class="date">
-                                    <a href="post.jsp"> <span>Dec</span> <i>08</i> </a>
+                                    <a  href="#" onclick="return false;"> <span>Dec</span> <i>08</i> </a>
                                 </div>
                             </div>
                             <div class="con"> <span class="category">
-                                    <a href="news.jsp">Health</a>
+                                    <a  href="#" onclick="return false;">Health</a>
                                 </span>
-                                <h5><a href="post.jsp">Benefits of Swimming for Your Health</a></h5>
+                                <h5><a  href="#" onclick="return false;">Benefits of Swimming for Your Health</a></h5>
                             </div>
                         </div>
                 </div>
@@ -137,11 +137,11 @@
                 <div class="col-md-12 text-center">
                     <!-- Pagination -->
                     <ul class="news-pagination-wrap align-center mb-30 mt-30">
-                        <li><a href="news.jsp#"><i class="ti-angle-left"></i></a></li>
-                        <li><a href="news.jsp#">1</a></li>
-                        <li><a href="news.jsp#" class="active">2</a></li>
-                        <li><a href="news.jsp#">3</a></li>
-                        <li><a href="news.jsp#"><i class="ti-angle-right"></i></a></li>
+                        <li><a  href="#" onclick="return false;"  ><i class="ti-angle-left"></i></a></li>
+                        <li><a  href="#" onclick="return false;" class="active">1</a></li>
+                        <li><a  href="#" onclick="return false;">2</a></li>
+                        <li><a  href="#" onclick="return false;">3</a></li>
+                        <li><a  href="#" onclick="return false;"><i class="ti-angle-right"></i></a></li>
                     </ul>
                 </div>
             </div>
