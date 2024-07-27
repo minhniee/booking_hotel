@@ -71,6 +71,7 @@
         function validateForm() {
             var roomClassId = document.getElementById('roomClassId').value.trim();
             var roomClassName = document.getElementById('roomClass').value.trim();
+            var roomName = document.getElementById('roomName').value.trim();
             var numAdults = document.getElementById('numAdults').value.trim();
             var price = document.getElementById('price').value.trim();
 
@@ -98,6 +99,11 @@
                 isValid = false;
             } else if (roomClassName.length > 15) {
                 errorMessages.roomClass = 'Room Class Name không được dài quá 15 ký tự.';
+                isValid = false;
+            }
+
+            if (roomName === '') {
+                errorMessages.roomName = 'Room Name không được để trống.';
                 isValid = false;
             }
 
