@@ -60,5 +60,6 @@
         <url-pattern>/UpdateRoomClass</url-pattern>
         <url-pattern>/UpdateService</url-pattern>
         <url-pattern>/BookingStatus</url-pattern>
+        <url-pattern>/ProfileAdmin</url-pattern>
     </filter-mapping>
 </web-app>
