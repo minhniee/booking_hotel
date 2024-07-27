@@ -22,19 +22,16 @@
             ${sessionScope.remove("success")}
         </c:if>
 
-        <h3 class="main--title">Manage room class</h3>
+        <h3 class="main--title">Room class</h3>
         <div class="table-container">
             <div style="display: flex; justify-content: space-between">
 
 
-                <form action="SearchRoomClass">
+                <form action="Search">
                     <input type="text" name="text" placeholder="Class name"/>
                     <button style="background: #00c6ff">Search</button>
                 </form>
-
-
-                <a href="InsertRoomClass"><button class="fas fa-plus" style="background: #00c6ff">Insert</button></a>
-
+<%--                <a href="InsertRoomClass"><button class="fas fa-plus" style="background: #00c6ff">Insert</button></a>--%>
             </div>
 
             </script>
@@ -57,15 +54,15 @@
 
                         <td><img src="${pageContext.request.contextPath}/Assets1/img/rooms/${roomClasses.mainImage}" width="120px"></td>
                         <td>
-                            <a href="UpdateRoomClass?id=${roomClasses.id}"><button class="fas fa-edit"></button></a>
-                            <a href="UpdateImageRoomClass?id=${roomClasses.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>
+                            <a href="UpdateRoomClasses?id=${roomClasses.id}"><button class="fas fa-edit"></button></a>
+<%--                            <a href="UpdateImage?id=${roomClasses.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>--%>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
                 </thead>
             </table>
-            <a href="chartData" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
+            <a href="RoomClasses" style="display: flex; justify-content: end"><button class="fas fa-arrow-left" style="border-radius: 5px; background: #00c6ff">Back</button></a>
 
         </div>
     </div>
