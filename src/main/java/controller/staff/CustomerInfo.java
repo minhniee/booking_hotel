@@ -8,8 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
+import model.Material;
 
 /**
  *
@@ -43,7 +46,7 @@ public class CustomerInfo extends HttpServlet {
             out.println("</html>");
         }
     }
-
+    private static final int ITEMS_PER_PAGE = 10;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,8 +59,33 @@ public class CustomerInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         CustomerDAO customerDAO = new CustomerDAO();
         List<Customer> customers = customerDAO.getAllCustomers();
+
+        int totalCustomers = customers.size();
+
+        int totalPages = (int) Math.ceil((double) totalCustomers / ITEMS_PER_PAGE);
+
+        int page;
+        String pageParam = request.getParameter("page");
+        if (pageParam == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(pageParam);
+        }
+
+        int startIndex = (page - 1) * ITEMS_PER_PAGE;
+        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalCustomers);
+
+        List<Customer> customersPage = new ArrayList<>(customers.subList(startIndex, endIndex));
+
+        request.setAttribute("customers", customersPage);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("currentPage", page);
+
+        request.getRequestDispatcher("customerInfo.jsp").forward(request, response);
+
         request.setAttribute("customers", customers);
         request.getRequestDispatcher("customerInfo.jsp").forward(request, response);
     }

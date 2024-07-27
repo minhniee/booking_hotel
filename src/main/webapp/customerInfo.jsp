@@ -8,6 +8,31 @@
     <%@include file="layout/cdnpkg.jsp"%>
     <title>Customer Information</title>
     <style>
+        .pagination {
+            margin-top: 20px;
+            justify-content: end;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .pagination a:hover {
+            background-color: rgba(73, 174, 80, 0.88);
+        }
+
+        .pagination strong {
+            margin: 0 2px;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: rgba(73, 174, 80, 0.88);
+        }
         .customer-table td {
             color: black;
             background-color: snow;
@@ -86,16 +111,31 @@
                 <td>${customer.dob}</td>
                 <td>${customer.address}</td>
                 <td>
-                        <%--                        <form action="customerDetail" method="get">--%>
-                        <%--                            <input type="hidden" name="customerId" value="${customer.id}">--%>
-                        <%--                            <button type="submit">View Bookings</button>--%>
-                        <%--                        </form>--%>
                     <a href="customerDetail?customerId=${customer.id}"><button type="submit">View Bookings</button></a>
                 </td>
 
             </tr>
         </c:forEach>
     </table>
+    <div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a href="customerInfo?page=${currentPage - 1}">&laquo; Previous</a>
+        </c:if>
+        <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+            <c:choose>
+                <c:when test="${pageNumber == currentPage}">
+                    <strong>${pageNumber}</strong>
+                </c:when>
+                <c:otherwise>
+                    <a href="customerInfo?page=${pageNumber}">${pageNumber}</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <c:if test="${currentPage < totalPages}">
+            <a href="customerInfo?page=${currentPage + 1}">Next &raquo;</a>
+        </c:if>
+    </div>
+</div>
 </div>
 </body>
 </html>
