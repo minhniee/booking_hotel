@@ -51,7 +51,7 @@ public class ChangePass extends HttpServlet {
         }
 
         String errorMsg = null;
-        if (oldPass.isEmpty() || newPass.isEmpty() || confirmPass.isEmpty()) {
+        if (oldPass.isEmpty() || newPass.isEmpty() || confirmPass.isEmpty()|| newPass.contains(" ")) {
             errorMsg = "All fields are required.";
         } else if (newPass.length() < 6) {
             errorMsg = "New Password must be at least 6 characters long.";

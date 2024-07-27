@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
+import java.util.Timer;
 
 //import static controller.booking.BookingDetail;
 
@@ -118,6 +119,9 @@ public class Invoice extends HttpServlet {
             if (vnp_ResponseCode.equals("00")) {
 
                 TimerTask.timer.cancel();
+                TimerTask timerTask = new TimerTask();
+                Timer timer = new Timer();
+                TimerTask.timer = timer;
                 bookingDAO.updateStateBooking(bookingId, "confirm");
                 Bill bill = new Bill(getRandomNumber(4), booking.getAccountId(), booking.getId(), booking.getBookingPrice());
                 billDAO.insertBill(bill);
@@ -152,7 +156,7 @@ public class Invoice extends HttpServlet {
                         "                                <li><strong>Booking ID:</strong> "+ bookingId+"</li>\n" +
                         "                                <li><strong>Check-in Date:</strong>"+booking.getCheckInDate()+"</li>\n" +
                         "                                <li><strong>Check-out Date:</strong> "+booking.getCheckOutDate()+"</li>\n" +
-                        "                                <li><strong>Room Type:</strong> "+session.getAttribute("roomClassName").toString()+"</li>\n" +
+                        "                                <li><strong>Room Type:</strong> "+room.getRoomClassName()+"</li>\n" +
                         "                                <li><strong>Number of Guests:</strong>"+ (children+adults)+" </li>\n" +
                         "                            </ul>\n" +
                         "                            <p>We will notify you once your booking has been approved. In the meantime, if you have any questions or need further assistance, please do not hesitate to contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a> or call us at <strong>031234567</strong>.</p>\n" +

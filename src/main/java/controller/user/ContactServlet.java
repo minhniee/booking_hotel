@@ -117,7 +117,7 @@ public class ContactServlet extends HttpServlet {
                 + "</div>";
 
         // Send the email
-        boolean emailSent = Email.sendEmail("minhlqhe172686@fpt.edu.vn", subject, emailContent);
+        boolean emailSent = Email.sendEmail("renager.hotel@gmail.com", subject, emailContent);
 
         // Set response based on email send status
         if (emailSent) {

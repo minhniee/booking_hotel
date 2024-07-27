@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 
 
             } else if ("staff".equals(account.getRole())) {
-                response.sendRedirect("dashboardstaff.jsp");
+                response.sendRedirect("ListBookingStaff");
             } else {
                 response.sendRedirect("home");
             }

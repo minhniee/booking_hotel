@@ -132,9 +132,9 @@
         </div>
 
         <div class="form-group">
-            <label for="image">Image:</label>
+            <label >Image:</label>
             <input type="hidden" name="oldImage" value="${service.image}" readonly>
-            <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
+<%--            <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>--%>
             <img id="imagePreview" class="mt-3"  src="Assets/services/${service.image}" alt="image" width="30%">
         </div>
         <div class="form-group" style="text-align: center;">

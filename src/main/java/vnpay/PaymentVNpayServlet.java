@@ -238,7 +238,8 @@ public class PaymentVNpayServlet extends HttpServlet {
                 "</html>\n";
         bookingDAO.updateStateBooking(bookingId,"inprocess");
         Email.sendEmail(account.getEmail(), "Room Booking Payment", content);
-        TimerTask.timerRejectBooking(booking,account,"reject",timeExpert*60);
+        TimerTask timerTask = new TimerTask();
+        timerTask.timerRejectBooking(booking,account,"reject",timeExpert*60);
 
         response.sendRedirect("BookingStatus");
     }

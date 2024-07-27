@@ -24,7 +24,7 @@
                             <h4>Hotel Booking Form</h4>
                         </div>
                         <div class="booking-inner clearfix">
-                            <form action="BookingHandle" method="get" class="form1 clearfix">
+                            <form action="${pageContext.request.contextPath}/BookingHandle" method="get" class="form1 clearfix">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="input1_wrapper">

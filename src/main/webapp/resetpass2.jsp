@@ -128,8 +128,8 @@
         errorMessage.style.display = "none";
         errorMessage.innerHTML = "";
 
-        if (newpass.length < 6) {
-            errorMessage.innerHTML = "New Password must be at least 6 characters long.";
+        if (newpass.length < 6 || newpass.includes(" ")) {
+            errorMessage.innerHTML = "New Password must be at least 6 characters long or contains spaces character.";
             errorMessage.style.display = "block";
             return false;
         }

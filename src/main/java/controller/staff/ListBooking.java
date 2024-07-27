@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ListBooking", value = "/ListBooking")
+@WebServlet(name = "ListBooking", value = "/ListBookingStaff")
 public class ListBooking extends HttpServlet {
     private String message;
 

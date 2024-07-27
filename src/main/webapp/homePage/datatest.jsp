@@ -179,7 +179,7 @@
     <h3>Refund</h3>
     <div class="table-responsive">
         <form action="vnpayRefund" id="frmrefund" method="Post">
-            <input type="hidden" value="${account.id}" name="accountId">
+<%--            <input type="hidden" value="${account.id}" name="accountId">--%>
 
             <div class="form-group">
                 <label for="order_id">Refund transaction code (BookingID)</label>

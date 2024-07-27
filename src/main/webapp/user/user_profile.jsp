@@ -256,7 +256,7 @@
                         </div>
                         <div class="col-md-12">
                             <label class="labels">Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="enter email" value="${account.email}">
+                            <input type="text" name="email" class="form-control" placeholder="enter email" style="background-color: #e9e8e8; font-weight:520;" readonly value="${account.email}">
                             <small class="error-message text-danger" id="emailError"></small>
                         </div>
                         <div class="col-md-12">

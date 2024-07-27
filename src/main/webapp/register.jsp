@@ -191,8 +191,8 @@
         var fullNameRegex = /^[a-zA-Z\s]+$/;
         if (fullName.trim() === "") {
             errorMsg = "Full name cannot be left blank.";
-        } else if (!fullNameRegex.test(fullName)) {
-            errorMsg = "Full name cannot contain special characters or numbers.";
+        } else if (!fullNameRegex.test(fullName) || fullName.length >= 20) {
+            errorMsg = "Full name is not valid or exceeds 20 characters.";
         } else {
             // Validate address
             var address = document.forms["registerForm"]["address"].value;
@@ -206,8 +206,8 @@
                 } else {
                     // Validate password
                     var password = document.forms["registerForm"]["password"].value;
-                    if (password.trim() === "") {
-                        errorMsg = "Password cannot be blank.";
+                    if (password.trim() === "" || password.includes(" ")) {
+                        errorMsg = "Password cannot be blank or contains spaces";
                     } else if (password.length < 6) {
                         errorMsg = "Password must have at least 6 characters.";
                     } else {

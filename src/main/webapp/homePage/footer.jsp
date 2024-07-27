@@ -68,7 +68,7 @@
 
                         <div class="footer-subscribe">
                             <h3 class="footer-title">Subscribe to Our Newsletter</h3>
-                            <form method="get" action="contact" onsubmit="return validateEmail()">
+                            <form method="get" action="${pageContext.request.contextPath}/contact" onsubmit="return validateEmail()">
                                 <input type="email" style="color: white" id="email" name="email" placeholder="Enter your email" required>
                                 <button type="submit">Subscribe</button>
                                 <div id="error-message" class="error">Please enter a valid email address.</div>

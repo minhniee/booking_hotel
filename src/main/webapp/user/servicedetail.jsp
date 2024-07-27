@@ -131,10 +131,9 @@
   <footer class="text-center">
     <hr>
     <p class="lh-base"><strong>Hotel.</strong><br>
-      The Orchid Hotel<br>
-      Plot No.3, Nr. HDFC Bank, Ashram Road<br>
-      Ahmedabad, Gujarat,<br />
-      India.</p>
+      FU Hotel Hotel<br>
+      Thach That, Ha Noi<br>
+      Viet Nam.</p>
     <hr>
     <p class="text-1"><strong>NOTE :</strong> This is computer generated receipt and does not require physical signature.</p>
     <div class="btn-group btn-group-sm d-print-none">
@@ -145,7 +144,7 @@
   </footer>
 </div>
 <!-- Back to My Account Link -->
-<p class="text-center d-print-none"><a href="${url}/user/booking_history.jsp">&laquo; Back to Home</a></p>
+<p class="text-center d-print-none"><a href="${url}/home">&laquo; Back to Home</a></p>
 <!-- Footer -->
 <jsp:include page="/homePage/footer.jsp"></jsp:include>
 <!-- jQuery -->

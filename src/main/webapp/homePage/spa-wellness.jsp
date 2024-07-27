@@ -65,67 +65,67 @@
         </div>
     </section>
     <!-- Services -->
-    <section class="services section-padding2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="img left">
-                        <a href="post.jsp"><img src="${url1}/Assets1/img/spa/3.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Experiences</h6>
-                            </div>
-                            <h4>Spa Center</h4>
-                            <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>
-                            <p><span class="flaticon-clock"></span> Daily: 7.00 am to 9.00 pm </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Modern</h6>
-                            </div>
-                            <h4>Fitness Center</h4>
-                            <p>Fitness center duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>
-                            <p><span class="flaticon-clock"></span> Daily: 6.00 am to 9.00 pm </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">
-                    <div class="img">
-                        <a href="post2.jsp"><img src="${url1}/Assets1/img/spa/2.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
-                    <div class="img left">
-                        <a href="post.jsp"><img src="${url1}/Assets1/img/spa/1.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
-                    <div class="content">
-                        <div class="cont text-left">
-                            <div class="info">
-                                <h6>Experiences</h6>
-                            </div>
-                            <h4>The Health Club & Pool</h4>
-                            <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>
-                            <p><span class="flaticon-clock"></span> Daily: 10.00 am to 7.00 pm </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<%--    <section class="services section-padding2">--%>
+<%--        <div class="container">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                    <div class="img left">--%>
+<%--                        <a href="post.jsp"><img src="${url1}/Assets1/img/spa/3.jpg" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="cont text-left">--%>
+<%--                            <div class="info">--%>
+<%--                                <h6>Experiences</h6>--%>
+<%--                            </div>--%>
+<%--                            <h4>Spa Center</h4>--%>
+<%--                            <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                            <p><span class="flaticon-clock"></span> Daily: 7.00 am to 9.00 pm </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-6 bg-cream p-0 order2 valign animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="cont text-left">--%>
+<%--                            <div class="info">--%>
+<%--                                <h6>Modern</h6>--%>
+<%--                            </div>--%>
+<%--                            <h4>Fitness Center</h4>--%>
+<%--                            <p>Fitness center duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                            <p><span class="flaticon-clock"></span> Daily: 6.00 am to 9.00 pm </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-6 p-0 order1 animate-box" data-animate-effect="fadeInRight">--%>
+<%--                    <div class="img">--%>
+<%--                        <a href="post2.jsp"><img src="${url1}/Assets1/img/spa/2.jpg" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">--%>
+<%--                    <div class="img left">--%>
+<%--                        <a href="post.jsp"><img src="${url1}/Assets1/img/spa/1.jpg" alt=""></a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="cont text-left">--%>
+<%--                            <div class="info">--%>
+<%--                                <h6>Experiences</h6>--%>
+<%--                            </div>--%>
+<%--                            <h4>The Health Club & Pool</h4>--%>
+<%--                            <p>Spa center inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion augue artine.</p>--%>
+<%--                            <p><span class="flaticon-clock"></span> Daily: 10.00 am to 7.00 pm </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </section>--%>
     <!-- Faqs -->
     <section class="section-padding bg-cream">
         <div class="container">

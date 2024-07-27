@@ -55,13 +55,14 @@ public class vnpayRefund extends HttpServlet {
         String vnp_TransactionDate = "";
         String vnp_TransactionType = req.getParameter("trantype");
         String vnp_TxnRef = "";
-        String accountId = req.getParameter("accountId");
+        HttpSession session = req.getSession();
+        Account account = (Account) session.getAttribute("account");
         String bookingId ="";
-        if (accountId != null) {
+        if (account != null) {
                  bookingId = req.getParameter("order_id");
             bookingDAO bookingDAO = new bookingDAO();
             try {
-                booking = bookingDAO.cancelBooking(bookingId, accountId);
+                booking = bookingDAO.cancelBooking(bookingId, account.getId());
                 System.out.println("booking id:" +bookingId);
                 vnp_TxnRef = String.valueOf(booking.getPaymentIdBank());
                 vnp_TransactionType = "03";
@@ -86,7 +87,7 @@ public class vnpayRefund extends HttpServlet {
                 if (daysBetweenCurrentDateAndCheckin < 7) {
                     price =0;
                     content ="You will not refund money but.days Between Current Date And Check In Date less than 7.";
-                    resp.sendRedirect("CancelBooking");
+//                    resp.sendRedirect("CancelBooking");
                 } else if (daysBetweenCurrentDateAndCheckin < 15) {
 
                     price = price * 0.5;
@@ -99,6 +100,7 @@ public class vnpayRefund extends HttpServlet {
                     System.out.println("+100%");
                 }
             } catch (SQLException e) {
+                System.out.println("Err 103");
                 throw new RuntimeException(e);
             }
         } else {
@@ -170,11 +172,7 @@ public class vnpayRefund extends HttpServlet {
             response.append(output);
         }
         in.close();
-
-
         //send email
-        HttpSession session = req.getSession();
-        Account account = (Account) session.getAttribute("account");
         if (account != null) {
             Email email = new Email();
             Email.sendEmail(account.getEmail(), "Cancel Booking  ", content);
@@ -186,15 +184,9 @@ public class vnpayRefund extends HttpServlet {
         new bookingDAO().updateStateBooking(bookingId, "reject");
 
         req.setAttribute("noti", "Please check the email associated with your account for detailed information.");
+        System.out.println(response.toString());
         req.getRequestDispatcher("homePage/datatest.jsp").forward(req, resp);
-        //test data
-        System.out.println("Booking Refund");
-        System.out.println(vnp_TransactionType);
-        System.out.println(vnp_TxnRef);
-        System.out.println(price);
-        System.out.println(amount);
 
-        System.out.println(response);
 
     }
 }

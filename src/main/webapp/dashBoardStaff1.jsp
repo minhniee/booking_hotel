@@ -46,10 +46,9 @@
                         </div>
                     </aside>
                     <ul class="sidebar-menu">
-                        <li><a class="nav-link" href="${url}/dashboardstaff.jsp"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
 
                         <li class="menu-header">Booking</li>
-                        <li><a class="nav-link" href="${url}/ListBooking"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
+                        <li><a class="nav-link" href="${url}/ListBookingStaff"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
                         <li><a class="nav-link" href="${url}/HistoryBooking1"><i class="fas fa-history"></i><span>History Booking</span></a></li>
                         <li><a class="nav-link" href="${url}/customerInfo"><i class="fas fa-history"></i><span>Customer</span></a></li>
 
