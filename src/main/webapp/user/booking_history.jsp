@@ -87,7 +87,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Room</th>
+                <th>Booking ID</th>
                 <th>Check-in Date</th>
                 <th>Check-out Date</th>
                 <th>State</th>
@@ -99,7 +99,7 @@
             <c:forEach var="b" items="${requestScope.data}" varStatus="loop">
                 <tr>
                     <td>${loop.index + 1}</td>
-                    <td>${b.roomId}</td>
+                    <td>${b.id}</td>
                     <td><fmt:formatDate value="${b.checkInDate}" pattern="dd-MM-yyyy" /></td>
                     <td><fmt:formatDate value="${b.checkOutDate}" pattern="dd-MM-yyyy" /></td>
                     <td style="color:
@@ -125,7 +125,7 @@
                         </div>
                     </td>
                     <td>
-                        <c:if test="${b.bookingState != 'cancelled'}">
+                        <c:if test="${b.bookingState != 'cancelled' && b.bookingState != 'pending'}">
                             <form action="${pageContext.request.contextPath}/CancelBooking" method="get">
                                 <input type="hidden" name="bookingID" value="${b.id}">
                                 <input type="hidden" name="amount" value="${b.bookingPrice}">

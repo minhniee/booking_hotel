@@ -65,15 +65,26 @@ public class ManageInsertService extends HttpServlet {
         image.write(realPath +"/"+ filename);
         ManageServiceDAO dao = new ManageServiceDAO();
         ManageService manageService = dao.getManageServiceById(id);
-        if(manageService == null) {
+        ManageService manageServiceImage = dao.getManageServiceByImage(filename);
+        ArrayList<ManageServiceCategory> list = new ArrayList<>();
+        ManageServiceCategoryDAO mdao = new ManageServiceCategoryDAO();
+
+        if(manageService != null) {
+            list = mdao.selectAll();
+            request.setAttribute("list", list);
+            request.setAttribute("id","Id is already in use");
+            request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
+        }else if(manageServiceImage != null) {
+            list = mdao.selectAll();
+            request.setAttribute("list", list);
+            request.setAttribute("errorImg","Image is already in use");
+            request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
+
+        }else {
             dao.InsertManageService(id, category, name,description,price,quantity,filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Insert Successfully !!!");
             response.sendRedirect("ManageService");
-        }else{
-            request.setAttribute("id","Id is already in use");
-            request.getRequestDispatcher("Admin/InsertService.jsp").forward(request, response);
-
         }
 
     }

@@ -1,7 +1,81 @@
 
-T
-$src/main/java/context/DBContext.java,7\3\7343c454ed7c253d0f70b1e41379daa173e85e21
+g
+7src/main/java/controller/authentication/ChangePass.java,7\4\74260e52315b45ce7eb2767cdee21465e592660a
 S
-#src/main/java/DAO/RoomClassDAO.java,3\f\3fdfc6485deb5a4430075cffc630306390271ce5
+#src/main/webapp/user/changePass.jsp,2\6\267d8b59fcafb787b9f309892acdb7084fc04306
+X
+(src/main/webapp/user/booking_history.jsp,b\1\b1579a0d8d2a30f54e1ddc1e316eea662304fe9c
+`
+0src/main/java/controller/user/UpdateProfile.java,3\c\3c5a95a1a3c37f026e66659232046041a76462e0
+^
+.src/main/java/controller/user/ViewProfile.java,4\7\47c7a4cbfa2bd6ff8472659252c1bc9f07797a5e
+U
+%src/main/webapp/user/user_profile.jsp,8\3\83a7dc0a16b1046b332b131edb0a0ddef303ccae
+P
+ src/main/java/model/Account.java,e\7\e7113a38001eae042bd6ba1bf26fcbd81a7e900d
+Q
+!src/main/webapp/layout/cdnpkg.jsp,6\e\6ef0025fb5602d14ede63ce95832477cf92bcf1d
+U
+%src/main/webapp/layout/DatePicker.jsp,f\8\f8796da45c4d12d40bde6219666381ed2fb4e3d3
+Q
+!src/main/webapp/layout/footer.jsp,0\6\06a047f141efdd65c99abeccdddb71a4eb5ac79e
+U
+%src/main/webapp/layout/header-old.jsp,b\e\bec220addc1819da67bc26553bef307a024d6557
+T
+$src/main/webapp/layout/subheader.jsp,5\9\59a2e6b8a3167406b8aa4ae11d8c9832cfb88d43
+b
+2src/main/java/controller/authentication/Login.java,9\b\9b2a20b8951ddcfa6ad02698176b489e4c1632ba
+K
+src/main/webapp/testpro.jsp,4\5\4593b8f446d6739b6725d1993e5f42b574d69299
+Q
+!src/main/java/DAO/AccountDAO.java,5\4\54ef034ad11e5bb8b94ecf018dc783fa79c8eeff
 O
-src/main/webapp/roomDetails.jsp,5\e\5ed7023f454cf95dd69bda63ddc25d7961157754
+src/main/webapp/RoomClasses.jsp,4\2\42bc0973930b1bd376fad922d8beaaf675a11028
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+Q
+!src/main/java/DAO/bookingDAO.java,8\0\808b96347d895b5d15286dca73bb747d5aa42251
+O
+src/main/webapp/editService.jsp,c\6\c668d755c5b0fface9c7cc2ce757bddf1a2883a3
+Q
+!src/main/java/model/Customer.java,d\8\d809aaf69069b4e367322db0008755f08edcc9a2
+_
+/src/main/java/controller/staff/RoomClasses.java,6\3\6367240bd431c8e17e23eb1c74d23ee5856e745a
+c
+3src/main/java/controller/booking/BookingDetail.java,4\8\4897badd3d98160e5389b029352da4e13122729e
+b
+2src/main/java/controller/staff/CustomerDetail.java,a\6\a6341a0dadced122bae2ec3eb3426727812ed215
+S
+#src/main/webapp/dashBoardStaff1.jsp,f\a\fa5db140ceca624681856e908ec2a4cc3e3366c2
+P
+ src/main/webapp/viewMaterial.jsp,9\0\903059a193268c4b679ca6ef340962193c8e9b21
+Y
+)src/main/webapp/Admin/ManageRoomClass.jsp,5\8\58aab051092b911c37327219c8198c76833918dc
+Q
+!src/main/java/DAO/ServiceDAO.java,7\f\7f3d0048806baa0c3a03b870864364f7e1f9f1ec
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+\
+,src/main/java/controller/admin/Checkout.java,f\4\f45dab31bf77a2183ca9fd892efa01029cd087a3
+L
+src/main/webapp/editRoom.jsp,2\4\240e31eb9bbc4b08ec836274ebcd069977118c30
+R
+"src/main/webapp/customerDetail.jsp,0\b\0b7110e8f8acbb9e14f40844bb79ccc6f700040d
+P
+ src/main/webapp/profileStaff.jsp,a\4\a4613bdd8d3757e37c8bb5fe01ced935b671fa73
+P
+ src/main/webapp/editMaterial.jsp,e\0\e0d1b69f3a7f540ed49be20812e00bf24ab006cb
+P
+ src/main/webapp/customerInfo.jsp,c\2\c28b0a87c16fee0d13c1ffba6912bbcbc709e7cc
+R
+"src/main/java/DAO/CustomerDAO.java,f\2\f2372d99f192b4a76c23545601a7396f89eb0e92
+a
+1src/main/java/controller/user/ContactServlet.java,c\0\c0a51376b3b6ae10205da499a46ca487deb87ac6
+]
+-src/main/webapp/Assets/assets/css/app.min.css,e\c\ecf9ab76b09190ebe9bba7ae1deba047f4e9f54f
+Y
+)src/main/java/controller/admin/Chart.java,c\a\ca1e50fbc872b498f088891bd61e23d29f466a1e
+`
+0src/main/java/controller/staff/CustomerInfo.java,0\d\0d1a7e0fb1045e1bff6b54d71d5d074193ad4385
+_
+/src/main/java/controller/staff/ViewService.java,d\9\d9b6f7f1a0f89afa5b95eba2fa5b8e4bbe5584cc

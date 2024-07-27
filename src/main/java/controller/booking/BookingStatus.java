@@ -49,17 +49,16 @@ public class BookingStatus extends HttpServlet {
         String accountId = request.getParameter("acid");
         String price = request.getParameter("price");
 //        String email = request.getParameter("email");
-        System.out.println(accountId);
+//        System.out.println(accountId +"asdsadsda");
         String bookingDate = request.getParameter("bookingdate");
+
+
+        if (action.equalsIgnoreCase("reject")) {
+
         AccountDAO dao = new AccountDAO();
         Account ac =dao.getAccountById(accountId);
         String email = ac.getEmail();
         double totalPrice = 0;
-
-//        totalPrice = Double.parseDouble(price);
-
-        if (action.equalsIgnoreCase("reject")) {
-
 //            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
             // Date format for the desired output date string
@@ -110,15 +109,6 @@ public class BookingStatus extends HttpServlet {
 
     }
 
-    public static String generateUniqueKey() {
-        String key;
-
-        // Generate a UUID and take the first 12 characters (to ensure length 12)
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        key = uuid.substring(0, 8);
-
-        return key;
-    }
 
     public void destroy() {
     }

@@ -11,6 +11,8 @@
 <link rel='shortcut icon' type='image/x-icon' href='${url}/Assets/assets/img/favicon.ico'/>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
         <div class="navbar-bg"></div>
@@ -63,7 +65,7 @@
                         <li class="menu-header">Materials</li>
                         <li><a class="nav-link" href="ManageMaterial"><i class="fas fa-tools"></i><span>Manage Material</span></a></li>
                         <li><a class="nav-link" href="listAccount"><i class="fas fa-user-cog"></i><span>Accounts</span></a></li>
-                        <li><a class="nav-link" href="${url}/user/user_profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                        <li><a class="nav-link" href="${url}/profileAdmin.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
                         <li><a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
                     </ul>
                     </aside>

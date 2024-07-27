@@ -3,9 +3,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Assets/css/styleDashboard.css">
-    <%@include file="layout/cdnpkg.jsp"%>
     <title>Title</title>
     <style>
         .text-right{
@@ -14,66 +11,23 @@
             font-size: 40px;
             font-family: auto;
         }
+        .table{
+            background-color: #f6e7d1;
+        }
+
+        .input-group-text, select.form-control:not([size]):not([multiple]), .form-control:not(.form-control-sm):not(.form-control-lg) {
+            border-color: black;
+        }
+        .btn-primary {
+            background-color: blue;
+        }
 
 
     </style>
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo"></div>
-    <ul class="menu">
-        <li >
-            <a href="dashboardstaff.jsp" >
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href="profileStaff.jsp">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="ViewService">
-                <i class="fas fa-chart-bar"></i>
-                <span>Service</span>
-            </a>
-        </li>
-        <li>
-            <a href="ViewMaterial">
-                <i class="fas fa-briefcase"></i>
-                <span>Material</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
-            </a>
-        </li>
-        <li>
-            <a href="roomManager">
-                <i class="fas fa-cog"></i>
-                <span>Room</span>
-            </a>
-        </li>
-        <li>
-            <a href="customerInfo">
-                <i class="fas fa-star"></i>
-                <span>Customer</span>
-            </a>
-        </li>
-        <li class="logout">
-            <a href="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div class="main--content" >
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content" >
     <div class="table">
     <form action="profileStaff" method="post" onsubmit="return validateForm()">
         <div class="p-3 py-5" style="border-style: groove;    border-radius: 30px;">
@@ -83,18 +37,18 @@
             <div class="row mt-2">
                 <div class="col-md-6">
                     <label class="labels">User name</label>
-                    <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${account.userName}">
+                    <input readonly style="background-color: #e9e8e8; font-weight:520;" type="text" name="userName" class="form-control" placeholder="first name" value="${ac.userName}">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label class="labels">Full name</label>
-                    <input type="text" name="fname" class="form-control" placeholder="enter full name" value="${account.fullName}">
+                    <input type="text" name="fname" class="form-control" placeholder="enter full name" value="${ac.fullName}">
                     <small class="error-message text-danger" id="fullNameError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="enter email" value="${account.email}">
+                    <input type="text" name="email" class="form-control" placeholder="enter email" value="${ac.email}" readonly>
                     <small class="error-message text-danger" id="emailError"></small>
                 </div>
                 <div class="col-md-12">
@@ -106,17 +60,17 @@
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Phone</label>
-                    <input type="text" name="phone" class="form-control" placeholder="enter phone number" value="${account.phone}">
+                    <input type="text" name="phone" class="form-control" placeholder="enter phone number" value="${ac.phone}">
                     <small class="error-message text-danger" id="phoneError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Date of birth</label>
-                    <input type="date" name="dob" class="form-control" max="2024-07-31" value="${account.dob}">
+                    <input type="date" name="dob" class="form-control" max="2024-07-31" value="${ac.dob}">
                     <small class="error-message text-danger" id="dobError"></small>
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Address</label>
-                    <input type="text" name="address" class="form-control" placeholder="enter address" value="${account.address}">
+                    <input type="text" name="address" class="form-control" placeholder="enter address" value="${ac.address}">
                     <small class="error-message text-danger" id="addressError"></small>
                 </div>
             </div>

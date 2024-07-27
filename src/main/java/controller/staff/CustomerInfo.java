@@ -73,15 +73,18 @@ public class CustomerInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
-        System.out.println("Received customerId: " + customerId); // Logging
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer customer = customerDAO.getCustomerById(customerId);
-        request.setAttribute("customer", customer);
-        request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
+//        int customerId = Integer.parseInt(request.getParameter("customerId"));
+//        response.sendRedirect("customerDetail?customerId=" + customerId);
+
+//        int customerId = Integer.parseInt(request.getParameter("customerId"));
+//        System.out.println("Received customerId: " + customerId); // Logging
+//        CustomerDAO customerDAO = new CustomerDAO();
+//        Customer customer = customerDAO.getCustomerById(customerId);
+//        request.setAttribute("customer", customer);
+//        request.getRequestDispatcher("customerDetail.jsp").forward(request, response);
     }
 
-    //    @Override
+    //        @Override
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //    throws ServletException, IOException {
 //        int customerId = Integer.parseInt(request.getParameter("customerId"));

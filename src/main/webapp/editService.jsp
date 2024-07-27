@@ -8,12 +8,13 @@
     <title>Edit Service</title>
     <style>
         .container {
-            max-width: 650px;
+            max-width: 630px;
             margin: 0 auto;
             padding: 20px;
             font-family: Arial, sans-serif;
             border: 2px solid;
-            background-color: rgba(236, 231, 231, 0.29);
+            border-radius: 20px;
+            background-color: rgb(246, 231, 209);
         }
 
         h1 {
@@ -95,59 +96,8 @@
     </script>
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo"></div>
-    <ul class="menu">
-        <li>
-            <a href="dashboardstaff.jsp">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li >
-            <a href="profileStaff.jsp">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href="ViewService">
-                <i class="fas fa-chart-bar"></i>
-                <span>Service</span>
-            </a>
-        </li>
-        <li>
-            <a href="ViewMaterial">
-                <i class="fas fa-briefcase"></i>
-                <span>Material</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
-            </a>
-        </li>
-        <li>
-            <a href="roomManager">
-                <i class="fas fa-cog"></i>
-                <span>Room</span>
-            </a>
-        </li>
-        <li>
-            <a href="customerInfo">
-                <i class="fas fa-star"></i>
-                <span>Customer</span>
-            </a>
-        </li>
-        <li class="logout">
-            <a href="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
-        </li>
-    </ul>
-</div>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
 <div class="container" style="border-radius: 20px;max-width: unset; margin: auto">
     <h1 style="text-align: center;">Edit Service</h1>
     <form action="editService" method="post" onsubmit="return validateForm()">

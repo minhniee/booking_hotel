@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 5/27/2024
-  Time: 2:29 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -61,7 +55,7 @@
 
                     <td>${roomClasses.basePrice}</td>
 
-                    <td><img src="${pageContext.request.contextPath}/Assets/image/room/${roomClasses.mainImage}" width="120px"></td>
+                    <td><img src="${pageContext.request.contextPath}/Assets1/img/rooms/${roomClasses.mainImage}" width="120px"></td>
                     <td>
                         <a href="UpdateRoomClass?id=${roomClasses.id}"><button class="fas fa-edit"></button></a>
                         <a href="UpdateImageRoomClass?id=${roomClasses.id}"><button class="fas fa-file-image" style="background: #00c6ff"></button></a>

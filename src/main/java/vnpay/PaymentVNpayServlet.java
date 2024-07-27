@@ -6,6 +6,7 @@ package vnpay;
 
 import DAO.AccountDAO;
 import DAO.bookingDAO;
+import controller.booking.TimerTask;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,23 +40,21 @@ public class PaymentVNpayServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException      if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 //        if (session.getAttribute("total") == null) {
 //            response.sendRedirect("index");
 //        } else {
-            /*
-            Don't touch please
-             */
+        int timeExpert = 15;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String accountId = request.getParameter("accountid");
-            String bookingId = request.getParameter("bookingid");
+        String bookingId = request.getParameter("bookingid");
         bookingDAO bookingDAO = new bookingDAO();
         AccountDAO accountDAO = new AccountDAO();
-        Account account = accountDAO.getAccountById(accountId);
         Booking booking = bookingDAO.GetBookingById(bookingId);
+        Account account = accountDAO.getAccountById(booking.getAccountId());
+        System.out.println(account.getEmail());
+        System.out.println(account.getUserName());
 //            String checkinDateParam = session.getAttribute("checkInDate").toString();
 //            String checkoutDateParam = session.getAttribute("checkOutDate").toString();
 //            String childrenParam = session.getAttribute("children").toString();
@@ -111,7 +110,7 @@ public class PaymentVNpayServlet extends HttpServlet {
         String vnp_CreateDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
 
-        cld.add(Calendar.MINUTE, 5);
+        cld.add(Calendar.MINUTE, timeExpert);
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
@@ -166,20 +165,12 @@ public class PaymentVNpayServlet extends HttpServlet {
 //        request.setAttribute("adults", booking.getNumAdults());
 //        request.setAttribute("roomId", booking.getRoomId());
 //        request.setAttribute("bookingId",booking.getId());
-        System.out.println(account.getUserName());
-        Email.sendEmail(account.getEmail(), "Payment", "The link contain in 5 minute " + paymentUrl);
-//        System.out.println();
-        request.getRequestDispatcher("BookingStatus").forward(request,response);
-    }
+//        System.out.println(account.getUserName());
+        bookingDAO.updateStateBooking(bookingId,"inprocess");
+        Email.sendEmail(account.getEmail(), "Payment", "The link contain in 15 minute " + paymentUrl);
+        TimerTask.timerRejectBooking(bookingId,"reject",timeExpert*60);
 
-    public static String generateUniqueKey() {
-        String key;
-
-        // Generate a UUID and take the first 12 characters (to ensure length 12)
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        key = uuid.substring(0, 12);
-
-        return key;
+        response.sendRedirect("BookingStatus");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -193,8 +184,7 @@ public class PaymentVNpayServlet extends HttpServlet {
      * @throws IOException      if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException e) {
@@ -211,8 +201,7 @@ public class PaymentVNpayServlet extends HttpServlet {
      * @throws IOException      if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException e) {

@@ -56,14 +56,18 @@ public class InsertMaterial extends HttpServlet {
         image.write(realPath +"/"+ filename);
         ManageMaterialDAO dao = new ManageMaterialDAO();
         Material material = dao.getMaterialById(id);
-        if(material == null) {
-            dao.InsertMaterial(id.toUpperCase(), name, quantity, price, image.getSubmittedFileName());
+        Material materialImage = dao.getMaterialByImage(filename);
+        if(material != null ) {
+            request.setAttribute("error", "Id is already in use!!!");
+            request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
+        }else if(materialImage != null){
+            request.setAttribute("errorImg", "Image is already in use!!!");
+            request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
+        }else{
+            dao.InsertMaterial(id.toUpperCase(), name, quantity, price, filename);
             HttpSession session = request.getSession();
             session.setAttribute("success", "Successfully Inserted Material!!!");
             response.sendRedirect("ManageMaterial");
-        }else {
-            request.setAttribute("error", "Id is already in use!!!");
-            request.getRequestDispatcher("Admin/InsertMaterial.jsp").forward(request, response);
         }
 
 

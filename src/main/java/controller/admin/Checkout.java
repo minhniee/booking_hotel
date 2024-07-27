@@ -48,6 +48,8 @@ public class Checkout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        FilteAdmin.filterRoleAdmin(request,response);
+
         ManageMaterialDAO dao = new ManageMaterialDAO();
         String id = request.getParameter("id");
         ArrayList<Material> list = new ArrayList<>();
@@ -62,6 +64,8 @@ public class Checkout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        FilteAdmin.filterRoleAdmin(request,response);
+
         String bill_id = request.getParameter("id");
         String booking_id = request.getParameter("booking_id");
         String accountid = request.getParameter("accountid");
@@ -74,7 +78,7 @@ public class Checkout extends HttpServlet {
         dao.InsertBillDetail(id, bill_id, accountid, material, total_amount, date);
 
 
-    response.sendRedirect("chartData");
+    response.sendRedirect("listBooking");
     }
 
     @Override

@@ -258,14 +258,6 @@ public class roomDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(roomDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pr != null) pr.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return room;
     }
@@ -275,7 +267,7 @@ public class roomDAO {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room";
 //        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
-        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? AND bs.state ='confirmed' AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? AND( bs.state ='confirmed' or bs.state ='inprocess' ) AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
 
         try{
             con = new DBContext().getConnection();
@@ -309,7 +301,7 @@ public class roomDAO {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room where room_class_id = ?";
 //        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date) ";
-        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? and bs.state like 'confirmed' AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? and (bs.state like 'confirmed' or bs.state like 'inprocess') AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
         try{
             con = new DBContext().getConnection();
             pr = con.prepareStatement(query);

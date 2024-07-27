@@ -17,9 +17,10 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f6e7d1;
+            border-radius: 20px;
+            border: 2px solid;
+            box-shadow: 0px 0px 10px rgba(220, 220, 220, 0.4);
         }
 
         h1 {
@@ -150,6 +151,8 @@
 
 </head>
 <body>
+<%@include file="dashBoardStaff1.jsp"%>
+<div class="main-content">
 <div class="container">
     <h1>Edit Room</h1>
     <form action="editRoom" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
@@ -189,13 +192,14 @@
             <label for="image">Image:</label>
             <input type="hidden" name="oldImage" value="${room.roomImg}">
             <input  id="image" type="file" name="image" accept="image/*" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" ><br><br>
-            <img id="imagePreview" class="mt-3"  src="Assets/image/room/${room.roomImg}" alt="image" width="30%">
+            <img id="imagePreview" class="mt-3"  src="Assets1/img/rooms/${room.roomImg}" alt="image" width="30%">
         </div>
         <div class="form-group">
                 <button type="submit">Update</button>
                 <button type="button" onclick="window.location.href = 'roomManager'">Cancel</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>

@@ -101,4 +101,19 @@ public class ManageMaterialDAO extends DBContext {
         }
         return getMaterialByName;
    }
+    public Material getMaterialByImage(String image) {
+        String sql = "   select * from material where material_image = ?";
+        try {
+            PreparedStatement stm = getConnection().prepareStatement(sql);
+            stm.setString(1, image);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return new Material(rs.getString(1)
+                        ,rs.getString(2), rs.getInt(3),rs.getDouble(4),rs.getString(5) );
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
