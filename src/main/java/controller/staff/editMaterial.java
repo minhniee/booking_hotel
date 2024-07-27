@@ -11,6 +11,7 @@ import model.Material;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,12 @@ public class editMaterial extends HttpServlet {
         Part imageSrc = request.getPart("image");
         String realPath = request.getServletContext().getRealPath("/Assets/image/material");
         String filename = Path.of(imageSrc.getSubmittedFileName()).getFileName().toString();
+        // Ensure the directory exists
+        if (!Files.exists(Path.of(realPath))) {
+            Files.createDirectory(Path.of(realPath));
+        }
+
+
         Map<String, String> errorMessages = new HashMap<>();
         boolean hasError = false;
 
