@@ -2,6 +2,7 @@ package controller.staff;
 
 import DAO.MaterialDAO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(name = "editMaterial", value = "/editMaterial")
+@MultipartConfig
 public class editMaterial extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -54,7 +56,7 @@ public class editMaterial extends HttpServlet {
         String name = request.getParameter("name");
         String quantityStr = request.getParameter("quantity");
         String priceStr = request.getParameter("price");
-        //String image = request.getParameter("image");
+//        String image = request.getParameter("image");
         String image = request.getParameter("oldImage");
         Part imageSrc = request.getPart("image");
         String realPath = request.getServletContext().getRealPath("/Assets/image/material");
@@ -63,7 +65,6 @@ public class editMaterial extends HttpServlet {
         if (!Files.exists(Path.of(realPath))) {
             Files.createDirectory(Path.of(realPath));
         }
-
         if(filename != null && !filename.isEmpty()) {
             imageSrc.write(realPath + "/" + filename);
             image = filename;
