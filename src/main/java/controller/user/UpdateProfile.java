@@ -101,6 +101,19 @@ public class UpdateProfile extends HttpServlet {
         if (dob == null || dob.trim().isEmpty()) {
             request.setAttribute("dobError", "Date of birth is required.");
             hasError = true;
+        }else {
+            // Check if the date of birth is more than 12 years ago
+            Date birthDate = Date.valueOf(dob);
+            Date currentDate = new Date(System.currentTimeMillis());
+            int age = currentDate.getYear() - birthDate.getYear();
+            if (birthDate.getMonth() > currentDate.getMonth() ||
+                    (birthDate.getMonth() == currentDate.getMonth() && birthDate.getDate() > currentDate.getDate())) {
+                age--;
+            }
+            if (age < 12) {
+                request.setAttribute("dobError", "You must be at least 12 years old.");
+                hasError = true;
+            }
         }
 
         if (address == null || address.trim().isEmpty()) {
