@@ -131,8 +131,8 @@ public class BookingHandle extends HttpServlet {
 
                 // Example list of holidays (you can replace it with your actual holiday list or logic)
                 List<LocalDate> holidays = Arrays.asList(
-                        LocalDate.of(now.getYear(), 1, 1),   // New Year's Day
-                        LocalDate.of(now.getYear(), 12, 25)  // Christmas
+                        LocalDate.of(now.getYear(), 1, 1),
+                        LocalDate.of(now.getYear(), 12, 25)
                         // Add more holidays as needed
                 );
 

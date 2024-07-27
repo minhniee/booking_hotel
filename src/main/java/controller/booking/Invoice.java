@@ -4,20 +4,15 @@
  */
 package controller.booking;
 
-import DAO.billDAO;
-import DAO.bookingDAO;
-import DAO.paymentDAO;
-import DAO.roomDAO;
+import DAO.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Bill;
-import model.Booking;
-import model.Payment;
-import model.Room;
+import model.*;
+import util.Email;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,6 +31,16 @@ import java.util.Random;
  */
 @WebServlet(name = "BillBookingRoomServlet", urlPatterns = {"/Invoice"})
 public class Invoice extends HttpServlet {
+
+    public static String getRandomNumber(int len) {
+        Random rnd = new Random();
+        String chars = "0123456789";
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return sb.toString();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -66,120 +71,169 @@ public class Invoice extends HttpServlet {
         String bookingId = request.getParameter("vnp_OrderInfo");
         String state = "";
 
-            bookingDAO bookingDAO = new bookingDAO();
-            roomDAO roomDAO = new roomDAO();
-            Booking booking = null;
-            Room room = null;
-            try {
-                booking = bookingDAO.GetBookingById(bookingId);
-                room = roomDAO.getRoomById(booking.getRoomId());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        bookingDAO bookingDAO = new bookingDAO();
+        roomDAO roomDAO = new roomDAO();
+        AccountDAO accountDAO = new AccountDAO();
+        Booking booking = null;
+        Room room = null;
+        Account account = null;
+        try {
+            booking = bookingDAO.GetBookingById(bookingId);
+            room = roomDAO.getRoomById(booking.getRoomId());
+            account = accountDAO.getAccountById(booking.getAccountId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            if (booking.getAccountId() == null || booking.getCheckInDate() == null || booking.getCheckOutDate() == null || booking.getRoomId() == null || booking.getId() == null || vnp_Amount == null || vnp_ResponseCode == null) {
+                request.setAttribute("noti", "Invalid input parameters");
+                request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+                return;
             }
 
-            try {
-                if (booking.getAccountId() == null || booking.getCheckInDate() == null || booking.getCheckOutDate() == null || booking.getRoomId() == null || booking.getId() == null || vnp_Amount == null || vnp_ResponseCode == null) {
-                    request.setAttribute("noti", "Invalid input parameters");
-                    request.getRequestDispatcher("errorPage.jsp").forward(request, response);
-                    return;
-                }
+            DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-                DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
+            LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
 
-                LocalDate checkInDate = booking.getCheckInDate().toLocalDate();
-                LocalDate checkOutDate = booking.getCheckOutDate().toLocalDate();
+            int nights = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
 
-                int nights = (int) ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+            if (nights < 3) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
+            } else if (nights < 10) {
+                room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
+            } else {
+                room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
+            }
 
-                if (nights < 3) {
-                    room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.3));
-                } else if (nights < 10) {
-                    room.setBasePrice(room.getBasePrice() + (room.getBasePrice() * 0.1));
-                } else {
-                    room.setBasePrice(room.getBasePrice() - (room.getBasePrice() * 0.1));
-                }
+            LocalDateTime currentDate = LocalDateTime.now();
+            Timestamp timePayment = Timestamp.valueOf(currentDate);
+            String invoiceDate = currentDate.format(currentDateFormatter);
 
-                LocalDateTime currentDate = LocalDateTime.now();
-                Timestamp timePayment = Timestamp.valueOf(currentDate);
-                String invoiceDate = currentDate.format(currentDateFormatter);
-
-                int adults = booking.getNumAdults();
-                int children = booking.getNumChildren();
-                double priceValue = booking.getBookingPrice();
-                billDAO billDAO = new billDAO();
-                if (vnp_ResponseCode.equals("00")){
+            int adults = booking.getNumAdults();
+            int children = booking.getNumChildren();
+            double priceValue = booking.getBookingPrice();
+            billDAO billDAO = new billDAO();
+            if (vnp_ResponseCode.equals("00")) {
 
                 TimerTask.timer.cancel();
                 bookingDAO.updateStateBooking(bookingId, "confirm");
-                Bill bill = new Bill(getRandomNumber(4),booking.getAccountId(), booking.getId(), booking.getBookingPrice());
+                Bill bill = new Bill(getRandomNumber(4), booking.getAccountId(), booking.getId(), booking.getBookingPrice());
                 billDAO.insertBill(bill);
                 Payment payment = new Payment(vnp_TxnRef, bookingId, priceValue, timePayment, 1);
                 new paymentDAO().insertPayment(payment);
 
-                 state = "confirmed";
-                }else {
-                    bookingDAO.updateStateBooking(bookingId, "reject");
-                    state= "cancelled";
-                }
-                // insert pay
-                request.setAttribute("checkInDate", booking.getCheckInDate());
-                request.setAttribute("checkOutDate", booking.getCheckOutDate());
-                request.setAttribute("roomId", booking.getRoomId());
-                request.setAttribute("bookingID", booking.getId());
-                request.setAttribute("nights", nights);
-                request.setAttribute("basePrice", room.getBasePrice());
-                request.setAttribute("noti", "Add successful");
-                request.setAttribute("vnp_TxnRef", vnp_TxnRef);
-                request.setAttribute("invoiceDate", invoiceDate);
-                request.setAttribute("state",state);
+                String email = "<!DOCTYPE html>\n" +
+                        "<html lang=\"en\">\n" +
+                        "<head>\n" +
+                        "    <meta charset=\"UTF-8\">\n" +
+                        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "    <title>Booking Confirmation Pending Approval</title>\n" +
+                        "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap\">\n" +
+                        "\n" +
+                        "</head>\n" +
+                        "<body style=\"font-family: Barlow, sans-serif; line-height: 1.6;\">\n" +
+                        "    <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+                        "        <tr>\n" +
+                        "            <td align=\"center\">\n" +
+                        "                <table width=\"600\" cellpadding=\"20\" cellspacing=\"0\" border=\"0\" style=\"border: 1px solid #dddddd; border-radius: 5px; margin-top: 20px;\">\n" +
+                        "                    <tr>\n" +
+                        "                        <td align=\"center\" style=\"background-color: #72a322; color: white;\">\n" +
+                        "                            <h1>Booking Confirmation Pending Approval</h1>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>\n" +
+                        "                    <tr>\n" +
+                        "                        <td style=\"background-color: #ffffff; color: #333333;\">\n" +
+                        "                            <p>Dear <strong>"+account.getUserName()+"</strong>,</p>\n" +
+                        "                            <p>Thank you for choosing <strong>Renager</strong>. We are pleased to inform you that your booking has been successfully received and is currently pending approval from our admin team.</p>\n" +
+                        "                            <p><strong>Booking Details:</strong></p>\n" +
+                        "                            <ul>\n" +
+                        "                                <li><strong>Booking ID:</strong> "+ bookingId+"</li>\n" +
+                        "                                <li><strong>Check-in Date:</strong>"+booking.getCheckInDate()+"</li>\n" +
+                        "                                <li><strong>Check-out Date:</strong> "+booking.getCheckOutDate()+"</li>\n" +
+                        "                                <li><strong>Room Type:</strong> "+session.getAttribute("roomClassName").toString()+"</li>\n" +
+                        "                                <li><strong>Number of Guests:</strong>"+ (children+adults)+" </li>\n" +
+                        "                            </ul>\n" +
+                        "                            <p>We will notify you once your booking has been approved. In the meantime, if you have any questions or need further assistance, please do not hesitate to contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a> or call us at <strong>031234567</strong>.</p>\n" +
+                        "                            <p>Thank you for your patience.</p>\n" +
+                        "                            <p>Sincerely,</p>\n" +
+                        "                            Renager Hotel<br>\n" +
+                        "                            Thach That, Hoa Lac, Ha Noi<br>\n" +
+                        "                            <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a><br>\n" +
+                        "                            031234567<br>\n" +
+                        "                            <!-- <a href=\"[Hotel Website]\"></a></p> -->\n" +
+                        "                        </td>\n" +
+                        "                    </tr>\n" +
+                        "                    <tr>\n" +
+                        "                        <td align=\"center\" style=\"background-color: #f9f9f9; color: #999999; font-size: 12px;\">\n" +
+                        "                            <p>You are receiving this email because you made a booking at [Hotel Name]. If you did not make this booking or no longer wish to receive these emails, please contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a>.</p>\n" +
+                        "                        </td>\n" +
+                        "                    </tr>\n" +
+                        "                </table>\n" +
+                        "            </td>\n" +
+                        "        </tr>\n" +
+                        "    </table>\n" +
+                        "</body>\n" +
+                        "</html>\n";
+                Email.sendEmail(account.getEmail(),"Thank for booking",email);
 
-                request.getRequestDispatcher("homePage/invoice.jsp").forward(request, response);
-
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                //            request.setAttribute("paymentMethod", payment);
-                request.setAttribute("bookingID", bookingId.toUpperCase());
-                request.setAttribute("accountid", booking.getAccountId());
-                request.setAttribute("checkInDate", booking.getCheckInDate());
-                request.setAttribute("checkOutDate", booking.getCheckOutDate());
-                request.setAttribute("children", booking.getNumChildren());
-                request.setAttribute("adults", booking.getNumAdults());
-                request.setAttribute("roomId", booking.getRoomId());
-                request.setAttribute("vnp_TxnRef", vnp_TxnRef);
-                request.setAttribute("noti", "Invalid number format");
-                request.getRequestDispatcher("errorPage.jsp").forward(request, response);
-            } catch (DateTimeParseException e) {
-                e.printStackTrace();
-                request.setAttribute("noti", "Invalid date format");
-                request.getRequestDispatcher("errorPage.jsp").forward(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-                request.setAttribute("noti", "An unexpected error occurred");
-                request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+                state = "confirmed";
+            } else {
+                bookingDAO.updateStateBooking(bookingId, "reject");
+                state = "cancelled";
             }
+            // insert pay
+            request.setAttribute("checkInDate", booking.getCheckInDate());
+            request.setAttribute("checkOutDate", booking.getCheckOutDate());
+            request.setAttribute("roomId", booking.getRoomId());
+            request.setAttribute("bookingID", booking.getId());
+            request.setAttribute("nights", nights);
+            request.setAttribute("basePrice", room.getBasePrice());
+            request.setAttribute("noti", "Add successful");
+            request.setAttribute("vnp_TxnRef", vnp_TxnRef);
+            request.setAttribute("invoiceDate", invoiceDate);
+            request.setAttribute("state", state);
 
+            request.getRequestDispatcher("homePage/invoice.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            //            request.setAttribute("paymentMethod", payment);
+            request.setAttribute("bookingID", bookingId.toUpperCase());
+            request.setAttribute("accountid", booking.getAccountId());
+            request.setAttribute("checkInDate", booking.getCheckInDate());
+            request.setAttribute("checkOutDate", booking.getCheckOutDate());
+            request.setAttribute("children", booking.getNumChildren());
+            request.setAttribute("adults", booking.getNumAdults());
+            request.setAttribute("roomId", booking.getRoomId());
+            request.setAttribute("vnp_TxnRef", vnp_TxnRef);
+            request.setAttribute("noti", "Invalid number format");
+            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+            request.setAttribute("noti", "Invalid date format");
+            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("noti", "An unexpected error occurred");
+            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
         }
-    public static String getRandomNumber(int len) {
-        Random rnd = new Random();
-        String chars = "0123456789";
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        return sb.toString();
+
     }
 
-        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-        /**
-         * Handles the HTTP <code>GET</code> method.
-         *
-         * @param request  servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException      if an I/O error occurs
-         */
-        @Override protected void doGet (HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
 //        String account_id = request.getParameter("accountid");
@@ -274,30 +328,32 @@ public class Invoice extends HttpServlet {
 //            request.setAttribute("noti", "An unexpected error occurred");
 //            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
 //        }
-            processRequest(request, response);
-
-        }
-
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request  servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException      if an I/O error occurs
-         */
-        @Override protected void doPost (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override public String getServletInfo () {
-            return "Short description";
-        }// </editor-fold>
+        processRequest(request, response);
 
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

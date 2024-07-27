@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking Confirmation</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/Assets1/img/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -126,7 +127,6 @@
         <p><span id="room1-adults">${persons}</span> adults</p>
         <p>Bedding options: <span id="room1-bedding" class="fs-4">${roomClassName}</span></p>
         <p>Early Bird ${earlyBirdDays} Days</p>
-        <p>Breakfast included: <span id="room1-breakfast">[Breakfast Details]</span></p>
         <p>Price: <span id="room1-price">${total}</span></p>
     </div>
 
@@ -134,9 +134,9 @@
     <div class="section total">
         <p>Total: <span id="total-price">${total}</span></p>
         <c:set var = "balance" value = "${total*0.1}" />
-        <fmt:parseNumber var = "i" integerOnly = "false"
+        <fmt:parseNumber var = "i" integerOnly = "yes"
                                                                              type = "number" value = "${balance}" />
-        <p>Included: VAT / Consumption tax <span><c:out value = "${i}" /></span></p>
+        <p>Included: VAT / Consumption tax: <span><c:out value = "${i}" /></span></p>
         <p>Not included: Service Charge <span id="service-charge"></span></p>
     </div>
     <hr>

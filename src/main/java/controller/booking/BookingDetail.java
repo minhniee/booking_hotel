@@ -150,59 +150,7 @@ public class BookingDetail extends HttpServlet {
             // Set response status and forward to the next page
 //            session.setAttribute("bookingId", bookingId);
             Account account = (Account) session.getAttribute("account");
-            String email = "<!DOCTYPE html>\n" +
-                    "<html lang=\"en\">\n" +
-                    "<head>\n" +
-                    "    <meta charset=\"UTF-8\">\n" +
-                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                    "    <title>Booking Confirmation Pending Approval</title>\n" +
-                    "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap\">\n" +
-                    "\n" +
-                    "</head>\n" +
-                    "<body style=\"font-family: Barlow, sans-serif; line-height: 1.6;\">\n" +
-                    "    <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
-                    "        <tr>\n" +
-                    "            <td align=\"center\">\n" +
-                    "                <table width=\"600\" cellpadding=\"20\" cellspacing=\"0\" border=\"0\" style=\"border: 1px solid #dddddd; border-radius: 5px; margin-top: 20px;\">\n" +
-                    "                    <tr>\n" +
-                    "                        <td align=\"center\" style=\"background-color: #72a322; color: white;\">\n" +
-                    "                            <h1>Booking Confirmation Pending Approval</h1>\n" +
-                    "                        </td>\n" +
-                    "                    </tr>\n" +
-                    "                    <tr>\n" +
-                    "                        <td style=\"background-color: #ffffff; color: #333333;\">\n" +
-                    "                            <p>Dear <strong>"+account.getUserName()+"</strong>,</p>\n" +
-                    "                            <p>Thank you for choosing <strong>Renager</strong>. We are pleased to inform you that your booking has been successfully received and is currently pending approval from our admin team.</p>\n" +
-                    "                            <p><strong>Booking Details:</strong></p>\n" +
-                    "                            <ul>\n" +
-                    "                                <li><strong>Booking ID:</strong> "+ bookingId+"</li>\n" +
-                    "                                <li><strong>Check-in Date:</strong>"+checkinDateParam+"</li>\n" +
-                    "                                <li><strong>Check-out Date:</strong> "+checkoutDateParam+"</li>\n" +
-                    "                                <li><strong>Room Type:</strong> "+session.getAttribute("roomClassName").toString()+"</li>\n" +
-                    "                                <li><strong>Number of Guests:</strong>"+ (children+adults)+" </li>\n" +
-                    "                            </ul>\n" +
-                    "                            <p>We will notify you once your booking has been approved. In the meantime, if you have any questions or need further assistance, please do not hesitate to contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a> or call us at <strong>031234567</strong>.</p>\n" +
-                    "                            <p>Thank you for your patience.</p>\n" +
-                    "                            <p>Sincerely,</p>\n" +
-                    "                            Renager Hotel<br>\n" +
-                    "                            Thach That, Hoa Lac, Ha Noi<br>\n" +
-                    "                            <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a><br>\n" +
-                    "                            031234567<br>\n" +
-                    "                            <!-- <a href=\"[Hotel Website]\"></a></p> -->\n" +
-                    "                        </td>\n" +
-                    "                    </tr>\n" +
-                    "                    <tr>\n" +
-                    "                        <td align=\"center\" style=\"background-color: #f9f9f9; color: #999999; font-size: 12px;\">\n" +
-                    "                            <p>You are receiving this email because you made a booking at [Hotel Name]. If you did not make this booking or no longer wish to receive these emails, please contact us at <a href=\"mailto:renager.hotel@gmail.com\">renager.hotel@gmail.com</a>.</p>\n" +
-                    "                        </td>\n" +
-                    "                    </tr>\n" +
-                    "                </table>\n" +
-                    "            </td>\n" +
-                    "        </tr>\n" +
-                    "    </table>\n" +
-                    "</body>\n" +
-                    "</html>\n";
-            Email.sendEmail(account.getEmail(),"Thank for booking",email);
+            Email.sendEmail(account.getEmail(),"Thank for booking",content(account.getFullName()));
             request.getRequestDispatcher("homePage/thankbooking.jsp").forward(request, response);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (DateTimeParseException e) {
@@ -226,6 +174,66 @@ public class BookingDetail extends HttpServlet {
         response.sendError(statusCode, message);
     }
 
+    private static String content(String cusName){
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "    <title>Booking Order Update</title>\n" +
+                "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap\">"+
+                "    <style>\n" +
+                "        body {\n" +
+                "            font-family: Barlow, sans-serif;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "            background-color: #f2f2f2;\n" +
+                "        }\n" +
+                "        .container {\n" +
+                "            width: 100%;\n" +
+                "            max-width: 600px;\n" +
+                "            margin: 0 auto;\n" +
+                "            background-color: #ffffff;\n" +
+                "            padding: 20px;\n" +
+                "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n" +
+                "        }\n" +
+                "        .header {\n" +
+                "            background-color: #007BFF;\n" +
+                "            color: #ffffff;\n" +
+                "            padding: 10px 20px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .content {\n" +
+                "            padding: 20px;\n" +
+                "        }\n" +
+                "        .footer {\n" +
+                "            text-align: center;\n" +
+                "            padding: 10px;\n" +
+                "            font-size: 12px;\n" +
+                "            color: #888888;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"header\">\n" +
+                "            <h1>Booking Order Update</h1>\n" +
+                "        </div>\n" +
+                "        <div class=\"content\">\n" +
+                "            <p>Dear "+ cusName+",</p>\n" +
+                "            <p>Thank you for booking with us. Your order is currently being handled by our admin team. We will notify you once the process is complete.</p>\n" +
+                "            <p>If you have any questions or need further assistance, feel free to reply to this email.</p>\n" +
+                "            <p>We appreciate your patience and look forward to serving you.</p>\n" +
+                "            <p>Thank you!</p>\n" +
+                "            <p>Best regards,</p>\n" +
+                "            <p>Renager</p>\n" +
+                "        </div>\n" +
+                "        <div class=\"footer\">\n" +
+                "            <p>&copy; 2024 Renager. All rights reserved.</p>\n" +
+                "            <p>Renager</p>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>\n";
+    }
 
     public static String generateUniqueKey() {
         String key;

@@ -166,12 +166,84 @@ public class PaymentVNpayServlet extends HttpServlet {
 //        request.setAttribute("roomId", booking.getRoomId());
 //        request.setAttribute("bookingId",booking.getId());
 //        System.out.println(account.getUserName());
+        String content = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "    <title>Room Booking Payment</title>\n" +
+                "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Barlow&amp;family=Barlow+Condensed&amp;family=Gilda+Display&amp;display=swap\">"+
+                "    <style>\n" +
+                "        body {\n" +
+                "            font-family: Barlow, sans-serif;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "            background-color: #f2f2f2;\n" +
+                "        }\n" +
+                "        .container {\n" +
+                "            width: 100%;\n" +
+                "            max-width: 600px;\n" +
+                "            margin: 0 auto;\n" +
+                "            background-color: #ffffff;\n" +
+                "            padding: 20px;\n" +
+                "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n" +
+                "        }\n" +
+                "        .header {\n" +
+                "            background-color: #007BFF;\n" +
+                "            color: #ffffff;\n" +
+                "            padding: 10px 20px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .content {\n" +
+                "            padding: 20px;\n" +
+                "        }\n" +
+                "        .button {\n" +
+                "            display: inline-block;\n" +
+                "            padding: 10px 20px;\n" +
+                "            font-size: 16px;\n" +
+                "            color: #ffffff;\n" +
+                "            background-color: #007BFF;\n" +
+                "            text-align: center;\n" +
+                "            text-decoration: none;\n" +
+                "            border-radius: 5px;\n" +
+                "            margin-top: 20px;\n" +
+                "        }\n" +
+                "        .footer {\n" +
+                "            text-align: center;\n" +
+                "            padding: 10px;\n" +
+                "            font-size: 12px;\n" +
+                "            color: #888888;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"header\">\n" +
+                "            <h1>Room Booking Payment</h1>\n" +
+                "        </div>\n" +
+                "        <div class=\"content\">\n" +
+                "            <p>Dear "+ account.getFullName()+ ",</p>\n" +
+                "            <p>Thank you for booking a room with us. Please click the button below to complete your payment </p>\n" +
+                "            <p  style=\"color: red;\">The payment link will expire in 15 minutes. If you do not pay, your order will be automatically canceled</p>\n" +
+                "            <a href=\""+paymentUrl+ "\" class=\"button\">Pay Now</a>\n" +
+                "            <p>If you have any questions or need further assistance, feel free to reply to this email.</p>\n" +
+                "            <p>Thank you!</p>\n" +
+                "            <p>Best regards,</p>\n" +
+                "            <p><strong>Renager</strong></p>\n" +
+                "        </div>\n" +
+                "        <div class=\"footer\">\n" +
+                "            <p>&copy; 2024 Renager. All rights reserved.</p>\n" +
+                "            <p>Renager</p>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>\n";
         bookingDAO.updateStateBooking(bookingId,"inprocess");
-        Email.sendEmail(account.getEmail(), "Payment", "The link contain in 15 minute " + paymentUrl);
-        TimerTask.timerRejectBooking(bookingId,"reject",timeExpert*60);
+        Email.sendEmail(account.getEmail(), "Room Booking Payment", content);
+        TimerTask.timerRejectBooking(booking,account,"reject",timeExpert*60);
 
         response.sendRedirect("BookingStatus");
     }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
