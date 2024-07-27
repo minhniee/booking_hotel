@@ -161,6 +161,7 @@
             <th>ID</th>
             <th>Room Class ID</th>
             <th>Room Class Name</th>
+            <th>Room Name</th>
             <th>Status Name</th>
             <th>Num Adults</th>
             <th>Price</th>
@@ -172,6 +173,7 @@
                 <td>${room.id}</td>
                 <td>${room.roomClassId}</td>
                 <td>${room.roomClassName}</td>
+                <td>${room.roomName}</td>
                 <td>${room.statusName}</td>
                 <td>${room.numAdults}</td>
                 <td>${room.basePrice}</td>
