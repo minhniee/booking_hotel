@@ -154,65 +154,65 @@
 <%--</div>--%>
 <div class="main-content">
 
-<div class="container">
-    <h1>Room Manager</h1>
-    <table class="room-table" border="1">
-        <tr>
-            <th>ID</th>
-            <th>Room Class ID</th>
-            <th>Room Class Name</th>
-            <th>Room Name</th>
-            <th>Status Name</th>
-            <th>Num Adults</th>
-            <th>Price</th>
-            <th>Room Image</th>
-            <th>Actions</th>
-        </tr>
-        <c:forEach var="room" items="${rooms}">
+    <div class="container">
+        <h1>Room Manager</h1>
+        <table class="room-table" border="1">
             <tr>
-                <td>${room.id}</td>
-                <td>${room.roomClassId}</td>
-                <td>${room.roomClassName}</td>
-                <td>${room.roomName}</td>
-                <td>${room.statusName}</td>
-                <td>${room.numAdults}</td>
-                <td>${room.basePrice}</td>
-                <td><img src="Assets1/img/rooms/${room.roomImg}" alt="${room.roomImg}" width="100"></td>
-                <td class="room-actions">
-                        <%--                    <form action="roomManager" method="post" style="display:inline;">--%>
-                        <%--                        <input type="hidden" name="action" value="edit">--%>
-                        <%--                        <input type="hidden" name="roomId" value="${room.id}">--%>
-                        <%--                        <button type="submit">Edit</button>--%>
-                        <%--                    </form>--%>
-                    <a href="editRoom?id=${room.id}"><button type="submit">Edit</button></a>
-                </td>
+                <th>ID</th>
+                <th>Room Class ID</th>
+                <th>Room Class Name</th>
+                <th>Room Name</th>
+                <th>Status Name</th>
+                <th>Num Adults</th>
+                <th>Price</th>
+                <th>Room Image</th>
+                <th>Actions</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="room" items="${rooms}">
+                <tr>
+                    <td>${room.id}</td>
+                    <td>${room.roomClassId}</td>
+                    <td>${room.roomClassName}</td>
+                    <td>${room.roomName}</td>
+                    <td>${room.statusName}</td>
+                    <td>${room.numAdults}</td>
+                    <td>${room.basePrice}</td>
+                    <td><img src="Assets1/img/rooms/${room.roomImg}" alt="${room.roomImg}" width="100"></td>
+                    <td class="room-actions">
+                            <%--                    <form action="roomManager" method="post" style="display:inline;">--%>
+                            <%--                        <input type="hidden" name="action" value="edit">--%>
+                            <%--                        <input type="hidden" name="roomId" value="${room.id}">--%>
+                            <%--                        <button type="submit">Edit</button>--%>
+                            <%--                    </form>--%>
+                        <a href="editRoom?id=${room.id}"><button type="submit">Edit</button></a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
 
-    <div class="pagination">
-        <c:if test="${currentPage > 1}">
-            <form action="roomManager" method="get">
-                <input type="hidden" name="page" value="${currentPage - 1}">
-                <button type="submit">&laquo; Previous</button>
-            </form>
-        </c:if>
-        <c:forEach begin="1" end="${totalPages}" var="pageNumber">
-            <form action="roomManager" method="get">
-                <input type="hidden" name="page" value="${pageNumber}">
-                <button type="submit" class="<c:if test='${pageNumber == currentPage}'>disabled</c:if>">
-                        ${pageNumber}
-                </button>
-            </form>
-        </c:forEach>
-        <c:if test="${currentPage < totalPages}">
-            <form action="roomManager" method="get">
-                <input type="hidden" name="page" value="${currentPage + 1}">
-                <button type="submit">Next &raquo;</button>
-            </form>
-        </c:if>
+        <div class="pagination">
+            <c:if test="${currentPage > 1}">
+                <form action="roomManager" method="get">
+                    <input type="hidden" name="page" value="${currentPage - 1}">
+                    <button type="submit">&laquo; Previous</button>
+                </form>
+            </c:if>
+            <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+                <form action="roomManager" method="get">
+                    <input type="hidden" name="page" value="${pageNumber}">
+                    <button type="submit" class="<c:if test='${pageNumber == currentPage}'>disabled</c:if>">
+                            ${pageNumber}
+                    </button>
+                </form>
+            </c:forEach>
+            <c:if test="${currentPage < totalPages}">
+                <form action="roomManager" method="get">
+                    <input type="hidden" name="page" value="${currentPage + 1}">
+                    <button type="submit">Next &raquo;</button>
+                </form>
+            </c:if>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>
