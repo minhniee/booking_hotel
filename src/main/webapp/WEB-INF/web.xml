@@ -61,6 +61,7 @@
         <url-pattern>/UpdateService</url-pattern>
         <url-pattern>/BookingStatus</url-pattern>
         <url-pattern>/ProfileAdmin</url-pattern>
+        <url-pattern>/detailListBooking</url-pattern>
     </filter-mapping>
     <filter>
         <filter-name>LoginFilterStaff</filter-name>

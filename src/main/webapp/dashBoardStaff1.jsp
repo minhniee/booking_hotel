@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="url"
        value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"/>
 <!-- General CSS Files -->
@@ -19,13 +20,13 @@
                 <ul class="navbar-nav mr-3">
                     <li>
                         <form class="form-inline mr-auto">
-                            <div class="search-element">
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                       data-width="200">
-                                <button class="btn" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
+<%--                            <div class="search-element">--%>
+<%--                                <input class="form-control" type="search" placeholder="Search" aria-label="Search"--%>
+<%--                                       data-width="200">--%>
+<%--                                <button class="btn" type="submit">--%>
+<%--                                    <i class="fas fa-search"></i>--%>
+<%--                                </button>--%>
+<%--                            </div>--%>
                         </form>
                     </li>
                 </ul>
@@ -48,9 +49,9 @@
                         <li><a class="nav-link" href="${url}/dashboardstaff.jsp"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
 
                         <li class="menu-header">Booking</li>
-                        <li><a class="nav-link" href="listBooking"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
-                        <li><a class="nav-link" href="HistoryBooking"><i class="fas fa-history"></i><span>History Booking</span></a></li>
-                        <li><a class="nav-link" href="customerInfo"><i class="fas fa-history"></i><span>Customer</span></a></li>
+                        <li><a class="nav-link" href="${url}/listBooking"><i class="fas fa-list"></i><span>List Booking Status</span></a></li>
+                        <li><a class="nav-link" href="${url}/HistoryBooking1"><i class="fas fa-history"></i><span>History Booking</span></a></li>
+                        <li><a class="nav-link" href="${url}/customerInfo"><i class="fas fa-history"></i><span>Customer</span></a></li>
 
                         <li class="menu-header">Room</li>
                         <li><a class="nav-link" href="${url}/RoomClasses"><i class="fas fa-layer-group"></i><span>Room Class</span></a></li>
