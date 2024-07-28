@@ -11,8 +11,8 @@
             font-size: 40px;
             font-family: auto;
         }
-        .table{
-            background-color: #f6e7d1;
+        .py-5{
+            border-style: groove; background-color: #f6e7d1; border-radius: 30px;
         }
 
         .input-group-text, select.form-control:not([size]):not([multiple]), .form-control:not(.form-control-sm):not(.form-control-lg) {
@@ -30,7 +30,7 @@
 <div class="main-content" >
     <div class="table">
     <form action="profileStaff" method="post" onsubmit="return validateForm()">
-        <div class="p-3 py-5" style="border-style: groove;    border-radius: 30px;">
+        <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="text-right">Profile Settings</h4>
             </div>

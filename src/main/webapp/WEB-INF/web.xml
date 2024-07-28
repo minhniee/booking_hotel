@@ -90,5 +90,7 @@
         <url-pattern>/editRoom.jsp</url-pattern>
         <url-pattern>/RoomClasses.jsp</url-pattern>
         <url-pattern>/ListBookingStaff</url-pattern>
+        <url-pattern>/HistoryBooking1</url-pattern>
+
     </filter-mapping>
 </web-app>
