@@ -204,24 +204,28 @@ public class Invoice extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             //            request.setAttribute("paymentMethod", payment);
-            request.setAttribute("bookingID", bookingId.toUpperCase());
-            request.setAttribute("accountid", booking.getAccountId());
-            request.setAttribute("checkInDate", booking.getCheckInDate());
-            request.setAttribute("checkOutDate", booking.getCheckOutDate());
-            request.setAttribute("children", booking.getNumChildren());
-            request.setAttribute("adults", booking.getNumAdults());
-            request.setAttribute("roomId", booking.getRoomId());
-            request.setAttribute("vnp_TxnRef", vnp_TxnRef);
-            request.setAttribute("noti", "Invalid number format");
-            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+//            request.setAttribute("bookingID", bookingId.toUpperCase());
+//            request.setAttribute("accountid", booking.getAccountId());
+//            request.setAttribute("checkInDate", booking.getCheckInDate());
+//            request.setAttribute("checkOutDate", booking.getCheckOutDate());
+//            request.setAttribute("children", booking.getNumChildren());
+//            request.setAttribute("adults", booking.getNumAdults());
+//            request.setAttribute("roomId", booking.getRoomId());
+//            request.setAttribute("vnp_TxnRef", vnp_TxnRef);
+//            request.setAttribute("noti", "Invalid number format");
+//            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+            response.sendError(500);
         } catch (DateTimeParseException e) {
-            e.printStackTrace();
-            request.setAttribute("noti", "Invalid date format");
-            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+//            e.printStackTrace();
+//            request.setAttribute("noti", "Invalid date format");
+            response.sendError(500);
+
+//            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
         } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("noti", "An unexpected error occurred");
-            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+            response.sendError(500);
+//            e.printStackTrace();
+//            request.setAttribute("noti", "An unexpected error occurred");
+//            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
         }
 
     }

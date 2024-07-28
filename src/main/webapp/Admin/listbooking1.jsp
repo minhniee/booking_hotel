@@ -121,8 +121,11 @@
                                                 </c:when>
                                             </c:choose>
 
+                                            <c:if test="${l.bookingState eq 'confirmed'}">
 
                                             <td><a href="Checkout?id=${l.id}" class="btn btn-primary">Checkout</a></td>
+                                            </c:if>
+
                                             <c:set var="i" value="${i+1}"/>
 
 

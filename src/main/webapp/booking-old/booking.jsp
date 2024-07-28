@@ -86,6 +86,7 @@
         }
 
     </style>
+
 </head>
 <body>
 <div class="container-fruid p-b-5  h-100 bg-dark text-white">
@@ -143,7 +144,7 @@
 
     <div class="section total">
         <p>The taxes which are not included are to be paid to the hotel. The total amount is:</p>
-        <p><strong id="total-with-taxes">${total + (total*0.1)}</strong></p>
+        <p><strong id="total-with-taxes">${total}</strong></p>
     </div>
 
 
@@ -178,7 +179,7 @@
             <input type="hidden" value="${total}" name="price">
             <input type="hidden" value="${user.id}" name="accountid">
 
-            <button class="btn btn-primary" id="book-button" type="submit">booking</button>
+            <button class="btn btn-primary" id="book-button"  type="submit">booking</button>
         </form>
 
     </div>
@@ -202,6 +203,11 @@
 </div>
 
 <script>
+        function disableButton(button) {
+        button.disabled = true;
+        button.type = "submit"
+        button.innerText = "booking"; // Optionally change the button text
+    }
     // const bankingRadio = document.getElementById('flexRadioDefault1');
     // const bankingTransferRadio = document.getElementById('flexRadioDefault2');
     // const qrPayment = document.getElementById('qrPayment');

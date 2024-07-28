@@ -47,10 +47,9 @@
     <div class="row">
       <div class="col-sm-5"> <strong>Hotel Address:</strong>
         <address>
-          The Orchid Hotel<br />
-          Plot No.3, Nr. HDFC Bank, Ashram Road<br />
-          Ahmedabad, Gujarat,<br />
-          India.
+          Thach That, Hoa Lac<br />
+          Ha Noi<br />
+          Viet Nam
         </address>
       </div>
       <div class="col-sm-7">
@@ -134,11 +133,11 @@
   <!-- Footer -->
   <footer class="text-center">
     <hr>
-    <p class="lh-base"><strong>Hotel.</strong><br>
-      The Orchid Hotel<br>
-      Plot No.3, Nr. HDFC Bank, Ashram Road<br>
-      Ahmedabad, Gujarat,<br />
-      India.</p>
+      <address>
+        Thach That, Hoa Lac<br />
+        Ha Noi<br />
+        Viet Nam
+      </address>
     <hr>
     <p class="text-1"><strong>NOTE :</strong> This is computer generated receipt and does not require physical signature.</p>
     <div class="btn-group btn-group-sm d-print-none">

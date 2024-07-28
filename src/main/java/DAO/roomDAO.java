@@ -293,7 +293,7 @@ public class roomDAO {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room";
 //        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
-        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? AND( bs.state ='confirmed' or bs.state ='inprocess' ) AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? AND( bs.state ='confirmed' or bs.state ='inprocess'or bs.state ='pending' ) AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
 
         try{
             con = new DBContext().getConnection();
@@ -327,7 +327,7 @@ public class roomDAO {
         List<String> availableRooms = new ArrayList<>();
         String query = "SELECT id, name, room_class_id FROM room where room_class_id = ?";
 //        String bookingQuery = "SELECT * FROM booking WHERE room_id = ? AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date) ";
-        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? and (bs.state like 'confirmed' or bs.state like 'inprocess') AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
+        String bookingQuery = "SELECT booking.* FROM booking join dbo.booking_status as bs on booking.id = bs.booking_id  WHERE room_id like ? and (bs.state like 'confirmed' or bs.state like 'inprocess' or bs.state like 'pending') AND(  ? BETWEEN checkin_date AND checkout_date OR ? BETWEEN checkin_date AND checkout_date)";
         try{
             con = new DBContext().getConnection();
             pr = con.prepareStatement(query);

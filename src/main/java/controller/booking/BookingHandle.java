@@ -123,7 +123,7 @@ public class BookingHandle extends HttpServlet {
                 request.setAttribute("noti",
                         "Please choose a date greater than the current date!");
                 request.setAttribute("currentDate", currentDate);
-            } else if (person > 3) {
+            } else if (person >= 3) {
                 request.setAttribute("noti", "Too many persons (2 people/per room)");
             } else {
                 roomDAO roomDAO = new roomDAO();

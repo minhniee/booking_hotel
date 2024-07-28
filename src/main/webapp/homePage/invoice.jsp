@@ -116,8 +116,8 @@
                     <td class="col-sm-2 text-end">$${basePrice* nights}.00</td>
                 </tr>
                 <tr class="bg-light">
-                    <td colspan="2" class="text-end"><strong>Tax(10%):</strong></td>
-                    <c:set var = "balance" value = "${basePrice* nights*0.1}" />
+                    <td colspan="2" class="text-end"><strong>Tax:</strong></td>
+                    <c:set var = "balance" value = "0" />
                     <fmt:parseNumber var = "i" integerOnly = "false"
                                      type = "number" value = "${balance}" />
 <%--                    <p>Included: VAT / Consumption tax <span><c:out value = "${i}" /></span></p>--%>
@@ -125,7 +125,7 @@
                 </tr>
                 <tr class="bg-light">
                     <td colspan="2" class="text-end border-bottom-0"><strong>Total:</strong></td>
-                    <td class="col-sm-2 text-end border-bottom-0">$${basePrice* nights*0.1+basePrice* nights}.00</td>
+                    <td class="col-sm-2 text-end border-bottom-0">$${basePrice* nights}.00</td>
                 </tr>
             </table>
         </div>

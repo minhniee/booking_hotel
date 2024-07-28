@@ -57,7 +57,7 @@
                     <c:forEach items="${rooms}" var="r">
 
                     <div class="rooms2 mb-90 left animate-box" data-animate-effect="fadeInUp">
-                        <figure><img src="${url1}/Assets1/img/slider/${r.roomImg}" alt="vc" class="img-fluid"></figure>
+                        <figure><img src="${url1}/Assets1/img/rooms/${r.roomImg}" alt="vc" class="img-fluid"></figure>
                         <div class="caption">
                             <h3>${r.basePrice * nights} $ <span>${r.basePrice}$ <span>/ night</span></span> </h3>
 <%--                            <h6>${r.basePrice}$ <span>/ Night</span></h6>--%>
@@ -95,7 +95,7 @@
                     <c:forEach items="${room}" var="r">
 
                         <div class="rooms2 mb-90 left animate-box" data-animate-effect="fadeInUp">
-                            <figure><img src="${url1}/Assets1/img/slider/${r.roomImg}" alt="vc" class="img-fluid"></figure>
+                            <figure><img src="${url1}/Assets1/img/rooms/${r.roomImg}" alt="vc" class="img-fluid"></figure>
                             <div class="caption">
                                 <h3>${r.basePrice}$ <span>/ night</span></> </h3>
                                     <%--                            <h6>${r.basePrice}$ <span>/ Night</span></h6>--%>

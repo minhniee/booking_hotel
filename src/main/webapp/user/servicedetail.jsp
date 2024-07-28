@@ -60,10 +60,9 @@
     <div class="row">
       <div class="col-sm-5"> <strong>Hotel Address:</strong>
         <address>
-          The Orchid Hotel<br />
-          Plot No.3, Nr. HDFC Bank, Ashram Road<br />
-          Ahmedabad, Gujarat,<br />
-          India.
+          Thach That, Hoa Lac<br />
+          Ha Noi<br />
+          Viet Nam
         </address>
       </div>
       <div class="col-sm-7">

@@ -152,13 +152,13 @@ public class BookingDetail extends HttpServlet {
             Account account = (Account) session.getAttribute("account");
             Email.sendEmail(account.getEmail(),"Thank for booking",content(account.getFullName()));
             request.getRequestDispatcher("homePage/thankbooking.jsp").forward(request, response);
-            response.setStatus(HttpServletResponse.SC_OK);
+//            response.setStatus(HttpServletResponse.SC_OK);
         } catch (DateTimeParseException e) {
-            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
+//            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid date format: " + e.getMessage());
         } catch (NumberFormatException e) {
-            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
+//            handleException(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid number format: " + e.getMessage());
         } catch (Exception e) {
-            handleException(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
+//            handleException(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request: " + e.getMessage());
         }
     }
 
